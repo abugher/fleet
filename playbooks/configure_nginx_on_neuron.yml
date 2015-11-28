@@ -40,6 +40,8 @@
       - 'wiki'
       - 'remote.ssl'
       - 'remote'
+      - 'nagios'
+      - 'nagios.ssl'
     register:           neuron_nginx_sites_available
 
 

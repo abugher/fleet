@@ -1,5 +1,6 @@
 server {
-	server_name transmission transmission.neuronpointer.net;
-        return 301 https://transmission.neuronpointer.net$request_uri;
+        listen          80;
+	server_name     transmission transmission.neuronpointer.net;
+        return 301      https://transmission.neuronpointer.net$request_uri;
 }
 

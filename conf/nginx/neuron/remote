@@ -1,5 +1,6 @@
 server {
-	server_name remote.neuronpointer.net;
-        return 301 https://remote.neuronpointer.net$request_uri;
+        listen          80;
+	server_name     remote.neuronpointer.net;
+        return 301      https://remote.neuronpointer.net$request_uri;
 }
 

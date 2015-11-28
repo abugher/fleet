@@ -1,4 +1,5 @@
 server {
-	server_name smokeping smokeping.neuronpointer.net;
-        return 301 https://smokeping.neuronpointer.net$request_uri;
+        listen          80;
+	server_name     smokeping smokeping.neuronpointer.net;
+        return 301      https://smokeping.neuronpointer.net$request_uri;
 }
