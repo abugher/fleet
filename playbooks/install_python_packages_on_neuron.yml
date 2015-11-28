@@ -14,3 +14,4 @@
       - 'FlexGet'
       - 'functools32'   # for flexget
       - 'transmissionrpc'
+      - 'guessit'
