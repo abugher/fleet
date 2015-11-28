@@ -1,0 +1,6 @@
+---
+- include:              'configure_hostname_on_neuron.yml'
+- include:              'configure_nginx_on_neuron.yml'
+- include:              'configure_flexget_on_neuron.yml'
+- include:              'configure_chown_pictures_on_neuron.yml'
+- include:              'configure_transmission_on_neuron.yml'

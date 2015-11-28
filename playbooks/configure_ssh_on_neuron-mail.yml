@@ -1,0 +1,14 @@
+---
+- hosts:                neuron-mail
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure ssh authorized keys for aaron on neuron-mail'
+    authorized_key:
+      user:             'aaron'
+      key:              "{{ item }}"
+    with_file:
+      - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"

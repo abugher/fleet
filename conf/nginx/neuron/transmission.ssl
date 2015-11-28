@@ -1,0 +1,35 @@
+server {
+  listen 9092 default_server ssl;
+  ssl_certificate /etc/nginx/neuron.crt;
+  ssl_certificate_key /etc/nginx/neuron.key;
+  server_name transmission transmission.neuronpointer.net;
+
+  access_log /var/log/nginx/transmission.access.log;
+
+  location / {
+    proxy_pass http://localhost:9091;
+  }
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root /var/www/nginx-default;
+  }
+}
+
+server {
+  listen 443 ssl;
+  ssl_certificate /etc/nginx/neuron.crt;
+  ssl_certificate_key /etc/nginx/neuron.key;
+  server_name transmission transmission.neuronpointer.net;
+
+  access_log /var/log/nginx/transmission.access.log;
+
+  location / {
+    proxy_pass http://localhost:9091;
+  }
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root /var/www/nginx-default;
+  }
+}

@@ -1,0 +1,33 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure apt on synapse:  sources.list'
+    copy:
+      src:              '~/code/fleet/conf/apt/synapse/sources.list'
+      dest:             '/etc/apt/sources.list'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           apt_sources_synapse
+  - name:               'configure apt on synapse:  raspi.list'
+    copy:
+      src:              '~/code/fleet/conf/apt/synapse/raspi.list'
+      dest:             '/etc/apt/sources.list.d/raspi.list'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           apt_sources_raspi_synapse
+  - name:               'configure apt on synapse:  remove collabora.list'
+    file:
+      path:             '/etc/apt/sources.list.d/collabora.list'
+      state:            'absent'
+    register:           apt_sources_collabora_synapse
+  - name:               'update apt on synapse'
+    apt:
+      update_cache:     'yes'
+    when:               apt_sources_synapse.changed or apt_sources_raspi_synapse.changed or apt_sources_collabora_synapse.changed

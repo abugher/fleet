@@ -1,0 +1,21 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure smokeping on synapse:  Targets'
+    copy:
+      src:              '~/code/fleet/conf/smokeping/synapse/Targets'
+      dest:             '/etc/smokeping/config.d/Targets'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           synapse_smokeping_config
+  - name:               'configure smokeping on synapse:  service restart'
+    service:
+      name:             'smokeping'
+      state:            'restarted'
+    when:               synapse_smokeping_config.changed

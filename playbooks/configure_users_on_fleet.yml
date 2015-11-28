@@ -1,0 +1,23 @@
+---
+- hosts:                fleet
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure users on fleet:  nagios'
+    user:
+      name:             'nagios'
+      group:            'nagios'
+      comment:          'Nagios'
+      state:            'present'
+      shell:            '/bin/bash'
+      system:           'yes'
+  - name:               'configure users on fleet:  nagios:  authorize keys'
+    authorized_key:
+      user:             'nagios'
+      key:              "{{ item }}"
+    with_file:
+      - "~/code/fleet/conf/ssh_keys/nagios@synapse.id_rsa.pub"
+

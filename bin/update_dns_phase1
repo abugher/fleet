@@ -1,0 +1,12 @@
+#!/bin/bash
+
+neuronpointer_ip=$(
+  dig +short myip.opendns.com @resolver1.opendns.com
+)
+
+if echo $neuronpointer_ip | grep -qE '[^0-9.]|.{16}'; then
+  echo "Error:  Invalid IP address:  ${neuronpointer_ip}" >&2
+  exit 1
+fi
+
+ssh ansible@173.230.128.73 sudo /usr/local/bin/update_dns_phase2 $neuronpointer_ip

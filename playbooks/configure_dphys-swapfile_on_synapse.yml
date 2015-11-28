@@ -1,0 +1,21 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure dphys-swapfile on synapse:  configuration file'
+    copy:
+      src:              '~/code/fleet/conf/dphys-swapfile'
+      dest:             '/etc/dphys-swapfile'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           swapfile_config_synapse
+  - name:               'configure dphys-swapfile on synapse:  service restart'
+    service:
+      name:             'dphys-swapfile'
+      state:            'restarted'
+    when:               swapfile_config_synapse.changed

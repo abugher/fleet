@@ -1,0 +1,23 @@
+---
+- hosts:                neuron
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure groups on neuron:  aaron-phone'
+    group:
+      name:             'aaron-phone'
+      system:           'no'
+      state:            'present'
+  - name:               'configure groups on neuron:  escrow'
+    group:
+      name:             'escrow'
+      system:           'yes'
+      state:            'present'
+  - name:               'configure groups on neuron:  cryptkeeper'
+    group:
+      name:             'cryptkeeper'
+      system:           'yes'
+      state:            'present'

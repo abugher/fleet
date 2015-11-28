@@ -1,0 +1,31 @@
+server {
+  listen 443 ssl;
+  ssl_certificate /etc/nginx/neuron.crt;
+  ssl_certificate_key /etc/nginx/neuron.key;
+  server_name   wiki wiki.neuronpointer.net;
+
+  # You can make / show the front page, but, all the links point to
+  # /dokuwiki/[stuff] .  Make /dokuwiki/ show the front page, and all is
+  # well.
+
+  location ~ ^/dokuwiki/lib/.+\.(css|gif|js|png)$ {
+      root /usr/share;
+      expires 30d;
+  }
+  location = /install.php {
+      deny all;
+  }
+  location = / {
+      rewrite ^ /dokuwiki/doku.php last;
+      expires 30d;
+  }
+  location ~ ^/dokuwiki/(|lib/(exe|plugins/[^/]+)/)[^/]+\.php {
+      root /usr/share;
+      fastcgi_pass unix:/var/run/php5-fpm.sock;
+      include        fastcgi_params;
+  }
+  location / {
+      deny all;
+  }
+}
+

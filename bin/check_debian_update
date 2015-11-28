@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# DISTRIBUTED BY ANSIBLE
+
+happy=0
+critical=2
+log_file='/var/log/update_debian.daily.log'
+ret_file='/var/log/update_debian.daily.ret'
+
+target="${1}"
+
+max_age_days=2
+max_delta=$(( 60 * 60 * 24 * $max_age_days ))
+
+last_update_timestamp="$(
+  ssh "${target}" stat -c "%Y" "${ret_file}"
+)"
+now_timestamp="$(
+  ssh "${target}" date "+%s"
+)"
+
+delta=$(( $now_timestamp - $last_update_timestamp ))
+
+ret="$(
+  ssh "${target}" cat "${ret_file}"
+)"
+
+if test $ret -ne 0; then
+  echo "Debian update Critical!  Return status:  ${ret}"
+  exit $critical
+fi
+
+if
+     test $delta -lt $max_delta \
+  && test $delta -gt 0
+then
+  echo "Debian update OK.  Last update returned ${ret} at ${delta} seconds ago."
+  exit $happy
+else
+  echo "Debian update Critical!  Last update returned ${ret} at ${delta} seconds ago."
+  exit $critical
+fi

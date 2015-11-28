@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# DISTRIBUTED BY ANSIBLE
+
+selection="${1}"
+
+if [ '' == "${selection}" ]; then selection='full'; fi
+
+case "${selection}" in
+  'date')
+    date "+%Y-%m-%d"
+    ;;
+  'time')
+    date "+%H:%M:%S"
+    ;;
+  'full')
+    date "+%Y-%m-%d_%H:%M:%S"
+    ;;
+  *)
+    echo 'Invalid option.  Try one of "date", "time", or "full".' >&2
+    ;;
+esac

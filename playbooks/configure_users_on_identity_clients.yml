@@ -1,0 +1,25 @@
+---
+- hosts:                identity_clients
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure users on identity_clients:  aaron'
+    user:
+      name:             'aaron'
+      group:            'aaron'
+      comment:          'Aaron'
+      state:            'present'
+      shell:            '/bin/bash'
+      password:         '!'
+  - name:               'configure users on identity_clients:  rachel'
+    user:
+      name:             'rachel'
+      group:            'rachel'
+      comment:          'Rachel'
+      state:            'present'
+      shell:            '/bin/bash'
+      password:         '!'
+

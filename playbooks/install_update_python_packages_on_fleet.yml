@@ -1,0 +1,15 @@
+---
+- hosts:                fleet
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'install update_python_packages on fleet'
+    copy:
+      owner:            root
+      group:            root
+      mode:             0755
+      src:              ~/code/fleet/bin/update_python_packages
+      dest:             /usr/local/bin/update_python_packages

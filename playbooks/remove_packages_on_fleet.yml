@@ -1,0 +1,14 @@
+---
+- hosts:                fleet
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'remove packages on fleet'
+    apt:
+      name:             '{{ item }}'
+      state:            'absent'
+    with_items:
+      - 'nano'

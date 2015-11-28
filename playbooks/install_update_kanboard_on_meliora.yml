@@ -1,0 +1,14 @@
+---
+- hosts:                meliora
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'install update_debian on meliora'
+    copy:
+      owner:            root
+      group:            root
+      mode:             0755
+      src:              ~/code/fleet/bin/update_kanboard
+      dest:             /usr/local/bin/update_kanboard

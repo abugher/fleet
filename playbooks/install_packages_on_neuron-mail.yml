@@ -1,0 +1,18 @@
+---
+- hosts:                neuron-mail
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'install packages on neuron-mail'
+    apt:
+      name:             "{{ item }}"
+      state:            'present'
+    with_items:
+      - 'tor'
+      - 'dnsmasq'
+      - 'libxml2-dev'
+      - 'libxslt1-dev'
+      - 'zlib1g-dev'

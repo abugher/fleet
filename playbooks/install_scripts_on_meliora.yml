@@ -1,0 +1,8 @@
+---
+- hosts:                meliora
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+- include:              'install_update_kanboard_on_meliora.yml'

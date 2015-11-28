@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# DISTRIBUTED BY ANSIBLE
+
+#/bin/sleep $(( $RANDOM % ( 60 * 24 ) ))m
+
+/usr/local/bin/update_debian > /var/log/update_debian.daily.log 2>&1
+echo $? > /var/log/update_debian.daily.ret

@@ -1,0 +1,70 @@
+server {
+  listen 443 default_server ssl;
+  ssl_certificate /etc/nginx/neuron.crt;
+  ssl_certificate_key /etc/nginx/neuron.key;
+  server_name neuron neuron.neuronpointer.net neuronpointer.net;
+  access_log /var/log/nginx/ssl.access.log;
+  root /usr/share/nginx/www;
+  index index.html index.htm;
+
+
+  # Default area.
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+
+  location /private {
+    auth_basic "Private Material";
+    auth_basic_user_file htpasswd;
+    autoindex on;
+  }
+
+  location /private/pictures {
+    autoindex on;
+  }
+
+
+  # Nagios on synapse.
+  #location /nagios3/ {
+  #  proxy_pass https://synapse/nagios3/;
+  #}
+  #location /cgi-bin/nagios3/ {
+  #  proxy_pass https://synapse/cgi-bin/nagios3/;
+  #}
+
+  # Shinken on synapse.
+  location /shinken/ {
+    proxy_pass https://synapse/;
+  }
+  location /static/ {
+    proxy_pass https://synapse/static/;
+  }
+  location /user/ {
+    proxy_pass https://synapse/user/;
+  }
+  location /mobile/ {
+    proxy_pass https://synapse/mobile/;
+  }
+
+  location /kanboard/ {
+    proxy_pass http://meliora/kanboard/;
+  }
+
+  location /transmission/ {
+    proxy_pass https://localhost:9092;
+  }
+
+  # Docs.  I don't think we need these.
+#  location /doc/ {
+#    alias /usr/share/doc/;
+#    autoindex on;
+#    allow 127.0.0.1;
+#    allow ::1;
+#    deny all;
+#  }
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root /usr/share/nginx/www;
+  }
+}

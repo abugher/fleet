@@ -1,0 +1,28 @@
+---
+- hosts:                meliora
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure apt on meliora:  sources.list'
+    copy:
+      src:              '~/code/fleet/conf/apt/meliora/sources.list'
+      dest:             '/etc/apt/sources.list'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           apt_sources_meliora
+  - name:               'configure apt on meliora:  sources.list.d/x2go.list'
+    copy:
+      src:              '~/code/fleet/conf/apt/meliora/sources.list.d/x2go.list'
+      dest:             '/etc/apt/sources.list.d/x2go.list'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           apt_sources_x2go_meliora
+  - name:               'update apt on meliora'
+    apt:
+      update_cache:     'yes'
+    when:               apt_sources_meliora.changed or apt_sources_x2go_meliora.changed

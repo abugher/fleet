@@ -1,0 +1,117 @@
+---
+- hosts:                neuron
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure nginx on neuron:  index.html'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '~/code/fleet/conf/nginx/neuron/index.html'
+      dest:             '/usr/share/nginx/www/index.html'
+  - name:               'configure nginx on neuron:  nginx.conf'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '~/code/fleet/conf/nginx/neuron/nginx.conf'
+      dest:             '/etc/nginx/nginx.conf'
+    register:           neuron_nginx_nginx_conf 
+
+  - name:               'configure nginx on neuron, sites-available'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              "~/code/fleet/conf/nginx/neuron/{{ item }}"
+      dest:             "/etc/nginx/sites-available/{{ item }}"
+    with_items:
+      - 'default.ssl'
+      - 'default'
+      - 'transmission.ssl'
+      - 'transmission'
+      - 'smokeping.ssl'
+      - 'smokeping'
+      - 'wiki.ssl'
+      - 'wiki'
+      - 'remote.ssl'
+      - 'remote'
+    register:           neuron_nginx_sites_available
+
+
+  - name:               'configure nginx on neuron, sites-enabled'
+    file:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              "/etc/nginx/sites-available/{{ item }}"
+      path:             "/etc/nginx/sites-enabled/{{ item }}"
+      state:            'link'
+    with_items:
+      - 'default.ssl'
+      - 'default'
+      - 'transmission.ssl'
+      - 'transmission'
+      - 'smokeping.ssl'
+      - 'smokeping'
+      - 'wiki.ssl'
+      - 'wiki'
+      - 'remote.ssl'
+      - 'remote'
+    register:           neuron_nginx_sites_enabled
+
+  - name:               'configure nginx on neuron, private directory'
+    file:
+      path:             '/usr/share/nginx/www/private'
+      state:            'directory'
+      mode:             '0750'
+      owner:            'root'
+      group:            'www-data'
+  - name:               'configure nginx on neuron, pictures'
+    file:
+      src:              '/storage/aaron-phone/live/legacy/DCIM/Camera'
+      dest:             '/usr/share/nginx/www/private/pictures'
+      state:            'link'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      force:            'yes'
+
+  - name:               'configure nginx on neuron, htpasswd file'
+    copy:
+      owner:            'root'
+      group:            'www-data'
+      mode:             '0640'
+      src:              '~/code/sensitive/conf/nginx/neuron/htpasswd'
+      dest:             '/etc/nginx/htpasswd'
+
+  - name:               'configure nginx on neuron, SSL key'
+    copy:
+      owner:            'root'
+      group:            'www-data'
+      mode:             '0640'
+      src:              '~/code/sensitive/conf/ssl/neuronpointer.net/key'
+      dest:             '/etc/nginx/neuron.key'
+    register:           neuron_nginx_ssl_key
+  - name:               'configure nginx on neuron, SSL cert'
+    copy:
+      owner:            'root'
+      group:            'www-data'
+      mode:             '0640'
+      src:              '~/code/fleet/conf/ssl/neuronpointer.net/cert'
+      dest:             '/etc/nginx/neuron.crt'
+    register:           neuron_nginx_ssl_cert
+
+  - name:               'configure nginx on neuron, service restart'
+    service:
+      name:             'nginx'
+      state:            'restarted'
+    when:               neuron_nginx_nginx_conf.changed
+                        or neuron_nginx_sites_available.changed
+                        or neuron_nginx_sites_enabled.changed 
+                        or neuron_nginx_ssl_key.changed 
+                        or neuron_nginx_ssl_cert.changed

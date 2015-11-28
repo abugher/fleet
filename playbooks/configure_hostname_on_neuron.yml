@@ -1,0 +1,23 @@
+---
+- hosts:                neuron
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure hostname on neuron:  /etc/hostname'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '~/code/fleet/conf/hostname.neuron'
+      dest:             '/etc/hostname'
+    register:           neuron_hostname
+
+  - name:               'configure hostname on neuron:  service restart'
+    service:
+      name:             'hostname.sh'
+      state:            'restarted'
+    when:               neuron_hostname.changed
+

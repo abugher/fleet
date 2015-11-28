@@ -1,0 +1,13 @@
+---
+- hosts:                fleet
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure groups on fleet:  nagios'
+    group:
+      name:             'nagios'
+      system:           'yes'
+      state:            'present'

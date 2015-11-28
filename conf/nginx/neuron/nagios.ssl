@@ -1,0 +1,11 @@
+server {
+  listen 443 ssl;
+  ssl_certificate       /etc/nginx/neuron.crt;
+  ssl_certificate_key   /etc/nginx/neuron.key;
+  server_name           nagios nagios.neuronpointer.net;
+
+  location / {
+    # This resolves to a private IP on the LAN.
+    proxy_pass          https://nagios.neuronpointer.net/;
+  }
+}

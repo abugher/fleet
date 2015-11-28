@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ssh $1 '/etc/init.d/tor status' >/dev/null 2>&1
+service_ret=$?
+
+if test 0 = $service_ret; then
+  echo 'Tor is running.'
+  exit 0
+else
+  echo "'/etc/init.d/tor status' returned ${service_ret}."
+  exit 2
+fi

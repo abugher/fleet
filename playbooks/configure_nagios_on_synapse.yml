@@ -1,0 +1,30 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure nagios on synapse:  /etc/nagios3/'
+    copy:
+      src:              '~/code/fleet/conf/nagios/synapse/nagios3/'
+      dest:             '/etc/nagios3/'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           nagios_config_synapse
+  - name:               'configure nagios on synapse:  /etc/nagios3/htpasswd.users'
+    copy:
+      src:              '~/code/sensitive/conf/nagios/synapse/nagios3/htpasswd.users'
+      dest:             '/etc/nagios3/htpasswd.users'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           nagios_htpasswd_synapse
+  - name:               'configure nagios on synapse:  service restart'
+    service:
+      name:             'nagios3'
+      state:            'restarted'
+    when:               nagios_config_synapse.changed or nagios_htpasswd_synapse.changed
+

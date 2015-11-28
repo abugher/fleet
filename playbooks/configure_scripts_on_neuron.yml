@@ -1,0 +1,4 @@
+---
+- include:              'configure_tend_storage_on_neuron.yml'
+- include:              'configure_storage_on_neuron.yml'
+

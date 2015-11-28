@@ -1,0 +1,14 @@
+---
+- hosts:                rudolph
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'install packages on rudolph'
+    apt:
+      name:             "{{ item }}"
+      state:            'present'
+    with_items:
+      - 'libjpeg-dev'

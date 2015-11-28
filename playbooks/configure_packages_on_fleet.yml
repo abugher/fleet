@@ -1,0 +1,8 @@
+---
+- include:              'configure_vim_on_fleet.yml'
+- include:              'configure_krb5_on_fleet.yml'
+- include:              'configure_sshd_on_fleet.yml'
+- include:              'configure_ssh.yml'
+- include:              'configure_dphys-swapfile_on_synapse.yml'
+- include:              'configure_ansible_on_synapse.yml'
+- include:              'install_dotfiles_on_fleet.yml'

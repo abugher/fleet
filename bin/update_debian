@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# DISTRIBUTED BY ANSIBLE
+
+# checkrestart requires package debian-goodies.
+# /var/run/reboot-required requires package update-notifier-common.
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+#echo "DEBUG:  PATH=${PATH}"
+#echo "DEBUG:  SHELL=${SHELL}"
+#echo "DEBUG:  \$0=${0}"
+
+                     ERR_UPDATE=1
+                    ERR_UPGRADE=2
+               ERR_CHECKRESTART=3
+       ERR_CHECKRESTART_SERVICE=4
+                     ERR_REBOOT=5
+                  ERR_AUTOCLEAN=6
+                     ERR_PYTHON=7
+                   ERR_KANBOARD=8
+
+
+/usr/bin/aptitude update \
+  && echo -en "Updates successful.\n" \
+  || { echo -en "Updates failed: ${?}\n"; exit $ERR_UPDATE; } \
+&& /usr/bin/aptitude full-upgrade -y \
+  && echo -en "Upgrades successful.\n" \
+  || { echo -en "Upgrades failed: ${?}\n"; exit $ERR_UPGRADE; } \
+&& /usr/sbin/checkrestart \
+  | grep '^service ' \
+  | while read service_line; do
+    eval "${service_line}" \
+      || { echo -en "Service restart returned: ${?}; service line: '${service_line}'\n"; exit $ERR_CHECKRESTART_SERVICE; } \
+  done \
+  && echo -en "Service restarts returned true.\n" \
+  || { echo -en "Service restarts returned: ${?}\n"; exit $ERR_CHECKRESTART; } \
+&& ! test -e /var/run/reboot-required \
+  && echo -en "No reboot required.\n" \
+  || { echo -en "Reboot required: ${?}\n"; exit $ERR_REBOOT; } \
+&& /usr/bin/aptitude autoclean -y \
+  && echo -en "Autoclean successful.\n" \
+  || { echo -en "Autoclean failed: ${?}\n"; exit $ERR_AUTOCLEAN; } \
+&& /usr/local/bin/update_python_packages \
+  && echo -en "Python updates successful.\n" \
+  || { echo -en "Python updates failed: ${?}\n"; exit $ERR_PYTHON; } \
+&& if test -e /usr/local/bin/update_kanboard; then
+  /usr/local/bin/update_kanboard
+else
+  true
+fi \
+  && echo -en "kanboard update successful.\n" \
+  || { echo -en "kanboard update failed: ${?}\n"; exit $ERR_KANBOARD; }

@@ -1,0 +1,119 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+  - name:               'configure nginx on synapse:  nginx.conf'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '~/code/fleet/conf/nginx/synapse/nginx.conf'
+      dest:             '/etc/nginx/nginx.conf'
+    register:           synapse_nginx_conf
+  - name:               'configure nginx on synapse, sites-available:  custom_ssl'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '~/code/fleet/conf/nginx/synapse/custom_ssl'
+      dest:             '/etc/nginx/sites-available/custom_ssl'
+    register:           synapse_nginx_available_custom_ssl
+  - name:               'configure nginx on synapse, sites-available:  smokeping'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '~/code/fleet/conf/nginx/synapse/smokeping'
+      dest:             '/etc/nginx/sites-available/smokeping'
+    register:           synapse_nginx_available_smokeping
+  - name:               'configure nginx on synapse, sites-available:  nagios'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '~/code/fleet/conf/nginx/synapse/nagios'
+      dest:             '/etc/nginx/sites-available/nagios'
+    register:           synapse_nginx_available_nagios
+  - name:               'configure nginx on synapse, sites-available:  nagios.ssl'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '~/code/fleet/conf/nginx/synapse/nagios.ssl'
+      dest:             '/etc/nginx/sites-available/nagios.ssl'
+    register:           synapse_nginx_available_nagios_ssl
+  - name:               'configure nginx on synapse, sites-available:  default'
+    copy:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '~/code/fleet/conf/nginx/synapse/default'
+      dest:             '/etc/nginx/sites-available/default'
+    register:           synapse_nginx_available_default
+  - name:               'configure nginx on synapse, sites-enabled:  custom_ssl'
+    file:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '/etc/nginx/sites-available/custom_ssl'
+      path:             '/etc/nginx/sites-enabled/custom_ssl'
+      state:            'link'
+    register:           synapse_nginx_enabled_custom_ssl
+  - name:               'configure nginx on synapse, sites-enabled:  smokeping'
+    file:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '/etc/nginx/sites-available/smokeping'
+      path:             '/etc/nginx/sites-enabled/smokeping'
+      state:            'link'
+    register:           synapse_nginx_enabled_smokeping
+  - name:               'configure nginx on synapse, sites-enabled:  nagios'
+    file:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '/etc/nginx/sites-available/nagios'
+      path:             '/etc/nginx/sites-enabled/nagios'
+      state:            'link'
+    register:           synapse_nginx_enabled_nagios
+  - name:               'configure nginx on synapse, sites-enabled:  nagios.ssl'
+    file:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '/etc/nginx/sites-available/nagios.ssl'
+      path:             '/etc/nginx/sites-enabled/nagios.ssl'
+      state:            'link'
+    register:           synapse_nginx_enabled_nagios_ssl
+  - name:               'configure nginx on synapse, sites-enabled:  default'
+    file:
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+      src:              '/etc/nginx/sites-available/default'
+      path:             '/etc/nginx/sites-enabled/default'
+      state:            'link'
+    register:           synapse_nginx_enabled_default
+  - name:               'configure nginx on synapse, SSL key'
+    copy:
+      owner:            'root'
+      group:            'www-data'
+      mode:             '0640'
+      src:              '~/code/sensitive/conf/ssl/synapse/synapse.key'
+      dest:             '/etc/nginx/synapse.key'
+  - name:               'configure nginx on synapse, SSL cert'
+    copy:
+      owner:            'root'
+      group:            'www-data'
+      mode:             '0640'
+      src:              '~/code/fleet/conf/ssl/synapse/synapse.crt'
+      dest:             '/etc/nginx/synapse.crt'
+  - name:               'configure nginx on synapse, service restart'
+    service:
+      name:             'nginx'
+      state:            'restarted'
+    when:               synapse_nginx_conf.changed or synapse_nginx_available_custom_ssl.changed or synapse_nginx_available_smokeping.changed or synapse_nginx_available_nagios.changed or synapse_nginx_available_nagios_ssl.changed or synapse_nginx_available_default.changed or synapse_nginx_enabled_custom_ssl.changed or synapse_nginx_enabled_smokeping.changed or synapse_nginx_enabled_nagios.changed or synapse_nginx_enabled_nagios_ssl.changed or synapse_nginx_enabled_default.changed

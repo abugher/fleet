@@ -1,0 +1,14 @@
+---
+- hosts:                meliora
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure ssh authorized keys for rachel on meliora'
+    authorized_key:
+      user:             'rachel'
+      key:              "{{ item }}"
+    with_file:
+      - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"

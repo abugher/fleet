@@ -1,0 +1,37 @@
+---
+- hosts:                neuron-mail
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure dnsmasq on neuron-mail:  dnsmasq.conf'
+    copy:
+      owner:            root
+      group:            root
+      mode:             0644
+      src:              ~/code/fleet/conf/dnsmasq/neuron-mail/dnsmasq.conf
+      dest:             /etc/dnsmasq.conf
+    register:           dnsmasq_config_neuron_mail
+  - name:               'configure dnsmasq on neuron-mail:  default/dnsmasq'
+    copy:
+      owner:            root
+      group:            root
+      mode:             0644
+      src:              ~/code/fleet/conf/dnsmasq/neuron-mail/default.dnsmasq
+      dest:             /etc/default/dnsmasq
+    register:           dnsmasq_default_neuron_mail
+  - name:               'configure dnsmasq on neuron-mail:  hosts'
+    copy:
+      owner:            root
+      group:            root
+      mode:             0644
+      src:              ~/code/fleet/conf/dnsmasq/neuron-mail/hosts
+      dest:             /etc/hosts
+    register:           dnsmasq_hosts_neuron_mail
+  - name:               'configure dnsmasq on neuron-mail:  service restart'
+    service:
+      name:             'dnsmasq'
+      state:            'restarted'
+    when:               dnsmasq_config_neuron_mail.changed or dnsmasq_default_neuron_mail.changed or dnsmasq_hosts_neuron_mail.changed

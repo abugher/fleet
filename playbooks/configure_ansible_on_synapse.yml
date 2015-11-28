@@ -1,0 +1,29 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure ansible on synapse:  create dir'
+    file:
+      path:             '/etc/ansible'
+      state:            'directory'
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'
+  - name:               'configure ansible on synapse:  ansible.cfg'
+    copy:
+      src:              '~/code/fleet/conf/ansible/ansible.cfg'
+      dest:             '/etc/ansible/ansible.cfg'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+  - name:               'configure ansible on synapse:  hosts'
+    copy:
+      src:              '~/code/fleet/conf/ansible/hosts'
+      dest:             '/etc/ansible/hosts'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'

@@ -1,0 +1,29 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure mini-httpd on synapse:  mini-httpd.conf'
+    copy:
+      src:              '~/code/fleet/conf/mini-httpd/synapse/mini-httpd.conf'
+      dest:             '/etc/mini-httpd.conf'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           synapse_mini_conf
+  - name:               'configure mini-httpd on synapse:  defaults/mini-httpd'
+    copy:
+      src:              '~/code/fleet/conf/mini-httpd/synapse/default.mini-httpd'
+      dest:             '/etc/default/mini-httpd'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           synapse_mini_defaults
+  - name:               'configure mini-httpd on synapse:  service restart'
+    service:
+      name:             'mini-httpd'
+      state:            'restarted'
+    when:               synapse_mini_conf.changed or synapse_mini_defaults.changed

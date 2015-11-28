@@ -1,0 +1,6 @@
+---
+- include:              'configure_ssh_on_neuron.yml'
+- include:              'configure_ssh_on_neuron-mail.yml'
+- include:              'configure_ssh_on_synapse.yml'
+- include:              'configure_ssh_on_meliora.yml'
+- include:              'configure_ssh_on_fleet.yml'

@@ -1,0 +1,33 @@
+server {
+  listen 443 ssl;
+  ssl_certificate /etc/nginx/neuron.crt;
+  ssl_certificate_key /etc/nginx/neuron.key;
+  server_name remote remote.neuronpointer.net;
+
+  access_log /var/log/nginx/remote.access.log;
+
+  location / {
+    proxy_pass http://meliora/;
+
+    auth_basic "remote control";
+    auth_basic_user_file htpasswd;
+  }
+
+  location /cgi-bin/ {
+    proxy_pass http://meliora/cgi-bin/;
+  }
+
+  location /cgi-bin/mplayer/ {
+    proxy_pass http://meliora/cgi-bin/mplayer/;
+  }
+
+  location /cgi-bin/pianobar/ {
+    proxy_pass http://meliora/cgi-bin/pianobar/;
+  }
+
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root /var/www/nginx-default;
+  }
+}

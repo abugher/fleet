@@ -1,0 +1,22 @@
+*** Targets ***
+
+probe = FPing
+
+menu = Top
+title = Network Latency Grapher
+remark = Smokeping - synapse.neuronpointer.net
+
++ All
+
+menu = All
+title = All the Things
+
+++ neuron
+
+menu = neuron
+title = neuron
+host = neuron
+
+++ neuron-mail
+title = neuron-mail
+host = neuron-mail.neuronpointer.net

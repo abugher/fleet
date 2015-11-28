@@ -1,0 +1,43 @@
+---
+- hosts:                neuron
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure users on neuron:  escrow'
+    user:
+      name:             'escrow'
+      group:            'escrow'
+      comment:          ''
+      system:           'yes'
+      state:            'present'
+      shell:            '/bin/bash'
+      password:         '!'
+  - name:               'configure users on neuron:  cryptkeeper'
+    user:
+      name:             'cryptkeeper'
+      group:            'cryptkeeper'
+      comment:          ''
+      system:           'yes'
+      state:            'present'
+      shell:            '/bin/bash'
+      password:         '!'
+  - name:               'configure users on neuron:  cryptkeeper - bones directory'
+    file:
+      path:             '~cryptkeeper/bones'
+      state:            'directory'
+      owner:            'cryptkeeper'
+      group:            'cryptkeeper'
+  - name:               'configure users on neuron:  create user aaron-phone'
+    user:
+      name:             'aaron-phone'
+      group:            'aaron-phone'
+      home:             '/storage/aaron-phone/'
+      comment:          'Aaron (cell phone)'
+      system:           'no'
+      state:            'present'
+      shell:            '/bin/bash'
+      password:         '!'
+

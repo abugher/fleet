@@ -1,0 +1,17 @@
+---
+- hosts:                identity_clients
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure groups on identity_clients:  aaron'
+    group:
+      name:             'aaron'
+      state:            'present'
+  - name:               'configure groups on identity_clients:  rachel'
+    group:
+      name:             'rachel'
+      state:            'present'
+

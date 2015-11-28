@@ -1,0 +1,35 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'install packages on synapse'
+    apt:
+      name:             "{{ item }}"
+      state:            'present'
+    with_items:
+      - 'nginx'
+      - 'nagios3'
+      - 'mini-httpd'            # for smokeping
+      - 'libffi5-dev'
+      - 'libxml2-dev'
+      - 'krb5-admin-server'
+      - 'krb5-kdc'
+      - 'krb5-user'
+      - 'fcgiwrap'
+      - 'php5-fpm'
+  - name:               'stop mini-httpd; otherwise it errors on service start'
+    # service module would make sense, but doesn't work.
+    command:          service mini-httpd stop
+  - name:               'configure services to start at boot on synapse'
+    service:
+      name:             "{{ item }}"
+      enabled:          'yes'
+      state:            'started'
+    with_items:
+      - 'nginx'
+      - 'nagios3'
+      - 'mini-httpd'

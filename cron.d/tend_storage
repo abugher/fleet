@@ -1,0 +1,5 @@
+# tend_storage - Check once an hour and at reboot.
+
+# m     h       dom     mon     dow     user    command
+00      *       *       *       *       root    /usr/local/bin/tend_storage > /var/log/tend_storage.log 2>&1
+@reboot                                 root    /usr/local/bin/tend_storage > /var/log/tend_storage.log 2>&1

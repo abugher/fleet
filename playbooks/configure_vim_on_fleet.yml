@@ -1,0 +1,15 @@
+---
+- hosts:                fleet
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure vim on fleet'
+    copy:
+      src:              '~/code/fleet/conf/vimrc'
+      dest:             '/etc/vim/vimrc'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'

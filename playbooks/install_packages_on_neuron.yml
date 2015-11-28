@@ -1,0 +1,32 @@
+---
+- hosts:                neuron
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'install packages on neuron'
+    apt:
+      name:             "{{ item }}"
+      state:            'present'
+    with_items:
+      - 'nginx'
+      - 'dokuwiki'
+      - 'php5-fpm'
+      - 'smokeping'
+      - 'dnsmasq'
+      - 'cryptsetup'
+      - 'transmission-daemon'
+      - 'nagios-plugins-basic'          # monitor /storage
+      - 'libpam-krb5'
+  - name:               'remove packages on neuron'
+    apt:
+      name:             "{{ item }}"
+      state:            'absent'
+    with_items:
+      - 'apache2'
+      - 'apache2-mpm-worker'
+      - 'apache2-utils'
+      - 'apache2.2-bin'
+      - 'apache2.2-common'

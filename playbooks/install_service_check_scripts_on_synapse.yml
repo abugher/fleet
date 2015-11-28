@@ -1,0 +1,23 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'install service check scripts'
+    copy:
+      src:              "~/code/fleet/bin/{{ item }}"
+      dest:             "/usr/local/bin/{{ item }}"
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'
+    with_items:
+      - 'check_flexget_execute'
+      - 'check_debian_update'
+      - 'check_flexget_execute'
+      - 'check_flexget_vacuum'
+      - 'check_mplayer'
+      - 'check_pianobar'
+      - 'check_transmission_blocklist_update'
