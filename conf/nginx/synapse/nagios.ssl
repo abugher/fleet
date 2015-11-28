@@ -5,7 +5,7 @@ server {
   listen                443 ssl;
   ssl_certificate       /etc/nginx/synapse.crt;
   ssl_certificate_key   /etc/nginx/synapse.key;
-  server_name           nagios.neuronpointer.net;
+  server_name           nagios nagios.neuronpointer.net;
 
   root                  /usr/share/nagios3/htdocs;       
   index index.php       index.html;
