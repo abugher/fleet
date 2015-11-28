@@ -1,0 +1,15 @@
+---
+- hosts:                rudolph
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure ssh on rudolph, user rachel:  known_hosts'
+    copy:
+      src:              '~/code/fleet/conf/ssh_keys/rachel@rudolph.known_hosts'
+      dest:             '~rachel/.ssh/known_hosts'
+      owner:            'rachel'
+      group:            'rachel'
+      mode:             '0600'

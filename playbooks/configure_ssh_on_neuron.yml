@@ -58,4 +58,5 @@
       key:              "{{ item }}"
     with_file:
       - "~/code/fleet/conf/ssh_keys/aaron@mawg.id_rsa.pub"
+      - "~/code/fleet/conf/ssh_keys/rachel@rudolph.id_rsa.pub"
 
