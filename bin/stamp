@@ -20,3 +20,4 @@ case "${selection}" in
     echo 'Invalid option.  Try one of "date", "time", or "full".' >&2
     ;;
 esac
+

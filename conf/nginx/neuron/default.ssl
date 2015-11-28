@@ -23,29 +23,6 @@ server {
     autoindex on;
   }
 
-
-  # Nagios on synapse.
-  #location /nagios3/ {
-  #  proxy_pass https://synapse/nagios3/;
-  #}
-  #location /cgi-bin/nagios3/ {
-  #  proxy_pass https://synapse/cgi-bin/nagios3/;
-  #}
-
-  # Shinken on synapse.
-  location /shinken/ {
-    proxy_pass https://synapse/;
-  }
-  location /static/ {
-    proxy_pass https://synapse/static/;
-  }
-  location /user/ {
-    proxy_pass https://synapse/user/;
-  }
-  location /mobile/ {
-    proxy_pass https://synapse/mobile/;
-  }
-
   location /kanboard/ {
     proxy_pass http://meliora/kanboard/;
   }
@@ -53,15 +30,6 @@ server {
   location /transmission/ {
     proxy_pass https://localhost:9092;
   }
-
-  # Docs.  I don't think we need these.
-#  location /doc/ {
-#    alias /usr/share/doc/;
-#    autoindex on;
-#    allow 127.0.0.1;
-#    allow ::1;
-#    deny all;
-#  }
 
   error_page 500 502 503 504 /50x.html;
   location = /50x.html {
