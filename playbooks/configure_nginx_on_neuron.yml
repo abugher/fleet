@@ -30,16 +30,16 @@
       src:              "~/code/fleet/conf/nginx/neuron/{{ item }}"
       dest:             "/etc/nginx/sites-available/{{ item }}"
     with_items:
-      - 'default.ssl'
       - 'default'
-      - 'transmission.ssl'
+      - 'default.ssl'
       - 'transmission'
-      - 'smokeping.ssl'
+      - 'transmission.ssl'
       - 'smokeping'
-      - 'wiki.ssl'
+      - 'smokeping.ssl'
       - 'wiki'
-      - 'remote.ssl'
+      - 'wiki.ssl'
       - 'remote'
+      - 'remote.ssl'
       - 'nagios'
       - 'nagios.ssl'
     register:           neuron_nginx_sites_available
@@ -54,16 +54,18 @@
       path:             "/etc/nginx/sites-enabled/{{ item }}"
       state:            'link'
     with_items:
-      - 'default.ssl'
       - 'default'
-      - 'transmission.ssl'
+      - 'default.ssl'
       - 'transmission'
-      - 'smokeping.ssl'
+      - 'transmission.ssl'
       - 'smokeping'
-      - 'wiki.ssl'
+      - 'smokeping.ssl'
       - 'wiki'
-      - 'remote.ssl'
+      - 'wiki.ssl'
       - 'remote'
+      - 'remote.ssl'
+      - 'nagios'
+      - 'nagios.ssl'
     register:           neuron_nginx_sites_enabled
 
   - name:               'configure nginx on neuron, private directory'
