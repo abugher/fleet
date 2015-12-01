@@ -40,4 +40,8 @@
       state:            'present'
       shell:            '/bin/bash'
       password:         '!'
+  - name:               'configure users on neuron:  dotfiles for pi'
+    copy:
+      src:              '~/code/fleet/conf/dotfiles/'
+      dest:             '~pi/'
 
