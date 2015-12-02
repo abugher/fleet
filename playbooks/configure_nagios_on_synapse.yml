@@ -7,12 +7,11 @@
   tasks:
 
   - name:               'configure nagios on synapse:  /etc/nagios3/'
-    copy:
+    synchronize:
       src:              '~/code/fleet/conf/nagios/synapse/nagios3/'
       dest:             '/etc/nagios3/'
-      owner:            'root'
-      group:            'root'
       mode:             '0644'
+      delete:           'yes'
     register:           nagios_config_synapse
   - name:               'configure nagios on synapse:  logos'
     copy:
