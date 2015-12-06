@@ -1,0 +1,33 @@
+---
+- hosts:                neuron
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure apt on neuron:  sources.list'
+    copy:
+      src:              '~/code/fleet/conf/apt/neuron/sources.list'
+      dest:             '/etc/apt/sources.list'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           apt_sources_neuron
+  - name:               'configure apt on neuron:  raspi.list'
+    copy:
+      src:              '~/code/fleet/conf/apt/neuron/raspi.list'
+      dest:             '/etc/apt/sources.list.d/raspi.list'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           apt_sources_raspi_neuron
+  - name:               'configure apt on neuron:  remove collabora.list'
+    file:
+      path:             '/etc/apt/sources.list.d/collabora.list'
+      state:            'absent'
+    register:           apt_sources_collabora_neuron
+  - name:               'update apt on neuron'
+    apt:
+      update_cache:     'yes'
+    when:               apt_sources_neuron.changed or apt_sources_raspi_neuron.changed or apt_sources_collabora_neuron.changed

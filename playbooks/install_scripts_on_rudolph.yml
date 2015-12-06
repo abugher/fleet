@@ -1,12 +1,12 @@
 ---
-- hosts:                meliora
+- hosts:                rudolph
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'install scripts on meliora:  nethack'
+  - name:               'install scripts on rudolph:  nethack'
     copy:
       owner:            'root'
       group:            'root'

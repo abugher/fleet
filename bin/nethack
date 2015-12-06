@@ -1,0 +1,57 @@
+#!/bin/bash
+
+function puke {
+  ret=$1
+  shift
+  echo "BLEAH:  ${@}"
+  exit $ret
+}
+
+fusermount -u /tmp/bones 2>&1 >/dev/null
+fusermount_ret=$?
+
+if ! mountpoint /tmp/bones > /dev/null; then
+  mkdir -p /tmp/bones || puke $? "failed to mkdir /tmp/bones"
+  sshfs -o reconnect cryptkeeper@neuron:bones /tmp/bones || puke $? "failed to mount /tmp/bones"
+else
+  puke $fusermount_ret "failed to unmount /tmp/bones"
+fi
+
+# Push all the bones files.  Count.
+bones_count=0
+for bones_file in $(ls /var/games/nethack/ | grep '^bon') ; do
+  bones_file=$(echo $bones_file | sed 's/.*\///g')
+  let bones_count++
+  mv /var/games/nethack/$bones_file /tmp/bones/$bones_file || puke $? "failed to move ${bones_file}"
+  echo "Uploaded: ${bones_file}"
+done
+echo "Uploaded all ${bones_count} bones files."
+
+download_count=0
+for bones_file in $(ls /tmp/bones/ | sort -R); do
+  bones_file=$(echo $bones_file | sed 's/.*\///g')
+  if test $bones_count -lt 1; then break; fi
+  mv /tmp/bones/$bones_file /var/games/nethack/$bones_file || puke $? "failed to move ${bones_file}"
+  let bones_count--
+  let download_count++
+done
+echo "Downloaded ${download_count} bones files."
+
+
+bones_count_before=$(ls -1 /var/games/nethack/bon* 2>/dev/null | wc -l)
+/usr/games/nethack
+bones_count_after=$( ls -1 /var/games/nethack/bon* 2>/dev/null | wc -l)
+
+bones_count_diff=$(( $bones_count_after - $bones_count_before ))
+
+case $bones_count_diff in
+  0)
+    echo "No new bones files."
+    ;;
+  1)
+    echo "I think you left a bones file."
+    ;;
+  *)
+    echo "Bones file count increased by ${bones_count_diff}."
+    ;;
+esac

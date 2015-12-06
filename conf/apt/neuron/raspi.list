@@ -1,0 +1,4 @@
+# DISTRIBUTED BY ANSIBLE
+
+deb http://archive.raspberrypi.org/debian/ jessie main
+deb-src http://archive.raspberrypi.org/debian/ jessie main
