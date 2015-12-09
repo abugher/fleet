@@ -50,17 +50,19 @@
       owner:            'root'
       group:            'www-data'
       mode:             '0640'
-      src:              '~/code/sensitive/conf/ssl/synapse/synapse.key'
+      src:              '~/code/sensitive/conf/ssl/synapse/key'
       dest:             '/etc/nginx/synapse.key'
+    register:           synapse_nginx_ssl_key
   - name:               'configure nginx on synapse, SSL cert'
     copy:
       owner:            'root'
       group:            'www-data'
       mode:             '0640'
-      src:              '~/code/fleet/conf/ssl/synapse/synapse.crt'
+      src:              '~/code/fleet/conf/ssl/synapse/cert'
       dest:             '/etc/nginx/synapse.crt'
+    register:           synapse_nginx_ssl_cert
   - name:               'configure nginx on synapse, service restart'
     service:
       name:             'nginx'
       state:            'restarted'
-    when:               synapse_nginx_conf.changed or synapse_nginx_sites_available.changed or synapse_nginx_sites_enabled.changed
+    when:               synapse_nginx_conf.changed or synapse_nginx_sites_available.changed or synapse_nginx_sites_enabled.changed or synapse_nginx_ssl_key.changed or synapse_nginx_ssl_cert.changed
