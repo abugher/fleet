@@ -35,7 +35,7 @@ for bones_file in $(ls /tmp/bones/ | sort -R); do
   let bones_count--
   let download_count++
 done
-echo "Downloaded ${download_count} bones files."
+echo "Downloaded ${download_count} random bones files."
 
 
 bones_count_before=$(ls -1 /var/games/nethack/bon* 2>/dev/null | wc -l)
