@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# DISTRIBUTED BY ANSIBLE
+
+target="${1}"
+shift
+ssh "${target}" /etc/init.d/transmission-daemon status

@@ -109,8 +109,12 @@
       src:              '~/code/fleet/conf/ssl/neuronpointer.net/cert'
       dest:             '/etc/nginx/neuron.crt'
     register:           neuron_nginx_ssl_cert
-
-  - name:               'configure nginx on neuron, service restart'
+  - name:               'configure nginx on neuron, enable service'
+    service:
+      name:             'nginx'
+      enabled:          'yes'
+    register:           neuron_nginx_enabled
+  - name:               'configure nginx on neuron, restart restart'
     service:
       name:             'nginx'
       state:            'restarted'
@@ -119,3 +123,4 @@
                         or neuron_nginx_sites_enabled.changed 
                         or neuron_nginx_ssl_key.changed 
                         or neuron_nginx_ssl_cert.changed
+                        or neuron_nginx_enabled.changed
