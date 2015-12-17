@@ -5,4 +5,3 @@
 - include:              'configure_ssh.yml'
 - include:              'configure_dphys-swapfile_on_synapse.yml'
 - include:              'configure_ansible_on_synapse.yml'
-- include:              'install_dotfiles_on_fleet.yml'

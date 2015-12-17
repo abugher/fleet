@@ -1,0 +1,13 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure users on synapse:  dotfiles for pi'
+    copy:
+      src:              '~/code/fleet/conf/dotfiles/'
+      dest:             '~pi/'
+
