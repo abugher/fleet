@@ -23,4 +23,5 @@
       - 'check_transmission_blocklist_update'
       - 'check_transmission'
       - 'check_tor'
+      - 'check_dns_record'
 

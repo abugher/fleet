@@ -12,6 +12,16 @@
 # Very system-specific script to mount the large storage volume.  Supply the
 # pass phrase to stdin - it's pipe-able.
 
-/sbin/cryptsetup luksOpen /dev/sda storage
-/bin/mount /storage
-/usr/sbin/service transmission-daemon start
+fail() {
+  echo -e "ERROR: ${2}" >&2
+  exit $1
+}
+
+ERR_LUKSOPEN=1
+ERR_MOUNT=2
+ERR_TRANS=3
+
+
+/sbin/cryptsetup luksOpen /dev/sda storage || fail $ERR_LUKSOPEN "Failed to luksOpen:  /dev/sda"
+/bin/mount /storage || fail $ERR_MOUNT "Failed to mount:  /storage"
+/usr/sbin/service transmission-daemon start || fail $ERR_TRANS "Failed to start service:  transmission-daemon"

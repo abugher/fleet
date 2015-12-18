@@ -41,8 +41,6 @@
      ERR_MOUNT_STORAGE=7
        ERR_PASS_PHRASE=8
 
-# Wait for the network, which might not be up @reboot, because systemd.
-sleep 60
 
 fail() {
   echo -e "ERROR: ${2}" >&2
