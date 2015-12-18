@@ -7,3 +7,6 @@
 
 - include:              'configure_groups_on_neuron.yml'
 - include:              'configure_users_on_neuron.yml'
+
+- include:              'configure_groups_on_synapse.yml'
+- include:              'configure_users_on_neuron.yml'
