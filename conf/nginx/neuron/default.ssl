@@ -20,6 +20,8 @@ server {
   }
 
   location /private/pictures {
+    auth_basic "Private Material";
+    auth_basic_user_file htpasswd;
     autoindex on;
   }
 
