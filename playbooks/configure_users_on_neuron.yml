@@ -42,6 +42,9 @@
       password:         '!'
   - name:               'configure users on neuron:  dotfiles for pi'
     copy:
-      src:              '~/code/fleet/conf/dotfiles/'
+      src:              '~/code/fleet/conf/dotfiles/universal/'
       dest:             '~pi/'
-
+  - name:               'configure users on neuron:  extra dotfiles for rachel'
+    copy:
+      src:              '~/code/fleet/conf/dotfiles/rachel@meliora/'
+      dest:             '~rachel/'

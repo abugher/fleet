@@ -8,6 +8,6 @@
 
   - name:               'configure users on synapse:  dotfiles for pi'
     copy:
-      src:              '~/code/fleet/conf/dotfiles/'
+      src:              '~/code/fleet/conf/dotfiles/universal/'
       dest:             '~pi/'
 

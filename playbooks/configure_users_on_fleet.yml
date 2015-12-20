@@ -20,4 +20,8 @@
       key:              "{{ item }}"
     with_file:
       - "~/code/fleet/conf/ssh_keys/nagios@synapse.id_rsa.pub"
+  - name:               'configure users on fleet:  nagios:  dotfiles'
+    copy:
+      src:              '~/code/fleet/conf/dotfiles/universal/'
+      dest:             '~nagios/'
 
