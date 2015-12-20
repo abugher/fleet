@@ -6,48 +6,6 @@
   become_method:        sudo
   tasks:
 
-  - name:               'install scripts on neuron:  flexget_execute_cronjob'
-    copy:
-      owner:            'root'
-      group:            'root'
-      mode:             '0755'
-      src:              '~/code/sensitive/bin/flexget_execute_cronjob'
-      dest:             '/usr/local/bin/flexget_execute_cronjob'
-  - name:               'install scripts on neuron:  flexget_execute_now_cronjob'
-    copy:
-      owner:            'root'
-      group:            'root'
-      mode:             '0755'
-      src:              '~/code/sensitive/bin/flexget_execute_now_cronjob'
-      dest:             '/usr/local/bin/flexget_execute_now_cronjob'
-  - name:               'install scripts on neuron:  flexget_failed_clear_cronjob'
-    copy:
-      owner:            'root'
-      group:            'root'
-      mode:             '0755'
-      src:              '~/code/sensitive/bin/flexget_failed_clear_cronjob'
-      dest:             '/usr/local/bin/flexget_failed_clear_cronjob'
-  - name:               'install scripts on neuron:  flexget_failed_clear_now_cronjob'
-    copy:
-      owner:            'root'
-      group:            'root'
-      mode:             '0755'
-      src:              '~/code/sensitive/bin/flexget_failed_clear_now_cronjob'
-      dest:             '/usr/local/bin/flexget_failed_clear_now_cronjob'
-  - name:               'install scripts on neuron:  flexget_vacuum_cronjob'
-    copy:
-      owner:            'root'
-      group:            'root'
-      mode:             '0755'
-      src:              '~/code/sensitive/bin/flexget_vacuum_cronjob'
-      dest:             '/usr/local/bin/flexget_vacuum_cronjob'
-  - name:               'install scripts on neuron:  flexget_vacuum_now_cronjob'
-    copy:
-      owner:            'root'
-      group:            'root'
-      mode:             '0755'
-      src:              '~/code/sensitive/bin/flexget_vacuum_now_cronjob'
-      dest:             '/usr/local/bin/flexget_vacuum_now_cronjob'
   - name:               'install scripts on neuron:  storage'
     copy:
       owner:            'root'
