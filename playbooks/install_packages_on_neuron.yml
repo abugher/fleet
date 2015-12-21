@@ -20,6 +20,10 @@
       - 'transmission-daemon'
       - 'nagios-plugins-basic'          # monitor /storage
       - 'libpam-krb5'
+      - 'python-usb'
+      - 'python-setuptools'
+      - 'git'
+      - 'snmpd'
   - name:               'remove packages on neuron'
     apt:
       name:             "{{ item }}"
