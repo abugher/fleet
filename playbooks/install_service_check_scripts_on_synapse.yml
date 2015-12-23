@@ -24,4 +24,4 @@
       - 'check_transmission'
       - 'check_tor'
       - 'check_dns_record'
-
+      - 'check_temper'

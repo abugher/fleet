@@ -1,0 +1,32 @@
+#!/bin/bash
+
+HIGH_CRITICAL_TEMPERATURE=100
+HIGH_WARNING_TEMPERATURE=95
+LOW_CRITICAL_TEMPERATURE=40
+LOW_WARNING_TEMPERATURE=32
+
+# I apologize for these quotation marks.
+temperature=$(ssh $1 "/usr/local/bin/temper-poll -qf | sed '"'s/\..*//'"'")
+service_ret=$?
+
+if test 0 = $service_ret; then
+  if test $temperature -gt $HIGH_CRITICAL_TEMPERATURE; then
+    echo "CRITICAL:  Temperature is over ${temperature}°F.  (Critical threshold is ${HIGH_CRITICAL_TEMPERATURE}°F.)"
+    return 2
+  if test $temperature -lt $LOW_CRITICAL_TEMPERATURE; then
+    echo "CRITICAL:  Temperature is just above ${temperature}°F.  (Critical threshold is ${LOW_CRITICAL_TEMPERATURE}°F.)"
+    return 2
+  elif test $temperature -gt $HIGH_WARNING_TEMPERATURE; then
+    echo "WARNING:  Temperature is over ${temperature}°F.  (Warning threshold is ${WARNING_TEMPERATURE}°F.)"
+    return 1
+  if test $temperature -lt $LOW_WARNING_TEMPERATURE; then
+    echo "WARNING:  Temperature is just above ${temperature}°F.  (Warning threshold is ${LOW_WARNING_TEMPERATURE}°F.)"
+    return 1
+  else
+    echo "Temperature is just above ${temperature}°F."
+    return 0
+  fi
+else
+  echo "Bad return value:  ${service_ret}."
+  exit 2
+fi
