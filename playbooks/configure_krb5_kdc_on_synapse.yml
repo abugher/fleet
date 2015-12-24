@@ -8,7 +8,7 @@
     - '~/code/sensitive/playbooks/configure_kdc_db_master_key.yml'
   tasks:
 
-  - name:               'configure krb5 KDC on synapse'
+  - name:               'configure krb5 KDC on synapse:  create realm'
     shell:              /bin/echo -e "{{ kdc_db_master_key_twice }}" | /usr/sbin/krb5_newrealm
     args:
-      creates:          '/etc/krb5kdc/stash'
+      creates:          '/etc/krb5kdc/principal'
