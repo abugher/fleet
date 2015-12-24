@@ -1,0 +1,14 @@
+---
+- hosts:                synapse
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  vars_files:           
+    - '~/code/sensitive/playbooks/configure_kdc_db_master_key.yml'
+  tasks:
+
+  - name:               'configure krb5 KDC on synapse'
+    shell:              /bin/echo -e "{{ kdc_db_master_key_twice }}" | /usr/sbin/krb5_newrealm
+    args:
+      creates:          '/etc/krb5kdc/stash'
