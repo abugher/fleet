@@ -6,3 +6,5 @@ flock /tmp/update_debian.lock -c "
   /usr/local/bin/update_debian > /var/log/update_debian.daily.log 2>&1
   echo $? > /var/log/update_debian.daily.ret
 "
+
+flock -u /tmp/update_debian.lock true
