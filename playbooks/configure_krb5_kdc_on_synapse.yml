@@ -12,3 +12,7 @@
     shell:              /bin/echo -e "{{ kdc_db_master_key_twice }}" | /usr/sbin/krb5_newrealm
     args:
       creates:          '/etc/krb5kdc/principal'
+  - name:               'configure krb5 KDC on synapse:  set ACL'
+    copy:
+      src:              '~/code/fleet/conf/kerberos/kadm5.acl'
+      dest:             '/etc/krb5kdc/kadm5.acl'

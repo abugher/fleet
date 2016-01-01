@@ -1,0 +1,39 @@
+---
+- hosts:                rudolph
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'install nethack 3.6.0 on rudolph:  install required packages'
+    apt:
+      name:             "{{ item }}"
+      state:            'present'
+    with_items:
+      - 'libncurses-dev'
+      - 'byacc'
+      - 'flex'
+  - name:               'install nethack 3.6.0 on rudolph:  check for source install path'
+    file:
+      path:             '/usr/local/src'
+      state:            'directory'
+  - name:               'install nethack 3.6.0 on rudolph:  install source'
+    unarchive:
+      src:              '~/code/fleet/source/nethack-360-src.tgz'
+      dest:             '/usr/local/src'
+      creates:          '/usr/local/src/nethack-3.6.0'
+  - name:               'install nethack 3.6.0 on rudolph:  build nethack'
+    script:             ~/code/fleet/scripts/build_nethack_3.6.0
+    args:
+      creates:          '/usr/local/src/nethack-3.6.0/src/nethack'
+  - name:               'install nethack 3.6.0 on rudolph:  install nethack'
+    command:            make install
+    args:
+      chdir:            '/usr/local/src/nethack-3.6.0'
+      creates:          '/usr/local/games/nethack'
+  - name:               'install nethack 3.6.0 on rudolph:  symlink'
+    file:
+      path:             '/usr/local/bin/nethack3.6'
+      src:              '/usr/local/games/nethack'
+      state:            'link'

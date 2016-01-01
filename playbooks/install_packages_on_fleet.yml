@@ -30,3 +30,7 @@
       - 'python-dev'
       - 'mlocate'
       - 'libpam-krb5'
+      - 'krb5-user'
+      - 'libncurses-dev'        # for compiling nethack
+      - 'byacc'                 # for compiling nethack
+      - 'flex'                  # for compiling nethack
