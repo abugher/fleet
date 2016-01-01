@@ -6,26 +6,4 @@
   become_method:        sudo
   tasks:
 
-  - name:               'install nethack 3.6.0 on neuron:  check for source install path'
-    file:
-      path:             '/usr/local/src'
-      state:            'directory'
-  - name:               'install nethack 3.6.0 on neuron:  install source'
-    unarchive:
-      src:              '~/code/fleet/source/nethack-360-src.tgz'
-      dest:             '/usr/local/src'
-      creates:          '/usr/local/src/nethack-3.6.0'
-  - name:               'install nethack 3.6.0 on neuron:  build nethack'
-    script:             ~/code/fleet/scripts/build_nethack_3.6.0
-    args:
-      creates:          '/usr/local/src/nethack-3.6.0/src/nethack'
-  - name:               'install nethack 3.6.0 on neuron:  install nethack'
-    command:            make install
-    args:
-      chdir:            '/usr/local/src/nethack-3.6.0'
-      creates:          '/usr/local/games/nethack'
-  - name:               'install nethack 3.6.0 on neuron:  symlink'
-    file:
-      path:             '/usr/local/bin/nethack3.6'
-      src:              '/usr/local/games/nethack'
-      state:            'link'
+  - include:            '~/code/fleet/playbooks/install_nethack.yml'
