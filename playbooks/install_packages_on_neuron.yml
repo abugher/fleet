@@ -24,6 +24,9 @@
       - 'python-setuptools'
       - 'git'
       - 'snmpd'
+      - 'libncurses-dev'                # for nethack
+      - 'byacc'                         # for nethack
+      - 'flex'                          # for nethack
   - name:               'remove packages on neuron'
     apt:
       name:             "{{ item }}"

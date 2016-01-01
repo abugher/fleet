@@ -1,7 +1,7 @@
 ---
 - include:              'install_packages_on_fleet.yml'
 - include:              'install_python_packages_on_fleet.yml'
-- include:              'configure_packages_on_fleet.yml'
+- include:              'configure_packages.yml'
 - include:              'remove_packages_on_fleet.yml'
 
 - include:              'install_update-notifier-common_on_wheezy_hosts.yml'

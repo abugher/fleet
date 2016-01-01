@@ -1,0 +1,9 @@
+---
+- hosts:                neuron
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - include:            '~/code/fleet/playbooks/install_nethack.yml'
