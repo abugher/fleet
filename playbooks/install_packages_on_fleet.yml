@@ -34,3 +34,4 @@
       - 'libncurses-dev'        # for compiling nethack
       - 'byacc'                 # for compiling nethack
       - 'flex'                  # for compiling nethack
+      - 'bc'
