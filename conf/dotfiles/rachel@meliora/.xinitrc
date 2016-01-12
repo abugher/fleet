@@ -17,7 +17,7 @@ xset dpms 0 0 0
 xset -dpms
 
 # Christmas!
-mplayer --no-consolecontrols --loop=0 --rootwin ~/fireplace.mp4 &
-#/usr/bin/xscreensaver -no-splash &
+#mplayer --no-consolecontrols --loop=0 --rootwin ~/fireplace.mp4 &
+/usr/bin/xscreensaver -no-splash &
 
 exec i3

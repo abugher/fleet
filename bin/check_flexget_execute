@@ -9,8 +9,7 @@ ret_file='/var/log/flexget_execute.ret'
 
 target="${1}"
 
-max_age_hours=2
-#max_age_minutes=30
+max_age_hours=8
 max_delta=$(( 60 * 60 * $max_age_hours ))
 
 last_update_timestamp="$(
