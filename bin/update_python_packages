@@ -17,6 +17,11 @@ for p in $(
     | grep -vE '^\-e|^#' \
     | cut -d = -f 1 
 ); do 
+  # temperusb is not from pip, and has out-of-pip dependencies.
+  if test 'temperusb' = $p; then
+    continue
+  fi
+
   pip install -U $p || {
     echo -e "ERROR:  Failed to upgrade ${p}." >&2
     exit 1
