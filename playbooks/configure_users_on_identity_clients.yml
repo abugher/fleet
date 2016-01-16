@@ -13,7 +13,7 @@
       comment:          'Aaron'
       state:            'present'
       shell:            '/bin/bash'
-      password:         '!'
+      password:         '*'
   - name:               'configure users on identity_clients:  dotfiles for aaron'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'
