@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function ssd {
+  start-stop-daemon \
+    -c rachel \
+    -u rachel \
+    -a /usr/local/bin/pdfprintd \
+    -n pdfprintd \
+    "${@}"
+}
+
+case "${1}" in
+  'status')
+    ssd -T
+    ;;
+  'stop')
+    ssd -K
+    ;;
+  'start') 
+    ssd -b -S
+    ;;
+  'restart')
+    ssd -K
+    ssd -b -S
+    ;;
+  '*')
+    echo "Valid sub-commands are:  status stop start restart"
+    exit 1
+    ;;
+esac
+

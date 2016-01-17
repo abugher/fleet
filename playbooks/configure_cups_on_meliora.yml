@@ -1,0 +1,28 @@
+---
+- hosts:                meliora
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure cups on meliora:  configure PDF print target'
+    file:
+      path:             '/usr/local/share/print_target'
+      state:            'directory'
+      owner:            'rachel'
+      group:            'root'
+      mode:             '1777'
+  - name:               'configure cups on meliora:  configure cups-pdf'
+    copy:
+      src:              '~/code/fleet/conf/cups/cups-pdf.conf'
+      dest:             '/etc/cups/cups-pdf.conf'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           meliora_cups_pdf_conf
+  - name:               'configure cups on meliora:  restart service'
+    service:
+      name:             'cups'
+      state:            'restarted'
+    when:               meliora_cups_pdf_conf.changed
