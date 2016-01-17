@@ -22,6 +22,7 @@
     user:
       name:             'rachel'
       group:            'rachel'
+      groups:           'cdrom,floppy,sudo,audio,dip,video,plugdev,scanner,netdev,lpadmin'
       comment:          'Rachel'
       state:            'present'
       shell:            '/bin/bash'
