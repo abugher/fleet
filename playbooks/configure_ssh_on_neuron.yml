@@ -13,7 +13,12 @@
     with_file:
       - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
       - "~/code/fleet/conf/ssh_keys/root@meliora.id_rsa.pub"
-
+  - name:               'configure ssh on neuron, user rachel-phone: authorize keys'
+    authorized_key:
+      user:             'rachel-phone'
+      key:              "{{ item }}"
+    with_file:
+      - "~/code/fleet/conf/ssh_keys/rsync_backup@rachel-phone.dss_key.pub"
   - name:               'configure ssh on neuron, user aaron-phone: authorize keys'
     authorized_key:
       user:             'aaron-phone'
@@ -21,7 +26,6 @@
     with_file:
       - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
       - "~/code/fleet/conf/ssh_keys/rsync_backup@aaron-phone.dss_key.pub"
-
   - name:               'configure ssh on neuron, user root:  known_hosts'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/root@neuron.known_hosts'

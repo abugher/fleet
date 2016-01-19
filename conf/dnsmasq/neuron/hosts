@@ -9,10 +9,9 @@ ff02::2		ip6-allrouters
 
 192.168.11.1    gateway ap gateway.neuronpointer.net ap.neuronpointer.net
 192.168.11.52   mawg mawg.neuronpointer.net
-192.168.11.53   meliora remote meliora.neuronpointer.net remote.neuronpointer.net
+192.168.11.53   meliora remote printer meliora.neuronpointer.net remote.neuronpointer.net printer.neuronpointer.net
 192.168.11.54   neuron ntp wiki transmission neuronpointer.net neuron.neuronpointer.net ntp.neuronpointer.net wiki.neuronpointer.net transmission.neuronpointer.net
 192.168.11.55   synapse kerberos smokeping nagios synapse.neuronpointer.net kerberos.neuronpointer.net smokeping.neuronpointer.net nagios.neuronpointer.net
-192.168.11.56   printer printer.neuronpointer.net
 192.168.11.58   rudolph rudolph.neuronpointer.net
 192.168.11.59   wii wii.neuronpointer.net
 # neuron-mail.no-ip.org -- I'd make this a CNAME if I could.

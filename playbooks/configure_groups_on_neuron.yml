@@ -6,6 +6,11 @@
   become_method:        sudo
   tasks:
 
+  - name:               'configure groups on neuron:  rachel-phone'
+    group:
+      name:             'rachel-phone'
+      system:           'no'
+      state:            'present'
   - name:               'configure groups on neuron:  aaron-phone'
     group:
       name:             'aaron-phone'

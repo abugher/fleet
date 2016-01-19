@@ -30,6 +30,16 @@
       state:            'directory'
       owner:            'cryptkeeper'
       group:            'cryptkeeper'
+  - name:               'configure users on neuron:  create user rachel-phone'
+    user:
+      name:             'rachel-phone'
+      group:            'rachel-phone'
+      home:             '/storage/rachel-phone/'
+      comment:          'Rachel (cell phone)'
+      system:           'no'
+      state:            'present'
+      shell:            '/bin/bash'
+      password:         '!'
   - name:               'configure users on neuron:  create user aaron-phone'
     user:
       name:             'aaron-phone'
