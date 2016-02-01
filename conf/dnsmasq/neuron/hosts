@@ -14,5 +14,7 @@ ff02::2		ip6-allrouters
 192.168.11.55   synapse kerberos smokeping nagios synapse.neuronpointer.net kerberos.neuronpointer.net smokeping.neuronpointer.net nagios.neuronpointer.net
 192.168.11.58   rudolph rudolph.neuronpointer.net
 192.168.11.59   wii wii.neuronpointer.net
+192.168.11.60   peekaboo peekaboo.neuronpointer.net     # Dalton
+192.168.11.61   no no.neuronpointer.net                 # Tomas
 # neuron-mail.no-ip.org -- I'd make this a CNAME if I could.
 173.230.128.73  neuron-mail neuron-mail.neuronpointer.net
