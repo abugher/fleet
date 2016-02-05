@@ -6,6 +6,13 @@
   become_method:        sudo
   tasks:
 
+  - name:               'configure ssh on meliora, user rachel:  .ssh'
+    file:
+      path:             '~rachel/.ssh'
+      state:            'directory'
+      owner:            'rachel'
+      group:            'rachel'
+      mode:             '0750'
   - name:               'configure ssh on meliora, user rachel:  authorize keys'
     authorized_key:
       user:             'rachel'
