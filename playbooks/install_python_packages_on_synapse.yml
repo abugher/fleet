@@ -12,4 +12,5 @@
       state:            'present'
     with_items:
       - 'ansible'
+      - 'mysql-python'  # for mysql_db ansible module, for zabbix
     register:           python_packages_on_synapse

@@ -22,6 +22,10 @@
       - 'krb5-user'
       - 'fcgiwrap'
       - 'php5-fpm'
+      - 'zabbix-server-mysql'   # for zabbix
+      - 'zabbix-frontend-php'   # for zabbix
+      - 'mysql-server'          # for zabbix
+      - 'libmysqlclient-dev'    # for zabbix
   - name:               'stop mini-httpd; otherwise it errors on service start'
     # service module would make sense, but doesn't work.
     command:          service mini-httpd stop
