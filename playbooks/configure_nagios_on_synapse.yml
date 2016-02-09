@@ -10,7 +10,6 @@
     synchronize:
       src:              '~/code/fleet/conf/nagios/synapse/nagios3/'
       dest:             '/etc/nagios3/'
-      mode:             '0644'
       delete:           'yes'
     register:           nagios_config_synapse
   - name:               'configure nagios on synapse:  logos'
@@ -25,7 +24,6 @@
       dest:             '/etc/nagios3/htpasswd.users'
       owner:            'root'
       group:            'root'
-      mode:             '0644'
     register:           nagios_htpasswd_synapse
   - name:               'configure nagios on synapse:  service restart'
     service:
