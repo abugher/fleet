@@ -20,6 +20,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
                      ERR_PYTHON=7
                    ERR_KANBOARD=8
 
+/usr/local/bin/stamp
 
 /usr/bin/aptitude update \
   && echo -en "Updates successful.\n" \
@@ -51,3 +52,5 @@ else
 fi \
   && echo -en "kanboard update successful.\n" \
   || { echo -en "kanboard update failed: ${?}\n"; exit $ERR_KANBOARD; }
+
+/usr/local/bin/stamp
