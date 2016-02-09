@@ -6,8 +6,11 @@
   become_method:        sudo
   tasks:
 
+  # Work around bug in synchronize 2.0.0.
   - name:               'configure nagios on synapse:  /etc/nagios3/'
+    become:             'false'         # work-around
     synchronize:
+      rsync_path:       'sudo rsync'    # work-around
       src:              '~/code/fleet/conf/nagios/synapse/nagios3/'
       dest:             '/etc/nagios3/'
       delete:           'yes'
