@@ -4,13 +4,7 @@
 
 # update_python_packages
 #
-# requires package python-pip and probably python-dev
-#
-# I formerly used the --no-cache-dir argument to pip because that somehow
-# lowers memory requirements.  Otherwise the Pi's fail sometimes.
-#
-# Updated the Pi's to Jessie, and now neuron is failing updates because it's
-# never heard of --no-cache-dir.  Hopefully it doesn't need it.  Removing.
+# requires pip and probably python-dev
 
 for p in $(
   pip freeze --local \
