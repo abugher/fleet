@@ -7,7 +7,10 @@
 # requires pip and probably python-dev
 
 # pip doesn't list pip as an installed package, so it gets skipped below.
-pip -U pip
+pip install -U pip || {
+  echo -e "ERROR:  Failed to upgrade pip." >&2
+  exit 1
+}
 
 for p in $(
   pip freeze --local \
