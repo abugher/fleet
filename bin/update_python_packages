@@ -6,6 +6,9 @@
 #
 # requires pip and probably python-dev
 
+# pip doesn't list pip as an installed package, so it gets skipped below.
+pip -U pip
+
 for p in $(
   pip freeze --local \
     | grep -vE '^\-e|^#' \
@@ -29,8 +32,3 @@ done
 if test 'neuron' = $HOSTNAME; then
   pip install -U FlexGet
 fi
-
-# I had to do this once.  *shrug*  I got the idea from here:
-#   http://stackoverflow.com/questions/28987891/patch-pyopenssl-for-sslv3-issue
-#
-# sudo easy_install --upgrade pip
