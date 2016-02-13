@@ -6,29 +6,28 @@
   become_method:        sudo
   tasks:
 
-  - name:               'install scripts on meliora:  nethack'
+  - name:               'install scripts on meliora'
     copy:
       owner:            'root'
       group:            'root'
       mode:             '0755'
-      src:              '~/code/fleet/bin/nethack'
-      dest:             '/usr/local/bin/nethack'
-  - name:               'install scripts on meliora:  pdfprintd'
+      src:              "~/code/fleet/bin/{{ item }}"
+      dest:             "/usr/local/bin/{{ item }}"
+    with_items:
+      - 'nethack'
+      - 'pdfprintd'
+      - 'update_kanboard'
+    register:           meliora_scripts
+  - name:               'install init scripts on meliora'
     copy:
       owner:            'root'
       group:            'root'
       mode:             '0755'
-      src:              '~/code/fleet/bin/pdfprintd'
-      dest:             '/usr/local/bin/pdfprintd'
-    register:           meliora_pdfprintd
-  - name:               'install scripts on meliora:  pdfprint'
-    copy:
-      owner:            'root'
-      group:            'root'
-      mode:             '0755'
-      src:              '~/code/fleet/bin/pdfprint'
-      dest:             '/etc/init.d/pdfprint'
-    register:           meliora_pdfprint
+      src:              "~/code/fleet/bin/{{ item }}"
+      dest:             "/etc/init.d/{{ item }}"
+    with_items:
+      - 'pdfprint'
+    register:           meliora_init_scripts
   - name:               'install scripts on meliora:  enable pdfprint service'
     service:
       name:             'pdfprint'
@@ -38,4 +37,4 @@
     service:
       name:             'pdfprint'
       state:            'restarted'
-    when:               meliora_pdfprintd.changed or meliora_pdfprint.changed or meliora_pdfprint_service.changed
+    when:               meliora_scripts.changed or meliora_init_scripts.changed or meliora_pdfprint_service.changed
