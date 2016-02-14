@@ -29,6 +29,8 @@
       - 'flex'                          # for nethack
       - 'isc-dhcp-server'
       - 'tftpd-hpa'
+      - 'debian-installer-8-netboot-i386'
+      - 'debian-installer-8-netboot-amd64'
   - name:               'remove packages on neuron'
     apt:
       name:             "{{ item }}"
