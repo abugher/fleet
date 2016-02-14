@@ -1,0 +1,15 @@
+---
+- hosts:                neuron
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure network on neuron:  interfaces'
+    copy:
+      src:              '~/code/fleet/conf/network/neuron/interfaces'
+      dest:             '/etc/network/interfaces'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
