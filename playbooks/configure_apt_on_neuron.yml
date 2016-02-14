@@ -14,6 +14,14 @@
       group:            'root'
       mode:             '0644'
     register:           apt_sources_neuron
+  - name:               'configure apt on neuron:  policy-rc.d'
+    copy:
+      src:              '~/code/fleet/conf/apt/neuron/policy-rc.d'
+      dest:             '/usr/sbin/policy-rc.d'
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'
+    register:           apt_policyrcd_neuron
   - name:               'configure apt on neuron:  raspi.list'
     copy:
       src:              '~/code/fleet/conf/apt/neuron/raspi.list'
@@ -30,4 +38,4 @@
   - name:               'update apt on neuron'
     apt:
       update_cache:     'yes'
-    when:               apt_sources_neuron.changed or apt_sources_raspi_neuron.changed or apt_sources_collabora_neuron.changed
+    when:               apt_sources_neuron.changed or apt_policyrcd_neuron.changed or apt_sources_raspi_neuron.changed or apt_sources_collabora_neuron.changed

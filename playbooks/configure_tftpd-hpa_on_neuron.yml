@@ -1,0 +1,21 @@
+---
+- hosts:                neuron
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure tftpd-hpa on neuron:  defaults file'
+    copy:
+      src:              '~/code/fleet/conf/tftpd-hpa/neuron/default.txt'
+      dest:             '/etc/default/tftpd-hpa'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+    register:           neuron_tftp_defaults
+  - name:               'configure tftpd-hpa on neuron:  restart service'
+    service:
+      name:             'tftpd-hpa'
+      state:            'restarted'
+    when:               neuron_tftp_defaults.changed
