@@ -13,3 +13,7 @@
       owner:            'root'
       group:            'root'
       mode:             '0644'
+  - name:               'configure network on neuron:  disable dhcpcd'
+    service:
+      name:             'dhcpcd'
+      enabled:          'no'

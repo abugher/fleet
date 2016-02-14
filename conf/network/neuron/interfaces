@@ -14,5 +14,3 @@ iface eth0 inet static
   gateway               192.168.11.1
   dns-nameservers       192.168.11.54 8.8.8.8 8.8.4.4
   dns-search            neuronpointer.net
-
-
