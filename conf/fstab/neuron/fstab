@@ -1,0 +1,9 @@
+proc            /proc           proc    defaults          0       0
+/dev/mmcblk0p1  /boot           vfat    defaults          0       2
+/dev/mmcblk0p2  /               ext4    defaults,noatime  0       1
+# a swapfile is not a swap partition, so no using swapon|off from here on, use  dphys-swapfile swap[on|off]  for that
+
+/dev/mapper/storage     /storage        ext4    noatime,noauto,nodev,nosuid,noexec     0       0
+
+/usr/lib/debian-installer/images/8/amd64/text/debian-installer/amd64   /srv/tftp/debian-installer/amd64        none,auto       bind    0       0
+/usr/lib/debian-installer/images/8/i386/text/debian-installer/i386     /srv/tftp/debian-installer/i386         none,auto       bind    0       0

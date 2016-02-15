@@ -1,0 +1,18 @@
+default debian-installer/i386/boot-screens/vesamenu.c32
+
+menu title Network Boot Menu
+
+label amd64
+        menu label Install Debian 8 - amd64
+        kernel debian-installer/amd64/boot-screens/vesamenu.c32
+        append debian-installer/amd64/pxelinux.cfg/default
+
+label i386
+        menu label Install Debian 8 - i386
+        kernel debian-installer/i386/boot-screens/vesamenu.c32
+        append debian-installer/i386/pxelinux.cfg/default
+
+label reload
+        menu label Refresh Options
+        kernel debian-installer/i386/boot-screens/vesamenu.c32
+        append pxelinux.cfg/default

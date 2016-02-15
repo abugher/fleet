@@ -19,3 +19,37 @@
       name:             'tftpd-hpa'
       state:            'restarted'
     when:               neuron_tftp_defaults.changed
+  - name:               'configure tftpd-hpa on neuron:  directories'
+    file:
+      path:             "{{ item }}"
+      state:            'directory'
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'
+    with_items:
+      - '/srv/tftp/pxelinux.cfg'
+      - '/srv/tftp/debian-installer'
+      - '/srv/tftp/debian-installer/amd64'
+      - '/srv/tftp/debian-installer/i386'
+  - name:               'configure tftpd-hpa on neuron:  symlink pxelinux.0'
+    file:
+      src:              'debian-installer/i386/pxelinux.0'
+      path:             '/srv/tftp/pxelinux.0'
+      state:            'link'
+      owner:            'root'
+      group:            'root'
+  - name:               'configure tftpd-hpa on neuron:  symlink ldlinux.c32'
+    file:
+      src:              'debian-installer/i386/boot-screens/ldlinux.c32'
+      path:             '/srv/tftp/ldlinux.c32'
+      state:            'link'
+      owner:            'root'
+      group:            'root'  
+  - name:               'configure tftpd-hpa on neuron:  main menu'
+    copy:
+      src:              '~/code/fleet/conf/tftpd-hpa/neuron/pxelinux.cfg/default'
+      dest:             '/srv/tftp/pxelinux.cfg/default'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
+ 
