@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /usr/local/debian-live/i386/debian-live/
+
+export DEBIAN_FRONTEND=noninteractive
+lb clean && lb build

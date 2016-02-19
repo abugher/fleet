@@ -1,0 +1,53 @@
+---
+- hosts:                meliora
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  tasks:
+
+  - name:               'configure live-build on meliora:  debian-live directory structure'
+    file:
+      name:             "{{ item }}"
+      state:            'directory'
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'
+    with_items:
+      - '/usr/local/debian-live'
+      - '/usr/local/debian-live/amd64'
+      - '/usr/local/debian-live/amd64/debian-live'
+      - '/usr/local/debian-live/i386'
+      - '/usr/local/debian-live/i386/debian-live'
+  - name:               'configure live-build (amd64) on meliora'
+    shell:              lb config --distribution jessie --architectures amd64 --binary-images netboot --debconf-frontend dialog --chroot-filesystem squashfs --parent-mirror-bootstrap http://mirrors.kernel.org/debian/ --parent-mirror-chroot-security http://mirrors.kernel.org/debian-security/ --parent-mirror-binary http://mirrors.kernel.org/debian/ --parent-mirror-binary-security http://mirrors.kernel.org/debian-security/ --mirror-bootstrap http://mirrors.kernel.org/debian/ --mirror-chroot-security http://mirrors.kernel.org/debian-security/ --mirror-binary http://mirrors.kernel.org/debian/ --mirror-binary-security http://mirrors.kernel.org/debian-security/ --archive-areas "main non-free contrib" --apt-options "--force-yes --yes" --bootappend-live "keyboard-layouts=en" && sed -i 's/LB_DEBCONF_FRONTEND="dialog"/LB_DEBCONF_FRONTEND="noninteractive"/' config/common
+    args:
+      chdir:            '/usr/local/debian-live/amd64/debian-live'
+      creates:          '/usr/local/debian-live/amd64/debian-live/config/common'
+  - name:               'configure live-build (i386) on meliora'
+    shell:              lb config --distribution jessie --architectures i386 --binary-images netboot --debconf-frontend dialog --chroot-filesystem squashfs --parent-mirror-bootstrap http://mirrors.kernel.org/debian/ --parent-mirror-chroot-security http://mirrors.kernel.org/debian-security/ --parent-mirror-binary http://mirrors.kernel.org/debian/ --parent-mirror-binary-security http://mirrors.kernel.org/debian-security/ --mirror-bootstrap http://mirrors.kernel.org/debian/ --mirror-chroot-security http://mirrors.kernel.org/debian-security/ --mirror-binary http://mirrors.kernel.org/debian/ --mirror-binary-security http://mirrors.kernel.org/debian-security/ --archive-areas "main non-free contrib" --apt-options "--force-yes --yes" --bootappend-live "keyboard-layouts=en" && sed -i 's/LB_DEBCONF_FRONTEND="dialog"/LB_DEBCONF_FRONTEND="noninteractive"/' config/common
+    args:
+      chdir:            '/usr/local/debian-live/i386/debian-live'
+      creates:          '/usr/local/debian-live/i386/debian-live/config/common'
+  - name:               'install update_live-build.amd64 on meliora'
+    copy:
+      src:              '~/code/fleet/bin/update_live-build.amd64'
+      dest:             '/usr/local/bin/update_live-build.amd64'
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'
+  - name:               'install update_live-build.i386 on meliora'
+    copy:
+      src:              '~/code/fleet/bin/update_live-build.i386'
+      dest:             '/usr/local/bin/update_live-build.i386'
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'
+  - name:               'run update_live-build.amd64 on meliora'
+    shell:              /usr/local/bin/update_live-build.amd64
+    args:
+      creates:          '/usr/local/debian-live/amd64/debian-live/chroot/bin/bash'
+  - name:               'run update_live-build.i386 on meliora'
+    shell:              /usr/local/bin/update_live-build.i386
+    args:
+      creates:          '/usr/local/debian-live/i386/debian-live/chroot/bin/bash'

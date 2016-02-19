@@ -15,3 +15,4 @@
       - 'x2goserver-xsession'
       - 'inotify-tools'
       - 'printer-driver-cups-pdf'
+      - 'live-build'
