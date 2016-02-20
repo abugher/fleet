@@ -31,7 +31,7 @@
       - 'tftpd-hpa'
       - 'debian-installer-8-netboot-i386'
       - 'debian-installer-8-netboot-amd64'
-      - 'live-build'
+      - 'pxelinux'
   - name:               'remove packages on neuron'
     apt:
       name:             "{{ item }}"

@@ -19,6 +19,9 @@
       - '/usr/local/debian-live/amd64/debian-live'
       - '/usr/local/debian-live/i386'
       - '/usr/local/debian-live/i386/debian-live'
+      - '/var/www/live-build'
+      - '/var/www/live-build/amd64'
+      - '/var/www/live-build/i386'
   - name:               'configure live-build (amd64) on meliora'
     shell:              lb config --distribution jessie --architectures amd64 --binary-images netboot --debconf-frontend dialog --chroot-filesystem squashfs --parent-mirror-bootstrap http://mirrors.kernel.org/debian/ --parent-mirror-chroot-security http://mirrors.kernel.org/debian-security/ --parent-mirror-binary http://mirrors.kernel.org/debian/ --parent-mirror-binary-security http://mirrors.kernel.org/debian-security/ --mirror-bootstrap http://mirrors.kernel.org/debian/ --mirror-chroot-security http://mirrors.kernel.org/debian-security/ --mirror-binary http://mirrors.kernel.org/debian/ --mirror-binary-security http://mirrors.kernel.org/debian-security/ --archive-areas "main non-free contrib" --apt-options "--force-yes --yes" --bootappend-live "keyboard-layouts=en" && sed -i 's/LB_DEBCONF_FRONTEND="dialog"/LB_DEBCONF_FRONTEND="noninteractive"/' config/common
     args:
@@ -46,8 +49,38 @@
   - name:               'run update_live-build.amd64 on meliora'
     shell:              /usr/local/bin/update_live-build.amd64
     args:
-      creates:          '/usr/local/debian-live/amd64/debian-live/chroot/bin/bash'
+      creates:          '/usr/local/debian-live/amd64/debian-live/binary/live/filesystem.squashfs'
   - name:               'run update_live-build.i386 on meliora'
     shell:              /usr/local/bin/update_live-build.i386
     args:
-      creates:          '/usr/local/debian-live/i386/debian-live/chroot/bin/bash'
+      creates:          '/usr/local/debian-live/i386/debian-live/binary/live/filesystem.squashfs'
+  - name:               'symlink amd64/vmlinuz'
+    file:
+      path:             '/var/www/live-build/amd64/vmlinuz'
+      src:              '/usr/local/debian-live/amd64/debian-live/tftpboot/live/vmlinuz'
+      state:            'link'
+  - name:               'symlink i386/vmlinuz'
+    file:
+      path:             '/var/www/live-build/i386/vmlinuz'
+      src:              '/usr/local/debian-live/i386/debian-live/tftpboot/live/vmlinuz'
+      state:            'link'
+  - name:               'symlink amd64/initrd.img'
+    file:
+      path:             '/var/www/live-build/amd64/initrd.img'
+      src:              '/usr/local/debian-live/amd64/debian-live/tftpboot/live/initrd.img'
+      state:            'link'
+  - name:               'symlink i386/initrd.img'
+    file:
+      path:             '/var/www/live-build/i386/initrd.img'
+      src:              '/usr/local/debian-live/i386/debian-live/tftpboot/live/initrd.img'
+      state:            'link'
+  - name:               'symlink amd64/filesystem.squashfs'
+    file:
+      path:             '/var/www/live-build/amd64/filesystem.squashfs'
+      src:              '/usr/local/debian-live/amd64/debian-live/binary/live/filesystem.squashfs'
+      state:            'link'
+  - name:               'symlink i386/filesystem.squashfs'
+    file:
+      path:             '/var/www/live-build/i386/filesystem.squashfs'
+      src:              '/usr/local/debian-live/i386/debian-live/binary/live/filesystem.squashfs'
+      state:            'link'

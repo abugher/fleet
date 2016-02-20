@@ -13,3 +13,8 @@
       owner:            'root'
       group:            'root'
       mode:             '0644'
+    register:           fstab_neuron
+  - name:               'mount -a'
+    shell:              mount -a
+    when:
+      fstab_neuron.changed

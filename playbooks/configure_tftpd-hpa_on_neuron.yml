@@ -31,10 +31,15 @@
       - '/srv/tftp/debian-installer'
       - '/srv/tftp/debian-installer/amd64'
       - '/srv/tftp/debian-installer/i386'
-  - name:               'configure tftpd-hpa on neuron:  symlink pxelinux.0'
+      - '/srv/tftp/debian-live/amd64/tftpboot'
+      - '/srv/tftp/debian-live/amd64/binary'
+      - '/srv/tftp/debian-live/i386/tftpboot'
+      - '/srv/tftp/debian-live/i386/binary'
+      - '/srv/tftp/pxelinux'
+  - name:               'configure tftpd-hpa on neuron:  symlink lpxelinux.0'
     file:
-      src:              'debian-installer/i386/pxelinux.0'
-      path:             '/srv/tftp/pxelinux.0'
+      src:              'pxelinux/lpxelinux.0'
+      path:             '/srv/tftp/lpxelinux.0'
       state:            'link'
       owner:            'root'
       group:            'root'
@@ -47,9 +52,10 @@
       group:            'root'  
   - name:               'configure tftpd-hpa on neuron:  main menu'
     copy:
-      src:              '~/code/fleet/conf/tftpd-hpa/neuron/pxelinux.cfg/default'
-      dest:             '/srv/tftp/pxelinux.cfg/default'
+      src:              "~/code/fleet/conf/tftpd-hpa/neuron/pxelinux.cfg/{{ item }}"
+      dest:             "/srv/tftp/pxelinux.cfg/{{ item }}"
       owner:            'root'
       group:            'root'
       mode:             '0644'
- 
+    with_items:
+      - 'default'

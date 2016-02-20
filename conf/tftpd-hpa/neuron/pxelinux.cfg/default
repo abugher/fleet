@@ -3,15 +3,25 @@ default debian-installer/i386/boot-screens/vesamenu.c32
 
 menu title Network Boot Menu
 
-label amd64
+label amd64_install
         menu label Install Debian 8 - amd64
         kernel debian-installer/amd64/boot-screens/vesamenu.c32
         append debian-installer/amd64/pxelinux.cfg/default
 
-label i386
+label i386_install
         menu label Install Debian 8 - i386
         kernel debian-installer/i386/boot-screens/vesamenu.c32
         append debian-installer/i386/pxelinux.cfg/default
+
+label amd64_live
+        menu label Boot Debian 8 - amd64
+        linux http://meliora/live-build/amd64/vmlinuz boot=live config hooks=filesystem username=live noeject fetch=http://192.168.11.53/live-build/amd64/filesystem.squashfs
+        append initrd=http://meliora/live-build/amd64/initrd.img
+
+label i386_live
+        menu label Boot Debian 8 - i386
+        linux http://meliora/live-build/i386/vmlinuz boot=live config hooks=filesystem username=live noeject fetch=http://192.168.11.53/live-build/i386/filesystem.squashfs
+        append initrd=http://meliora/live-build/i386/initrd.img
 
 label reload
         menu label Refresh Options
