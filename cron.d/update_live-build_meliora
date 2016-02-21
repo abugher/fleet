@@ -1,0 +1,4 @@
+# Update debian once a day.
+
+# m     h       dom     mon     dow     user    command
+15      01      *       *       *       root    /usr/local/bin/update_live-build_cronjob
