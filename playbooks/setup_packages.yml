@@ -19,6 +19,6 @@
 - include:              'configure_packages_on_neuron-mail.yml'
 
 - include:              'install_packages_on_meliora.yml'
-- include:              'configure_packages_on_meiora.yml'
+- include:              'configure_packages_on_meliora.yml'
 
 - include:              'install_packages_on_rudolph.yml'
