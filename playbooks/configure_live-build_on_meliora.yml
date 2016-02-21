@@ -54,6 +54,20 @@
     shell:              /usr/local/bin/update_live-build.i386
     args:
       creates:          '/usr/local/debian-live/i386/debian-live/binary/live/filesystem.squashfs'
+  - name:               'install update_live-build_cronjob on meliora'
+    copy:
+      src:              '~/code/fleet/bin/update_live-build_cronjob'
+      dest:             '/usr/local/bin/update_live-build_cronjob'
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'
+  - name:               'install cron.d/update_live-build on meliora'
+    copy:
+      src:              '~/code/fleet/cron.d/update_live-build_meliora'
+      dest:             '/etc/cron.d/update_live-build'
+      owner:            'root'
+      group:            'root'
+      mode:             '0644'
   - name:               'symlink amd64/vmlinuz'
     file:
       path:             '/var/www/live-build/amd64/vmlinuz'
