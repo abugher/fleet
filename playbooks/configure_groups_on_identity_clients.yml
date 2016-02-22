@@ -1,17 +1,14 @@
 ---
 - hosts:                identity_clients
+  name:                 'configure groups on identity clients'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    groups:
+      - 'aaron'
+      - 'rachel'
   tasks:
 
-  - name:               'configure groups on identity_clients:  aaron'
-    group:
-      name:             'aaron'
-      state:            'present'
-  - name:               'configure groups on identity_clients:  rachel'
-    group:
-      name:             'rachel'
-      state:            'present'
-
+  - include:              'generics/configure_groups.yml'

@@ -1,21 +1,18 @@
 ---
 - hosts:                neuron
+  name:                 'configure groups on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    groups:
+      - 'rachel-phone'
+      - 'aaron-phone'
   tasks:
 
-  - name:               'configure groups on neuron:  rachel-phone'
-    group:
-      name:             'rachel-phone'
-      system:           'no'
-      state:            'present'
-  - name:               'configure groups on neuron:  aaron-phone'
-    group:
-      name:             'aaron-phone'
-      system:           'no'
-      state:            'present'
+  - include:            'generics/configure_groups.yml'
+
   - name:               'configure groups on neuron:  escrow'
     group:
       name:             'escrow'

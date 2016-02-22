@@ -4,10 +4,9 @@
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    groups:
+      - 'nagios'
   tasks:
 
-  - name:               'configure groups on fleet:  nagios'
-    group:
-      name:             'nagios'
-      system:           'yes'
-      state:            'present'
+  - include:              'generics/configure_groups.yml'
