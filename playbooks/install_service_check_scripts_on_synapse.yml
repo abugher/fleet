@@ -25,3 +25,5 @@
       - 'check_tor'
       - 'check_dns_record'
       - 'check_temper'
+      - 'check_update_live-build.amd64'
+      - 'check_update_live-build.i386'
