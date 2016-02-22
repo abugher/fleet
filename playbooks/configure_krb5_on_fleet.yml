@@ -1,12 +1,13 @@
 ---
 - hosts:                fleet
+  name:                 'configure krb5 on fleet'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure krb5 on fleet'
+  - name:               'install krb5.conf'
     copy:
       owner:            'root'
       group:            'root'

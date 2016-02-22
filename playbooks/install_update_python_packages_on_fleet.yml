@@ -1,12 +1,13 @@
 ---
 - hosts:                fleet
+  name:                 'install update_python_packages on fleet'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'install update_python_packages on fleet'
+  - name:               'install update_python_packages'
     copy:
       owner:            root
       group:            root

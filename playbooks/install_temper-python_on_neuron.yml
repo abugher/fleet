@@ -1,21 +1,22 @@
 ---
 - hosts:                neuron
+  name:                 'install temper-python on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'install temper-python on neuron:  get source'
+  - name:               'get source'
     git:
       repo:             'https://github.com/padelt/temper-python.git'
       dest:             '/usr/local/src/temper-python/'
-  - name:               'install temper-python on neuron:  install programs'
+  - name:               'install programs'
     command:            python setup.py install
     args:
       chdir:            '/usr/local/src/temper-python'
       creates:          '/usr/local/bin/temper-poll'
-  - name:               'install temper-python on neuron:  give access to nagios'
+  - name:               'give access to nagios'
     copy:
       src:              '~/code/fleet/conf/udev/80-temper.rules'
       dest:             '/etc/udev/rules.d/80-temper.rules'

@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron-mail
+  name:                 'configure ssh on neuron-mail'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure ssh authorized keys for aaron on neuron-mail'
+  - name:               'configure ssh authorized keys for aaron'
     authorized_key:
       user:             'aaron'
       key:              "{{ item }}"

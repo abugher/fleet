@@ -1,5 +1,6 @@
 ---
 - hosts:                meliora
+  name:                 'install packages on meliora'
   gather_facts:         False
   remote_user:          ansible
   become:               yes

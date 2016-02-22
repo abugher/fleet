@@ -1,5 +1,6 @@
 ---
 - hosts:                fleet
+  name:                 'install python packages on fleet'
   gather_facts:         False
   remote_user:          ansible
   become:               yes

@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure fstab on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure fstab on neuron'
+  - name:               'install fstab'
     copy:
       src:              '~/code/fleet/conf/fstab/neuron/fstab'
       dest:             '/etc/fstab'

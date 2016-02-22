@@ -1,12 +1,13 @@
 ---
 - hosts:                synapse
+  name:                 'configure DNS updates on synapse'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure DNS updates on synapse:  cron.d/update_dns'
+  - name:               'cron.d/update_dns'
     copy:
       owner:            root
       group:            root

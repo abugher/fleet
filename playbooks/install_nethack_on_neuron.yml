@@ -1,5 +1,6 @@
 ---
 - hosts:                neuron
+  name:                 'install nethack on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes

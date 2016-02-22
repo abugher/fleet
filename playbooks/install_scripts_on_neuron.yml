@@ -1,26 +1,27 @@
 ---
 - hosts:                neuron
+  name:                 'install scripts on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'install scripts on neuron:  storage'
+  - name:               'bin/storage'
     copy:
       owner:            'root'
       group:            'root'
       mode:             '0755'
       src:              '~/code/fleet/bin/storage'
       dest:             '/usr/local/bin/storage'
-  - name:               'install scripts on neuron:  tend_storage'
+  - name:               'tend_storage'
     copy:
       owner:            'root'
       group:            'root'
       mode:             '0755'
       src:              '~/code/fleet/bin/tend_storage'
       dest:             '/usr/local/bin/tend_storage'
-  - name:               'install scripts on neuron:  s'
+  - name:               's'
     file:
       owner:            'root'
       group:            'root'

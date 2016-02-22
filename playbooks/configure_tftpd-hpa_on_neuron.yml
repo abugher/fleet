@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure tftpd-hpa on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure tftpd-hpa on neuron:  defaults file'
+  - name:               'defaults file'
     copy:
       src:              '~/code/fleet/conf/tftpd-hpa/neuron/default.txt'
       dest:             '/etc/default/tftpd-hpa'
@@ -14,12 +15,12 @@
       group:            'root'
       mode:             '0644'
     register:           neuron_tftp_defaults
-  - name:               'configure tftpd-hpa on neuron:  restart service'
+  - name:               'restart service'
     service:
       name:             'tftpd-hpa'
       state:            'restarted'
     when:               neuron_tftp_defaults.changed
-  - name:               'configure tftpd-hpa on neuron:  directories'
+  - name:               'directories'
     file:
       path:             "{{ item }}"
       state:            'directory'
@@ -36,21 +37,21 @@
       - '/srv/tftp/debian-live/i386/tftpboot'
       - '/srv/tftp/debian-live/i386/binary'
       - '/srv/tftp/pxelinux'
-  - name:               'configure tftpd-hpa on neuron:  symlink lpxelinux.0'
+  - name:               'symlink lpxelinux.0'
     file:
       src:              'pxelinux/lpxelinux.0'
       path:             '/srv/tftp/lpxelinux.0'
       state:            'link'
       owner:            'root'
       group:            'root'
-  - name:               'configure tftpd-hpa on neuron:  symlink ldlinux.c32'
+  - name:               'symlink ldlinux.c32'
     file:
       src:              'debian-installer/i386/boot-screens/ldlinux.c32'
       path:             '/srv/tftp/ldlinux.c32'
       state:            'link'
       owner:            'root'
       group:            'root'  
-  - name:               'configure tftpd-hpa on neuron:  main menu'
+  - name:               'main menu'
     copy:
       src:              "~/code/fleet/conf/tftpd-hpa/neuron/pxelinux.cfg/{{ item }}"
       dest:             "/srv/tftp/pxelinux.cfg/{{ item }}"

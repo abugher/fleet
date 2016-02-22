@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure isc-dhcp-server on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure isc-dhcp-server on neuron:  dhcpd.conf'
+  - name:               'install dhcpd.conf'
     copy:
       src:              '~/code/fleet/conf/isc-dhcp-server/neuron/dhcpd.conf'
       dest:             '/etc/dhcp/dhcpd.conf'
@@ -14,7 +15,7 @@
       group:            'root'
       mode:             '0644'
     register:           neuron_dhcpd
-  - name:               'configure isc-dhcp-server on neuron:  restart service'
+  - name:               'restart service'
     service:
       name:             'isc-dhcp-server'
       state:            'restarted'

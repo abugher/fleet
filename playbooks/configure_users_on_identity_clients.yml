@@ -1,12 +1,13 @@
 ---
 - hosts:                identity_clients
+  name:                 'configure users on identity_clients'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure users on identity_clients:  create aaron'
+  - name:               'create aaron'
     user:
       name:             'aaron'
       group:            'aaron'
@@ -14,11 +15,11 @@
       state:            'present'
       shell:            '/bin/bash'
       password:         '*'
-  - name:               'configure users on identity_clients:  dotfiles for aaron'
+  - name:               'dotfiles for aaron'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'
       dest:             '~aaron/'
-  - name:               'configure users on identity_clients:  rachel'
+  - name:               'create rachel'
     user:
       name:             'rachel'
       group:            'rachel'
@@ -27,7 +28,7 @@
       state:            'present'
       shell:            '/bin/bash'
       password:         '!'
-  - name:               'configure users on identity_clients:  dotfiles for rachel'
+  - name:               'dotfiles for rachel'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'
       dest:             '~rachel/'

@@ -1,5 +1,6 @@
 ---
 - hosts:                neuron-mail
+  name:                 'install packages on neuron-mail'
   gather_facts:         False
   remote_user:          ansible
   become:               yes

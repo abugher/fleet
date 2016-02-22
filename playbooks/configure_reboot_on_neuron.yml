@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure nightly reboot on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure nightly reboot on neuron'
+  - name:               'install neuron_reboot'
     copy:
       src:              '~/code/fleet/cron.d/neuron_reboot'
       dest:             '/etc/cron.d/reboot'

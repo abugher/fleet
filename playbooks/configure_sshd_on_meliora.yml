@@ -1,12 +1,13 @@
 ---
 - hosts:                meliora
+  name:                 'configure sshd on meliora'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure sshd on meliora:  sshd_config'
+  - name:               'install sshd_config'
     assemble:
       remote_src:       False
       src:              '~/code/fleet/conf/ssh/meliora'
@@ -15,7 +16,7 @@
       group:            'root'
       mode:             '0644'
     register:           sshd_config_meliora
-  - name:               'configure sshd on meliora:  service restart'
+  - name:               'restart service'
     service:
       name:             'ssh'
       state:            'restarted'

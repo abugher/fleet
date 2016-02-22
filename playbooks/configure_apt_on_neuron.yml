@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure apt on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure apt on neuron:  sources.list'
+  - name:               'sources.list'
     copy:
       src:              '~/code/fleet/conf/apt/neuron/sources.list'
       dest:             '/etc/apt/sources.list'
@@ -14,7 +15,7 @@
       group:            'root'
       mode:             '0644'
     register:           apt_sources_neuron
-  - name:               'configure apt on neuron:  policy-rc.d'
+  - name:               'policy-rc.d'
     copy:
       src:              '~/code/fleet/conf/apt/neuron/policy-rc.d'
       dest:             '/usr/sbin/policy-rc.d'
@@ -22,7 +23,7 @@
       group:            'root'
       mode:             '0755'
     register:           apt_policyrcd_neuron
-  - name:               'configure apt on neuron:  raspi.list'
+  - name:               'raspi.list'
     copy:
       src:              '~/code/fleet/conf/apt/neuron/raspi.list'
       dest:             '/etc/apt/sources.list.d/raspi.list'
@@ -30,12 +31,12 @@
       group:            'root'
       mode:             '0644'
     register:           apt_sources_raspi_neuron
-  - name:               'configure apt on neuron:  remove collabora.list'
+  - name:               'remove collabora.list'
     file:
       path:             '/etc/apt/sources.list.d/collabora.list'
       state:            'absent'
     register:           apt_sources_collabora_neuron
-  - name:               'update apt on neuron'
+  - name:               'update apt'
     apt:
       update_cache:     'yes'
     when:               apt_sources_neuron.changed or apt_policyrcd_neuron.changed or apt_sources_raspi_neuron.changed or apt_sources_collabora_neuron.changed

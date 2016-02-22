@@ -1,12 +1,13 @@
 ---
 - hosts:                synapse
+  name:                 'configure sshd on synapse'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure sshd on synapse:  sshd_config'
+  - name:               'install sshd_config'
     assemble:
       remote_src:       False
       src:              '~/code/fleet/conf/ssh/synapse'
@@ -15,7 +16,7 @@
       group:            'root'
       mode:             '0644'
     register:           sshd_config_synapse
-  - name:               'configure sshd on synapse:  service restart'
+  - name:               'restart service'
     service:
       name:             'ssh'
       state:            'restarted'

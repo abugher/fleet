@@ -1,12 +1,13 @@
 ---
 - hosts:                synapse
+  name:                 'configure ssh on synapse'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure ssh on synapse, user root:  id_rsa'
+  - name:               'user root:  id_rsa'
     copy:
       src:              '~/code/sensitive/conf/ssh_keys/root@synapse.id_rsa'
       dest:             '/root/.ssh/id_rsa'
@@ -14,7 +15,7 @@
       group:            'root'
       mode:             '0600'
 
-  - name:               'configure ssh on synapse, user root:  id_rsa.pub'
+  - name:               'user root:  id_rsa.pub'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/root@synapse.id_rsa.pub'
       dest:             '/root/.ssh/id_rsa.pub'
@@ -22,7 +23,7 @@
       group:            'root'
       mode:             '0644'
 
-  - name:               'configure ssh on synapse, user nagios:  id_rsa'
+  - name:               'user nagios:  id_rsa'
     copy:
       src:              '~/code/sensitive/conf/ssh_keys/nagios@synapse.id_rsa'
       dest:             '~nagios/.ssh/id_rsa'
@@ -30,7 +31,7 @@
       group:            'nagios'
       mode:             '0600'
 
-  - name:               'configure ssh on synapse, user nagios:  id_rsa.pub'
+  - name:               'user nagios:  id_rsa.pub'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/nagios@synapse.id_rsa.pub'
       dest:             '~nagios/.ssh/id_rsa.pub'
@@ -38,7 +39,7 @@
       group:            'nagios'
       mode:             '0644'
 
-  - name:               'configure ssh on synapse, user nagios:  known_hosts'
+  - name:               'user nagios:  known_hosts'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/nagios@synapse.known_hosts'
       dest:             '~nagios/.ssh/known_hosts'
@@ -46,26 +47,26 @@
       group:            'nagios'
       mode:             '0600'
 
-  - name:               'configure ssh on synapse, user escrow:  authorize keys'
+  - name:               'user escrow:  authorize keys'
     authorized_key:
       user:             'escrow'
       key:              "{{ item }}"
     with_file:
       - "~/code/fleet/conf/ssh_keys/root@neuron.id_rsa.pub"
-  - name:               'configure ssh on synapse, user pi:  authorize keys'
+  - name:               'user pi:  authorize keys'
     authorized_key:
       user:             'pi'
       key:              "{{ item }}"
     with_file:
       - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
-  - name:               'configure ssh on synapse, user pi:  install private key'
+  - name:               'user pi:  install private key'
     copy:
       src:              '~/code/sensitive/conf/ssh_keys/pi@synapse.id_rsa'
       dest:             '~pi/.ssh/id_rsa'
       owner:            'pi'
       group:            'pi'
       mode:             '0600'
-  - name:               'configure ssh on synapse, user pi:  install public key'
+  - name:               'user pi:  install public key'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/pi@synapse.id_rsa.pub'
       dest:             '~pi/.ssh/id_rsa.pub'

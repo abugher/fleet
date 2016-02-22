@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure chown_pictures on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'install cron.d/chown_pictures on neuron'
+  - name:               'install cron.d/chown_pictures'
     copy:
       owner:            'root'
       group:            'root'

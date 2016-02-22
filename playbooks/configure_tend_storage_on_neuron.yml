@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure scripts on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure scripts on neuron:  cron.d/tend_storage'
+  - name:               'cron.d/tend_storage'
     copy:
       owner:            'root'
       group:            'root'

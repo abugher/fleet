@@ -1,5 +1,6 @@
 ---
 - hosts:                rudolph
+  name:                 'install nethack on rudolph'
   gather_facts:         False
   remote_user:          ansible
   become:               yes

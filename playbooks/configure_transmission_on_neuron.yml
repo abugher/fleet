@@ -1,47 +1,48 @@
 ---
 - hosts:                neuron
+  name:                 'configure transmission on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure transmission on neuron:  settings.json'
+  - name:               'settings.json'
     copy:
       src:              '~/code/sensitive/conf/transmission-daemon/neuron/settings.json'
       dest:             '/etc/transmission-daemon/settings.json'
       owner:            'debian-transmission'
       group:            'debian-transmission'
       mode:             '0600'
-  - name:               'configure transmission on neuron:  update_transmission_blocklist_cronjob'
+  - name:               'update_transmission_blocklist_cronjob'
     copy:
       src:              '~/code/sensitive/bin/update_transmission_blocklist_cronjob'
       dest:             '/usr/local/bin/update_transmission_blocklist_cronjob'
       mode:             '0755'
       owner:            'root'
       group:            'root'
-  - name:               'configure transmission on neuron:  update_transmission_blocklist_now_cronjob'
+  - name:               'update_transmission_blocklist_now_cronjob'
     copy:
       src:              '~/code/sensitive/bin/update_transmission_blocklist_now_cronjob'
       dest:             '/usr/local/bin/update_transmission_blocklist_now_cronjob'
       mode:             '0755'
       owner:            'root'
       group:            'root'
-  - name:               'configure transmission on neuron:  cron.d/update_transmission_blocklist'
+  - name:               'cron.d/update_transmission_blocklist'
     copy:
       src:              '~/code/sensitive/cron.d/update_transmission_blocklist'
       dest:             '/etc/cron.d/update_transmission_blocklist'
       mode:             '0644'
       owner:            'root'
       group:            'root'
-  - name:               'configure transmission on neuron:  update_transmission_blocklist.log'
+  - name:               'update_transmission_blocklist.log'
     file:
       path:             '/var/log/update_transmission_blocklist.log'
       state:            'touch'
       owner:            'pi'
       group:            'pi'
       mode:             '0644'
-  - name:               'configure transmission on neuron:  update_transmission_blocklist.ret'
+  - name:               'update_transmission_blocklist.ret'
     file:
       path:             '/var/log/update_transmission_blocklist.ret'
       state:            'touch'

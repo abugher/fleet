@@ -1,11 +1,13 @@
 ---
 - hosts:                synapse
+  name:                 'configure nginx on synapse'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
-  - name:               'configure nginx on synapse:  nginx.conf'
+
+  - name:               'nginx.conf'
     copy:
       owner:            'root'
       group:            'root'
@@ -14,7 +16,7 @@
       dest:             '/etc/nginx/nginx.conf'
     register:           synapse_nginx_conf
 
-  - name:               'configure nginx on synapse, sites-available'
+  - name:               'sites-available'
     copy:
       owner:            'root'
       group:            'root'
@@ -29,7 +31,7 @@
       - 'nagios.ssl'
     register:           synapse_nginx_sites_available
 
-  - name:               'configure nginx on synapse, sites-enabled'
+  - name:               'sites-enabled'
     file:
       owner:            'root'
       group:            'root'
@@ -45,7 +47,7 @@
       - 'nagios.ssl'
     register:           synapse_nginx_sites_enabled
 
-  - name:               'configure nginx on synapse, SSL key'
+  - name:               'SSL key'
     copy:
       owner:            'root'
       group:            'www-data'
@@ -53,7 +55,7 @@
       src:              '~/code/sensitive/conf/ssl/synapse/key'
       dest:             '/etc/nginx/synapse.key'
     register:           synapse_nginx_ssl_key
-  - name:               'configure nginx on synapse, SSL cert'
+  - name:               'SSL cert'
     copy:
       owner:            'root'
       group:            'www-data'
@@ -61,7 +63,7 @@
       src:              '~/code/fleet/conf/ssl/synapse/cert'
       dest:             '/etc/nginx/synapse.crt'
     register:           synapse_nginx_ssl_cert
-  - name:               'configure nginx on synapse, service restart'
+  - name:               'service restart'
     service:
       name:             'nginx'
       state:            'restarted'

@@ -1,5 +1,6 @@
 ---
 - hosts:                fleet
+  name:                 'configure ssh on fleet'
   gather_facts:         False
   remote_user:          ansible
   become:               yes

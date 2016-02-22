@@ -13,12 +13,12 @@
 
   - include:            'generics/configure_groups.yml'
 
-  - name:               'configure groups on neuron:  escrow'
+  - name:               'system group:  escrow'
     group:
       name:             'escrow'
       system:           'yes'
       state:            'present'
-  - name:               'configure groups on neuron:  cryptkeeper'
+  - name:               'system group:  cryptkeeper'
     group:
       name:             'cryptkeeper'
       system:           'yes'

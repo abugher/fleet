@@ -1,12 +1,13 @@
 ---
 - hosts:                rudolph
+  name:                 'install scripts on rudolph'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'install scripts on rudolph:  nethack'
+  - name:               'nethack'
     copy:
       owner:            'root'
       group:            'root'

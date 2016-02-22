@@ -1,12 +1,13 @@
 ---
 - hosts:                synapse
+  name:                 'configure nightly reboot on synapse'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure nightly reboot on synapse'
+  - name:               'install synapse_reboot'
     copy:
       src:              '~/code/fleet/cron.d/synapse_reboot'
       dest:             '/etc/cron.d/reboot'

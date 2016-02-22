@@ -1,19 +1,20 @@
 ---
 - hosts:                neuron
+  name:                 'configure nginx on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure nginx on neuron:  index.html'
+  - name:               'install index.html'
     copy:
       owner:            'root'
       group:            'root'
       mode:             '0644'
       src:              '~/code/fleet/conf/nginx/neuron/index.html'
       dest:             '/usr/share/nginx/www/index.html'
-  - name:               'configure nginx on neuron:  nginx.conf'
+  - name:               'install nginx.conf'
     copy:
       owner:            'root'
       group:            'root'
@@ -22,7 +23,7 @@
       dest:             '/etc/nginx/nginx.conf'
     register:           neuron_nginx_nginx_conf 
 
-  - name:               'configure nginx on neuron, sites-available'
+  - name:               'sites-available'
     copy:
       owner:            'root'
       group:            'root'
@@ -45,7 +46,7 @@
     register:           neuron_nginx_sites_available
 
 
-  - name:               'configure nginx on neuron, sites-enabled'
+  - name:               'sites-enabled'
     file:
       owner:            'root'
       group:            'root'
@@ -68,14 +69,14 @@
       - 'wiki.ssl'
     register:           neuron_nginx_sites_enabled
 
-  - name:               'configure nginx on neuron, private directory'
+  - name:               'install private directory'
     file:
       path:             '/usr/share/nginx/www/private'
       state:            'directory'
       mode:             '0750'
       owner:            'root'
       group:            'www-data'
-  - name:               'configure nginx on neuron, pictures'
+  - name:               'symlink pictures'
     file:
       src:              '/storage/aaron-phone/live/legacy/DCIM/Camera'
       dest:             '/usr/share/nginx/www/private/pictures'
@@ -85,7 +86,7 @@
       mode:             '0644'
       force:            'yes'
 
-  - name:               'configure nginx on neuron, htpasswd file'
+  - name:               'install htpasswd'
     copy:
       owner:            'root'
       group:            'www-data'
@@ -93,7 +94,7 @@
       src:              '~/code/sensitive/conf/nginx/neuron/htpasswd'
       dest:             '/etc/nginx/htpasswd'
 
-  - name:               'configure nginx on neuron, SSL key'
+  - name:               'SSL key'
     copy:
       owner:            'root'
       group:            'www-data'
@@ -101,7 +102,7 @@
       src:              '~/code/sensitive/conf/ssl/neuronpointer.net/key'
       dest:             '/etc/nginx/neuron.key'
     register:           neuron_nginx_ssl_key
-  - name:               'configure nginx on neuron, SSL cert'
+  - name:               'SSL cert'
     copy:
       owner:            'root'
       group:            'www-data'
@@ -109,12 +110,12 @@
       src:              '~/code/fleet/conf/ssl/neuronpointer.net/cert'
       dest:             '/etc/nginx/neuron.crt'
     register:           neuron_nginx_ssl_cert
-  - name:               'configure nginx on neuron, enable service'
+  - name:               'enable service'
     service:
       name:             'nginx'
       enabled:          'yes'
     register:           neuron_nginx_enabled
-  - name:               'configure nginx on neuron, restart restart'
+  - name:               'restart restart'
     service:
       name:             'nginx'
       state:            'restarted'

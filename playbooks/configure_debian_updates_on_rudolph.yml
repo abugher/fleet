@@ -1,26 +1,27 @@
 ---
 - hosts:                rudolph
+  name:                 'configure debian updates on rudolph'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure debian updates on fleet:  update_debian_cronjob'
+  - name:               'install update_debian_cronjob'
     copy:
       owner:            root
       group:            root
       mode:             0755
       src:              ~/code/fleet/bin/update_debian_cronjob
       dest:             /usr/local/bin/update_debian_cronjob
-  - name:               'configure debian updates on fleet:  update_debian_now_cronjob'
+  - name:               'install update_debian_now_cronjob'
     copy:
       owner:            root
       group:            root
       mode:             0755
       src:              ~/code/fleet/bin/update_debian_now_cronjob
       dest:             /usr/local/bin/update_debian_now_cronjob
-  - name:               'configure debian updates on fleet:  cron.d/update_debian'
+  - name:               'install cron.d/update_debian'
     copy:
       owner:            root
       group:            root

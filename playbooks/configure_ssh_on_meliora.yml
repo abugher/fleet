@@ -1,19 +1,20 @@
 ---
 - hosts:                meliora
+  name:                 'configure ssh on meliora'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure ssh on meliora, user rachel:  .ssh'
+  - name:               'user rachel:  .ssh'
     file:
       path:             '~rachel/.ssh'
       state:            'directory'
       owner:            'rachel'
       group:            'rachel'
       mode:             '0750'
-  - name:               'configure ssh on meliora, user rachel:  authorize keys'
+  - name:               'user rachel:  authorize keys'
     authorized_key:
       user:             'rachel'
       key:              "{{ item }}"
@@ -23,7 +24,7 @@
       - "~/code/fleet/conf/ssh_keys/rachel@rudolph.id_rsa.pub"
       - "~/code/fleet/conf/ssh_keys/rachel@meliora.id_rsa.pub"
 
-  - name:               'configure ssh on meliora, user rachel:  known_hosts'
+  - name:               'user rachel:  known_hosts'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/rachel@meliora.known_hosts'
       dest:             '~rachel/.ssh/known_hosts'
@@ -31,7 +32,7 @@
       group:            'rachel'
       mode:             '0600'
 
-  - name:               'configure ssh on meliora, user rachel:  id_rsa'
+  - name:               'user rachel:  id_rsa'
     copy:
       src:              '~/code/sensitive/conf/ssh_keys/rachel@meliora.id_rsa'
       dest:             '~rachel/.ssh/id_rsa'
@@ -39,14 +40,14 @@
       group:            'rachel'
       mode:             '0600'
 
-  - name:               'configure ssh on meliora, user aaron:  .ssh'
+  - name:               'user aaron:  .ssh'
     file:
       path:             '~aaron/.ssh'
       state:            'directory'
       owner:            'aaron'
       group:            'aaron'
       mode:             '0750'
-  - name:               'configure ssh on meliora, user aaron:  authorize keys'
+  - name:               'user aaron:  authorize keys'
     authorized_key:
       user:             'aaron'
       key:              "{{ item }}"
@@ -55,7 +56,7 @@
       - "~/code/fleet/conf/ssh_keys/aaron@mawg.id_rsa.pub"
       - "~/code/fleet/conf/ssh_keys/aaron@meliora.id_rsa.pub"
 
-  - name:               'configure ssh on meliora, user aaron:  known_hosts'
+  - name:               'user aaron:  known_hosts'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/aaron@meliora.known_hosts'
       dest:             '~aaron/.ssh/known_hosts'
@@ -63,7 +64,7 @@
       group:            'aaron'
       mode:             '0600'
 
-  - name:               'configure ssh on meliora, user aaron:  id_rsa'
+  - name:               'user aaron:  id_rsa'
     copy:
       src:              '~/code/sensitive/conf/ssh_keys/aaron@meliora.id_rsa'
       dest:             '~aaron/.ssh/id_rsa'

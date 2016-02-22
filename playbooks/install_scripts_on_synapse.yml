@@ -1,12 +1,13 @@
 ---
 - hosts:                synapse
+  name:                 'install scripts on synapse'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'install scripts on synapse:  update_dns_phase1'
+  - name:               'update_dns_phase1'
     copy:
       owner:            'root'
       group:            'root'

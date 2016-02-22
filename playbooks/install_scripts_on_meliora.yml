@@ -1,12 +1,13 @@
 ---
 - hosts:                meliora
+  name:                 'install scripts on meliora'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'install scripts on meliora'
+  - name:               'install scripts'
     copy:
       owner:            'root'
       group:            'root'
@@ -18,7 +19,7 @@
       - 'pdfprintd'
       - 'update_kanboard'
     register:           meliora_scripts
-  - name:               'install init scripts on meliora'
+  - name:               'install init scripts'
     copy:
       owner:            'root'
       group:            'root'
@@ -28,12 +29,12 @@
     with_items:
       - 'pdfprint'
     register:           meliora_init_scripts
-  - name:               'install scripts on meliora:  enable pdfprint service'
+  - name:               'enable pdfprint service'
     service:
       name:             'pdfprint'
       enabled:          'yes'
     register:           meliora_pdfprint_service
-  - name:               'install scripts on meliora:  restart pdfprint service'
+  - name:               'restart pdfprint service'
     service:
       name:             'pdfprint'
       state:            'restarted'

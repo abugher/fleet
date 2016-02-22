@@ -1,12 +1,13 @@
 ---
 - hosts:                fleet
+  name:                 'configure users on fleet'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure users on fleet:  nagios'
+  - name:               'nagios'
     user:
       name:             'nagios'
       group:            'nagios'
@@ -14,13 +15,13 @@
       state:            'present'
       shell:            '/bin/bash'
       system:           'yes'
-  - name:               'configure users on fleet:  nagios:  authorize keys'
+  - name:               'nagios:  authorize keys'
     authorized_key:
       user:             'nagios'
       key:              "{{ item }}"
     with_file:
       - "~/code/fleet/conf/ssh_keys/nagios@synapse.id_rsa.pub"
-  - name:               'configure users on fleet:  nagios:  dotfiles'
+  - name:               'nagios:  dotfiles'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'
       dest:             '~nagios/'

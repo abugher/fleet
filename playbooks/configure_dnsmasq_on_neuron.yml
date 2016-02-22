@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure dnsmasq on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure dnsmasq on neuron:  dnsmasq.conf'
+  - name:               'install dnsmasq.conf'
     copy:
       owner:            root
       group:            root
@@ -14,7 +15,7 @@
       src:              ~/code/fleet/conf/dnsmasq/neuron/dnsmasq.conf
       dest:             /etc/dnsmasq.conf
     register:           dnsmasq_config_neuron
-  - name:               'configure dnsmasq on neuron:  hosts'
+  - name:               'install hosts'
     copy:
       owner:            root
       group:            root
@@ -22,7 +23,7 @@
       src:              ~/code/fleet/conf/dnsmasq/neuron/hosts
       dest:             /etc/hosts
     register:           dnsmasq_hosts_neuron
-  - name:               'configure dnsmasq on neuron:  service restart'
+  - name:               'restart service'
     service:
       name:             'dnsmasq'
       state:            'restarted'

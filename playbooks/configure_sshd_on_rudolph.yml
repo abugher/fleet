@@ -1,12 +1,13 @@
 ---
 - hosts:                rudolph
+  name:                 'configure sshd on rudolph'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure sshd on rudolph:  sshd_config'
+  - name:               'install sshd_config'
     assemble:
       remote_src:       False
       src:              '~/code/fleet/conf/ssh/rudolph'
@@ -15,7 +16,7 @@
       group:            'root'
       mode:             '0644'
     register:           sshd_config_rudolph
-  - name:               'configure sshd on rudolph:  service restart'
+  - name:               'restart service'
     service:
       name:             'ssh'
       state:            'restarted'

@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure users on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure users on neuron:  escrow'
+  - name:               'escrow'
     user:
       name:             'escrow'
       group:            'escrow'
@@ -15,7 +16,7 @@
       state:            'present'
       shell:            '/bin/bash'
       password:         '!'
-  - name:               'configure users on neuron:  cryptkeeper'
+  - name:               'cryptkeeper'
     user:
       name:             'cryptkeeper'
       group:            'cryptkeeper'
@@ -24,13 +25,13 @@
       state:            'present'
       shell:            '/bin/bash'
       password:         '!'
-  - name:               'configure users on neuron:  cryptkeeper - bones directory'
+  - name:               'cryptkeeper - bones directory'
     file:
       path:             '~cryptkeeper/bones'
       state:            'directory'
       owner:            'cryptkeeper'
       group:            'cryptkeeper'
-  - name:               'configure users on neuron:  create user rachel-phone'
+  - name:               'create user rachel-phone'
     user:
       name:             'rachel-phone'
       group:            'rachel-phone'
@@ -40,7 +41,7 @@
       state:            'present'
       shell:            '/bin/bash'
       password:         '!'
-  - name:               'configure users on neuron:  create user aaron-phone'
+  - name:               'create user aaron-phone'
     user:
       name:             'aaron-phone'
       group:            'aaron-phone'
@@ -50,7 +51,7 @@
       state:            'present'
       shell:            '/bin/bash'
       password:         '!'
-  - name:               'configure users on neuron:  dotfiles for pi'
+  - name:               'dotfiles for pi'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'
       dest:             '~pi/'

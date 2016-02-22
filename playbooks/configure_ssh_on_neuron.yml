@@ -1,32 +1,33 @@
 ---
 - hosts:                neuron
+  name:                 'configure ssh on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure ssh on neuron, user pi:  authorize keys'
+  - name:               'user pi:  authorize keys'
     authorized_key:
       user:             'pi'
       key:              "{{ item }}"
     with_file:
       - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
       - "~/code/fleet/conf/ssh_keys/root@meliora.id_rsa.pub"
-  - name:               'configure ssh on neuron, user rachel-phone: authorize keys'
+  - name:               'user rachel-phone: authorize keys'
     authorized_key:
       user:             'rachel-phone'
       key:              "{{ item }}"
     with_file:
       - "~/code/fleet/conf/ssh_keys/rsync_backup@rachel-phone.dss_key.pub"
-  - name:               'configure ssh on neuron, user aaron-phone: authorize keys'
+  - name:               'user aaron-phone: authorize keys'
     authorized_key:
       user:             'aaron-phone'
       key:              "{{ item }}"
     with_file:
       - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
       - "~/code/fleet/conf/ssh_keys/rsync_backup@aaron-phone.dss_key.pub"
-  - name:               'configure ssh on neuron, user root:  known_hosts'
+  - name:               'user root:  known_hosts'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/root@neuron.known_hosts'
       dest:             '/root/.ssh/known_hosts'
@@ -34,7 +35,7 @@
       group:            'root'
       mode:             '0600'
 
-  - name:               'configure ssh on neuron, user root:  id_rsa'
+  - name:               'user root:  id_rsa'
     copy:
       src:              '~/code/sensitive/conf/ssh_keys/root@neuron.id_rsa'
       dest:             '/root/.ssh/id_rsa'
@@ -42,7 +43,7 @@
       group:            'root'
       mode:             '0600'
 
-  - name:               'configure ssh on neuron, user root:  id_rsa.pub'
+  - name:               'user root:  id_rsa.pub'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/root@neuron.id_rsa.pub'
       dest:             '/root/.ssh/id_rsa.pub'
@@ -50,13 +51,13 @@
       group:            'root'
       mode:             '0644'
 
-  - name:               'configure ssh on neuron, user escrow:  authorize keys'
+  - name:               'user escrow:  authorize keys'
     authorized_key:
       user:             'escrow'
       key:              "{{ item }}"
     with_file:
       - "~/code/fleet/conf/ssh_keys/root@synapse.id_rsa.pub"
-  - name:               'configure ssh on neuron, user cryptkeeper:  authorize keys'
+  - name:               'user cryptkeeper:  authorize keys'
     authorized_key:
       user:             'cryptkeeper'
       key:              "{{ item }}"

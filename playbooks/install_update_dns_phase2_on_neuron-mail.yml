@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron-mail
+  name:                 'install update_dns_phase2 on neuron-mail'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'install update_dns_phase2 on neuron-mail'
+  - name:               'install update_dns_phase2'
     copy:
       owner:            root
       group:            root

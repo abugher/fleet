@@ -1,12 +1,13 @@
 ---
 - hosts:                neuron
+  name:                 'configure hostname on neuron'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   tasks:
 
-  - name:               'configure hostname on neuron:  /etc/hostname'
+  - name:               'install /etc/hostname'
     copy:
       owner:            'root'
       group:            'root'
@@ -15,7 +16,7 @@
       dest:             '/etc/hostname'
     register:           neuron_hostname
 
-  - name:               'configure hostname on neuron:  service restart'
+  - name:               'service restart'
     service:
       name:             'hostname.sh'
       state:            'restarted'
