@@ -1,5 +1,5 @@
 ---
-- include:              'install_stamp_on_fleet.yml'
+- include:              'install_scripts_on_fleet.yml'
 - include:              'install_update_debian_on_fleet.yml'
 - include:              'install_update_python_packages_on_fleet.yml'
 
