@@ -20,37 +20,48 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
                      ERR_PYTHON=7
                    ERR_KANBOARD=8
 
+fail() {
+  echo -e "Error:  ${2}"
+  exit ${1}
+}
+
 /usr/local/bin/stamp
 
 /usr/bin/aptitude update \
-  && echo -en "Updates successful.\n" \
-  || { echo -en "Updates failed: ${?}\n"; exit $ERR_UPDATE; } \
-&& /usr/bin/aptitude full-upgrade -y \
-  && echo -en "Upgrades successful.\n" \
-  || { echo -en "Upgrades failed: ${?}\n"; exit $ERR_UPGRADE; } \
-&& /usr/sbin/checkrestart \
+  || fail $ERR_UPDATE "Updates failed: ${?}"
+echo -e "Updates successful."
+
+/usr/bin/aptitude full-upgrade -y \
+  || fail $ERR_UPGRADE "Upgrades failed: ${?}"
+echo -e "Upgrades successful."
+
+/usr/sbin/checkrestart \
   | grep '^service ' \
   | while read service_line; do
     eval "${service_line}" \
-      || { echo -en "Service restart returned: ${?}; service line: '${service_line}'\n"; exit $ERR_CHECKRESTART_SERVICE; } \
+      || fail $ERR_CHECKRESTART_SERVICE "Service restart returned: ${?}; service line: '${service_line}'"
   done \
-  && echo -en "Service restarts returned true.\n" \
-  || { echo -en "Service restarts returned: ${?}\n"; exit $ERR_CHECKRESTART; } \
-&& ! test -e /var/run/reboot-required \
-  && echo -en "No reboot required.\n" \
-  || { echo -en "Reboot required: ${?}\n"; exit $ERR_REBOOT; } \
-&& /usr/bin/aptitude autoclean -y \
-  && echo -en "Autoclean successful.\n" \
-  || { echo -en "Autoclean failed: ${?}\n"; exit $ERR_AUTOCLEAN; } \
-&& /usr/local/bin/update_python_packages \
-  && echo -en "Python updates successful.\n" \
-  || { echo -en "Python updates failed: ${?}\n"; exit $ERR_PYTHON; } \
-&& if test -e /usr/local/bin/update_kanboard; then
-  /usr/local/bin/update_kanboard
+  || fail $ERR_CHECKRESTART "Service restarts returned: ${?}"
+echo -e "Service restarts returned true."
+
+! test -e /var/run/reboot-required \
+  || fail $ERR_REBOOT "Reboot required: ${?}"
+echo -e "No reboot required."
+
+/usr/bin/aptitude autoclean -y \
+  || fail $ERR_AUTOCLEAN "Autoclean failed: ${?}"
+echo -en "Autoclean successful."
+
+/usr/local/bin/update_python_packages \
+  || fail $ERR_PYTHON "Python updates failed: ${?}"
+echo -en "Python updates successful."
+
+if test -e /usr/local/bin/update_kanboard; then
+  /usr/local/bin/update_kanboard \
+    || fail $ERR_KANBOARD "kanboard update failed: ${?}"
+  echo -en "kanboard update successful."
 else
-  true
-fi \
-  && echo -en "kanboard update successful.\n" \
-  || { echo -en "kanboard update failed: ${?}\n"; exit $ERR_KANBOARD; }
+  echo -e "kanboard update skipped."
+fi
 
 /usr/local/bin/stamp
