@@ -28,6 +28,11 @@ label i386_install_auto
         kernel debian-installer/i386/linux
         append vga=788 initrd=debian-installer/i386/initrd.gz auto=true priority=critical interface=auto url=http://192.168.11.54/preseed.cfg
 
+label amd64_install_auto
+        menu label Debian 8 Unattended Install - amd64
+        kernel debian-installer/amd64/linux
+        append vga=788 initrd=debian-installer/amd64/initrd.gz auto=true priority=critical interface=auto url=http://192.168.11.54/preseed.cfg
+
 label reload
         menu label Refresh Options
         kernel debian-installer/i386/boot-screens/vesamenu.c32
