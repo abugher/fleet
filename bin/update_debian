@@ -19,6 +19,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
                   ERR_AUTOCLEAN=6
                      ERR_PYTHON=7
                    ERR_KANBOARD=8
+                 ERR_RPI_UPDATE=9
 
 fail() {
   echo -e "Error:  ${2}"
@@ -50,18 +51,29 @@ echo -e "No reboot required."
 
 /usr/bin/aptitude autoclean -y \
   || fail $ERR_AUTOCLEAN "Autoclean failed: ${?}"
-echo -en "Autoclean successful."
+echo -e "Autoclean successful."
 
 /usr/local/bin/update_python_packages \
   || fail $ERR_PYTHON "Python updates failed: ${?}"
-echo -en "Python updates successful."
+echo -e "Python updates successful."
 
 if test -e /usr/local/bin/update_kanboard; then
   /usr/local/bin/update_kanboard \
     || fail $ERR_KANBOARD "kanboard update failed: ${?}"
-  echo -en "kanboard update successful."
+  echo -e "kanboard update successful."
 else
   echo -e "kanboard update skipped."
+fi
+
+# https://github.com/Hexxeh/rpi-firmware/issues/109
+# https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=137442&p=913294
+# Avoid a kernel bug that breaks cryptsetup.
+if test -e /usr/bin/rpi-update; then
+  /usr/bin/rpi-update 2ea8550c0fc6f4b916b3698fad857138d8a2da64 \
+    || fail $ERR_RPI_UPDATE "rpi-update failed: ${?}"
+  echo -en "rpi-update successful."
+else
+  echo -e "rpi-update skipped."
 fi
 
 /usr/local/bin/stamp

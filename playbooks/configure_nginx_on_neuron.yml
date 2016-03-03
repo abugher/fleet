@@ -113,7 +113,7 @@
       owner:            'root'
       group:            'www-data'
       mode:             '0640'
-      src:              '~/code/sensitive/conf/ssl/neuronpointer.net/key'
+      src:              '~/code/sensitive/conf/ssl/neuronpointer.net/key.pem'
       dest:             '/etc/nginx/neuron.key'
     register:           neuron_nginx_ssl_key
   - name:               'SSL cert'
@@ -121,7 +121,7 @@
       owner:            'root'
       group:            'www-data'
       mode:             '0640'
-      src:              '~/code/fleet/conf/ssl/neuronpointer.net/cert'
+      src:              '~/code/fleet/conf/ssl/neuronpointer.net/chain.pem'
       dest:             '/etc/nginx/neuron.crt'
     register:           neuron_nginx_ssl_cert
   - name:               'enable service'

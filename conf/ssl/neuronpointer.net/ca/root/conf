@@ -1,0 +1,147 @@
+HOME                    = .
+RANDFILE                = $ENV::HOME/.rnd
+oid_section             = new_oids
+
+[ new_oids ]
+tsa_policy1 = 1.2.3.4.1
+tsa_policy2 = 1.2.3.4.5.6
+tsa_policy3 = 1.2.3.4.5.7
+
+[ policy_match ]
+countryName             = optional
+stateOrProvinceName     = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+
+[ policy_anything ]
+countryName             = optional
+stateOrProvinceName     = optional
+localityName            = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+
+[ req ]
+#prompt                  = no
+req_extensions          = v3_req
+default_bits            = 2048
+distinguished_name      = req_distinguished_name
+attributes              = req_attributes
+x509_extensions         = v3_req
+string_mask             = utf8only
+default_md              = sha256
+
+[ req_distinguished_name ]
+commonName              = Common Name (e.g. server FQDN or YOUR name)
+commonName_default      = neuron
+commonName_max          = 64
+countryName             = US
+
+[ req_attributes ]
+#challengePassword       = A challenge password
+#challengePassword_min   = 4
+#challengePassword_max   = 20
+#unstructuredName        = An optional company name
+
+[ usr_cert ]
+basicConstraints        = CA:FALSE
+nsComment               = "OpenSSL Generated Certificate"
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid,issuer
+
+[ server_cert ]
+basicConstraints        = CA:FALSE
+nsCertType              = server
+nsComment               = "OpenSSL Generated Server Certificate"
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid,issuer:always
+keyUsage                = critical, digitalSignature, keyEncipherment
+extendedKeyUsage        = serverAuth
+
+[ v3_req ]
+basicConstraints        = CA:FALSE
+keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName          = @alt_names
+
+[ v3_ca ]
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always,issuer
+basicConstraints        = critical,CA:true,pathlen:0
+subjectAltName          = @alt_names
+keyUsage                = critical, digitalSignature, cRLSign, keyCertSign
+
+[ alt_names ]
+DNS.1                   = *.neuronpointer.net
+DNS.2                   = neuronpointer.net
+DNS.3                   = neuron
+
+[ crl_ext ]
+authorityKeyIdentifier  = keyid:always
+
+[ proxy_cert_ext ]
+basicConstraints=CA:FALSE
+nsComment               = "OpenSSL Generated Certificate"
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid,issuer
+proxyCertInfo           = critical,language:id-ppl-anyLanguage,pathlen:3,policy:foo
+
+[ tsa ]
+default_tsa             = tsa_config1
+
+[ tsa_config1 ]
+dir                     = ./demoCA
+serial                  = $dir/tsaserial
+crypto_device           = builtin
+signer_cert             = $dir/tsacert.pem
+certs                   = $dir/cacert.pem
+signer_key              = $dir/tsakey.pem
+default_policy          = tsa_policy1
+other_policies          = tsa_policy2, tsa_policy3
+digests                 = sha256
+accuracy                = secs:1, millisecs:500, microsecs:100
+clock_precision_digits  = 0
+ordering                = yes
+tsa_name                = yes
+ess_cert_id_chain       = no
+
+[ ca ]
+default_ca	        = CA_default
+
+[ CA_default ]
+dir                     = ./ca/root
+sdir                    = /home/aaron/code/sensitive/conf/ssl/neuronpointer.net/ca/root
+database                = $dir/index.txt
+new_certs_dir           = $dir/newcerts
+certificate             = $dir/cert.pem
+serial                  = $dir/serial
+crlnumber               = $dir/crlnumber
+crl                     = $dir/crl.pem
+private_key             = $sdir/key.pem
+RANDFILE                = $sdir/rand
+x509_extensions         = usr_cert
+name_opt                = ca_default
+cert_opt                = ca_default
+copy_extensions         = copy
+default_days            = 3650
+default_crl_days        = 30
+default_md              = default
+preserve                = no
+policy                  = policy_match
+default_md              = sha256
+crl_extensions          = crl_ext
+
+[ocsp]
+basicConstraints        = CA:FALSE
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid,issuer
+keyUsage                = critical, digitalSignature
+extendedKeyUsage        = critical, OCSPSigning
+
+[ v3_intermediate_ca ]
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always,issuer
+basicConstraints        = critical, CA:true, pathlen:0
+keyUsage                = critical, digitalSignature, cRLSign, keyCertSign
