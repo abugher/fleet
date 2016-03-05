@@ -11,9 +11,7 @@ string_mask             = utf8only
 default_md              = sha256
 
 [ req_distinguished_name ]
-commonName              = Common Name (e.g. server FQDN or YOUR name)
-#commonName_default      = neuron
-#commonName_max          = 64
+commonName              = neuron
 
 [ server_cert ]
 basicConstraints        = CA:FALSE
