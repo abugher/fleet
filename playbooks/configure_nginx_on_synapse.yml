@@ -52,7 +52,7 @@
       owner:            'root'
       group:            'www-data'
       mode:             '0640'
-      src:              '~/code/sensitive/conf/ssl/synapse/key'
+      src:              '~/code/sensitive/conf/ssl/synapse/key.pem'
       dest:             '/etc/nginx/synapse.key'
     register:           synapse_nginx_ssl_key
   - name:               'SSL cert'
@@ -60,7 +60,7 @@
       owner:            'root'
       group:            'www-data'
       mode:             '0640'
-      src:              '~/code/fleet/conf/ssl/synapse/cert'
+      src:              '~/code/fleet/conf/ssl/synapse/chain.pem'
       dest:             '/etc/nginx/synapse.crt'
     register:           synapse_nginx_ssl_cert
   - name:               'service restart'
