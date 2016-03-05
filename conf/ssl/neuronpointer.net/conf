@@ -35,13 +35,6 @@ DNS.3                   = neuron
 [ crl_ext ]
 authorityKeyIdentifier  = keyid:always
 
-[ proxy_cert_ext ]
-basicConstraints=CA:FALSE
-nsComment               = "OpenSSL Generated Certificate"
-subjectKeyIdentifier    = hash
-authorityKeyIdentifier  = keyid,issuer
-proxyCertInfo           = critical,language:id-ppl-anyLanguage,pathlen:3,policy:foo
-
 [ ca ]
 default_ca	        = CA_default
 

@@ -121,8 +121,7 @@
       owner:            'root'
       group:            'www-data'
       mode:             '0640'
-      #src:              '~/code/fleet/conf/ssl/neuronpointer.net/chain.pem'
-      src:              '~/code/fleet/conf/ssl/neuronpointer.net/cert.pem'
+      src:              '~/code/fleet/conf/ssl/neuronpointer.net/chain.pem'
       dest:             '/etc/nginx/neuron.crt'
     register:           neuron_nginx_ssl_cert
   - name:               'enable service'
