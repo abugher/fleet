@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ../variables.sh
+. ~/code/fleet/conf/ssl/variables.sh
 
                   public=~/code/fleet/conf/ssl
                sensitive=~/code/sensitive/conf/ssl
@@ -10,4 +10,4 @@
              server_conf=${public}/neuronpointer.net/conf
               cert_chain=${public}/neuronpointer.net/chain.pem
 
-. ../generate.sh
+. ${public}/generate.sh

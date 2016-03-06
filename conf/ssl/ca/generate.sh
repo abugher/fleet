@@ -1,5 +1,5 @@
 #!/bin/bash
-. ../variables.sh
+. ~/code/fleet/conf/ssl/variables.sh
 
 # create CA
 mkdir -p {$public,$sensitive}/ca/{intermediate,root}
