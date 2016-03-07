@@ -27,5 +27,6 @@ UsePAM                          yes
 UsePrivilegeSeparation          yes
 X11DisplayOffset                10
 X11Forwarding                   yes
+X11UseLocalhost                 no
 
 # These options are local to this host.
