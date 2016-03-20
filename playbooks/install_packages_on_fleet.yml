@@ -36,3 +36,4 @@
       - 'byacc'                 # for compiling nethack
       - 'flex'                  # for compiling nethack
       - 'bc'
+      - 'htop'

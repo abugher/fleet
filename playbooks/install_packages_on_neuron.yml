@@ -43,3 +43,8 @@
       - 'apache2-utils'
       - 'apache2.2-bin'
       - 'apache2.2-common'
+      - 'wicd-daemon'
+      - 'wicd-gtk'
+      - 'python-wicd'
+      - 'python-gobject'
+      - 'rfkill'
