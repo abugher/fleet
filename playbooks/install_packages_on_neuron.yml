@@ -48,3 +48,5 @@
       - 'python-wicd'
       - 'python-gobject'
       - 'rfkill'
+      - 'avahi-daemon'
+      - 'snmpd'

@@ -31,6 +31,6 @@ if test "${string}" == "${got_string}"; then
   echo "${host}:${port} OK.  '${got_string}'"
   exit $happy
 else
-  echo "${host}:${port} Critical!  '${got_string}'"
+  echo "${host}:${port} Critical!  Output:  '${got_string}'  Expected:  '${string}'"
   exit $critical
 fi
