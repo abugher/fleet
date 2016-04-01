@@ -5,16 +5,12 @@
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    system_users:
+      - 'nagios'
   tasks:
 
-  - name:               'nagios'
-    user:
-      name:             'nagios'
-      group:            'nagios'
-      comment:          'Nagios'
-      state:            'present'
-      shell:            '/bin/bash'
-      system:           'yes'
+  - include:            '../generics/configure_system_users.yml'
   - name:               'nagios:  authorize keys'
     authorized_key:
       user:             'nagios'

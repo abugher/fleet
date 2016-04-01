@@ -11,4 +11,4 @@
       - 'rachel'
   tasks:
 
-  - include:              'generics/configure_groups.yml'
+  - include:              '../generics/configure_groups.yml'

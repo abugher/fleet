@@ -11,7 +11,7 @@
       - 'aaron-phone'
   tasks:
 
-  - include:            'generics/configure_groups.yml'
+  - include:            '../generics/configure_groups.yml'
 
   - name:               'system group:  escrow'
     group:

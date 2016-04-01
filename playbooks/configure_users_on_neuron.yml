@@ -5,52 +5,22 @@
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    system_users:
+      - 'escrow'
+      - 'cryptkeeper'
+    users:
+      - 'rachel-phone'
+      - 'aaron-phone'
   tasks:
 
-  - name:               'escrow'
-    user:
-      name:             'escrow'
-      group:            'escrow'
-      comment:          ''
-      system:           'yes'
-      state:            'present'
-      shell:            '/bin/bash'
-      password:         '!'
-  - name:               'cryptkeeper'
-    user:
-      name:             'cryptkeeper'
-      group:            'cryptkeeper'
-      comment:          ''
-      system:           'yes'
-      state:            'present'
-      shell:            '/bin/bash'
-      password:         '!'
+  - include:            '../generics/configure_users.yml'
   - name:               'cryptkeeper - bones directory'
     file:
       path:             '~cryptkeeper/bones'
       state:            'directory'
       owner:            'cryptkeeper'
       group:            'cryptkeeper'
-  - name:               'create user rachel-phone'
-    user:
-      name:             'rachel-phone'
-      group:            'rachel-phone'
-      home:             '/storage/rachel-phone/'
-      comment:          'Rachel (cell phone)'
-      system:           'no'
-      state:            'present'
-      shell:            '/bin/bash'
-      password:         '!'
-  - name:               'create user aaron-phone'
-    user:
-      name:             'aaron-phone'
-      group:            'aaron-phone'
-      home:             '/storage/aaron-phone/'
-      comment:          'Aaron (cell phone)'
-      system:           'no'
-      state:            'present'
-      shell:            '/bin/bash'
-      password:         '!'
   - name:               'dotfiles for pi'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'

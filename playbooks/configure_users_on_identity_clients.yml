@@ -5,29 +5,17 @@
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    users:
+      - 'aaron'
+      - 'rachel'
   tasks:
 
-  - name:               'create aaron'
-    user:
-      name:             'aaron'
-      group:            'aaron'
-      comment:          'Aaron'
-      state:            'present'
-      shell:            '/bin/bash'
-      password:         '*'
+  - include:            '../generics/configure_users.yml'
   - name:               'dotfiles for aaron'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'
       dest:             '~aaron/'
-  - name:               'create rachel'
-    user:
-      name:             'rachel'
-      group:            'rachel'
-      groups:           'cdrom,floppy,sudo,audio,dip,video,plugdev,scanner,netdev,lpadmin'
-      comment:          'Rachel'
-      state:            'present'
-      shell:            '/bin/bash'
-      password:         '!'
   - name:               'dotfiles for rachel'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'
