@@ -9,7 +9,7 @@
 
   - name:               'install meliora_reboot'
     copy:
-      src:              '~/code/fleet/cron.d/meliora_reboot'
+      src:              '~/code/fleet/cron.d/meliora/reboot'
       dest:             '/etc/cron.d/reboot'
       owner:            'root'
       group:            'root'

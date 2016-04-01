@@ -9,7 +9,7 @@
 
   - name:               'install synapse_reboot'
     copy:
-      src:              '~/code/fleet/cron.d/synapse_reboot'
+      src:              '~/code/fleet/cron.d/synapse/reboot'
       dest:             '/etc/cron.d/reboot'
       owner:            'root'
       group:            'root'

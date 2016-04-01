@@ -12,5 +12,5 @@
       owner:            'root'
       group:            'root'
       mode:             '0644'
-      src:              '~/code/fleet/cron.d/tend_storage'
+      src:              '~/code/fleet/cron.d/neuron/tend_storage'
       dest:             '/etc/cron.d/tend_storage'

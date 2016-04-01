@@ -9,7 +9,7 @@
 
   - name:               'install neuron_reboot'
     copy:
-      src:              '~/code/fleet/cron.d/neuron_reboot'
+      src:              '~/code/fleet/cron.d/neuron/reboot'
       dest:             '/etc/cron.d/reboot'
       owner:            'root'
       group:            'root'

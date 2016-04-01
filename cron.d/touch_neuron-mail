@@ -1,7 +1,0 @@
-# m     h       dom     mon     dow     user    command
-00      *       *       *       *       root    ssh neuron-mail touch nagios@synapse_was_here
-10      *       *       *       *       root    ssh neuron-mail touch nagios@synapse_was_here
-20      *       *       *       *       root    ssh neuron-mail touch nagios@synapse_was_here
-30      *       *       *       *       root    ssh neuron-mail touch nagios@synapse_was_here
-40      *       *       *       *       root    ssh neuron-mail touch nagios@synapse_was_here
-50      *       *       *       *       root    ssh neuron-mail touch nagios@synapse_was_here

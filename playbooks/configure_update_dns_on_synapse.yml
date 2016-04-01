@@ -12,6 +12,6 @@
       owner:            root
       group:            root
       mode:             0644
-      src:              ~/code/fleet/cron.d/update_dns
+      src:              ~/code/fleet/cron.d/synapse/update_dns
       dest:             /etc/cron.d/update_dns
 

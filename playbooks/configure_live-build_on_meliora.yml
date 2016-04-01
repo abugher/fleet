@@ -64,7 +64,7 @@
       mode:             '0755'
   - name:               'install cron.d/update_live-build'
     copy:
-      src:              '~/code/fleet/cron.d/update_live-build_meliora'
+      src:              '~/code/fleet/cron.d/meliora/update_live-build'
       dest:             '/etc/cron.d/update_live-build'
       owner:            'root'
       group:            'root'
