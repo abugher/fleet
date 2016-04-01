@@ -1,0 +1,7 @@
+---
+  - name:               'configure groups'
+    group:
+      name:             "{{ item }}"
+      state:            'present'
+      system:           'yes'
+    with_items:         "{{ system_groups }}"

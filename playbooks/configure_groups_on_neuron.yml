@@ -9,17 +9,10 @@
     groups:
       - 'rachel-phone'
       - 'aaron-phone'
+    system_groups:
+      - 'escrow'
+      - 'cryptkeeper'
   tasks:
 
   - include:            '../generics/configure_groups.yml'
-
-  - name:               'system group:  escrow'
-    group:
-      name:             'escrow'
-      system:           'yes'
-      state:            'present'
-  - name:               'system group:  cryptkeeper'
-    group:
-      name:             'cryptkeeper'
-      system:           'yes'
-      state:            'present'
+  - include:            '../generics/configure_system_groups.yml'
