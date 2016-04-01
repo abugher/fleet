@@ -1,4 +1,2 @@
-# Update debian once a day.
-
 # m     h       dom     mon     dow     user    command
 45      00      *       *       *       root    /usr/local/bin/update_debian_cronjob

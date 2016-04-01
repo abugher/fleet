@@ -1,4 +1,2 @@
-# Reboot every day.  Kick in updates and what not.
-
 # m     h       dom     mon     dow     user    command
 15      00      *       *       *       root    /usr/sbin/shutdown -r +1 "scheduled reboot"

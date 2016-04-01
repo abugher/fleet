@@ -1,5 +1,3 @@
-# Reboot every day at noon.  Kick in updates and what not.
-
 # m     h       dom     mon     dow     user    command
 00      *       *       *       *       root    ssh neuron-mail touch nagios@synapse_was_here
 10      *       *       *       *       root    ssh neuron-mail touch nagios@synapse_was_here

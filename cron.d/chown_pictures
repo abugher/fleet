@@ -1,5 +1,3 @@
-# Reboot every day at noon.  Kick in updates and what not.
-
 # m     h       dom     mon     dow     user    command
 40      *       *       *       *       root    chown :www-data /storage/aaron-phone/live/legacy/DCIM/Camera/*
 40      *       *       *       *       root    chmod g+r /storage/aaron-phone/live/legacy/DCIM/Camera/*
