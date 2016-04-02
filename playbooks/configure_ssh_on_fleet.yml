@@ -11,4 +11,4 @@
         keyfile:        '~/code/fleet/conf/ssh_keys/pi@synapse.id_rsa.pub'
   tasks:
 
-  - include:            '../generics/configure_authorized_keys.yml'
+  - include:            'attributes/authorized_keys.yml'

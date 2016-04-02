@@ -10,4 +10,4 @@
       - 'nagios'
   tasks:
 
-  - include:              '../generics/configure_groups.yml'
+  - include:              'attributes/groups.yml'

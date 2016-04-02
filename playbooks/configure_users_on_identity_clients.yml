@@ -11,7 +11,7 @@
       - 'rachel'
   tasks:
 
-  - include:            '../generics/configure_users.yml'
+  - include:            'attributes/users.yml'
   - name:               'dotfiles for aaron'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'

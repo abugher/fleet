@@ -13,8 +13,8 @@
         keyfile:        '~/code/fleet/conf/ssh_keys/nagios@synapse.id_rsa.pub'
   tasks:
 
-  - include:            '../generics/configure_system_users.yml'
-  - include:            '../generics/configure_authorized_keys.yml'
+  - include:            'attributes/system_users.yml'
+  - include:            'attributes/authorized_keys.yml'
   - name:               'nagios:  dotfiles'
     copy:
       src:              '~/code/fleet/conf/dotfiles/universal/'
