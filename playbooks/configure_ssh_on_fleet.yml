@@ -5,11 +5,10 @@
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    keys:
+      - user:           'ansible'
+        keyfile:        '~/code/fleet/conf/ssh_keys/pi@synapse.id_rsa.pub'
   tasks:
 
-  - name:               'configure authorized_keys for  pi@synapse -> ansible@fleet'
-    authorized_key:
-      user:             'ansible'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/pi@synapse.id_rsa.pub"
+  - include:            '../generics/configure_authorized_keys.yml'

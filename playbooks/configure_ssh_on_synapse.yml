@@ -5,7 +5,15 @@
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    keys:
+      - user:           'escrow'
+        keyfile:        '~/code/fleet/conf/ssh_keys/root@neuron.id_rsa.pub'
+      - user:           'pi'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
   tasks:
+
+  - include:            '../generics/configure_authorized_keys.yml'
 
   - name:               'user root:  id_rsa'
     copy:
@@ -47,18 +55,7 @@
       group:            'nagios'
       mode:             '0600'
 
-  - name:               'user escrow:  authorize keys'
-    authorized_key:
-      user:             'escrow'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/root@neuron.id_rsa.pub"
-  - name:               'user pi:  authorize keys'
-    authorized_key:
-      user:             'pi'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
+
   - name:               'user pi:  install private key'
     copy:
       src:              '~/code/sensitive/conf/ssh_keys/pi@synapse.id_rsa'

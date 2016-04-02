@@ -5,7 +5,25 @@
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    keys:
+      - user:           'rachel'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
+      - user:           'rachel'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron@mawg.id_rsa.pub'
+      - user:           'rachel'
+        keyfile:        '~/code/fleet/conf/ssh_keys/rachel@rudolph.id_rsa.pub'
+      - user:           'rachel'
+        keyfile:        '~/code/fleet/conf/ssh_keys/rachel@meliora.id_rsa.pub'
+      - user:           'aaron'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
+      - user:           'aaron'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron@mawg.id_rsa.pub'
+      - user:           'aaron'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron@meliora.id_rsa.pub'
   tasks:
+
+  - include:            '../generics/configure_authorized_keys.yml'
 
   - name:               'user rachel:  .ssh'
     file:
@@ -14,15 +32,6 @@
       owner:            'rachel'
       group:            'rachel'
       mode:             '0750'
-  - name:               'user rachel:  authorize keys'
-    authorized_key:
-      user:             'rachel'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
-      - "~/code/fleet/conf/ssh_keys/aaron@mawg.id_rsa.pub"
-      - "~/code/fleet/conf/ssh_keys/rachel@rudolph.id_rsa.pub"
-      - "~/code/fleet/conf/ssh_keys/rachel@meliora.id_rsa.pub"
 
   - name:               'user rachel:  known_hosts'
     copy:
@@ -47,14 +56,6 @@
       owner:            'aaron'
       group:            'aaron'
       mode:             '0750'
-  - name:               'user aaron:  authorize keys'
-    authorized_key:
-      user:             'aaron'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
-      - "~/code/fleet/conf/ssh_keys/aaron@mawg.id_rsa.pub"
-      - "~/code/fleet/conf/ssh_keys/aaron@meliora.id_rsa.pub"
 
   - name:               'user aaron:  known_hosts'
     copy:

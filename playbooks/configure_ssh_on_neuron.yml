@@ -5,28 +5,30 @@
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    keys:
+      - user:           'pi'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
+      - user:           'pi'
+        keyfile:        '~/code/fleet/conf/ssh_keys/root@meliora.id_rsa.pub'
+      - user:           'rachel-phone'
+        keyfile:        '~/code/fleet/conf/ssh_keys/rsync_backup@rachel-phone.dss_key.pub'
+      - user:           'aaron-phone'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
+      - user:           'aaron-phone'
+        keyfile:        '~/code/fleet/conf/ssh_keys/rsync_backup@aaron-phone.dss_key.pub'
+      - user:           'escrow'
+        keyfile:        '~/code/fleet/conf/ssh_keys/root@synapse.id_rsa.pub'
+      - user:           'cryptkeeper'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron@mawg.id_rsa.pub'
+      - user:           'cryptkeeper'
+        keyfile:        '~/code/fleet/conf/ssh_keys/rachel@rudolph.id_rsa.pub'
+      - user:           'cryptkeeper'
+        keyfile:        '~/code/fleet/conf/ssh_keys/rachel@meliora.id_rsa.pub'
   tasks:
 
-  - name:               'user pi:  authorize keys'
-    authorized_key:
-      user:             'pi'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
-      - "~/code/fleet/conf/ssh_keys/root@meliora.id_rsa.pub"
-  - name:               'user rachel-phone: authorize keys'
-    authorized_key:
-      user:             'rachel-phone'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/rsync_backup@rachel-phone.dss_key.pub"
-  - name:               'user aaron-phone: authorize keys'
-    authorized_key:
-      user:             'aaron-phone'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
-      - "~/code/fleet/conf/ssh_keys/rsync_backup@aaron-phone.dss_key.pub"
+  - include:            '../generics/configure_authorized_keys.yml'
+
   - name:               'user root:  known_hosts'
     copy:
       src:              '~/code/fleet/conf/ssh_keys/root@neuron.known_hosts'
@@ -51,18 +53,4 @@
       group:            'root'
       mode:             '0644'
 
-  - name:               'user escrow:  authorize keys'
-    authorized_key:
-      user:             'escrow'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/root@synapse.id_rsa.pub"
-  - name:               'user cryptkeeper:  authorize keys'
-    authorized_key:
-      user:             'cryptkeeper'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/aaron@mawg.id_rsa.pub"
-      - "~/code/fleet/conf/ssh_keys/rachel@rudolph.id_rsa.pub"
-      - "~/code/fleet/conf/ssh_keys/rachel@meliora.id_rsa.pub"
 

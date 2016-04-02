@@ -5,11 +5,10 @@
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  vars:
+    keys:
+      - user:           'aaron'
+        keyfile:        '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
   tasks:
 
-  - name:               'configure ssh authorized keys for aaron'
-    authorized_key:
-      user:             'aaron'
-      key:              "{{ item }}"
-    with_file:
-      - "~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub"
+  - include:            '../generics/configure_authorized_keys.yml'

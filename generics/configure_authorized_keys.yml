@@ -2,6 +2,6 @@
   - name:               'authorize keys'
     authorized_key:
       user:             "{{ item.user }}"
-      key:              "{{ item.key }}"
+      key:              "{{ lookup('file', item.keyfile) }}"
     with_items:         "{{ keys }}"
 
