@@ -1,0 +1,7 @@
+---
+  - name:               'authorize keys'
+    authorized_key:
+      user:             "{{ item.user }}"
+      key:              "{{ item.key }}"
+    with_items:         "{{ key_users }}"
+
