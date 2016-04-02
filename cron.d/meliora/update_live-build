@@ -1,2 +1,2 @@
 # m     h       dom     mon     dow     user    command
-15      01      *       *       *       root    /usr/local/bin/update_live-build_cronjob
+00      05      *       *       *       root    /usr/local/bin/update_live-build_cronjob
