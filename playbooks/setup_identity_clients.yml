@@ -1,9 +1,9 @@
 ---
-- hosts:                fleet
-  name:                 'configure fleet'
+- hosts:                identity_clients
+  name:                 'configure identity_clients'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   roles:
-    - 'fleet'
+    - 'identity_clients'

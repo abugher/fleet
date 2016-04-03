@@ -1,0 +1,7 @@
+---
+users:
+  - 'aaron'
+  - 'rachel'
+dot_users:              "{{ users }}"
+groups:                 "{{ users }}"
+

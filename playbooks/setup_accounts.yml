@@ -1,8 +1,4 @@
 ---
-- include:              'configure_groups_on_identity_clients.yml'
-- include:              'configure_users_on_identity_clients.yml'
-
-- include:              'configure_groups_on_fleet.yml'
 - include:              'configure_users_on_fleet.yml'
 
 - include:              'configure_groups_on_neuron.yml'

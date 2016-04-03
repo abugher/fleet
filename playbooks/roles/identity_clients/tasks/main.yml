@@ -1,0 +1,4 @@
+---
+- include:            '../../../attributes/users.yml'
+- include:            '../../../attributes/groups.yml'
+- include:            '../../../attributes/dotfiles_common.yml'
