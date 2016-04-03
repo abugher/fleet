@@ -1,0 +1,16 @@
+---
+- include:              'attributes/sshd_config.yml'
+  register:             sshd_config_synapse
+- include:              'attributes/restart_services'
+  vars:
+    restart_services:
+      - 'ssh'
+  when:                 sshd_config_synapse.changed
+- include:              'attributes/install_files.yml'
+  register:             apt_install_files
+
+- include:              'attributes/remove_files.yml'
+  register:             apt_remove_files
+
+- include:              'attributes/apt_update.yml'
+  when:                 apt_install_files.changed or apt_remove_files.changed

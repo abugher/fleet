@@ -1,6 +1,7 @@
 ---
 - include:              'setup_fleet.yml'
 - include:              'setup_identity_clients.yml'
+- include:              'setup_synapse.yml'
 - include:              'setup_accounts.yml'
 - include:              'setup_package_managers.yml'
 - include:              'setup_packages.yml'
