@@ -1,0 +1,6 @@
+---
+  - name:               'remove packages'
+    apt:
+      name:             '{{ item }}'
+      state:            'absent'
+    with_items:         "{{ remove_packages }}"

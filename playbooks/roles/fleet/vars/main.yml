@@ -4,7 +4,7 @@ groups:
 keys:
   - user:               'ansible'
     keyfile:            '~/code/fleet/conf/ssh_keys/pi@synapse.id_rsa.pub'
-packages:
+install_packages:
   - 'cron'
   - 'ntp'
   - 'vim'
@@ -30,3 +30,5 @@ packages:
   - 'flex'                  # for compiling nethack
   - 'bc'
   - 'htop'
+remove_packages:
+  - 'nano'
