@@ -32,7 +32,7 @@ install_packages:
   - 'htop'
 remove_packages:
   - 'nano'
-install_scripts:
+install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
@@ -48,6 +48,16 @@ install_scripts:
     mode:               '0755'
     src:                '~/code/fleet/bin/update_python_packages'
     dest:               '/usr/local/bin/update_python_packages'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/vimrc'
+    dest:               '/etc/vim/vimrc'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/kerberos/krb5.conf'
+    dest:               '/etc/krb5.conf'
 install_python_packages:
   - 'ndg-httpsclient'
   - 'pyasn1'
