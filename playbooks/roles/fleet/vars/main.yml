@@ -1,3 +1,7 @@
 ---
 groups:
   - 'nagios'
+keys:
+  - user:               'ansible'
+    keyfile:            '~/code/fleet/conf/ssh_keys/pi@synapse.id_rsa.pub'
+
