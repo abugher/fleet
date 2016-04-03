@@ -1,6 +1,5 @@
 ---
-
-  - name:               'dotfiles, universal'
+  - name:               'dotfiles, common to all'
     copy:
       src:              '~/code/fleet/conf/dotfiles/common/'
       dest:             "~{{ item }}/"

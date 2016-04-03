@@ -1,3 +1,4 @@
 ---
 - include:              '../../../attributes/groups.yml'
 - include:              '../../../attributes/authorized_keys.yml'
+- include:              '../../../attributes/install_packages.yml'

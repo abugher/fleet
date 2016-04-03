@@ -4,4 +4,9 @@ users:
   - 'rachel'
 dot_users:              "{{ users }}"
 groups:                 "{{ users }}"
+system_users:
+  - 'nagios'
+keys:
+  - user:               'nagios'
+    keyfile:            '~/code/fleet/conf/ssh_keys/nagios@synapse.id_rsa.pub'
 

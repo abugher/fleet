@@ -23,6 +23,6 @@
       group:            'cryptkeeper'
   - name:               'dotfiles for pi'
     copy:
-      src:              '~/code/fleet/conf/dotfiles/universal/'
+      src:              '~/code/fleet/conf/dotfiles/common/'
       dest:             '~pi/'
 
