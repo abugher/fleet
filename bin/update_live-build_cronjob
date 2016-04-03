@@ -2,11 +2,5 @@
 
 # DISTRIBUTED BY ANSIBLE
 
-flock /tmp/update_debian.lock -c "
-  /usr/local/bin/update_live-build.amd64 > /var/log/update_live-build.amd64.log 2>&1
-  echo $? > /var/log/update_live-build.amd64.ret
-  /usr/local/bin/update_live-build.i386 > /var/log/update_live-build.i386.log 2>&1
-  echo $? > /var/log/update_live-build.i386.ret
-"
-
-flock -u /tmp/update_debian.lock true
+/usr/local/bin/update_live-build.amd64
+/usr/local/bin/update_live-build.i386

@@ -1,0 +1,7 @@
+---
+
+  - name:               'dotfiles, universal'
+    copy:
+      src:              '~/code/fleet/conf/dotfiles/common/'
+      dest:             "~{{ item }}/"
+    with_items:         "{{ dot_users }}"

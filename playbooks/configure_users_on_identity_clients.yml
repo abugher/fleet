@@ -9,15 +9,8 @@
     users:
       - 'aaron'
       - 'rachel'
+    dot_users:          "{{ users }}"
   tasks:
 
   - include:            'attributes/users.yml'
-  - name:               'dotfiles for aaron'
-    copy:
-      src:              '~/code/fleet/conf/dotfiles/universal/'
-      dest:             '~aaron/'
-  - name:               'dotfiles for rachel'
-    copy:
-      src:              '~/code/fleet/conf/dotfiles/universal/'
-      dest:             '~rachel/'
-
+  - include:            'attributes/dotfiles_common.yml'

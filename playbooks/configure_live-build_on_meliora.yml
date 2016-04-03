@@ -47,12 +47,12 @@
       owner:            'root'
       group:            'root'
       mode:             '0755'
-  - name:               'run update_live-build.amd64'
-    shell:              /usr/local/bin/update_live-build.amd64
+  - name:               'run update_live-build.amd64_cronjob'
+    shell:              /usr/local/bin/update_live-build.amd64_cronjob
     args:
       creates:          '/usr/local/debian-live/amd64/debian-live/binary/live/filesystem.squashfs'
-  - name:               'run update_live-build.i386'
-    shell:              /usr/local/bin/update_live-build.i386
+  - name:               'run update_live-build.i386_cronjob'
+    shell:              /usr/local/bin/update_live-build.i386_cronjob
     args:
       creates:          '/usr/local/debian-live/i386/debian-live/binary/live/filesystem.squashfs'
   - name:               'install update_live-build_cronjob'
@@ -62,6 +62,20 @@
       owner:            'root'
       group:            'root'
       mode:             '0755'
+  - name:               'install update_live-build.amd64_cronjob'
+    copy:
+      src:              '~/code/fleet/bin/update_live-build.amd64_cronjob'
+      dest:             '/usr/local/bin/update_live-build.amd64_cronjob'
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'
+  - name:               'install update_live-build.i386_cronjob'
+    copy:
+      src:              '~/code/fleet/bin/update_live-build.i386_cronjob'
+      dest:             '/usr/local/bin/update_live-build.i386_cronjob'
+      owner:            'root'
+      group:            'root'
+      mode:             '0755'  
   - name:               'install cron.d/update_live-build'
     copy:
       src:              '~/code/fleet/cron.d/meliora/update_live-build'
