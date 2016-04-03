@@ -25,10 +25,16 @@ install_packages:
   - 'mlocate'
   - 'libpam-krb5'
   - 'krb5-user'
-  - 'libncurses-dev'        # for compiling nethack
-  - 'byacc'                 # for compiling nethack
-  - 'flex'                  # for compiling nethack
+  - 'libncurses-dev'    # for compiling nethack
+  - 'byacc'             # for compiling nethack
+  - 'flex'              # for compiling nethack
   - 'bc'
   - 'htop'
 remove_packages:
   - 'nano'
+install_scripts:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/stamp'
+    dest:               '/usr/local/bin/stamp'

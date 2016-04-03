@@ -3,3 +3,4 @@
 - include:              '../../../attributes/authorized_keys.yml'
 - include:              '../../../attributes/install_packages.yml'
 - include:              '../../../attributes/remove_packages.yml'
+- include:              '../../../attributes/install_scripts.yml'
