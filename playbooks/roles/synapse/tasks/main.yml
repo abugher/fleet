@@ -8,9 +8,8 @@
   when:                 sshd_config_synapse.changed
 - include:              'attributes/install_files.yml'
   register:             apt_install_files
-
 - include:              'attributes/remove_files.yml'
   register:             apt_remove_files
-
 - include:              'attributes/apt_update.yml'
   when:                 apt_install_files.changed or apt_remove_files.changed
+- include:              'attributes/install_files.yml'
