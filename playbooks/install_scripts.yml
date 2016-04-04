@@ -1,6 +1,5 @@
 ---
 - include:              'install_scripts_on_synapse.yml'
-- include:              'configure_reboot_on_synapse.yml'
 
 - include:              'install_scripts_on_neuron.yml'
 - include:              'configure_reboot_on_neuron.yml'
