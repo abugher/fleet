@@ -5,11 +5,16 @@
   register:             synapse_sync_dirs
 - include:              'attributes/install_files.yml'
   register:             synapse_install_files
+- include:              'attributes/symlinks.yml'
+  register:             synapse_symlinks
 - include:              'attributes/sshd_config.yml'
   register:             synapse_sshd_config
 - include:              'attributes/update.yml'
   when:                 synapse_install_files.changed or synapse_remove_files.changed
 - include:              'attributes/authorized_keys.yml'
 - include:              'attributes/restart_services.yml'
-  when:                 synapse_install_files.changed or synapse_remove_files.changed or synapse_sshd_config.changed
+  when:                 synapse_install_files.changed 
+                        or synapse_symlinks.changed 
+                        or synapse_remove_files.changed 
+                        or synapse_sshd_config.changed
 - include:              'attributes/create_krb5_realm.yml'
