@@ -1,4 +1,3 @@
 ---
-- include:              'configure_smokeping_on_synapse.yml'
 # I consider installing these scripts to be part of "configuring" monitoring.
 - include:              'install_service_check_scripts_on_synapse.yml'
