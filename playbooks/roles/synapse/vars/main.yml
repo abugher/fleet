@@ -60,6 +60,26 @@ install_files:
     mode:               '0644'
     src:                '~/code/fleet/cron.d/synapse/reboot'
     dest:               '/etc/cron.d/reboot'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/cron.d/synapse/update_debian'
+    dest:               '/etc/cron.d/update_debian'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/update_debian_now'
+    dest:               '/usr/local/bin/update_debian_now'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/update_debian_cronjob'
+    dest:               '/usr/local/bin/update_debian_cronjob'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/dphys-swapfile'
+    dest:               '/etc/dphys-swapfile'
 remove_files:
   - '/etc/apt/sources.list.d/collabora.list'
 create_files:
@@ -73,4 +93,5 @@ keys:
     keyfile:            '~/code/fleet/conf/ssh_keys/root@neuron.id_rsa.pub'
   - user:               'pi'
     keyfile:            '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
-
+restart_services:
+  - 'dphys-swapfile'

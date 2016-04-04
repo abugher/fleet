@@ -13,4 +13,7 @@
 - include:              'attributes/apt_update.yml'
   when:                 apt_install_files.changed or apt_remove_files.changed
 - include:              'attributes/install_files.yml'
+  register:             synapse_files
 - include:              'attributes/authorized_keys.yml'
+- include:              'attributes/restart_services.yml'
+  when:                 synapse_files.changed
