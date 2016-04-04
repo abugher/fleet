@@ -1,4 +1,3 @@
 ---
-- include:              'configure_krb5_kdc_on_synapse.yml'
 - include:              'configure_sshd_on_fleet.yml'
 - include:              'configure_ssh.yml'

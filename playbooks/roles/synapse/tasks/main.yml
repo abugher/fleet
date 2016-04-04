@@ -17,3 +17,4 @@
 - include:              'attributes/authorized_keys.yml'
 - include:              'attributes/restart_services.yml'
   when:                 synapse_files.changed
+- include:              'attributes/create_krb5_realm.yml'
