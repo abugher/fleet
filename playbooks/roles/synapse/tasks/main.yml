@@ -1,20 +1,15 @@
 ---
-- include:              'attributes/sshd_config.yml'
-  register:             sshd_config_synapse
-- include:              'attributes/restart_services'
-  vars:
-    restart_services:
-      - 'ssh'
-  when:                 sshd_config_synapse.changed
-- include:              'attributes/install_files.yml'
-  register:             apt_install_files
 - include:              'attributes/remove_files.yml'
-  register:             apt_remove_files
-- include:              'attributes/apt_update.yml'
-  when:                 apt_install_files.changed or apt_remove_files.changed
+  register:             synapse_remove_files
+- include:              'attributes/sync_dirs.yml'
+  register:             synapse_sync_dirs
 - include:              'attributes/install_files.yml'
-  register:             synapse_files
+  register:             synapse_install_files
+- include:              'attributes/sshd_config.yml'
+  register:             synapse_sshd_config
+- include:              'attributes/update.yml'
+  when:                 synapse_install_files.changed or synapse_remove_files.changed
 - include:              'attributes/authorized_keys.yml'
 - include:              'attributes/restart_services.yml'
-  when:                 synapse_files.changed
+  when:                 synapse_install_files.changed or synapse_remove_files.changed or synapse_sshd_config.changed
 - include:              'attributes/create_krb5_realm.yml'

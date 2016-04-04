@@ -1,0 +1,11 @@
+---
+  # Work around bug in synchronize 2.0.0.
+  - name:               'synchronize directories'
+    become:             'false'         # work-around
+    synchronize:
+      rsync_path:       'sudo rsync'    # work-around
+      src:              "{{ item.src }}"
+      dest:             "{{ item.dest }}"
+      delete:           "{{ item.delete }}"
+    with_items:         "{{ sync_dirs }}"
+
