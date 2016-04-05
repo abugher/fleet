@@ -176,6 +176,11 @@ symlinks:
     mode:               '0644'
     src:                '/etc/nginx/sites-available/nagios.ssl'
     dest:               '/etc/nginx/sites-enabled/nagios.ssl'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/cron.d/synapse/update_dns'
+    dest:               '/etc/cron.d/update_dns'
 remove_files:
   - '/etc/apt/sources.list.d/collabora.list'
 create_files:
