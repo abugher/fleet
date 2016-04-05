@@ -150,6 +150,11 @@ install_files:
     mode:               '0644'
     src:                '~/code/fleet/conf/smokeping/synapse/Targets'
     dest:               '/etc/smokeping/config.d/Targets'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/cron.d/synapse/update_dns'
+    dest:               '/etc/cron.d/update_dns'
 symlinks:
   - owner:              'root'
     group:              'root'
@@ -176,11 +181,6 @@ symlinks:
     mode:               '0644'
     src:                '/etc/nginx/sites-available/nagios.ssl'
     dest:               '/etc/nginx/sites-enabled/nagios.ssl'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/cron.d/synapse/update_dns'
-    dest:               '/etc/cron.d/update_dns'
 remove_files:
   - '/etc/apt/sources.list.d/collabora.list'
 create_files:
@@ -200,6 +200,8 @@ restart_services:
   - 'nagios3'
   - 'nginx'
   - 'smokeping'
+dot_users:
+  - 'pi'
 sync_dirs:
   - src:                '~/code/fleet/conf/nagios/synapse/nagios3/'
     dest:               '/etc/nagios3/'
