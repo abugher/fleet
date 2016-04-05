@@ -15,6 +15,9 @@ install_packages:
   - 'zabbix-frontend-php'       # for zabbix
   - 'mysql-server'              # for zabbix
   - 'libmysqlclient-dev'        # for zabbix
+install_python_packages:
+  - 'ansible'
+  - 'mysql-python'              # for mysql_db ansible module, for zabbix
 install_files:
   - owner:              'root'
     group:              'root'

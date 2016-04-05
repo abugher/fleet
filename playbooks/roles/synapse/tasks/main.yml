@@ -1,5 +1,6 @@
 ---
 - include:              'attributes/install_packages.yml'
+- include:              'attributes/install_python_packages.yml'
 - include:              'attributes/remove_files.yml'
   register:             synapse_remove_files
 - include:              'attributes/sync_dirs.yml'
