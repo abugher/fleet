@@ -1,4 +1,20 @@
 ---
+install_packages:
+  - 'nginx'
+  - 'nginx-extras'
+  - 'nagios3'
+  - 'mini-httpd'                # for smokeping
+  - 'libffi5-dev'
+  - 'libxml2-dev'
+  - 'krb5-admin-server'
+  - 'krb5-kdc'
+  - 'krb5-user'
+  - 'fcgiwrap'
+  - 'php5-fpm'
+  - 'zabbix-server-mysql'       # for zabbix
+  - 'zabbix-frontend-php'       # for zabbix
+  - 'mysql-server'              # for zabbix
+  - 'libmysqlclient-dev'        # for zabbix
 install_files:
   - owner:              'root'
     group:              'root'
@@ -206,3 +222,10 @@ sync_dirs:
   - src:                '~/code/fleet/conf/nagios/synapse/nagios3/'
     dest:               '/etc/nagios3/'
     delete:             'yes'
+stop_services:
+  # Stop mini-httpd.  It errors on service start, otherwise.
+  - 'mini-httpd'
+enable_services:
+  - 'nginx'
+  - 'nagios3'
+  - 'mini-httpd'

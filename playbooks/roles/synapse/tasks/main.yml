@@ -1,4 +1,5 @@
 ---
+- include:              'attributes/install_packages.yml'
 - include:              'attributes/remove_files.yml'
   register:             synapse_remove_files
 - include:              'attributes/sync_dirs.yml'
@@ -18,4 +19,6 @@
                         or synapse_symlinks.changed 
                         or synapse_remove_files.changed 
                         or synapse_sshd_config.changed
+- include:              'attributes/stop_services.yml'
+- include:              'attributes/enable_services.yml'
 - include:              'attributes/create_krb5_realm.yml'
