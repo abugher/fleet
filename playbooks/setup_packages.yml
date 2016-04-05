@@ -9,8 +9,6 @@
 - include:              'configure_packages_on_neuron.yml'
 - include:              'install_temper-python_on_neuron.yml'
 
-- include:              'configure_packages_on_synapse.yml'
-
 - include:              'install_packages_on_neuron-mail.yml'
 - include:              'configure_packages_on_neuron-mail.yml'
 
