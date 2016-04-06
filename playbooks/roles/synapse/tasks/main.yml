@@ -1,5 +1,6 @@
 ---
 - include:              'attributes/install_packages.yml'
+  register:             synapse_install_packages
 - include:              'attributes/install_python_packages.yml'
 - include:              'attributes/remove_files.yml'
   register:             synapse_remove_files
@@ -15,11 +16,14 @@
   when:                 synapse_install_files.changed or synapse_remove_files.changed
 - include:              'attributes/dotfiles_common.yml'
 - include:              'attributes/authorized_keys.yml'
+- include:              'attributes/enable_services.yml'
+- include:              'attributes/stop_services.yml'
+  when:                 synapse_install_files.changed
+- include:              'attributes/start_services.yml'
+  when:                 synapse_install_files.changed
 - include:              'attributes/restart_services.yml'
   when:                 synapse_install_files.changed 
                         or synapse_symlinks.changed 
                         or synapse_remove_files.changed 
                         or synapse_sshd_config.changed
-- include:              'attributes/stop_services.yml'
-- include:              'attributes/enable_services.yml'
 - include:              'attributes/create_krb5_realm.yml'

@@ -302,3 +302,7 @@ enable_services:
   - 'nginx'
   - 'nagios3'
   - 'mini-httpd'
+start_services:
+  - 'nginx'
+  - 'nagios3'
+  # mini-httpd throws an error on service start if already running.

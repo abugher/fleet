@@ -3,6 +3,6 @@
   service:
     name:               "{{ item }}"
     enabled:            'yes'
-    state:              'started'
+    #state:              'started'
   with_items:           "{{ enable_services }}"
 
