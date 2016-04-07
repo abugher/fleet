@@ -8,4 +8,6 @@
   vars_files:
     - '~/code/sensitive/playbooks/configure_kdc_db_master_key.yml'
   roles:
+    - 'nginx'
+    # Eventually the synapse role will factor out.
     - 'synapse'

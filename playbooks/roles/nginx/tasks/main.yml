@@ -1,0 +1,12 @@
+---
+- include:              'attributes/install_packages.yml'
+- include:              'attributes/install_files.yml'
+  register:             nginx_install_files
+- include:              'attributes/symlinks.yml'
+  register:             nginx_symlinks
+- include:              'attributes/enable_services.yml'
+- include:              'attributes/start_services.yml'
+  when:                 nginx_install_files.changed
+- include:              'attributes/restart_services.yml'
+  when:                 nginx_install_files.changed 
+                        or nginx_symlinks.changed 
