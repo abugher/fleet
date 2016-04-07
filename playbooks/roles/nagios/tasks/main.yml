@@ -1,18 +1,17 @@
 ---
 - name:                 'install packages'
   include:              'attributes/install_packages.yml'
+- name:                 'synchronize directories'
+  include:              'attributes/sync_dirs.yml'
 - name:                 'install files'
   include:              'attributes/install_files.yml'
-  register:             nginx_install_files
-- name:                 'symlinks'
-  include:              'attributes/symlinks.yml'
-  register:             nginx_symlinks
+  register:             nagios_install_files
 - name:                 'enable services'
   include:              'attributes/enable_services.yml'
+  register:             nagios_enable_service
 - name:                 'start services'
   include:              'attributes/start_services.yml'
-  when:                 nginx_install_files.changed
+  when:                 nagios_enable_service.changed
 - name:                 'restart services'
   include:              'attributes/restart_services.yml'
-  when:                 nginx_install_files.changed 
-                        or nginx_symlinks.changed 
+  when:                 nagios_install_files.changed 

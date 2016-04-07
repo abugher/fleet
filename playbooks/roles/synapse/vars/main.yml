@@ -1,6 +1,5 @@
 ---
 install_packages:
-  - 'nagios3'
   - 'mini-httpd'                # for smokeping
   - 'libffi5-dev'
   - 'libxml2-dev'
@@ -47,21 +46,6 @@ install_files:
     mode:               '0644'
     src:                '~/code/fleet/conf/ssh_keys/root@synapse.id_rsa.pub'
     dest:               '/root/.ssh/id_rsa.pub'
-  - owner:              'nagios'
-    group:              'nagios'
-    mode:               '0600'
-    src:                '~/code/sensitive/conf/ssh_keys/nagios@synapse.id_rsa'
-    dest:               '~nagios/.ssh/id_rsa'
-  - owner:              'nagios'
-    group:              'nagios'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/ssh_keys/nagios@synapse.id_rsa.pub'
-    dest:               '~nagios/.ssh/id_rsa.pub'
-  - owner:              'nagios'
-    group:              'nagios'
-    mode:               '0600'
-    src:                '~/code/fleet/conf/ssh_keys/nagios@synapse.known_hosts'
-    dest:               '~nagios/.ssh/known_hosts'
   - owner:              'pi'
     group:              'pi'
     mode:               '0600'
@@ -112,16 +96,6 @@ install_files:
     mode:               '0644'
     src:                '~/code/fleet/conf/mini-httpd/synapse/default.mini-httpd'
     dest:               '/etc/default/mini-httpd'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/nagios/synapse/logos/'
-    dest:               '/usr/share/nagios3/htdocs/images/logos/custom/'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/sensitive/conf/nagios/synapse/nagios3/htpasswd.users'
-    dest:               '/etc/nagios3/htpasswd.users'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
@@ -218,19 +192,11 @@ keys:
 restart_services:
   - 'dphys-swapfile'
   - 'mini-httpd'
-  - 'nagios3'
   - 'smokeping'
 dot_users:
   - 'pi'
-sync_dirs:
-  - src:                '~/code/fleet/conf/nagios/synapse/nagios3/'
-    dest:               '/etc/nagios3/'
-    delete:             'yes'
 stop_services:
   # Stop mini-httpd.  It errors on service start, otherwise.
   - 'mini-httpd'
 enable_services:
-  - 'nagios3'
   - 'mini-httpd'
-start_services:
-  - 'nagios3'
