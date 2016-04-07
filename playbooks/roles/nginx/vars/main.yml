@@ -2,6 +2,8 @@
 install_packages:
   - 'nginx'
   - 'nginx-extras'
+  - 'fcgiwrap'
+  - 'php5-fpm'
 install_files:
   - owner:              'root'
     group:              'root'

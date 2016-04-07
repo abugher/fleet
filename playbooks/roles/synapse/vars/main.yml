@@ -6,8 +6,6 @@ install_packages:
   - 'krb5-admin-server'
   - 'krb5-kdc'
   - 'krb5-user'
-  - 'fcgiwrap'
-  - 'php5-fpm'
   - 'zabbix-server-mysql'       # for zabbix
   - 'zabbix-frontend-php'       # for zabbix
   - 'mysql-server'              # for zabbix
