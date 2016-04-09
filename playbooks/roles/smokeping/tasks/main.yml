@@ -1,0 +1,6 @@
+- include:              'attributes/install_packages.yml'
+- include:              'attributes/install_files.yml'
+  register:             smokeping_install_files
+- include:              'attributes/restart_services.yml'
+  when:                 smokeping_install_files.changed 
+

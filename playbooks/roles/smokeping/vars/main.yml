@@ -1,0 +1,11 @@
+install_packages:
+  - 'mini-httpd'                # for smokeping
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/smokeping/synapse/Targets'
+    dest:               '/etc/smokeping/config.d/Targets'
+restart_services:
+  - 'mini-httpd'
+  - 'smokeping'

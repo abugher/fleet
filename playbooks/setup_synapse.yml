@@ -10,5 +10,6 @@
   roles:
     #- 'nginx'
     - 'nagios'
+    - 'smokeping'
     # Eventually the synapse role will factor out.
     - 'synapse'
