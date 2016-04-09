@@ -1,0 +1,3 @@
+---
+- include:              'attributes/install_files.yml'
+- include:              'attributes/remove_files.yml'

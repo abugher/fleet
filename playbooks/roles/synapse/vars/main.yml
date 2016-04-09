@@ -1,30 +1,9 @@
 ---
-install_packages:
-  - 'libffi5-dev'
-  - 'libxml2-dev'
-install_python_packages:
-  - 'ansible'
+#install_packages:
+# What are these for?
+#  - 'libffi5-dev'
+#  - 'libxml2-dev'
 install_files:
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/apt/synapse/sources.list'
-    dest:               '/etc/apt/sources.list'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/apt/synapse/raspi.list'
-    dest:               '/etc/apt/sources.list.d/raspi.list'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/ansible/ansible.cfg'
-    dest:               '/etc/ansible/ansible.cfg'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/ansible/hosts'
-    dest:               '/etc/ansible/hosts'
   - owner:              'root'
     group:              'root'
     mode:               '0600'
@@ -155,14 +134,6 @@ install_files:
     mode:               '0755'
     src:                '~/code/fleet/bin/check_update_live-build.i386'
     dest:               '/usr/local/bin/check_update_live-build.i386'
-remove_files:
-  - '/etc/apt/sources.list.d/collabora.list'
-create_files:
-  - path:               '/etc/ansible'
-    state:              'directory'
-    owner:              'root'
-    group:              'root'
-    mode:               '0755'
 keys:
   - user:               'escrow'
     keyfile:            '~/code/fleet/conf/ssh_keys/root@neuron.id_rsa.pub'
@@ -172,8 +143,3 @@ restart_services:
   - 'dphys-swapfile'
 dot_users:
   - 'pi'
-stop_services:
-  # Stop mini-httpd.  It errors on service start, otherwise.
-  - 'mini-httpd'
-enable_services:
-  - 'mini-httpd'

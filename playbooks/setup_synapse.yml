@@ -13,5 +13,7 @@
     - 'smokeping'
     - 'krb5'
     - 'zabbix'
+    - 'ansible'
+    - 'apt'
     # Eventually the synapse role will factor out.
     - 'synapse'

@@ -10,3 +10,8 @@ install_files:
 restart_services:
   - 'mini-httpd'
   - 'smokeping'
+stop_services:
+  # Stop mini-httpd.  It errors on service start, otherwise.
+  - 'mini-httpd'
+enable_services:
+  - 'mini-httpd'

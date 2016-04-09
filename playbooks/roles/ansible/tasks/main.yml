@@ -1,0 +1,4 @@
+---
+- include:              'attributes/install_python_packages.yml'
+- include:              'attributes/create_files.yml'
+- include:              'attributes/install_files.yml'
