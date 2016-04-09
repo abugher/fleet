@@ -1,3 +1,9 @@
 ---
 dependencies:
   - { role: 'apt' }
+  - { role: 'reboot' }
+  - { role: 'nagios' }
+  - { role: 'smokeping' }
+  - { role: 'krb5' }
+  - { role: 'zabbix' }
+  - { role: 'ansible' }

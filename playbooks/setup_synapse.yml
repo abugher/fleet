@@ -8,14 +8,4 @@
   vars_files:
     - '~/code/sensitive/playbooks/configure_kdc_db_master_key.yml'
   roles:
-    #- 'nginx'
-    #- 'apt'
-    - 'nagios'
-    - 'smokeping'
-    - 'krb5'
-    - 'zabbix'
-    - 'ansible'
-    - 'reboot'
-    # Eventually the synapse role will factor out.
-    # Probably.
     - 'synapse'
