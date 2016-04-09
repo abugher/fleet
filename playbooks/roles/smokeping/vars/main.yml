@@ -1,3 +1,4 @@
+---
 install_packages:
   - 'mini-httpd'                # for smokeping
 install_files:

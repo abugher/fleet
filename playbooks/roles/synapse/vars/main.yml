@@ -2,16 +2,8 @@
 install_packages:
   - 'libffi5-dev'
   - 'libxml2-dev'
-  - 'krb5-admin-server'
-  - 'krb5-kdc'
-  - 'krb5-user'
-  - 'zabbix-server-mysql'       # for zabbix
-  - 'zabbix-frontend-php'       # for zabbix
-  - 'mysql-server'              # for zabbix
-  - 'libmysqlclient-dev'        # for zabbix
 install_python_packages:
   - 'ansible'
-  - 'mysql-python'              # for mysql_db ansible module, for zabbix
 install_files:
   - owner:              'root'
     group:              'root'
@@ -78,11 +70,6 @@ install_files:
     mode:               '0644'
     src:                '~/code/fleet/conf/dphys-swapfile'
     dest:               '/etc/dphys-swapfile'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/kerberos/kadm5.acl'
-    dest:               '/etc/krb5kdc/kadm5.acl'
   - owner:              'root'
     group:              'root'
     mode:               '0644'

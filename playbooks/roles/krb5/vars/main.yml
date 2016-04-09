@@ -1,0 +1,14 @@
+---
+install_packages:
+  - 'krb5-admin-server'
+  - 'krb5-kdc'
+  - 'krb5-user'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/kerberos/kadm5.acl'
+    dest:               '/etc/krb5kdc/kadm5.acl'
+restart_services:
+  - 'krb5-kdc'
+  - 'krb5-admin-server'

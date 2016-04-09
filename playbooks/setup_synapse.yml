@@ -11,5 +11,7 @@
     #- 'nginx'
     - 'nagios'
     - 'smokeping'
+    - 'krb5'
+    - 'zabbix'
     # Eventually the synapse role will factor out.
     - 'synapse'
