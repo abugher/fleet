@@ -1,0 +1,13 @@
+---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/check_update_live-build.amd64'
+    dest:               '/usr/local/bin/check_update_live-build.amd64'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/check_update_live-build.i386'
+    dest:               '/usr/local/bin/check_update_live-build.i386'
+

@@ -1,7 +1,17 @@
 ---
 install_packages:
-  - 'mini-httpd'                # for smokeping
+  - 'mini-httpd'
 install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/mini-httpd/synapse/mini-httpd.conf'
+    dest:               '/etc/mini-httpd.conf'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/mini-httpd/synapse/default.mini-httpd'
+    dest:               '/etc/default/mini-httpd'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
