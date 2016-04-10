@@ -29,8 +29,7 @@ install_files:
     mode:               '0644'
     src:                '~/code/fleet/conf/dphys-swapfile'
     dest:               '/etc/dphys-swapfile'
-  # This update DNS business is not yet a clearly defined role, so it's just
-  # part of the host definition of neuron.  Less than ideal.
+  # This update DNS business should have its own roles.
   - owner:              'root'
     group:              'root'
     mode:               '0644'
