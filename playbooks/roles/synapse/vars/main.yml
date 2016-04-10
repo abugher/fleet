@@ -1,8 +1,4 @@
 ---
-#install_packages:
-# What are these for?
-#  - 'libffi5-dev'
-#  - 'libxml2-dev'
 install_files:
   - owner:              'root'
     group:              'root'
