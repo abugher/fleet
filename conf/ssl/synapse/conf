@@ -63,6 +63,7 @@ preserve                = no
 policy                  = policy_token
 default_md              = sha256
 crl_extensions          = crl_ext
+unique_subject          = no
 
 [ policy_token ]
 countryName             = optional
