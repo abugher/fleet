@@ -5,13 +5,11 @@
   include:              'attributes/sync_dirs.yml'
 - name:                 'install files'
   include:              'attributes/install_files.yml'
-  register:             nagios_install_files
 - name:                 'enable services'
   include:              'attributes/enable_services.yml'
-  register:             nagios_enable_service
 - name:                 'start services'
   include:              'attributes/start_services.yml'
-  when:                 nagios_enable_service.changed
+  when:                 enable_services_result.changed
 - name:                 'restart services'
   include:              'attributes/restart_services.yml'
-  when:                 nagios_install_files.changed 
+  when:                 install_files_result.changed 

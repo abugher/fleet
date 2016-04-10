@@ -5,4 +5,4 @@
     enabled:            'yes'
     #state:              'started'
   with_items:           "{{ enable_services }}"
-
+  register:             enable_services_result

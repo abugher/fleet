@@ -8,3 +8,4 @@
     dest:               "{{ item.dest }}"
     state:              'link'
   with_items:           "{{ symlinks }}"
+  register:             symlinks_result

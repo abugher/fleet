@@ -1,6 +1,5 @@
 ---
 - include:              'attributes/install_packages.yml'
 - include:              'attributes/install_files.yml'
-  register:             krb5_install_files
 - include:              'attributes/restart_services.yml'
-  when:                 krb5_install_files.changed 
+  when:                 install_files_result.changed 

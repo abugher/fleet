@@ -1,10 +1,9 @@
 ---
 - include:              'attributes/install_packages.yml'
 - include:              'attributes/install_files.yml'
-  register:             smokeping_install_files
 - include:              'attributes/enable_services.yml'
 - include:              'attributes/stop_services.yml'
-  when:                 smokeping_install_files.changed 
+  when:                 install_files_result.changed 
 - include:              'attributes/restart_services.yml'
-  when:                 smokeping_install_files.changed 
+  when:                 install_files_result.changed 
 

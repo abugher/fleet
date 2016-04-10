@@ -1,5 +1,5 @@
 ---
-- name:                 'install pip'
+- name:                 'easy_install pip'
   easy_install: 
     name:               'pip'
-
+  register:             easy_install_pip_result

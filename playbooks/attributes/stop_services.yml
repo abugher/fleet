@@ -3,6 +3,7 @@
 #  service:
 #    name:               "{{ item }}"
 #    state:              'stopped'
-#  with_items:           "{{ enable_services }}"
+#  with_items:           "{{ stop_services }}"
   command:              service "{{ item }}" stop
   with_items:           "{{ stop_services }}"
+  register:             stop_services_result

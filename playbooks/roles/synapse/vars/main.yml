@@ -40,7 +40,7 @@ install_files:
     mode:               '0755'
     src:                '~/code/fleet/bin/update_dns_phase1'
     dest:               '/usr/local/bin/update_dns_phase1'
-keys:
+authorized_keys:
   - user:               'escrow'
     keyfile:            '~/code/fleet/conf/ssh_keys/root@neuron.id_rsa.pub'
   - user:               'pi'
