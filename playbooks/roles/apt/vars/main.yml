@@ -3,7 +3,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '~/code/fleet/cron.d/synapse/update_debian'
+    src:                "~/code/fleet/cron.d/{{ inventory_hostname }}/update_debian"
     dest:               '/etc/cron.d/update_debian'
   - owner:              'root'
     group:              'root'
@@ -18,12 +18,12 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '~/code/fleet/conf/apt/synapse/sources.list'
+    src:                "~/code/fleet/conf/apt/{{ inventory_hostname }}/sources.list"
     dest:               '/etc/apt/sources.list'
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/apt/synapse/raspi.list'
-    dest:               '/etc/apt/sources.list.d/raspi.list'
+    mode:               '0755'
+    src:                "~/code/fleet/conf/apt/{{ inventory_hostname }}/policy-rc.d"
+    dest:               '/usr/sbin/policy-rc.d'
 remove_files:
   - '/etc/apt/sources.list.d/collabora.list'

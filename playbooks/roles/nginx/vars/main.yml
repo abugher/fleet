@@ -73,5 +73,7 @@ symlinks:
     dest:               '/etc/nginx/sites-enabled/nagios.ssl'
 enable_services:
   - 'nginx'
+start_services:
+  - 'nginx'
 restart_services:
   - 'nginx'

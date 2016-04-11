@@ -62,3 +62,6 @@ install_python_packages:
   - 'ndg-httpsclient'
   - 'pyasn1'
   - 'pyopenssl'
+start_services:
+  - 'cron'
+  - 'ntp'

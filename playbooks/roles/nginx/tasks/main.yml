@@ -7,6 +7,10 @@
   include:              'attributes/symlinks.yml'
 - name:                 'enable services'
   include:              'attributes/enable_services.yml'
+- name:                 'start services'
+  include:              'attributes/restart_services.yml'
+  when:                 enable_services_result.changed 
+                        or install_packages_result.changed 
 - name:                 'restart services'
   include:              'attributes/restart_services.yml'
   when:                 install_files_result.changed 

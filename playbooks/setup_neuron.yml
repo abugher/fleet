@@ -1,0 +1,9 @@
+---
+- hosts:                neuron
+  name:                 'configure neuron'
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  roles:
+    - 'neuron'

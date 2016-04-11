@@ -13,4 +13,3 @@ dependencies:
   - { role: 'zabbix' }
   - { role: 'storage' }
   - { role: 'dphys-swapfile' }
-  - { role: 'ssh' }

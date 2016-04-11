@@ -18,11 +18,14 @@ install_files:
     mode:               '0644'
     src:                '~/code/fleet/conf/smokeping/synapse/Targets'
     dest:               '/etc/smokeping/config.d/Targets'
-restart_services:
+enable_services:
   - 'mini-httpd'
-  - 'smokeping'
 stop_services:
   # Stop mini-httpd.  It errors on service start, otherwise.
   - 'mini-httpd'
-enable_services:
+start_services:
   - 'mini-httpd'
+  - 'smokeping'
+restart_services:
+  - 'mini-httpd'
+  - 'smokeping'

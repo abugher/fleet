@@ -1,0 +1,8 @@
+---
+dependencies:
+  - { role: 'ssh' }
+  - { role: 'apt' }
+  - { role: 'reboot' }
+  - { role: 'pi' }
+  - { role: 'identity_client' }
+  - { role: 'storage' }

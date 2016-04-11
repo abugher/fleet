@@ -1,3 +1,2 @@
 ---
 - include:              'configure_apt_on_meliora.yml'
-- include:              'configure_apt_on_neuron.yml'
