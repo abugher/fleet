@@ -1,4 +1,4 @@
 ---
 - include:              'attributes/install_files.yml'
+- include:              'attributes/symlinks.yml'
 - include:              'attributes/authorized_keys.yml'
-- include:              'attributes/dotfiles_common.yml'

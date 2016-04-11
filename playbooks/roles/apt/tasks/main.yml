@@ -1,3 +1,5 @@
 ---
 - include:              'attributes/install_files.yml'
 - include:              'attributes/remove_files.yml'
+- include:              'attributes/apt_update.yml'
+  when:                 install_files_result.changed or remove_files_result.changed

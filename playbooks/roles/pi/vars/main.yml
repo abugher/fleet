@@ -14,3 +14,5 @@ install_files:
 authorized_keys:
   - user:               'pi'
     keyfile:            '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
+dot_users:
+  - 'pi'

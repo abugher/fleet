@@ -1,5 +1,7 @@
 ---
 - include:              'attributes/install_packages.yml'
 - include:              'attributes/install_files.yml'
+- include:              'attributes/create_krb5_realm.yml'
 - include:              'attributes/restart_services.yml'
   when:                 install_files_result.changed 
+                        or create_krb5_realm_result.changed

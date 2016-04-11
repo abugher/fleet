@@ -1,5 +1,6 @@
 ---
 dependencies:
+  - { role: 'ssh' }
   - { role: 'apt' }
   - { role: 'reboot' }
   - { role: 'pi' }
@@ -9,3 +10,6 @@ dependencies:
   - { role: 'nagios' }
   - { role: 'smokeping' }
   - { role: 'zabbix' }
+  - { role: 'storage' }
+  - { role: 'dphys-swapfile' }
+  - { role: 'ssh' }
