@@ -1,0 +1,16 @@
+---
+# pi user doesn't need to be created; it comes with Raspbian.
+install_files:
+  - owner:              'pi'
+    group:              'pi'
+    mode:               '0600'
+    src:                "~/code/sensitive/conf/ssh_keys/pi@{{ inventory_hostname }}.id_rsa"
+    dest:               '~pi/.ssh/id_rsa'
+  - owner:              'pi'
+    group:              'pi'
+    mode:               '0644'
+    src:                "~/code/fleet/conf/ssh_keys/pi@{{ inventory_hostname }}.id_rsa.pub"
+    dest:               '~pi/.ssh/id_rsa.pub'
+authorized_keys:
+  - user:               'pi'
+    keyfile:            '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'

@@ -1,0 +1,13 @@
+---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/update_dns_phase1'
+    dest:               '/usr/local/bin/update_dns_phase1'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/cron.d/synapse/update_dns'
+    dest:               '/etc/cron.d/update_dns'
+

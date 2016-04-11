@@ -2,8 +2,10 @@
 dependencies:
   - { role: 'apt' }
   - { role: 'reboot' }
+  - { role: 'pi' }
+  - { role: 'update_dns_phase1' }
+  - { role: 'ansible' }
+  - { role: 'krb5' }
   - { role: 'nagios' }
   - { role: 'smokeping' }
-  - { role: 'krb5' }
   - { role: 'zabbix' }
-  - { role: 'ansible' }
