@@ -1,9 +1,9 @@
 ---
 - hosts:                identity_clients
-  name:                 'configure identity_clients'
+  name:                 'identity_client'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   roles:
-    - 'identity_clients'
+    - 'identity_client'

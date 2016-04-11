@@ -24,12 +24,4 @@ details.
 
 # playbooks
 
-Formerly, I had a master playbook named setup_fleet.yml, which called
-setup_accounts.yml, etc, which called configure_users_on_neuron.yml, etc.
-
-Currently, the master playbook is setup.yml.  setup_fleet.yml invokes the
-fleet role for the fleet group.  setup_identity_clients.yml invokes the
-identity_clients role for the identity_clients group.  These two playbooks are
-called by setup.yml.  I intend to press the entire collection of playbooks
-into this pattern.  At the moment, a lot of the old mess remains, and
-setup.yml includes it.
+Playbooks are being refactored.  There will be roles.
