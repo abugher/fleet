@@ -1,12 +1,12 @@
 ---
-- include:              'attributes/groups.yml'
-- include:              'attributes/authorized_keys.yml'
-- include:              'attributes/install_packages.yml'
-- include:              'attributes/remove_packages.yml'
-- include:              'attributes/install_files.yml'
-- include:              'attributes/easy_install_pip.yml'
-- include:              'attributes/install_python_packages.yml'
+- include:              'tasks/groups.yml'
+- include:              'tasks/authorized_keys.yml'
+- include:              'tasks/install_packages.yml'
+- include:              'tasks/remove_packages.yml'
+- include:              'tasks/install_files.yml'
+- include:              'tasks/easy_install_pip.yml'
+- include:              'tasks/install_python_packages.yml'
 - name:                 'start services'
-  include:              'attributes/restart_services.yml'
+  include:              'tasks/restart_services.yml'
   when:                 enable_services_result.changed 
                         or install_packages_result.changed 

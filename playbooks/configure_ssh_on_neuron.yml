@@ -27,7 +27,7 @@
         keyfile:        '~/code/fleet/conf/ssh_keys/rachel@meliora.id_rsa.pub'
   tasks:
 
-  - include:            'attributes/authorized_keys.yml'
+  - include:            'tasks/authorized_keys.yml'
 
   - name:               'user root:  known_hosts'
     copy:

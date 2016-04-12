@@ -14,5 +14,5 @@
       - 'cryptkeeper'
   tasks:
 
-  - include:            'attributes/groups.yml'
-  - include:            'attributes/system_groups.yml'
+  - include:            'tasks/groups.yml'
+  - include:            'tasks/system_groups.yml'

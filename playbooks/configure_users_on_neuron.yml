@@ -14,7 +14,7 @@
       - 'aaron-phone'
   tasks:
 
-  - include:            'attributes/users.yml'
+  - include:            'tasks/users.yml'
   - name:               'cryptkeeper - bones directory'
     file:
       path:             '~cryptkeeper/bones'

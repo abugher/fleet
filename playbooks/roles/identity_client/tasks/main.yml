@@ -1,6 +1,6 @@
 ---
-- include:              'attributes/users.yml'
-- include:              'attributes/system_users.yml'
-- include:              'attributes/groups.yml'
-- include:              'attributes/dotfiles_common.yml'
-- include:              'attributes/authorized_keys.yml'
+- include:              'tasks/users.yml'
+- include:              'tasks/system_users.yml'
+- include:              'tasks/groups.yml'
+- include:              'tasks/dotfiles_common.yml'
+- include:              'tasks/authorized_keys.yml'
