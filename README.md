@@ -10,11 +10,6 @@ here make reference to unpublished files.
 
 # License:
 
-For the purposes of the license notice below, I note that many files in this
-tree are not programs, but I consider the master ansible playbook and all
-files used in its execution to constitute a program.  All the parts of that
-program found in this directory are to be considered "this program".
-
 This program is free software. It comes without any warranty, to the extent
 permitted by applicable law. You can redistribute it and/or modify it under
 the terms of the Do What The Fuck You Want To Public License, Version 2, as
@@ -24,4 +19,7 @@ details.
 
 # playbooks
 
-Playbooks are being refactored.  There will be roles.
+Playbooks are being refactored.  Old style was one playbook per service per
+host, approximately; eg configure_ssh_on_synapse.yml.  New style is one role
+per service; one role per host; host roles include service roles; service roles
+use shared task definitions.
