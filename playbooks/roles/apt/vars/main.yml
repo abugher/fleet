@@ -27,3 +27,4 @@ install_files:
     dest:               '/usr/sbin/policy-rc.d'
 remove_files:
   - '/etc/apt/sources.list.d/collabora.list'
+  - '/etc/apt/sources.list.d/raspi.list'
