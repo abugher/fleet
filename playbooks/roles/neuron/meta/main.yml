@@ -7,3 +7,4 @@ dependencies:
   - { role: 'identity_client' }
   - { role: 'storage' }
   - { role: 'dnsmasq' }
+  - { role: 'dhcpd' }

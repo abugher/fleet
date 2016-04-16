@@ -1,4 +1,3 @@
 ---
 - include:              'configure_cups_on_meliora.yml'
-- include:              'configure_isc-dhcp-daemon_on_neuron.yml'
 - include:              'configure_live-build_on_meliora.yml'

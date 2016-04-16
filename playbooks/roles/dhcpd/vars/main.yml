@@ -1,0 +1,9 @@
+---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/isc-dhcp-server/neuron/dhcpd.conf'
+    dest:               '/etc/dhcp/dhcpd.conf'
+restart_services:
+  - 'isc-dhcp-server'
