@@ -8,3 +8,4 @@ dependencies:
   - { role: 'storage' }
   - { role: 'dnsmasq' }
   - { role: 'dhcpd' }
+  - { role: 'cryptkeeper' }

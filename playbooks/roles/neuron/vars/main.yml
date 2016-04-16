@@ -1,4 +1,16 @@
 ---
+users:
+  - 'rachel-phone'
+  - 'aaron-phone'
+system_users:
+  - 'escrow'
+  - 'cryptkeeper'
+groups:
+  - 'rachel-phone'
+  - 'aaron-phone'
+system_groups:
+  - 'escrow'
+  - 'cryptkeeper'
 create_files:
   - path:               '/home/pi/.flexget'
     state:              'directory'
@@ -31,6 +43,11 @@ initialize_files:
     group:              'pi'
     mode:               '0644'
 install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/hostname.neuron'
+    dest:               '/etc/hostname'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
@@ -91,3 +108,7 @@ install_files:
     mode:             '0644'
     src:              '~/code/sensitive/cron.d/neuron/flexget_failed_clear'
     dest:             '/etc/cron.d/flexget_failed_clear'
+restart_services:
+  - 'hostname.sh'
+dot_users:
+  - 'pi'

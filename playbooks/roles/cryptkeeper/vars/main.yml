@@ -1,0 +1,7 @@
+---
+create_files:
+  - path:               '~cryptkeeper/bones'
+    state:              'directory'
+    owner:              'cryptkeeper'
+    group:              'cryptkeeper'
+    mode:               '0755'
