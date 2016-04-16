@@ -6,3 +6,4 @@ dependencies:
   - { role: 'pi' }
   - { role: 'identity_client' }
   - { role: 'storage' }
+  - { role: 'dnsmasq' }
