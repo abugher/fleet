@@ -1,0 +1,16 @@
+#!/bin/bash
+
+file=$1
+owner=$2
+group=$3
+mode=$4
+
+fail() {
+  echo -e "ERROR:  ${2}" >&2
+  exit $1
+}
+
+touch $file || fail 1 "touch failed"
+chown "${user}:${group}" "${file}" || fail 2 "chown failed"
+chmod "${mode}" "${file}" || fail 3 "chmod failed"
+

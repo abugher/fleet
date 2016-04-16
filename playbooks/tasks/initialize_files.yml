@@ -1,0 +1,7 @@
+---
+- name:                 'initialize files'
+  script:               ~/code/fleet/scripts/initialize_file "{{ item.dest }}" "{{ item.owner }}" "{{ item.group }}" "{{ item.mode }}"
+  args:
+    creates:            "{{ item.dest }}"
+  with_items:           "{{ initialize_files }}"
+  register:             initialize_files_result
