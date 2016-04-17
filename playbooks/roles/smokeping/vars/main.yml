@@ -6,18 +6,29 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '~/code/fleet/conf/mini-httpd/synapse/mini-httpd.conf'
+    src:                "~/code/fleet/conf/nginx/{{ inventory_host }}/smokeping"
+    dest:               '/etc/nginx/sites-available/smokeping'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "~/code/fleet/conf/mini-httpd/{{ inventory_host }}/mini-httpd.conf"
     dest:               '/etc/mini-httpd.conf'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '~/code/fleet/conf/mini-httpd/synapse/default.mini-httpd'
+    src:                "~/code/fleet/conf/mini-httpd/{{ inventory_host }}/default.mini-httpd"
     dest:               '/etc/default/mini-httpd'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '~/code/fleet/conf/smokeping/synapse/Targets'
+    src:                "~/code/fleet/conf/smokeping/{{ inventory_host }}/Targets"
     dest:               '/etc/smokeping/config.d/Targets'
+symlinks:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '/etc/nginx/sites-available/smokeping'
+    dest:               '/etc/nginx/sites-enabled/smokeping'
 enable_services:
   - 'mini-httpd'
 stop_services:

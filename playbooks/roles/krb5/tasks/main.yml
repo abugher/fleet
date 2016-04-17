@@ -2,6 +2,7 @@
 - include:              'tasks/install_packages.yml'
 - include:              'tasks/install_files.yml'
 - include:              'tasks/create_krb5_realm.yml'
+- include:              'tasks/enable_services.yml'
 - name:                 'start services'
   include:              'tasks/restart_services.yml'
   when:                 enable_services_result.changed 

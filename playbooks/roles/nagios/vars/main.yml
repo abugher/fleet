@@ -2,10 +2,20 @@
 install_packages:
   - 'nagios3'
 sync_dirs:
-  - src:                '~/code/fleet/conf/nagios/synapse/nagios3/'
+  - src:                "~/code/fleet/conf/nagios/{{ inventory_host }}/nagios3/"
     dest:               '/etc/nagios3/'
     delete:             'yes'
 install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "~/code/fleet/conf/nginx/{{ inventory_host }}/nagios"
+    dest:               '/etc/nginx/sites-available/nagios'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "~/code/fleet/conf/nginx/{{ inventory_host }}/nagios.ssl"
+    dest:               '/etc/nginx/sites-available/nagios.ssl'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
@@ -74,28 +84,39 @@ install_files:
   - owner:              'nagios'
     group:              'nagios'
     mode:               '0600'
-    src:                '~/code/sensitive/conf/ssh_keys/nagios@synapse.id_rsa'
+    src:                "~/code/sensitive/conf/ssh_keys/nagios@{{ inventory_host }}.id_rsa"
     dest:               '~nagios/.ssh/id_rsa'
   - owner:              'nagios'
     group:              'nagios'
     mode:               '0644'
-    src:                '~/code/fleet/conf/ssh_keys/nagios@synapse.id_rsa.pub'
+    src:                "~/code/fleet/conf/ssh_keys/nagios@{{ inventory_host }}.id_rsa.pub"
     dest:               '~nagios/.ssh/id_rsa.pub'
   - owner:              'nagios'
     group:              'nagios'
     mode:               '0600'
-    src:                '~/code/fleet/conf/ssh_keys/nagios@synapse.known_hosts'
+    src:                "~/code/fleet/conf/ssh_keys/nagios@{{ inventory_host }}.known_hosts"
     dest:               '~nagios/.ssh/known_hosts'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '~/code/fleet/conf/nagios/synapse/logos/'
+    src:                "~/code/fleet/conf/nagios/{{ inventory_host }}/logos/"
     dest:               '/usr/share/nagios3/htdocs/images/logos/custom/'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '~/code/sensitive/conf/nagios/synapse/nagios3/htpasswd.users'
+    src:                "~/code/sensitive/conf/nagios/{{ inventory_host }}/nagios3/htpasswd.users"
     dest:               '/etc/nagios3/htpasswd.users'
+symlinks:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '/etc/nginx/sites-available/nagios'
+    dest:               '/etc/nginx/sites-enabled/nagios'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '/etc/nginx/sites-available/nagios.ssl'
+    dest:               '/etc/nginx/sites-enabled/nagios.ssl'
 enable_services:
   - 'nagios3'
 start_services:
