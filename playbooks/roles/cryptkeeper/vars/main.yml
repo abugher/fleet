@@ -5,3 +5,11 @@ create_files:
     owner:              'cryptkeeper'
     group:              'cryptkeeper'
     mode:               '0755'
+authorized_keys:
+  - user:               'cryptkeeper'
+    keyfile:            '~/code/fleet/conf/ssh_keys/aaron@mawg.id_rsa.pub'
+  - user:               'cryptkeeper'
+    keyfile:            '~/code/fleet/conf/ssh_keys/rachel@rudolph.id_rsa.pub'
+  - user:               'cryptkeeper'
+    keyfile:            '~/code/fleet/conf/ssh_keys/rachel@meliora.id_rsa.pub'
+

@@ -6,6 +6,7 @@
 - include:              'tasks/install_files.yml'
 - include:              'tasks/easy_install_pip.yml'
 - include:              'tasks/install_python_packages.yml'
+- include:              'tasks/enable_services.yml'
 - name:                 'start services'
   include:              'tasks/restart_services.yml'
   when:                 enable_services_result.changed 

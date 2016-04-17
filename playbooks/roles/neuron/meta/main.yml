@@ -1,5 +1,6 @@
 ---
 dependencies:
+  - { role: 'fleet' }
   - { role: 'ssh' }
   - { role: 'apt' }
   - { role: 'reboot' }
@@ -9,3 +10,4 @@ dependencies:
   - { role: 'dnsmasq' }
   - { role: 'dhcpd' }
   - { role: 'cryptkeeper' }
+  - { role: 'flexget' }
