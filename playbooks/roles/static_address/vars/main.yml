@@ -1,0 +1,17 @@
+---
+disable_services:
+  - 'dhcpcd'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "~/code/fleet/conf/network/{{ inventory_hostname }}/interfaces"
+    dest:               '/etc/network/interfaces'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "~/code/fleet/conf/hostname/{{ inventory_hostname }}"
+    dest:               '/etc/hostname'
+restart_services:
+  - 'hostname.sh'
+  - 'networking'

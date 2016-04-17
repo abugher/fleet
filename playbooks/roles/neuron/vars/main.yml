@@ -31,16 +31,6 @@ install_files:
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                '~/code/fleet/conf/ssl/neuronpointer.net/chain.pem'
-    dest:               '/etc/nginx/neuron.crt'
-  - owner:              'root'
-    group:              'www-data'
-    mode:               '0640'
-    src:                '~/code/sensitive/conf/ssl/neuronpointer.net/key.pem'
-    dest:               '/etc/nginx/neuron.key'
-  - owner:              'root'
-    group:              'www-data'
-    mode:               '0640'
     src:                '~/code/sensitive/conf/nginx/neuron/htpasswd'
     dest:               '/etc/nginx/htpasswd'
   - owner:              'root'
@@ -66,16 +56,6 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/smokeping"
-    dest:               "/etc/nginx/sites-available/smokeping"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/smokeping.ssl"
-    dest:               "/etc/nginx/sites-available/smokeping.ssl"  
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
     src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/remote"
     dest:               "/etc/nginx/sites-available/remote"
   - owner:              'root'
@@ -83,16 +63,6 @@ install_files:
     mode:               '0644'
     src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/remote.ssl"
     dest:               "/etc/nginx/sites-available/remote.ssl"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/nagios"
-    dest:               "/etc/nginx/sites-available/nagios"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/nagios.ssl"
-    dest:               "/etc/nginx/sites-available/nagios.ssl"
   - owner:              'root'
     group:              'root'
     mode:               '0644'
@@ -106,16 +76,6 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '~/code/fleet/conf/network/neuron/interfaces'
-    dest:               '/etc/network/interfaces'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/hostname.neuron'
-    dest:               '/etc/hostname'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
     src:                '~/code/fleet/conf/fstab/neuron/fstab'
     dest:               '/etc/fstab'
   - owner:              'root'
@@ -124,10 +84,7 @@ install_files:
     src:                '~/code/fleet/cron.d/neuron/chown_pictures'
     dest:               '/etc/cron.d/chown_pictures'
 restart_services:
-  - 'hostname.sh'
   - 'nginx'
-disable_services:
-  - 'dhcpcd'
 dot_users:
   - 'pi'
 symlinks:
@@ -159,16 +116,6 @@ symlinks:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "/etc/nginx/sites-available/smokeping"
-    dest:               "/etc/nginx/sites-enabled/smokeping"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "/etc/nginx/sites-available/smokeping.ssl"
-    dest:               "/etc/nginx/sites-enabled/smokeping.ssl"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
     src:                "/etc/nginx/sites-available/remote"
     dest:               "/etc/nginx/sites-enabled/remote"
   - owner:              'root'
@@ -176,16 +123,6 @@ symlinks:
     mode:               '0644'
     src:                "/etc/nginx/sites-available/remote.ssl"
     dest:               "/etc/nginx/sites-enabled/remote.ssl"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "/etc/nginx/sites-available/nagios"
-    dest:               "/etc/nginx/sites-enabled/nagios"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "/etc/nginx/sites-available/nagios.ssl"
-    dest:               "/etc/nginx/sites-enabled/nagios.ssl"
 authorized_keys:
   - user:               'rachel-phone'
     keyfile:            '~/code/fleet/conf/ssh_keys/rsync_backup@rachel-phone.dss_key.pub'

@@ -6,6 +6,11 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
+    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/smokeping.ssl"
+    dest:               '/etc/nginx/sites-available/smokeping.ssl'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
     src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/smokeping"
     dest:               '/etc/nginx/sites-available/smokeping'
   - owner:              'root'
@@ -29,6 +34,11 @@ symlinks:
     mode:               '0644'
     src:                '/etc/nginx/sites-available/smokeping'
     dest:               '/etc/nginx/sites-enabled/smokeping'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '/etc/nginx/sites-available/smokeping.ssl'
+    dest:               '/etc/nginx/sites-enabled/smokeping.ssl'
 enable_services:
   - 'mini-httpd'
 stop_services:

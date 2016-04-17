@@ -1,4 +1,5 @@
 ---
+- include:              'tasks/create_files.yml'
 - include:              'tasks/install_files.yml'
 - include:              'tasks/symlinks.yml'
 - include:              'tasks/authorized_keys.yml'
