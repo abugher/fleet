@@ -1,0 +1,8 @@
+---
+- name:                 'disable services'
+  service:
+    name:               "{{ item }}"
+    enabled:            'no'
+    state:              'stopped'
+  with_items:           "{{ disable_services }}"
+  register:             disable_services_result

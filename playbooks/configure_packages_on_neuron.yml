@@ -2,4 +2,3 @@
 - include:              'configure_nginx_on_neuron.yml'
 - include:              'configure_transmission_on_neuron.yml'
 - include:              'configure_tftpd-hpa_on_neuron.yml'
-- include:              'configure_network_on_neuron.yml'

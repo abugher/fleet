@@ -46,6 +46,11 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
+    src:                '~/code/fleet/conf/network/neuron/interfaces'
+    dest:               '/etc/network/interfaces'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
     src:                '~/code/fleet/conf/hostname.neuron'
     dest:               '/etc/hostname'
   - owner:              'root'
@@ -110,5 +115,7 @@ install_files:
     dest:             '/etc/cron.d/flexget_failed_clear'
 restart_services:
   - 'hostname.sh'
+disable_services:
+  - 'dhcpcd'
 dot_users:
   - 'pi'
