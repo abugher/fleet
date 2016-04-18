@@ -1,4 +1,8 @@
 ---
+system_users:
+  - 'escrow'
+system_groups:
+  - 'escrow'
 create_files:
   - owner:              'root'
     group:              'root'

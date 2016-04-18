@@ -12,4 +12,7 @@ authorized_keys:
     keyfile:            '~/code/fleet/conf/ssh_keys/rachel@rudolph.id_rsa.pub'
   - user:               'cryptkeeper'
     keyfile:            '~/code/fleet/conf/ssh_keys/rachel@meliora.id_rsa.pub'
-
+system_users:
+  - 'cryptkeeper'
+system_groups:
+  - 'cryptkeeper'

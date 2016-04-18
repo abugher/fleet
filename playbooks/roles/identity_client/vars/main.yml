@@ -2,7 +2,7 @@
 users:
   - 'aaron'
   - 'rachel'
-dot_users:              "{{ users }}"
+homedirs:               "{{ users }}"
 groups:                 "{{ users }}"
 system_users:
   - 'nagios'

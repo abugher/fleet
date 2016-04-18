@@ -12,3 +12,4 @@ dependencies:
   - { role: 'cryptkeeper' }
   - { role: 'flexget' }
   - { role: 'static_address' }
+  - { role: 'tftp' }

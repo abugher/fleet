@@ -1,0 +1,25 @@
+---
+- name:                 'home directory contents, common'
+  copy:
+    src:                '~/code/fleet/conf/homedirs/common/'
+    dest:               "~{{ item }}/"
+  with_items:           "{{ homedirs }}"
+  register:             homedirs_common_result 
+- name:                 'home directory contents, by user'
+  copy:
+    src:                "~/code/fleet/conf/homedirs/{{ item }}/common/"
+    dest:               "~{{ item }}/"
+  with_items:           "{{ homedirs }}"
+  register:             homedirs_by_user_result 
+- name:                 'home directory contents, by user and host'
+  copy:
+    src:                "~/code/fleet/conf/homedirs/{{ item }}/{{ inventory_hostname }}/"
+    dest:               "~{{ item }}/"
+  with_items:           "{{ homedirs }}"
+  register:             homedirs_by_user_at_host_result 
+- include:              'tasks/token_change.yml'
+  vars:
+    token_change_result_name:   homedirs_result
+  when:                 homedirs_common_result.changed
+                        or homedirs_by_user_result.changed
+                        or homedirs_by_user_at_host_result.changed

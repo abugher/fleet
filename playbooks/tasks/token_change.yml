@@ -1,0 +1,8 @@
+---
+- file:
+    state:              'file'
+    path:               '/tmp/token_change_file'
+- file:
+    state:              'absent'
+    path:               '/tmp/token_change_file'
+  register:             "{{ token_change_result_name }}"

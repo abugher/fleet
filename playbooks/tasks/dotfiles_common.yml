@@ -1,7 +1,0 @@
----
-- name:                 'dotfiles, common to all'
-  copy:
-    src:                '~/code/fleet/conf/dotfiles/common/'
-    dest:               "~{{ item }}/"
-  with_items:           "{{ dot_users }}"
-  register:             dotfiles_common_result

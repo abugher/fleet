@@ -9,5 +9,5 @@
 
   - name:               'extra dotfiles for rachel'
     copy:
-      src:              '~/code/fleet/conf/dotfiles/rachel@meliora/'
+      src:              '~/code/fleet/conf/homedirs/rachel@meliora/'
       dest:             '~rachel/'

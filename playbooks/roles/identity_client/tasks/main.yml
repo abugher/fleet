@@ -2,5 +2,5 @@
 - include:              'tasks/users.yml'
 - include:              'tasks/system_users.yml'
 - include:              'tasks/groups.yml'
-- include:              'tasks/dotfiles_common.yml'
+- include:              'tasks/homedirs.yml'
 - include:              'tasks/authorized_keys.yml'
