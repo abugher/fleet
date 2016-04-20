@@ -1,0 +1,6 @@
+---
+- command:               "{{ item.command }}"
+  args:
+    chdir:              "{{ item.chdir }}"
+    creates:            "{{ item.creates }}"
+  with_items:           "{{ commands }}"

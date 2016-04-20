@@ -1,3 +1,2 @@
 ---
-- include:              'install_nethack_on_neuron.yml'
 - include:              'install_nethack_on_rudolph.yml'
