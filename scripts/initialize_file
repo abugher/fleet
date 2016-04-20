@@ -11,6 +11,6 @@ fail() {
 }
 
 touch $file || fail 1 "touch failed"
-chown "${user}:${group}" "${file}" || fail 2 "chown failed"
+chown "${owner}:${group}" "${file}" || fail 2 "chown failed"
 chmod "${mode}" "${file}" || fail 3 "chmod failed"
 
