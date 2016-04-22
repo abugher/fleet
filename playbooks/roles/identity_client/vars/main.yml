@@ -6,7 +6,7 @@ homedirs:               "{{ users }}"
 groups:                 "{{ users }}"
 system_users:
   - 'nagios'
-keys:
+authorized_keys:
   - user:               'nagios'
     keyfile:            '~/code/fleet/conf/ssh_keys/nagios@synapse.id_rsa.pub'
 
