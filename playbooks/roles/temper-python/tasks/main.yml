@@ -1,0 +1,4 @@
+---
+- include:              'tasks/install_files.yml'
+- include:              'tasks/commands.yml'
+- include:              'tasks/git_repos.yml'

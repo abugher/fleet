@@ -14,3 +14,4 @@ dependencies:
   - { role: 'static_address' }
   - { role: 'tftp' }
   - { role: 'nethack' }
+  - { role: 'temper-python' }
