@@ -1,4 +1,6 @@
 ---
+- include:              'tasks/install_packages.yml'
+- include:              'tasks/remove_packages.yml'
 - include:              'tasks/create_files.yml'
 - include:              'tasks/initialize_files.yml'
 - include:              'tasks/install_files.yml'
@@ -6,6 +8,7 @@
 - include:              'tasks/homedirs.yml'
 - include:              'tasks/groups.yml'
 - include:              'tasks/users.yml'
+# Enable services here?
 - include:              'tasks/restart_services.yml'
   when:                 install_files_result.changed
                         or symlinks_result.changed

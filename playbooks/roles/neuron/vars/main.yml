@@ -120,4 +120,38 @@ authorized_keys:
     keyfile:            '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
   - user:               'aaron-phone'
     keyfile:            '~/code/fleet/conf/ssh_keys/rsync_backup@aaron-phone.dss_key.pub'
-
+install_packages:
+  - 'nginx'
+  - 'dokuwiki'
+  - 'php5-fpm'
+  - 'smokeping'
+  - 'dnsmasq'
+  - 'cryptsetup'
+  - 'transmission-daemon'
+  - 'nagios-plugins-basic'          # monitor /storage
+  - 'libpam-krb5'
+  - 'python-usb'
+  - 'python-setuptools'
+  - 'git'
+  - 'snmpd'
+  - 'libncurses-dev'                # for nethack
+  - 'byacc'                         # for nethack
+  - 'flex'                          # for nethack
+  - 'isc-dhcp-server'
+  - 'tftpd-hpa'
+  - 'debian-installer-8-netboot-i386'
+  - 'debian-installer-8-netboot-amd64'
+  - 'pxelinux'
+remove_packages:
+  - 'apache2'
+  - 'apache2-mpm-worker'
+  - 'apache2-utils'
+  - 'apache2.2-bin'
+  - 'apache2.2-common'
+  - 'wicd-daemon'
+  - 'wicd-gtk'
+  - 'python-wicd'
+  - 'python-gobject'
+  - 'rfkill'
+  - 'avahi-daemon'
+  - 'snmpd'
