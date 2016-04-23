@@ -3,5 +3,6 @@
 - include:              'tasks/install_python_packages.yml'
 - include:              'tasks/disable_services.yml'
 - include:              'tasks/install_files.yml'
+- include:              'tasks/install_files_ignore_result.yml'
 - include:              'tasks/symlinks.yml'
 - include:              'tasks/initialize_files.yml'
