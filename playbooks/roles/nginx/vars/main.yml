@@ -4,6 +4,12 @@ install_packages:
   - 'nginx-extras'
   - 'fcgiwrap'
   - 'php5-fpm'
+remove_packages:
+  - 'apache2'
+  - 'apache2-mpm-worker'
+  - 'apache2-utils'
+  - 'apache2.2-bin'
+  - 'apache2.2-common'
 install_files:
   - owner:              'root'
     group:              'root'

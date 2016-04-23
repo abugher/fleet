@@ -1,4 +1,7 @@
 ---
+install_python_packages:
+  - 'FlexGet'
+  - 'functools32'       # for flexget
 create_files:
   - path:               '/home/pi/.flexget'
     state:              'directory'

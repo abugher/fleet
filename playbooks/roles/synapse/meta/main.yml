@@ -12,5 +12,5 @@ dependencies:
   - { role: 'nagios' }
   - { role: 'smokeping' }
   - { role: 'zabbix' }
-  - { role: 'storage' }
+  - { role: 'escrow' }
   - { role: 'dphys-swapfile' }

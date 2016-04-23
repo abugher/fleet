@@ -1,4 +1,6 @@
 ---
+install_packages:
+  - 'libpam-krb5'
 users:
   - 'aaron'
   - 'rachel'

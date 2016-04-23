@@ -1,6 +1,8 @@
 ---
 disable_services:
   - 'dhcpcd'
+stop_services:
+  - 'dhcpcd'
 install_files:
   - owner:              'root'
     group:              'root'

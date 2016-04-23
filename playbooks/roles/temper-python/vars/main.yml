@@ -1,4 +1,10 @@
 ---
+install_packages:
+  - 'git'
+  - 'python-usb'
+  - 'python-setuptools'
+install_python_packages:
+  - 'pyusb'             # for temperusb
 install_files:
   - owner:              'root'
     group:              'root'

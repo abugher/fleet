@@ -1,4 +1,6 @@
 ---
+install_packages:
+  - 'isc-dhcp-server'
 install_files:
   - owner:              'root'
     group:              'root'

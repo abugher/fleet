@@ -1,6 +1,8 @@
 ---
 - name:                 'install packages'
   include:              'tasks/install_packages.yml'
+- name:                 'remove packages'
+  include:              'tasks/remove_packages.yml'
 - name:                 'install files'
   include:              'tasks/install_files.yml'
 - name:                 'symlinks'

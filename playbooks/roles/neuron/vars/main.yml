@@ -25,26 +25,6 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/wiki"
-    dest:               "/etc/nginx/sites-available/wiki"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/wiki.ssl"
-    dest:               "/etc/nginx/sites-available/wiki.ssl"  
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/remote"
-    dest:               "/etc/nginx/sites-available/remote"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/remote.ssl"
-    dest:               "/etc/nginx/sites-available/remote.ssl"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
     src:                '~/code/fleet/conf/nginx/neuron/preseed.cfg'
     dest:               '/usr/share/nginx/www/plaintext/preseed.cfg'
   - owner:              'root'
@@ -73,36 +53,6 @@ symlinks:
     mode:               '0644'
     src:                '/storage/aaron-phone/live/legacy/DCIM/Camera'
     dest:               '/usr/share/nginx/www/private/pictures'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "/etc/nginx/sites-available/wiki"
-    dest:               "/etc/nginx/sites-enabled/wiki"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "/etc/nginx/sites-available/wiki.ssl"
-    dest:               "/etc/nginx/sites-enabled/wiki.ssl"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "/etc/nginx/sites-available/transmission"
-    dest:               "/etc/nginx/sites-enabled/transmission"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "/etc/nginx/sites-available/transmission.ssl"
-    dest:               "/etc/nginx/sites-enabled/transmission.ssl"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "/etc/nginx/sites-available/remote"
-    dest:               "/etc/nginx/sites-enabled/remote"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "/etc/nginx/sites-available/remote.ssl"
-    dest:               "/etc/nginx/sites-enabled/remote.ssl"
 authorized_keys:
   - user:               'rachel-phone'
     keyfile:            '~/code/fleet/conf/ssh_keys/rsync_backup@rachel-phone.dss_key.pub'
@@ -110,44 +60,4 @@ authorized_keys:
     keyfile:            '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
   - user:               'aaron-phone'
     keyfile:            '~/code/fleet/conf/ssh_keys/rsync_backup@aaron-phone.dss_key.pub'
-install_packages:
-  - 'nginx'
-  - 'dokuwiki'
-  - 'php5-fpm'
-  - 'smokeping'
-  - 'dnsmasq'
-  - 'cryptsetup'
-  - 'transmission-daemon'
-  - 'nagios-plugins-basic'      # monitor /storage
-  - 'libpam-krb5'
-  - 'python-usb'
-  - 'python-setuptools'
-  - 'git'
-  - 'snmpd'
-  - 'libncurses-dev'            # for nethack
-  - 'byacc'                     # for nethack
-  - 'flex'                      # for nethack
-  - 'isc-dhcp-server'
-  - 'tftpd-hpa'
-  - 'debian-installer-8-netboot-i386'
-  - 'debian-installer-8-netboot-amd64'
-  - 'pxelinux'
-remove_packages:
-  - 'apache2'
-  - 'apache2-mpm-worker'
-  - 'apache2-utils'
-  - 'apache2.2-bin'
-  - 'apache2.2-common'
-  - 'wicd-daemon'
-  - 'wicd-gtk'
-  - 'python-wicd'
-  - 'python-gobject'
-  - 'rfkill'
-  - 'avahi-daemon'
-  - 'snmpd'
-install_python_packages:
-  - 'FlexGet'
-  - 'functools32'               # for flexget
-  - 'transmissionrpc'
-  - 'snmp-passpersist'
-  - 'pyusb'                     # for temperusb
+

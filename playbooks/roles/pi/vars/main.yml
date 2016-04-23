@@ -1,7 +1,16 @@
 ---
+remove_packages:
+  - 'wicd-daemon'
+  - 'wicd-gtk'
+  - 'python-wicd'
+  - 'python-gobject'
+  - 'rfkill'
+  - 'avahi-daemon'
+  - 'snmpd'
 # pi user doesn't need to be created; it comes with Raspbian.
 authorized_keys:
   - user:               'pi'
     keyfile:            '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
 homedirs:
   - 'pi'
+

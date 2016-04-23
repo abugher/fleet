@@ -1,0 +1,26 @@
+---
+install_packages:
+  - 'dokuwiki'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/wiki"
+    dest:               "/etc/nginx/sites-available/wiki"
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/wiki.ssl"
+    dest:               "/etc/nginx/sites-available/wiki.ssl"  
+symlinks:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "/etc/nginx/sites-available/wiki"
+    dest:               "/etc/nginx/sites-enabled/wiki"
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "/etc/nginx/sites-available/wiki.ssl"
+    dest:               "/etc/nginx/sites-enabled/wiki.ssl"
+

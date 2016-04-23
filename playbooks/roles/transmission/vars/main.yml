@@ -1,4 +1,10 @@
 ---
+install_python_packages:
+  - 'transmissionrpc'
+install_packages:
+  - 'transmission-daemon'
+disable_services:        
+  - 'transmission-daemon'
 install_files:
   - owner:              'root'
     group:              'root'
@@ -30,6 +36,17 @@ install_files:
     group:              'root'
     src:                '~/code/sensitive/bin/update_transmission_blocklist_cronjob'
     dest:               '/usr/local/bin/update_transmission_blocklist_cronjob'
+symlinks:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "/etc/nginx/sites-available/transmission"
+    dest:               "/etc/nginx/sites-enabled/transmission"
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "/etc/nginx/sites-available/transmission.ssl"
+    dest:               "/etc/nginx/sites-enabled/transmission.ssl"
 initialize_files:
   - owner:              'pi'
     group:              'pi'

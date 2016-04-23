@@ -1,0 +1,6 @@
+---
+install_packages:
+  - 'tftpd-hpa'
+  - 'debian-installer-8-netboot-i386'
+  - 'debian-installer-8-netboot-amd64'
+  - 'pxelinux 
