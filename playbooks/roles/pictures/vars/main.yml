@@ -1,0 +1,20 @@
+---
+create_files:
+  - path:               '/usr/share/nginx/www/private'
+    owner:              'root'
+    group:              'www-data'
+    mode:               '0750'
+    state:              'directory'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/cron.d/neuron/chown_pictures'
+    dest:               '/etc/cron.d/chown_pictures'
+symlinks:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '/storage/aaron-phone/live/legacy/DCIM/Camera'
+    dest:               '/usr/share/nginx/www/private/pictures'
+

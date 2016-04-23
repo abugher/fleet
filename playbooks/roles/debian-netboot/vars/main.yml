@@ -3,4 +3,17 @@ install_packages:
   - 'tftpd-hpa'
   - 'debian-installer-8-netboot-i386'
   - 'debian-installer-8-netboot-amd64'
-  - 'pxelinux 
+  - 'pxelinux'
+create_files:
+  - path:               '/usr/share/nginx/www/plaintext'
+    owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    state:              'directory'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/nginx/neuron/preseed.cfg'
+    dest:               '/usr/share/nginx/www/plaintext/preseed.cfg'
+
