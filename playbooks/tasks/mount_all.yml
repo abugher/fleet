@@ -1,0 +1,3 @@
+---
+- shell:                mount -a
+  register:             mount_all_result

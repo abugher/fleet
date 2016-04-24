@@ -1,0 +1,7 @@
+---
+- lineinfile:
+    line:               "{{ item.line }}"
+    dest:               "{{ item.dest }}"
+    state:              'present'
+  with_items:           "{{ lines_in_files }}"
+  register:             lines_in_files_result
