@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#ls -1 *.yml | while read f; do
+#  if ! grep -q "'${f}'" *.yml; then
+#    echo "orphan:  ${f}"
+#  fi
+#done
+
+cd ~/code/fleet/playbooks
+
+for r in $(ls roles/); do 
+  if ! grep -q $r roles/*/meta/main.yml; then 
+    echo "orphan:  ${r}"
+  fi
+done
+
+cd -
