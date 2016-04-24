@@ -1,19 +1,10 @@
 ---
-- name:                 'install packages'
-  include:              'tasks/install_packages.yml'
-- name:                 'remove packages'
-  include:              'tasks/remove_packages.yml'
-- name:                 'install files'
-  include:              'tasks/install_files.yml'
-- name:                 'symlinks'
-  include:              'tasks/symlinks.yml'
-- name:                 'enable services'
-  include:              'tasks/enable_services.yml'
-- name:                 'start services'
-  include:              'tasks/restart_services.yml'
-  when:                 enable_services_result.changed 
-                        or install_packages_result.changed 
-- name:                 'restart services'
-  include:              'tasks/restart_services.yml'
+- include:              'tasks/install_packages.yml'
+- include:              'tasks/remove_packages.yml'
+- include:              'tasks/install_files.yml'
+- include:              'tasks/symlinks.yml'
+- include:              'tasks/enable_services.yml'
+- include:              'tasks/start_services.yml'
+- include:              'tasks/restart_services.yml'
   when:                 install_files_result.changed 
                         or symlinks_result.changed 

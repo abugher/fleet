@@ -1,11 +1,11 @@
 ---
 install_packages:
   - 'libpam-krb5'
+groups:                 "{{ users }}"
+homedirs:               "{{ users }}"
 users:
   - 'aaron'
   - 'rachel'
-homedirs:               "{{ users }}"
-groups:                 "{{ users }}"
 system_users:
   - 'nagios'
 authorized_keys:

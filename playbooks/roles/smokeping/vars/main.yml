@@ -48,5 +48,4 @@ start_services:
   - 'mini-httpd'
   - 'smokeping'
 restart_services:
-  - 'mini-httpd'
   - 'smokeping'

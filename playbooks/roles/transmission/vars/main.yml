@@ -1,16 +1,10 @@
 ---
-install_python_packages:
-  - 'transmissionrpc'
 install_packages:
   - 'transmission-daemon'
+install_python_packages:
+  - 'transmissionrpc'
 disable_services:        
   - 'transmission-daemon'
-install_files_ignore_result:
-  - owner:              'debian-transmission'
-    group:              'debian-transmission'
-    mode:               '0600'
-    src:                "~/code/sensitive/conf/transmission-daemon/{{ inventory_hostname }}/settings.json"
-    dest:               '/etc/transmission-daemon/settings.json'
 install_files:
   - owner:              'root'
     group:              'root'
@@ -37,6 +31,12 @@ install_files:
     group:              'root'
     src:                '~/code/sensitive/bin/update_transmission_blocklist_cronjob'
     dest:               '/usr/local/bin/update_transmission_blocklist_cronjob'
+install_files_ignore_result:
+  - owner:              'debian-transmission'
+    group:              'debian-transmission'
+    mode:               '0600'
+    src:                "~/code/sensitive/conf/transmission-daemon/{{ inventory_hostname }}/settings.json"
+    dest:               '/etc/transmission-daemon/settings.json'
 symlinks:
   - owner:              'root'
     group:              'root'

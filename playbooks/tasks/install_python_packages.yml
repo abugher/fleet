@@ -1,4 +1,8 @@
 ---
+- name:                 'easy_install pip'
+  easy_install: 
+    name:               'pip'
+  register:             easy_install_pip_result
 - name:                 'install python packages'
   pip:
     name:               "{{ item }}"

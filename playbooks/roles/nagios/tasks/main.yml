@@ -1,16 +1,8 @@
 ---
-- name:                 'install packages'
-  include:              'tasks/install_packages.yml'
-- name:                 'synchronize directories'
-  include:              'tasks/sync_dirs.yml'
-- name:                 'install files'
-  include:              'tasks/install_files.yml'
-- name:                 'enable services'
-  include:              'tasks/enable_services.yml'
-- name:                 'start services'
-  include:              'tasks/start_services.yml'
-  when:                 enable_services_result.changed
-                        or install_packages_result.changed 
-- name:                 'restart services'
-  include:              'tasks/restart_services.yml'
+- include:              'tasks/install_packages.yml'
+- include:              'tasks/sync_dirs.yml'
+- include:              'tasks/install_files.yml'
+- include:              'tasks/enable_services.yml'
+- include:              'tasks/start_services.yml'
+- include:              'tasks/restart_services.yml'
   when:                 install_files_result.changed 

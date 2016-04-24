@@ -5,9 +5,8 @@
 - include:              'tasks/enable_services.yml'
 - include:              'tasks/stop_services.yml'
   when:                 install_files_result.changed 
-- name:                 'start services'
-  include:              'tasks/restart_services.yml'
-  when:                 enable_services_result.changed 
+- include:              'tasks/start_services.yml'
+  when:                 install_files_result.changed 
                         or install_packages_result.changed 
 - include:              'tasks/restart_services.yml'
   when:                 install_files_result.changed 

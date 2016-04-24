@@ -67,6 +67,10 @@ symlinks:
     mode:               '0644'
     src:                'pxelinux/lpxelinux.0'
     dest:               '/srv/tftp/lpxelinux.0'
+enable_services:
+  - 'tftpd-hpa'
+start_services:
+  - 'tftpd-hpa'
 restart_services:
   - 'tftpd-hpa'
 

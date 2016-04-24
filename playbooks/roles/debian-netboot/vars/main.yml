@@ -4,6 +4,8 @@ install_packages:
   - 'debian-installer-8-netboot-i386'
   - 'debian-installer-8-netboot-amd64'
   - 'pxelinux'
+enable_services:
+  - 'tftpd-hpa'
 create_files:
   - path:               '/usr/share/nginx/www/plaintext'
     owner:              'root'
@@ -21,6 +23,8 @@ install_files:
     mode:               '0644'
     src:                '~/code/fleet/conf/fstab/neuron/fstab'
     dest:               '/etc/fstab'
+start_services:
+  - 'tftpd-hpa'
 lines_in_files:
   - dest:               '/etc/fstab'
     line:               '/usr/lib/debian-installer/images/8/amd64/text/debian-installer/amd64    /srv/tftp/debian-installer/amd64        none    bind,auto       0       0 # This line added by ansible.'

@@ -7,5 +7,9 @@ install_files:
     mode:               '0644'
     src:                '~/code/fleet/conf/isc-dhcp-server/neuron/dhcpd.conf'
     dest:               '/etc/dhcp/dhcpd.conf'
+enable_services:
+  - 'isc-dhcp-server'
+start_services:
+  - 'isc-dhcp-server'
 restart_services:
   - 'isc-dhcp-server'

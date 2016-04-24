@@ -1,11 +1,11 @@
 ---
-install_packages:
-  - 'nagios-plugins-basic'      # monitor /storage
-  - 'cryptsetup'
 system_users:
   - 'escrow'
 system_groups:
   - 'escrow'
+install_packages:
+  - 'nagios-plugins-basic'      # monitor /storage
+  - 'cryptsetup'
 create_files:
   - owner:              'root'
     group:              'root'
