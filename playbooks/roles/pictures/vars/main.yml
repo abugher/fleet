@@ -1,10 +1,4 @@
 ---
-create_files:
-  - path:               '/usr/share/nginx/www/private'
-    owner:              'root'
-    group:              'www-data'
-    mode:               '0750'
-    state:              'directory'
 install_files:
   - owner:              'root'
     group:              'root'

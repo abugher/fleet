@@ -1,15 +1,8 @@
 ---
 install_files:
   - owner:              'root'
-    group:              'www-data'
-    mode:               '0640'
-    src:                '~/code/sensitive/conf/nginx/neuron/htpasswd'
-    dest:               '/etc/nginx/htpasswd'
-  - owner:              'root'
     group:              'root'
     mode:               '0644'
     src:                '~/code/fleet/conf/nginx/neuron/index.html'
     dest:               '/usr/share/nginx/www/index.html'
-homedirs:
-  - 'root'
 

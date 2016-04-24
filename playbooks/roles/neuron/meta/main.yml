@@ -10,6 +10,7 @@ dependencies:
   - { role: 'dnsmasq' }
   - { role: 'dhcpd' }
   - { role: 'cryptkeeper' }
+  - { role: 'transmission' }
   - { role: 'flexget' }
   - { role: 'static_address' }
   - { role: 'tftp' }
@@ -17,3 +18,5 @@ dependencies:
   - { role: 'temper-python' }
   - { role: 'debian-netboot' }
   - { role: 'pictures' }
+  - { role: 'private_web' }
+  - { role: 'front_page' }

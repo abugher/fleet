@@ -38,3 +38,5 @@ escrow_buddy_file:      "/home/aaron/code/fleet/conf/ssh_keys/escrow_buddy_for_{
 authorized_keys:
   - user:               'escrow'
     keyfile:            "{{ lookup('file', escrow_buddy_file) }}"
+homedirs:
+  - 'root'              # .known_hosts
