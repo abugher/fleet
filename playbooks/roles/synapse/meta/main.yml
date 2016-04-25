@@ -14,3 +14,4 @@ dependencies:
   - { role: 'zabbix' }
   - { role: 'escrow' }
   - { role: 'dphys-swapfile' }
+  - { role: 'monitored' }

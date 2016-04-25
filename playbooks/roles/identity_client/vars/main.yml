@@ -1,6 +1,13 @@
 ---
 install_packages:
   - 'libpam-krb5'
+  - 'krb5-user'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '~/code/fleet/conf/kerberos/krb5.conf'
+    dest:               '/etc/krb5.conf'
 groups:                 "{{ users }}"
 homedirs:               "{{ users }}"
 users:

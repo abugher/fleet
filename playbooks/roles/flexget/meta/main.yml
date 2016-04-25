@@ -2,3 +2,4 @@
 dependencies:
   - { role: 'pi' }
   - { role: 'transmission' }
+  - { role: 'python' }

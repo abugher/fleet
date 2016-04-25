@@ -1,0 +1,8 @@
+---
+dependencies:
+  - { role: 'fleet' }
+  - { role: 'ssh' }
+  - { role: 'apt' }
+  - { role: 'reboot' }
+  - { role: 'identity_client' }
+  - { role: 'monitored' }

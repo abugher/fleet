@@ -1,0 +1,16 @@
+---
+install_packages:
+  # libffi-dev is needed to compile pyOpenSSL, a python package, which
+  # in turn is required for the total happiness of urllib3, which is
+  # used by pip, which I use (I think) to update python packages.
+  # Necessary as of 2015-08-01.
+  - 'libffi-dev'
+  - 'python-dev'
+  - 'libssl-dev'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/update_python_packages'
+    dest:               '/usr/local/bin/update_python_packages'
+

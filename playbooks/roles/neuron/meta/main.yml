@@ -22,3 +22,4 @@ dependencies:
   - { role: 'front_page' }
   - { role: 'wiki' }
   - { role: 'remote_proxy' }
+  - { role: 'monitored' }

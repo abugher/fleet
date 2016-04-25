@@ -1,5 +1,12 @@
 ---
+install_packages:
+  - 'debian-goodies'
 install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/stamp'
+    dest:               '/usr/local/bin/stamp'
   - owner:              'root'
     group:              'root'
     mode:               '0644'

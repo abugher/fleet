@@ -1,12 +1,5 @@
 ---
-groups:
-  - 'nagios'
-authorized_keys:
-  - user:               'ansible'
-    keyfile:            '~/code/fleet/conf/ssh_keys/pi@synapse.id_rsa.pub'
 install_packages:
-  - 'cron'
-  - 'ntp'
   - 'vim'
   - 'less'
   - 'molly-guard'
@@ -14,20 +7,7 @@ install_packages:
   - 'nmap'
   - 'sl'
   - 'john'
-  - 'debian-goodies'
-  # libffi-dev is needed to compile pyOpenSSL, a python package, which
-  # in turn is required for the total happiness of urllib3, which is
-  # used by pip, which I use (I think) to update python packages.
-  # Necessary as of 2015-08-01.
-  - 'libffi-dev'
-  - 'libssl-dev'
-  - 'python-dev'
   - 'mlocate'
-  - 'libpam-krb5'
-  - 'krb5-user'
-  - 'libncurses-dev'    # for compiling nethack
-  - 'byacc'             # for compiling nethack
-  - 'flex'              # for compiling nethack
   - 'bc'
   - 'htop'
 remove_packages:
@@ -35,36 +15,10 @@ remove_packages:
 install_files:
   - owner:              'root'
     group:              'root'
-    mode:               '0755'
-    src:                '~/code/fleet/bin/stamp'
-    dest:               '/usr/local/bin/stamp'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0755'
-    src:                '~/code/fleet/bin/update_debian'
-    dest:               '/usr/local/bin/update_debian'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0755'
-    src:                '~/code/fleet/bin/update_python_packages'
-    dest:               '/usr/local/bin/update_python_packages'
-  - owner:              'root'
-    group:              'root'
     mode:               '0644'
     src:                '~/code/fleet/conf/vimrc'
     dest:               '/etc/vim/vimrc'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                '~/code/fleet/conf/kerberos/krb5.conf'
-    dest:               '/etc/krb5.conf'
 install_python_packages:
   - 'ndg-httpsclient'
   - 'pyasn1'
   - 'pyopenssl'
-enable_services:
-  - 'cron'
-  - 'ntp'
-start_services:
-  - 'cron'
-  - 'ntp'
