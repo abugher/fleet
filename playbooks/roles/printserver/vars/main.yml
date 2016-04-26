@@ -1,0 +1,15 @@
+---
+create_files:
+  - owner:              'rachel'
+    group:              'root'
+    mode:               '1777'
+    state:              'directory'
+    path:               '/usr/local/share/print_target'
+install_files:
+  - src:                '~/code/fleet/conf/cups/cups-pdf.conf'
+    dest:               '/etc/cups/cups-pdf.conf'
+    owner:              'root'
+    group:              'root'
+    mode:               '0644'
+restart_services:
+  - 'cups'

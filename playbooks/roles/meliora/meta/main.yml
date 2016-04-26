@@ -6,3 +6,4 @@ dependencies:
   - { role: 'reboot' }
   - { role: 'identity_client' }
   - { role: 'monitored' }
+  - { role: 'printserver' }
