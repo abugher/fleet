@@ -1,5 +1,4 @@
 ---
-- include:              'configure_debian_updates_on_meliora.yml'
 - include:              'configure_debian_updates_on_rudolph.yml'
 - include:              'configure_debian_updates_on_neuron.yml'
 - include:              'configure_debian_updates_on_neuron-mail.yml'
