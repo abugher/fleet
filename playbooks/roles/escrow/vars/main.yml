@@ -28,7 +28,6 @@ install_files:
 symlinks:
   - owner:              'root'
     group:              'root'
-    mode:               '0755'
     src:                '/usr/local/bin/tend_storage'
     dest:               '/usr/local/bin/s'
 escrow_buddy_file:      "/home/aaron/code/fleet/conf/ssh_keys/escrow_buddy_for_{{ inventory_hostname }}"

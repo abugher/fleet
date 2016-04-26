@@ -40,12 +40,10 @@ install_files_ignore_result:
 symlinks:
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                "/etc/nginx/sites-available/transmission"
     dest:               "/etc/nginx/sites-enabled/transmission"
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                "/etc/nginx/sites-available/transmission.ssl"
     dest:               "/etc/nginx/sites-enabled/transmission.ssl"
 initialize_files:

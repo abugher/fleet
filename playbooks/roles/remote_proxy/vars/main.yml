@@ -13,11 +13,9 @@ install_files:
 symlinks:
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                "/etc/nginx/sites-available/remote"
     dest:               "/etc/nginx/sites-enabled/remote"
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                "/etc/nginx/sites-available/remote.ssl"
     dest:               "/etc/nginx/sites-enabled/remote.ssl"

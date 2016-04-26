@@ -25,6 +25,5 @@ commands:
 symlinks:
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                '/usr/local/games/nethack'
     dest:               '/usr/local/bin/nethack3.6'

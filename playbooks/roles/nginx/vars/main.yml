@@ -39,12 +39,10 @@ install_files:
 symlinks:
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                '/etc/nginx/sites-available/default'
     dest:               '/etc/nginx/sites-enabled/default'
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                '/etc/nginx/sites-available/default.ssl'
     dest:               '/etc/nginx/sites-enabled/default.ssl'
 enable_services:

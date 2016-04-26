@@ -109,12 +109,10 @@ install_files:
 symlinks:
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                '/etc/nginx/sites-available/nagios'
     dest:               '/etc/nginx/sites-enabled/nagios'
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                '/etc/nginx/sites-available/nagios.ssl'
     dest:               '/etc/nginx/sites-enabled/nagios.ssl'
 enable_services:

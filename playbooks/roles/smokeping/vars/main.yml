@@ -31,12 +31,10 @@ install_files:
 symlinks:
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                '/etc/nginx/sites-available/smokeping'
     dest:               '/etc/nginx/sites-enabled/smokeping'
   - owner:              'root'
     group:              'root'
-    mode:               '0644'
     src:                '/etc/nginx/sites-available/smokeping.ssl'
     dest:               '/etc/nginx/sites-enabled/smokeping.ssl'
 enable_services:
