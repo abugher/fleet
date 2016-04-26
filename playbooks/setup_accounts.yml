@@ -1,4 +1,2 @@
 ---
 - include:              'configure_users_on_fleet.yml'
-
-- include:              'configure_users_on_meliora.yml'
