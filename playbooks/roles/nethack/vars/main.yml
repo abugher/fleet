@@ -22,8 +22,9 @@ commands:
   - command:            'make install'
     chdir:              '/usr/local/src/nethack-3.6.0'
     creates:            '/usr/local/games/lib/nethackdir/nethack'
-symlinks:
+install_files:
   - owner:              'root'
     group:              'root'
-    src:                '/usr/local/games/nethack'
-    dest:               '/usr/local/bin/nethack3.6'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/nethack'
+    dest:               '/usr/local/bin/nethack'

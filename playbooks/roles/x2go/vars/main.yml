@@ -1,0 +1,8 @@
+---
+install_packages:
+  - 'x2goserver'
+  - 'x2goserver-xsession'
+enable_services:
+  - 'x2goserver'
+start_services:
+  - 'x2goserver'

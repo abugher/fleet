@@ -1,5 +1,8 @@
 #!/bin/bash
 
+  nethack='/usr/local/games/nethack'
+bones_dir='/usr/local/games/lib/nethackdir'
+
 function puke {
   ret=$1
   shift
@@ -19,10 +22,10 @@ fi
 
 # Push all the bones files.  Count.
 bones_count=0
-for bones_file in $(ls /var/games/nethack/ | grep '^bon') ; do
+for bones_file in $(ls $bones_dir | grep '^bon') ; do
   bones_file=$(echo $bones_file | sed 's/.*\///g')
   let bones_count++
-  mv /var/games/nethack/$bones_file /tmp/bones/$bones_file || puke $? "failed to move ${bones_file}"
+  mv $bones_dir/$bones_file /tmp/bones/$bones_file || puke $? "failed to move ${bones_file}"
   echo "Uploaded: ${bones_file}"
 done
 echo "Uploaded all ${bones_count} bones files."
@@ -31,16 +34,16 @@ download_count=0
 for bones_file in $(ls /tmp/bones/ | sort -R); do
   bones_file=$(echo $bones_file | sed 's/.*\///g')
   if test $bones_count -lt 1; then break; fi
-  mv /tmp/bones/$bones_file /var/games/nethack/$bones_file || puke $? "failed to move ${bones_file}"
+  mv /tmp/bones/$bones_file $bones_dir/$bones_file || puke $? "failed to move ${bones_file}"
   let bones_count--
   let download_count++
 done
 echo "Downloaded ${download_count} random bones files."
 
 
-bones_count_before=$(ls -1 /var/games/nethack/bon* 2>/dev/null | wc -l)
-/usr/games/nethack
-bones_count_after=$( ls -1 /var/games/nethack/bon* 2>/dev/null | wc -l)
+bones_count_before=$(ls -1 $bones_dir/bon* 2>/dev/null | wc -l)
+$nethack
+bones_count_after=$( ls -1 $bones_dir/bon* 2>/dev/null | wc -l)
 
 bones_count_diff=$(( $bones_count_after - $bones_count_before ))
 

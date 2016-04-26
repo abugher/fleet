@@ -8,3 +8,4 @@ dependencies:
   - { role: 'monitored' }
   - { role: 'printserver' }
   - { role: 'debian-live-build' }
+  - { role: 'x2go' }

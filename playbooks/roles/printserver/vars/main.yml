@@ -1,4 +1,7 @@
 ---
+install_packages:
+  - 'inotify-tools'
+  - 'printer-driver-cups-pdf'
 create_files:
   - owner:              'rachel'
     group:              'root'
@@ -11,5 +14,20 @@ install_files:
     owner:              'root'
     group:              'root'
     mode:               '0644'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/pdfprint'
+    dest:               '/etc/init.d/pdfprint'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '~/code/fleet/bin/pdfprintd'
+    dest:               '/usr/local/bin/pdfprintd'
+enable_services:
+  - 'pdfprint'
+start_services:
+  - 'pdfprint'
 restart_services:
   - 'cups'
+  - 'pdfprint'

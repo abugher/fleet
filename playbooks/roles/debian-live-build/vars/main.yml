@@ -1,4 +1,6 @@
 ---
+install_packages:
+  - 'live-build'
 create_files:
   - owner:              'root'
     group:              'root'
