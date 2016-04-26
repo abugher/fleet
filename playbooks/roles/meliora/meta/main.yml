@@ -7,3 +7,4 @@ dependencies:
   - { role: 'identity_client' }
   - { role: 'monitored' }
   - { role: 'printserver' }
+  - { role: 'debian-live-build' }
