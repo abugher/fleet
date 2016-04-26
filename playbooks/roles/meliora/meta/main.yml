@@ -9,3 +9,4 @@ dependencies:
   - { role: 'printserver' }
   - { role: 'debian-live-build' }
   - { role: 'x2go' }
+  - { role: 'kanboard' }

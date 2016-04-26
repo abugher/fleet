@@ -14,4 +14,4 @@ for r in $(ls roles/); do
   fi
 done
 
-cd -
+cd $OLDPWD
