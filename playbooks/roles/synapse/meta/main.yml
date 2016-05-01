@@ -11,7 +11,8 @@ dependencies:
   - { role: 'krb5' }
   - { role: 'nagios' }
   - { role: 'smokeping' }
-  - { role: 'zabbix' }
+# zabbix isn't ready yet
+#  - { role: 'zabbix' }
   - { role: 'escrow' }
   - { role: 'dphys-swapfile' }
   - { role: 'monitored' }
