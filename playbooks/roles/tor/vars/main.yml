@@ -1,4 +1,6 @@
 ---
+install_packages:
+  - 'tor'
 install_files:
   - owner:              'root'
     group:              'root'
@@ -11,4 +13,8 @@ install_files:
     src:                "~/code/fleet/conf/tor/{{ inventory_hostname }}/front_page.html"
     dest:               '/etc/tor/front_page.html'
 restart_services:
+  - 'tor'
+enable_services:
+  - 'tor'
+start_services:
   - 'tor'

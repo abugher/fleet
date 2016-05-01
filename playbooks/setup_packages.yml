@@ -2,5 +2,3 @@
 - include:              'configure_packages.yml'
 
 - include:              'install_update-notifier-common_on_wheezy_hosts.yml'
-
-- include:              'install_packages_on_neuron-mail.yml'
