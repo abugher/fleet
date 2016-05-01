@@ -1,3 +1,0 @@
----
-- include:              'configure_sshd_on_neuron-mail.yml'
-- include:              'configure_sshd_on_rudolph.yml'

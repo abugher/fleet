@@ -1,0 +1,7 @@
+---
+dependencies:
+  - { role: 'fleet' }
+  - { role: 'ssh' }
+  - { role: 'apt' }
+  - { role: 'monitored' }
+  - { role: 'nethack' }

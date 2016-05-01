@@ -1,10 +1,9 @@
 ---
 - hosts:                rudolph
-  name:                 'install nethack on rudolph'
+  name:                 'configure rudolph'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
-  tasks:
-
-  - include:            'install_nethack_on_something.yml'
+  roles:
+    - 'rudolph'
