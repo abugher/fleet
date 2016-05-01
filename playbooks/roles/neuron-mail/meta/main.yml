@@ -1,5 +1,4 @@
 ---
 dependencies:
   - { role: 'fleet' }
-  - { role: 'ssh' }
   - { role: 'apt' }

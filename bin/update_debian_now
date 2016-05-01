@@ -2,10 +2,10 @@
 
 # DISTRIBUTED BY ANSIBLE
 
-flock /tmp/update_debian.lock -c "
+flock /tmp/update_debian.lock -c '
   /usr/local/bin/update_debian > /var/log/update_debian.daily.log 2>&1
   echo $? > /var/log/update_debian.daily.ret
-"
+'
 
 # Give up trying to understand flock.  Nuke the file.  Now it's unlocked.
 rm /tmp/update_debian.lock

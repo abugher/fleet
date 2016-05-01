@@ -1,7 +1,7 @@
 ---
 dependencies:
   - { role: 'fleet' }
-  - { role: 'ssh' }
+  - { role: 'root_keys' }
   - { role: 'apt' }
   - { role: 'reboot' }
   - { role: 'identity_client' }
