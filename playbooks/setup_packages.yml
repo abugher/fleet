@@ -1,4 +1,2 @@
 ---
 - include:              'configure_packages.yml'
-
-- include:              'install_update-notifier-common_on_wheezy_hosts.yml'

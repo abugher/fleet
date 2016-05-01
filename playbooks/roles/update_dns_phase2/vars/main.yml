@@ -1,0 +1,7 @@
+---
+install_files:
+  owner:                'root'
+  group:                'root'
+  mode:                 '0755'
+  src:                  '~/code/fleet/bin/update_dns_phase2'
+  dest:                 '/usr/local/bin/update_dns_phase2'
