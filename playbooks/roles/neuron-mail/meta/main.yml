@@ -2,3 +2,4 @@
 dependencies:
   - { role: 'fleet' }
   - { role: 'apt' }
+  - { role: 'tor' }

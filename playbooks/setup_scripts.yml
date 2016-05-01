@@ -1,3 +1,2 @@
 ---
 - include:              'install_scripts.yml'
-- include:              'configure_scripts.yml'
