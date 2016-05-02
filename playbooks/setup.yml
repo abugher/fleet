@@ -1,4 +1,0 @@
----
-- include:              'setup_fleet.yml'
-- include:              'setup_identity_clients.yml'
-- include:              'setup_synapse.yml'
