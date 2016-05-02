@@ -26,8 +26,7 @@ timing data for ansible tasks.  It's not my code, and I've included the MIT
 license under which it was released, at playbooks/callback_plugins/LICENSE .
 
 Each of playbooks/setup_*.yml is a small playbook which deploys a role to a
-host or host group of the same name.  The relationship of host definitions to
-host group definitions is not yet well established.
+host of the same name.  This is the entry point for ansible-playbook.
 
 
 # License:
