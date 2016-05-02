@@ -6,17 +6,28 @@ for my fleet of computer hosts.
 
 # structure
 
-Each directory under roles/ defines a role, as is conventional.  Each role
-defines either a service or a host.  Host roles are constructed of dependencies
-on service roles.  Service roles may depend on other service roles, but not
-recursively.  
+Most of the top level directories contain different types of configuration
+material.  playbooks/ contains the ansible code.
 
-Service roles are constructed from tasks, defined in tasks/, and included into
-the role by roles/rolename/tasks/main.yml .  Tasks are reused among roles.  
+Each directory under playbooks/roles/ defines a role.  Each role defines either
+a service or a host.  Host roles are constructed of dependencies on service
+roles.  Service roles may depend on other service roles, but not recursively.  
 
-Tasks are controlled by variables, defined in roles/rolename/vars/main.yml,
-which set the parameters of the tasks (file names and locations, stuff like
-that).
+Service roles are constructed from tasks, defined in playbooks/tasks/, and
+included into the role by playbooks/roles/rolename/tasks/main.yml .  Tasks are
+reused among roles.  
+
+Tasks are controlled by variables, defined in
+playbooks/roles/rolename/vars/main.yml, which set the parameters of the tasks
+(file names and locations, stuff like that).
+
+playbooks/callback_plugins/profile_tasks.py contains some magic to display
+timing data for ansible tasks.  It's not my code, and I've included the MIT
+license under which it was released, at playbooks/callback_plugins/LICENSE .
+
+Each of playbooks/setup_*.yml is a small playbook which deploys a role to a
+host or host group of the same name.  The relationship of host definitions to
+host group definitions is not yet well established.
 
 
 # License:
