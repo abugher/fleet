@@ -1,5 +1,5 @@
 ---
 dependencies:
-  - { role: 'fleet' }
+  - { role: 'user_friendly' }
   - { role: 'apt' }
   - { role: 'tor' }

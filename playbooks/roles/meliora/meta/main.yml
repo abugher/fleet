@@ -1,6 +1,6 @@
 ---
 dependencies:
-  - { role: 'fleet' }
+  - { role: 'user_friendly' }
   - { role: 'root_keys' }
   - { role: 'apt' }
   - { role: 'reboot' }
