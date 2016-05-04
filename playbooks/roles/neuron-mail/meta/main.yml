@@ -2,4 +2,5 @@
 dependencies:
   - { role: 'user_friendly' }
   - { role: 'apt' }
+  - { role: 'sshd' }
   - { role: 'tor' }

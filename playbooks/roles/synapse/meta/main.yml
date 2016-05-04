@@ -3,6 +3,7 @@ dependencies:
   - { role: 'user_friendly' }
   - { role: 'root_keys' }
   - { role: 'apt' }
+  - { role: 'sshd' }
   - { role: 'reboot' }
   - { role: 'pi' }
   - { role: 'identity_client' }

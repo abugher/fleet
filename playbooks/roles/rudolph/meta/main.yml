@@ -1,7 +1,8 @@
 ---
 dependencies:
   - { role: 'user_friendly' }
-  - { role: 'ssh' }
+  - { role: 'user_friendly' }
   - { role: 'apt' }
+  - { role: 'sshd' }
   - { role: 'monitored' }
   - { role: 'nethack' }

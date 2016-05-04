@@ -1,6 +1,8 @@
 ---
 install_packages:
   - 'debian-goodies'
+  - 'debian-keyring'
+  - 'debian-archive-keyring'
 install_files:
   - owner:              'root'
     group:              'root'
@@ -35,3 +37,7 @@ install_files:
 remove_files:
   - '/etc/apt/sources.list.d/collabora.list'
   - '/etc/apt/sources.list.d/raspi.list'
+commands:
+  - command:            'apt-key update'
+    chdir:              '/'
+    creates:            '/NEVER_GETS_CREATED'

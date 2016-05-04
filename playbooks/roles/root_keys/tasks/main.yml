@@ -1,3 +1,2 @@
 ---
-- include:              'tasks/sshd_config.yml'
 - include:              'tasks/install_files.yml'

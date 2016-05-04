@@ -17,4 +17,3 @@ deb-src http://packages.x2go.org/debian jessie main
 #deb http://packages.x2go.org/debian jessie heuler
 # X2Go Repository (sources of nightly builds)
 #deb-src http://packages.x2go.org/debian jessie heuler
-
