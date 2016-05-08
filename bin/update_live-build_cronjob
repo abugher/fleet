@@ -2,5 +2,5 @@
 
 # DISTRIBUTED BY ANSIBLE
 
-/usr/local/bin/update_live-build.amd64
-/usr/local/bin/update_live-build.i386
+/usr/local/bin/update_live-build.amd64_cronjob
+/usr/local/bin/update_live-build.i386_cronjob
