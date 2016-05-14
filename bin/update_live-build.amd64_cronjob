@@ -8,4 +8,4 @@ flock /tmp/update_debian.lock -c "
 "
 
 # Give up trying to understand flock.  Nuke the file.  Now it's unlocked.
-rm /tmp/update_debian.lock
+rm -f /tmp/update_debian.lock

@@ -13,24 +13,24 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                '~/code/fleet/bin/storage'
+    src:                '../bin/storage'
     dest:               '/usr/local/bin/storage'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                '~/code/fleet/bin/tend_storage'
+    src:                '../bin/tend_storage'
     dest:               '/usr/local/bin/tend_storage'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/cron.d/tend_storage"
+    src:                '../cron.d/tend_storage'
     dest:               '/etc/cron.d/tend_storage'
 symlinks:
   - owner:              'root'
     group:              'root'
     src:                '/usr/local/bin/tend_storage'
     dest:               '/usr/local/bin/s'
-escrow_buddy_file:      "/home/aaron/code/fleet/conf/ssh_keys/escrow_buddy_for_{{ inventory_hostname }}"
+escrow_buddy_file:      "../conf/ssh_keys/escrow_buddy_for_{{ inventory_hostname }}"
 authorized_keys:
   - user:               'escrow'
     keyfile:            "{{ lookup('file', escrow_buddy_file) }}"

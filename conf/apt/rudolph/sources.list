@@ -34,8 +34,8 @@ deb-src http://ftp.us.debian.org/debian/        sid                     main con
 
 deb     http://packages.linuxmint.com           debian                  import
 
-deb     http://dl.google.com/linux/chrome/deb/                  stable  main
-deb     http://dl.google.com/linux/talkplugin/deb/              stable  main
+#deb     http://dl.google.com/linux/chrome/deb/                  stable  main
+#deb     http://dl.google.com/linux/talkplugin/deb/              stable  main
 
 deb     [arch=amd64,i386] http://repo.steampowered.com/steam/   precise steam
 deb-src [arch=amd64,i386] http://repo.steampowered.com/steam/   precise steam
