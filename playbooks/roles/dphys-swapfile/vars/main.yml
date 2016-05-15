@@ -3,7 +3,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/{{ inventory_hostname }}/dphys-swapfile"
+    src:                "../conf/{{ inventory_hostname }}/dphys-swapfile"
     dest:               '/etc/dphys-swapfile'
 restart_services:
   - 'dphys-swapfile'

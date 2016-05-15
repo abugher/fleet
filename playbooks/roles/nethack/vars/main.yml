@@ -12,11 +12,11 @@ install_packages:
   - 'byacc'
   - 'flex'
 unpack_tarballs:
-  - src:                '~/code/fleet/source/nethack-360-src.tgz'
+  - src:                '../source/nethack-360-src.tgz'
     dest:               '/usr/local/src'
     creates:            '/usr/local/src/nethack-3.6.0'
 scripts:
-  - script:             '~/code/fleet/scripts/build_nethack_3.6.0'
+  - script:             '../scripts/build_nethack_3.6.0'
     creates:            '/usr/local/src/nethack-3.6.0/src/nethack'
 commands:
   - command:            'make install'
@@ -26,5 +26,5 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                '~/code/fleet/bin/nethack'
+    src:                '../bin/nethack'
     dest:               '/usr/local/bin/nethack'

@@ -7,32 +7,32 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                '~/code/fleet/bin/stamp'
+    src:                '../bin/stamp'
     dest:               '/usr/local/bin/stamp'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/cron.d/{{ inventory_hostname }}/update_debian"
+    src:                "../cron.d/{{ inventory_hostname }}/update_debian"
     dest:               '/etc/cron.d/update_debian'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                '~/code/fleet/bin/update_debian_now'
+    src:                '../bin/update_debian_now'
     dest:               '/usr/local/bin/update_debian_now'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                '~/code/fleet/bin/update_debian_cronjob'
+    src:                '../bin/update_debian_cronjob'
     dest:               '/usr/local/bin/update_debian_cronjob'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/apt/{{ inventory_hostname }}/sources.list"
+    src:                "../conf/apt/{{ inventory_hostname }}/sources.list"
     dest:               '/etc/apt/sources.list'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                "~/code/fleet/conf/apt/{{ inventory_hostname }}/policy-rc.d"
+    src:                "../conf/apt/{{ inventory_hostname }}/policy-rc.d"
     dest:               '/usr/sbin/policy-rc.d'
 remove_files:
   - '/etc/apt/sources.list.d/collabora.list'

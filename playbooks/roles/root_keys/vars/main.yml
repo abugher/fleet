@@ -3,10 +3,10 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0600'
-    src:                "~/code/sensitive/conf/ssh_keys/root@{{ inventory_hostname }}.id_rsa"
+    src:                "../../sensitive/conf/ssh_keys/root@{{ inventory_hostname }}.id_rsa"
     dest:               '/root/.ssh/id_rsa'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/ssh_keys/root@{{ inventory_hostname }}.id_rsa.pub"
+    src:                "../conf/ssh_keys/root@{{ inventory_hostname }}.id_rsa.pub"
     dest:               '/root/.ssh/id_rsa.pub'

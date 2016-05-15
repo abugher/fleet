@@ -5,12 +5,12 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/tor/{{ inventory_hostname }}/torrc"
+    src:                "../conf/tor/{{ inventory_hostname }}/torrc"
     dest:               '/etc/tor/torrc'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/tor/{{ inventory_hostname }}/front_page.html"
+    src:                "../conf/tor/{{ inventory_hostname }}/front_page.html"
     dest:               '/etc/tor/front_page.html'
 restart_services:
   - 'tor'

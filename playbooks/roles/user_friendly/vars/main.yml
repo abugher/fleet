@@ -16,5 +16,5 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '~/code/fleet/conf/vimrc'
+    src:                '../conf/vimrc'
     dest:               '/etc/vim/vimrc'

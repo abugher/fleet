@@ -3,5 +3,5 @@ install_files:
   - owner:            'root'
     group:            'root'
     mode:             '0755'
-    src:              '~/code/fleet/bin/update_kanboard'
+    src:              '../bin/update_kanboard'
     dest:             '/usr/local/bin/update_kanboard'

@@ -10,7 +10,7 @@ remove_packages:
 # pi user doesn't need to be created; it comes with Raspbian.
 authorized_keys:
   - user:               'pi'
-    keyfile:            '~/code/fleet/conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
+    keyfile:            '../conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
 homedirs:
   - 'pi'
 

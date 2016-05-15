@@ -13,27 +13,27 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/nginx.conf"
+    src:                "../conf/nginx/{{ inventory_hostname }}/nginx.conf"
     dest:               '/etc/nginx/nginx.conf'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/default"
+    src:                "../conf/nginx/{{ inventory_hostname }}/default"
     dest:               '/etc/nginx/sites-available/default'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/default.ssl"
+    src:                "../conf/nginx/{{ inventory_hostname }}/default.ssl"
     dest:               '/etc/nginx/sites-available/default.ssl'
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                "~/code/sensitive/conf/ssl/{{ inventory_hostname }}/key.pem"
+    src:                "../../sensitive/conf/ssl/{{ inventory_hostname }}/key.pem"
     dest:               "/etc/nginx/{{ inventory_hostname }}.key"
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                "~/code/fleet/conf/ssl/{{ inventory_hostname }}/chain.pem"
+    src:                "../conf/ssl/{{ inventory_hostname }}/chain.pem"
     dest:               "/etc/nginx/{{ inventory_hostname }}.crt"
 symlinks:
   - owner:              'root'

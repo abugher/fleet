@@ -9,7 +9,7 @@ create_files:
     state:              'directory'
     path:               '/usr/local/share/print_target'
 install_files:
-  - src:                '~/code/fleet/conf/cups/cups-pdf.conf'
+  - src:                '../conf/cups/cups-pdf.conf'
     dest:               '/etc/cups/cups-pdf.conf'
     owner:              'root'
     group:              'root'
@@ -17,12 +17,12 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                '~/code/fleet/bin/pdfprint'
+    src:                '../bin/pdfprint'
     dest:               '/etc/init.d/pdfprint'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                '~/code/fleet/bin/pdfprintd'
+    src:                '../bin/pdfprintd'
     dest:               '/usr/local/bin/pdfprintd'
 enable_services:
   - 'pdfprint'

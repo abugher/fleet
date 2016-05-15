@@ -11,6 +11,6 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                '~/code/fleet/bin/update_python_packages'
+    src:                '../bin/update_python_packages'
     dest:               '/usr/local/bin/update_python_packages'
 

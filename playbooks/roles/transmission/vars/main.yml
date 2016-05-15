@@ -9,33 +9,33 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/transmission"
+    src:                "../conf/nginx/{{ inventory_hostname }}/transmission"
     dest:               "/etc/nginx/sites-available/transmission"
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "~/code/fleet/conf/nginx/{{ inventory_hostname }}/transmission.ssl"
+    src:                "../conf/nginx/{{ inventory_hostname }}/transmission.ssl"
     dest:               '/etc/nginx/sites-available/transmission.ssl'
   - mode:               '0644'
     owner:              'root'
     group:              'root'
-    src:                "~/code/sensitive/cron.d/{{ inventory_hostname }}/update_transmission_blocklist"
+    src:                "../../sensitive/cron.d/{{ inventory_hostname }}/update_transmission_blocklist"
     dest:               '/etc/cron.d/update_transmission_blocklist'
   - mode:               '0755'
     owner:              'root'
     group:              'root'
-    src:                '~/code/sensitive/bin/update_transmission_blocklist_now'
+    src:                '../../sensitive/bin/update_transmission_blocklist_now'
     dest:               '/usr/local/bin/update_transmission_blocklist_now'
   - mode:               '0755'
     owner:              'root'
     group:              'root'
-    src:                '~/code/sensitive/bin/update_transmission_blocklist_cronjob'
+    src:                '../../sensitive/bin/update_transmission_blocklist_cronjob'
     dest:               '/usr/local/bin/update_transmission_blocklist_cronjob'
 install_files_ignore_result:
   - owner:              'debian-transmission'
     group:              'debian-transmission'
     mode:               '0600'
-    src:                "~/code/sensitive/conf/transmission-daemon/{{ inventory_hostname }}/settings.json"
+    src:                "../../sensitive/conf/transmission-daemon/{{ inventory_hostname }}/settings.json"
     dest:               '/etc/transmission-daemon/settings.json'
 symlinks:
   - owner:              'root'

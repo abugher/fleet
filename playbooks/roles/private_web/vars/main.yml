@@ -9,5 +9,5 @@ install_files:
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                '~/code/sensitive/conf/nginx/neuron/htpasswd'
+    src:                '../../sensitive/conf/nginx/neuron/htpasswd'
     dest:               '/etc/nginx/htpasswd'
