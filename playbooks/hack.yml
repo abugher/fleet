@@ -1,9 +1,9 @@
 ---
-- hosts:                fleet
+- hosts:                neuron
   name:                 'hack'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   roles:
-    - 'apt'
+    - 'storage'
