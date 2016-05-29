@@ -43,9 +43,9 @@ create_files:
     state:              'directory'
     path:               '/var/www/live-build/i386'
 scripts:
-  - script:             '../scripts/configure_live-build.amd64'
+  - script:             'roles/debian-live-build/scripts/configure_live-build.amd64'
     creates:            '/usr/local/debian-live/amd64/debian-live/config/common'
-  - script:             '../scripts/configure_live-build.i386'
+  - script:             'roles/debian-live-build/scripts/configure_live-build.i386'
     creates:            '/usr/local/debian-live/i386/debian-live/config/common'
 commands:
   - command:            '/usr/local/bin/update_live-build.amd64_cronjob'
