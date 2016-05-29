@@ -83,7 +83,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "roles/debian-live-build/files/{{ inventory_hostname }}/cron.d/update_live-build"
+    src:                "roles/{{ inventory_hostname }}/files/cron.d/update_live-build"
     dest:               '/etc/cron.d/update_live-build'
 symlinks:
   - owner:              'root'
