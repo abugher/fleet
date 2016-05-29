@@ -4,12 +4,19 @@ install_packages:
 install_files:
   - owner:              'root'
     group:              'root'
+    mode:               '0755'
+    src:                '../bin/update_dns_phase1'
+    dest:               '/usr/local/bin/update_dns_phase1'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                '../cron.d/synapse/update_dns'
+    dest:               '/etc/cron.d/update_dns'
+  - owner:              'root'
+    group:              'root'
     mode:               '0644'
     src:                "roles/{{ inventory_hostname }}/files/conf/dnsmasq.conf"
     dest:               '/etc/dnsmasq.conf'
-    # /etc/hosts on neuron-mail will always get changed by update_dns_phase2.  It would be cleaner to initialize the file by running 'update_dns_phase2 $(dig +short myip.opendns.com @resolver1.opendns.com)', and simply set changes=false.  The script runs every ten minutes anyway; running an extra time won't hurt.
-    # But that's just for neuron-mail.  neuron just needs to get that list of hosts.
-    # The dnsmasq role needs to be forked and merged.  One copy in update_dns_phase1, and one modified copy in update_dns_phase2.  Those roles can be renamed to dns1 and dns2, or similar.
   - owner:              'root'
     group:              'root'
     mode:               '0644'

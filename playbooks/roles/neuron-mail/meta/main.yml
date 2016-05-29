@@ -4,3 +4,4 @@ dependencies:
   - { role: 'apt' }
   - { role: 'sshd' }
   - { role: 'tor' }
+  - { role: 'dns2' }

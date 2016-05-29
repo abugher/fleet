@@ -1,11 +1,20 @@
 ---
 - hosts:                
     - 'neuron'
-    - 'neuron-mail'
-  name:                 'hack'
+  name:                 'thing1'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   roles:
-    - 'dnsmasq'
+    - 'dns1'
+
+- hosts:                
+    - 'neuron-mail'
+  name:                 'thing2'
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  roles:
+    - 'dns2'

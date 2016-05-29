@@ -7,7 +7,6 @@ dependencies:
   - { role: 'reboot' }
   - { role: 'pi' }
   - { role: 'identity_client' }
-  - { role: 'update_dns_phase1' }
   - { role: 'ansible' }
   - { role: 'krb5' }
   - { role: 'nagios' }

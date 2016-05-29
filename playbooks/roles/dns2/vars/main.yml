@@ -1,0 +1,27 @@
+---
+install_packages:
+  - 'dnsmasq'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "roles/{{ inventory_hostname }}/files/conf/dnsmasq.conf"
+    dest:               '/etc/dnsmasq.conf'
+  # Just don't install a hosts file.  There's no static list of hostnames to install, and the file should be updated automatically within ten minutes, if that's even necessary.
+  # If we're feeling fancy later, we can try to make update_dns_phase1 run on synapse in order to ensure the file is initialized.
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "roles/{{ inventory_hostname }}/files/conf/default.dnsmasq"
+    dest:               '/etc/default/dnsmasq'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                '../bin/update_dns_phase2'
+    dest:               '/usr/local/bin/update_dns_phase2'
+enable_services:
+  - 'dnsmasq'
+start_services:
+  - 'dnsmasq'
+restart_services:
+  - 'dnsmasq'

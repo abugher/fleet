@@ -8,7 +8,6 @@ dependencies:
   - { role: 'pi' }
   - { role: 'identity_client' }
   - { role: 'storage' }
-  - { role: 'dnsmasq' }
   - { role: 'dhcpd' }
   - { role: 'cryptkeeper' }
   - { role: 'transmission' }
@@ -24,3 +23,4 @@ dependencies:
   - { role: 'wiki' }
   - { role: 'remote_proxy' }
   - { role: 'monitored' }
+  - { role: 'dns1' }
