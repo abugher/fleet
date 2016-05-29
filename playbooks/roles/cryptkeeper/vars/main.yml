@@ -7,11 +7,11 @@ create_files:
     mode:               '0755'
 authorized_keys:
   - user:               'cryptkeeper'
-    keyfile:            '../conf/ssh_keys/aaron@mawg.id_rsa.pub'
+    keyfile:            "roles/mawg/files/ssh_keys/aaron.id_rsa.pub"
   - user:               'cryptkeeper'
-    keyfile:            '../conf/ssh_keys/rachel@rudolph.id_rsa.pub'
+    keyfile:            "roles/rudolph/files/ssh_keys/rachel.id_rsa.pub"
   - user:               'cryptkeeper'
-    keyfile:            '../conf/ssh_keys/rachel@meliora.id_rsa.pub'
+    keyfile:            "roles/meliora/files/ssh_keys/rachel.id_rsa.pub"
 system_users:
   - 'cryptkeeper'
 system_groups:
