@@ -9,12 +9,12 @@
   roles:
     - 'dns1'
 
-#- hosts:                
-#    - 'neuron-mail'
-#  name:                 'thing2'
-#  gather_facts:         False
-#  remote_user:          ansible
-#  become:               yes
-#  become_method:        sudo
-#  roles:
-#    - 'dns2'
+- hosts:                
+    - 'neuron-mail'
+  name:                 'thing2'
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  roles:
+    - 'dns2'
