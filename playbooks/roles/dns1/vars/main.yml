@@ -1,12 +1,23 @@
 ---
 install_packages:
   - 'dnsmasq'
+create_files:
+  - owner:              'pi'
+    group:              'pi'
+    mode:               '0700'
+    path:               '~pi/.ssh'
+    state:              'directory'
 install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/dns1/files/bin/update_dns_phase1'
-    dest:               '/usr/local/bin/update_dns_phase1'
+    src:                'roles/dns1/files/bin/update_dns'
+    dest:               '/usr/local/bin/update_dns'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                'roles/dns1/files/bin/update_dns_cronjob'
+    dest:               '/usr/local/bin/update_dns_cronjob'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
@@ -27,6 +38,20 @@ install_files:
     mode:               '0644'
     src:                "roles/dns1/files/conf/default.dnsmasq"
     dest:               '/etc/default/dnsmasq'
+  - owner:              'pi'
+    group:              'pi'
+    mode:               '0600'
+    src:                "roles/{{ inventory_hostname }}/files/ssh_keys/pi.known_hosts"
+    dest:               '~pi/.ssh/known_hosts'
+initialize_files:
+  - owner:              'pi'
+    group:              'pi'
+    mode:               '0644'
+    dest:               '/var/log/update_dns.log'
+  - owner:              'pi'
+    group:              'pi'
+    mode:               '0644'
+    dest:               '/var/log/update_dns.ret'
 enable_services:
   - 'dnsmasq'
 start_services:

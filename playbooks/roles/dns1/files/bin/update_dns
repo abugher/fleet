@@ -9,4 +9,4 @@ if echo $neuronpointer_ip | grep -qE '[^0-9.]|.{16}'; then
   exit 1
 fi
 
-ssh ansible@173.230.128.73 sudo /usr/local/bin/update_dns_phase2 $neuronpointer_ip
+ssh neuronpointer@173.230.128.73 'echo '$neuronpointer_ip' > /etc/neuronpointer.net'

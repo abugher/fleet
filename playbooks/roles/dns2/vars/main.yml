@@ -20,8 +20,20 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/dns2/files/bin/update_dns_phase2'
-    dest:               '/usr/local/bin/update_dns_phase2'
+    src:                'roles/dns2/files/bin/dns_root_agent'
+    dest:               '/usr/local/bin/dns_root_agent'
+initialize_files:
+  - owner:              'neuronpointer'
+    group:              'root'
+    mode:               '0644'
+    dest:               '/etc/neuronpointer.net'
+system_groups:
+  - 'neuronpointer'
+system_users:
+  - 'neuronpointer'
+authorized_keys:
+  - user:               'neuronpointer'
+    keyfile:            'roles/neuron/files/ssh_keys/pi.id_rsa.pub'
 enable_services:
   - 'dnsmasq'
 start_services:
