@@ -1,10 +1,13 @@
 ---
 - hosts:                
     - 'meliora'
+    - 'rudolph'
+    - 'neuron'
+    - 'synapse'
   name:                 'thing1'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   roles:
-    - 'kanboard'
+    - 'monitored'

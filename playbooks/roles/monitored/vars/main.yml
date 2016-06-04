@@ -3,5 +3,5 @@ groups:
   - 'nagios'
 authorized_keys:
   - user:               'ansible'
-    keyfile:            '../conf/ssh_keys/pi@synapse.id_rsa.pub'
+    keyfile:            'roles/synapse/files/ssh_keys/pi.id_rsa.pub'
 
