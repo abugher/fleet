@@ -1,10 +1,12 @@
 ---
 - hosts:                
     - 'neuron'
+    - 'meliora'
+    - 'synapse'
   name:                 'thing1'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   roles:
-    - 'front_page'
+    - 'identity_client'

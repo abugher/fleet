@@ -6,7 +6,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '../conf/kerberos/krb5.conf'
+    src:                'roles/identity_client/files/conf/krb5.conf'
     dest:               '/etc/krb5.conf'
 users:
   - 'aaron'
@@ -17,5 +17,5 @@ system_users:
   - 'nagios'
 authorized_keys:
   - user:               'nagios'
-    keyfile:            '../conf/ssh_keys/nagios@synapse.id_rsa.pub'
+    keyfile:            'roles/synapse/files/ssh_keys/nagios.id_rsa.pub'
 
