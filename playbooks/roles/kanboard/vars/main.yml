@@ -3,5 +3,5 @@ install_files:
   - owner:            'root'
     group:            'root'
     mode:             '0755'
-    src:              '../bin/update_kanboard'
+    src:              'roles/kanboard/files/bin/update_kanboard'
     dest:             '/usr/local/bin/update_kanboard'
