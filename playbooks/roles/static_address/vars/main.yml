@@ -3,12 +3,12 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "../conf/network/{{ inventory_hostname }}/interfaces"
+    src:                "roles/{{ inventory_hostname }}/files/conf/interfaces"
     dest:               '/etc/network/interfaces'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "../conf/hostname/{{ inventory_hostname }}"
+    src:                "roles/{{ inventory_hostname }}/files/conf/hostname"
     dest:               '/etc/hostname'
 disable_services:
   - 'dhcpcd'
