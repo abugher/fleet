@@ -13,27 +13,27 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "../conf/nginx/{{ inventory_hostname }}/nginx.conf"
+    src:                "roles/{{ inventory_hostname }}/files/conf/nginx.conf"
     dest:               '/etc/nginx/nginx.conf'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "../conf/nginx/{{ inventory_hostname }}/default"
+    src:                "roles/{{ inventory_hostname }}/files/conf/default"
     dest:               '/etc/nginx/sites-available/default'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "../conf/nginx/{{ inventory_hostname }}/default.ssl"
+    src:                "roles/{{ inventory_hostname }}/files/conf/default.ssl"
     dest:               '/etc/nginx/sites-available/default.ssl'
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                "../../sensitive/conf/ssl/{{ inventory_hostname }}/key.pem"
+    src:                "../../sensitive/playbooks/roles/{{ inventory_hostname }}/files/ssl/key.pem"
     dest:               "/etc/nginx/{{ inventory_hostname }}.key"
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                "../conf/ssl/{{ inventory_hostname }}/chain.pem"
+    src:                "roles/{{ inventory_hostname }}/conf/ssl/chain.pem"
     dest:               "/etc/nginx/{{ inventory_hostname }}.crt"
 symlinks:
   - owner:              'root'
