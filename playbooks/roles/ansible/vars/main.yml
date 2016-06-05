@@ -11,20 +11,20 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '../conf/ansible/ansible.cfg'
+    src:                'roles/ansible/files/conf/ansible.cfg'
     dest:               '/etc/ansible/ansible.cfg'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '../conf/ansible/hosts'
+    src:                'roles/ansible/files/conf/hosts'
     dest:               '/etc/ansible/hosts'
   - owner:              'pi'
     group:              'pi'
     mode:               '0600'
-    src:                "../../sensitive/conf/ssh_keys/pi@{{ inventory_hostname }}.id_rsa"
+    src:                "../../sensitive/playbooks/roles/{{ inventory_hostname }}/files/ssh_keys/pi.id_rsa"
     dest:               '~pi/.ssh/id_rsa'
   - owner:              'pi'
     group:              'pi'
     mode:               '0644'
-    src:                "../conf/ssh_keys/pi@{{ inventory_hostname }}.id_rsa.pub"
+    src:                "roles/{{ inventory_hostname }}/files/ssh_keys/pi.id_rsa"
     dest:               '~pi/.ssh/id_rsa.pub'

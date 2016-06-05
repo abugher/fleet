@@ -30,7 +30,7 @@ symlinks:
     group:              'root'
     src:                '/usr/local/bin/tend_storage'
     dest:               '/usr/local/bin/s'
-escrow_buddy_file:      "../conf/ssh_keys/escrow_buddy_for_{{ inventory_hostname }}"
+escrow_buddy_file:      "roles/{{ inventory_hostname }}/files/conf/escrow_buddy"
 authorized_keys:
   - user:               'escrow'
     keyfile:            "{{ lookup('file', escrow_buddy_file) }}"
