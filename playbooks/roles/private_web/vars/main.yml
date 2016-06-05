@@ -9,5 +9,5 @@ install_files:
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                '../../sensitive/conf/nginx/neuron/htpasswd'
+    src:                "../../sensitive/playbooks/roles/{{ inventory_hostname}}/files/conf/htpasswd"
     dest:               '/etc/nginx/htpasswd'
