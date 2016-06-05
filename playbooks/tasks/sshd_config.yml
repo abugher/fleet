@@ -2,7 +2,8 @@
 - name:                 'assemble sshd_config'
   assemble:
     remote_src:         False
-    src:                "~/code/fleet/conf/ssh/{{ inventory_hostname }}"
+    src:                "~/code/fleet/sshd_config/{{ inventory_hostname }}"
+    src:                "files/conf/sshd_config/{{ inventory_hostname }}"
     dest:               '/etc/ssh/sshd_config'
     owner:              'root'
     group:              'root'
