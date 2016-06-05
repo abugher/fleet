@@ -1,7 +1,5 @@
 ---
 - hosts:                
-    - 'meliora'
-    - 'neuron'
     - 'synapse'
   name:                 'thing1'
   gather_facts:         False
@@ -9,4 +7,4 @@
   become:               yes
   become_method:        sudo
   roles:
-    - 'root_keys'
+    - 'smokeping'
