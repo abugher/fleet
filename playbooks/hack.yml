@@ -1,6 +1,5 @@
 ---
 - hosts:                
-    - 'synapse'
     - 'neuron'
   name:                 'thing1'
   gather_facts:         False
@@ -8,4 +7,4 @@
   become:               yes
   become_method:        sudo
   roles:
-    - 'pi'
+    - 'pictures'

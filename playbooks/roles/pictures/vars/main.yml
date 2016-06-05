@@ -3,7 +3,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                '../cron.d/neuron/chown_pictures'
+    src:                "roles/{{ inventory_hostname }}/files/cron.d/chown_pictures"
     dest:               '/etc/cron.d/chown_pictures'
 symlinks:
   - owner:              'root'
@@ -18,9 +18,9 @@ users:
   - 'aaron-phone'
 authorized_keys:
   - user:               'rachel-phone'
-    keyfile:            '../conf/ssh_keys/rsync_backup@rachel-phone.dss_key.pub'
+    keyfile:            'roles/rachel-phone/files/ssh_keys/rsync_backup.dss_key.pub'
   - user:               'aaron-phone'
-    keyfile:            '../conf/ssh_keys/aaron-phone@aaron-phone.id_rsa.pub'
+    keyfile:            'roles/aaron-phone/files/ssh_keys/aaron-phone.id_rsa.pub'
   - user:               'aaron-phone'
-    keyfile:            '../conf/ssh_keys/rsync_backup@aaron-phone.dss_key.pub'
+    keyfile:            'roles/aaron-phone/files/ssh_keys/rsync_backup.dss_key.pub'
 
