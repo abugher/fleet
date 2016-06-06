@@ -1,1 +1,1 @@
-~/code/fleet/conf/ssh_keys/root@neuron.id_rsa.pub
+~/code/fleet/playbooks/roles/neuron/files/ssh_keys/root.id_rsa.pub

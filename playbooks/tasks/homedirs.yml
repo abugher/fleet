@@ -13,14 +13,13 @@
   register:             homedirs_by_user_result 
 - name:                 'home directory contents, by user and host'
   copy:
-    src:                "~/code/fleet/conf/homedirs/{{ item }}/{{ inventory_hostname }}/"
     src:                "files/conf/homedirs/{{ item }}/{{ inventory_hostname }}"
     dest:               "~{{ item }}/"
   with_items:           "{{ homedirs }}"
   register:             homedirs_by_user_at_host_result 
-- include:              'tasks/token_change.yml'
-  vars:
-    token_change_result_name:   homedirs_result
-  when:                 homedirs_common_result.changed
+- name:                 'register results'
+  command:              /bin/true
+  register:             homedirs_result
+  changed_when:         homedirs_common_result.changed
                         or homedirs_by_user_result.changed
                         or homedirs_by_user_at_host_result.changed

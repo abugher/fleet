@@ -26,5 +26,5 @@ install_files:
   - owner:              'pi'
     group:              'pi'
     mode:               '0644'
-    src:                "roles/{{ inventory_hostname }}/files/ssh_keys/pi.id_rsa"
+    src:                "roles/{{ inventory_hostname }}/files/ssh_keys/pi.id_rsa.pub"
     dest:               '~pi/.ssh/id_rsa.pub'
