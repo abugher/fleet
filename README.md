@@ -6,8 +6,7 @@ for my fleet of computer hosts.
 
 # structure
 
-Most of the top level directories contain different types of configuration
-material.  playbooks/ contains the ansible code.
+playbooks/ contains the ansible code and associated configuration material.
 
 Each directory under playbooks/roles/ defines a role.  Each role defines either
 a service or a host.  Host roles are constructed of dependencies on service
