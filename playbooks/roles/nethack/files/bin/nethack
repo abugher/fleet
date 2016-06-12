@@ -1,8 +1,12 @@
 #!/bin/bash
 
-  nethack='/usr/local/games/nethack'
-bones_dir='/usr/local/games/lib/nethackdir'
-  tmp_dir='/tmp/bones'
+   nethack='/usr/local/games/nethack'
+ bones_dir='/usr/local/games/lib/nethackdir'
+   tmp_dir='/tmp/bones'
+   uidfile='/tmp/uidfile'
+   gidfile='/tmp/gidfile'
+remote_uid='995'
+remote_gid='992'
 
 
 function puke {
@@ -14,13 +18,21 @@ function puke {
 
 
 mount_tmp_dir() {
+  login_gid=$( awk -F : "/^$USER:/"' {print $3}' /etc/passwd )
+  echo $login_gid | grep -qE '^[0-9]*$' || puke 1 "Invalid login UID:  ${login_uid}"
+  login_group=$( awk -F : "/:$login_gid:/"' {print $1}' /etc/passwd )
+  echo $login_group | grep -qE '^[a-zA-Z0-9\._][a-zA-Z0-9\._\-]*$' || puke 1 "Invalid login group:  ${login_group}"
+  echo "${USER}:${remote_uid}" > $uidfile
+  echo "${login_group}:${remote_gid}" > $gidfile
   fusermount -u $tmp_dir 2>&1 >/dev/null
   fusermount_ret=$?
   if mountpoint $tmp_dir > /dev/null; then
     puke $fusermount_ret "failed to unmount ${tmp_dir}"
   fi
   mkdir -p $tmp_dir || puke $? "failed to mkdir ${tmp_dir}"
-  sshfs -o reconnect cryptkeeper@neuron:bones $tmp_dir || puke $? "failed to mount ${tmp_dir}"
+  sshfs \
+    -o idmap=file,uidfile=$uidfile,gidfile=$gidfile,reconnect \
+    cryptkeeper@neuron:bones $tmp_dir || puke $? "failed to mount ${tmp_dir}"
 }
 
 
