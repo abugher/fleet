@@ -49,12 +49,12 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/tftp/files/conf/default'
+    src:                "{{ role_path }}/files/conf/default"
     dest:               '/srv/tftp/pxelinux.cfg/default'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/tftp/files/conf/default.txt'
+    src:                "{{ role_path }}/files/conf/default.txt"
     dest:               '/etc/default/tftpd-hpa'
 symlinks:
   - owner:              'root'

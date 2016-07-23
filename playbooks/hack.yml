@@ -1,10 +1,10 @@
 ---
 - hosts:                
-    - 'rudolph'
-  name:                 'thing1'
+    - 'meliora'
+  name:                 'hack'
   gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   roles:
-    - 'nethack'
+    - 'identity_client'

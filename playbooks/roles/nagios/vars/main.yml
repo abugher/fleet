@@ -2,84 +2,84 @@
 install_packages:
   - 'nagios3'
 sync_dirs:
-  - src:                "roles/nagios/files/conf/nagios3/"
+  - src:                "{{ role_path }}/../nagios/files/conf/nagios3/"
     dest:               '/etc/nagios3/'
     delete:             'yes'
 install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "roles/nagios/files/conf/nagios"
+    src:                "{{ role_path }}/../nagios/files/conf/nagios"
     dest:               '/etc/nginx/sites-available/nagios'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "roles/nagios/files/conf/nagios.ssl"
+    src:                "{{ role_path }}/../nagios/files/conf/nagios.ssl"
     dest:               '/etc/nginx/sites-available/nagios.ssl'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_update_live-build.amd64'
+    src:                "{{ role_path }}/files/bin/check_update_live-build.amd64"
     dest:               '/usr/local/bin/check_update_live-build.amd64'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_update_live-build.i386'
+    src:                "{{ role_path }}/files/bin/check_update_live-build.i386"
     dest:               '/usr/local/bin/check_update_live-build.i386'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_flexget_execute'
+    src:                "{{ role_path }}/files/bin/check_flexget_execute"
     dest:               '/usr/local/bin/check_flexget_execute'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_debian_update'
+    src:                "{{ role_path }}/files/bin/check_debian_update"
     dest:               '/usr/local/bin/check_debian_update'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_flexget_execute'
+    src:                "{{ role_path }}/files/bin/check_flexget_execute"
     dest:               '/usr/local/bin/check_flexget_execute'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_flexget_vacuum'
+    src:                "{{ role_path }}/files/bin/check_flexget_vacuum"
     dest:               '/usr/local/bin/check_flexget_vacuum'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_mplayer'
+    src:                "{{ role_path }}/files/bin/check_mplayer"
     dest:               '/usr/local/bin/check_mplayer'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_pianobar'
+    src:                "{{ role_path }}/files/bin/check_pianobar"
     dest:               '/usr/local/bin/check_pianobar'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_transmission_blocklist_update'
+    src:                "{{ role_path }}/files/bin/check_transmission_blocklist_update"
     dest:               '/usr/local/bin/check_transmission_blocklist_update'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_transmission'
+    src:                "{{ role_path }}/files/bin/check_transmission"
     dest:               '/usr/local/bin/check_transmission'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_tor'
+    src:                "{{ role_path }}/files/bin/check_tor"
     dest:               '/usr/local/bin/check_tor'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_dns_record'
+    src:                "{{ role_path }}/files/bin/check_dns_record"
     dest:               '/usr/local/bin/check_dns_record'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/nagios/files/bin/check_temper'
+    src:                "{{ role_path }}/files/bin/check_temper"
     dest:               '/usr/local/bin/check_temper'
   - owner:              'nagios'
     group:              'nagios'
@@ -89,17 +89,17 @@ install_files:
   - owner:              'nagios'
     group:              'nagios'
     mode:               '0644'
-    src:                "roles/{{ inventory_hostname }}/files/ssh_keys/nagios.id_rsa.pub"
+    src:                "{{ role_path }}/../{{ inventory_hostname }}/files/ssh_keys/nagios.id_rsa.pub"
     dest:               '~nagios/.ssh/id_rsa.pub'
   - owner:              'nagios'
     group:              'nagios'
     mode:               '0600'
-    src:                "roles/{{ inventory_hostname }}/files/ssh_keys/nagios.known_hosts"
+    src:                "{{ role_path }}/../{{ inventory_hostname }}/files/ssh_keys/nagios.known_hosts"
     dest:               '~nagios/.ssh/known_hosts'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "roles/nagios/files/conf/logos/"
+    src:                "{{ role_path }}/../nagios/files/conf/logos/"
     dest:               '/usr/share/nagios3/htdocs/images/logos/custom/'
   - owner:              'root'
     group:              'root'

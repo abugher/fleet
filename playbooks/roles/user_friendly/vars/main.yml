@@ -16,5 +16,5 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/user_friendly/files/conf/vimrc'
+    src:                "{{ role_path }}/files/conf/vimrc"
     dest:               '/etc/vim/vimrc'

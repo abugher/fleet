@@ -9,12 +9,12 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/transmission/files/conf/sites-available.transmission'
+    src:                "{{ role_path }}/files/conf/sites-available.transmission"
     dest:               "/etc/nginx/sites-available/transmission"
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/transmission/files/conf/sites-available.transmission.ssl'
+    src:                "{{ role_path }}/files/conf/sites-available.transmission.ssl"
     dest:               '/etc/nginx/sites-available/transmission.ssl'
   - mode:               '0644'
     owner:              'root'

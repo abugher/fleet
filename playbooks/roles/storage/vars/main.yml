@@ -16,24 +16,24 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/storage/files/bin/storage'
+    src:                "{{ role_path }}/files/bin/storage"
     dest:               '/usr/local/bin/storage'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                'roles/storage/files/bin/tend_storage'
+    src:                "{{ role_path }}/files/bin/tend_storage"
     dest:               '/usr/local/bin/tend_storage'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "roles/storage/files/cron.d/tend_storage"
+    src:                "{{ role_path }}/../storage/files/cron.d/tend_storage"
     dest:               '/etc/cron.d/tend_storage'
 symlinks:
   - owner:              'root'
     group:              'root'
     src:                '/usr/local/bin/tend_storage'
     dest:               '/usr/local/bin/s'
-escrow_buddy_file:      "roles/{{ inventory_hostname }}/files/conf/escrow_buddy"
+escrow_buddy_file:      "{{ role_path }}/../{{ inventory_hostname }}/files/conf/escrow_buddy"
 authorized_keys:
   - user:               'escrow'
     keyfile:            "{{ lookup('file', escrow_buddy_file) }}"

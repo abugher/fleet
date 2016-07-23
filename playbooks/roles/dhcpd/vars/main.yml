@@ -5,7 +5,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "roles/{{ inventory_hostname }}/files/conf/dhcpd.conf"
+    src:                "{{ role_path }}/../{{ inventory_hostname }}/files/conf/dhcpd.conf"
     dest:               '/etc/dhcp/dhcpd.conf'
 enable_services:
   - 'isc-dhcp-server'

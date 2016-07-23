@@ -7,7 +7,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/krb5/files/conf/kadm5.acl'
+    src:                "{{ role_path }}/files/conf/kadm5.acl"
     dest:               '/etc/krb5kdc/kadm5.acl'
 enable_services:
   - 'krb5-kdc'

@@ -6,27 +6,27 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/smokeping/files/conf/smokeping.ssl'
+    src:                "{{ role_path }}/files/conf/smokeping.ssl"
     dest:               '/etc/nginx/sites-available/smokeping.ssl'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/smokeping/files/conf/smokeping'
+    src:                "{{ role_path }}/files/conf/smokeping"
     dest:               '/etc/nginx/sites-available/smokeping'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/smokeping/files/conf/mini-httpd.conf'
+    src:                "{{ role_path }}/files/conf/mini-httpd.conf"
     dest:               '/etc/mini-httpd.conf'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/smokeping/files/conf/default.mini-httpd'
+    src:                "{{ role_path }}/files/conf/default.mini-httpd"
     dest:               '/etc/default/mini-httpd'
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                'roles/smokeping/files/conf/Targets'
+    src:                "{{ role_path }}/files/conf/Targets"
     dest:               '/etc/smokeping/config.d/Targets'
 symlinks:
   - owner:              'root'
