@@ -1,11 +1,6 @@
 127.0.0.1	localhost
 
-::1		localhost ip6-localhost ip6-loopback
-
-fe00::0		ip6-localnet
-ff00::0		ip6-mcastprefix
-ff02::1		ip6-allnodes
-ff02::2		ip6-allrouters
+45.79.76.174    neuron-mail neuron-mail.neuronpointer.net
 
 192.168.11.1    gateway ap gateway.neuronpointer.net ap.neuronpointer.net
 192.168.11.52   mawg mawg.neuronpointer.net
@@ -16,5 +11,10 @@ ff02::2		ip6-allrouters
 192.168.11.59   wii wii.neuronpointer.net
 192.168.11.60   peekaboo peekaboo.neuronpointer.net     # Dalton
 192.168.11.61   no no.neuronpointer.net                 # Tomas
-# neuron-mail.no-ip.org -- I'd make this a CNAME if I could.
-173.230.128.73  neuron-mail neuron-mail.neuronpointer.net
+
+::1		localhost ip6-localhost ip6-loopback
+
+fe00::0		ip6-localnet
+ff00::0		ip6-mcastprefix
+ff02::1		ip6-allnodes
+ff02::2		ip6-allrouters
