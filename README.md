@@ -36,7 +36,7 @@ this repo to file locations on target hosts, and similar relationships
 timing data for ansible tasks.  It's not my code, and I've included the MIT
 license under which it was released, at *ansible/callback_plugins/LICENSE* .
 
-Each of *ansible/playbooks/setup_*.yml* is a small playbook which deploys a role to a
+Each of *ansible/playbooks/setup_\*.yml* is a small playbook which deploys a role to a
 host of the same name.  Configuration is enacted (typically) by running a
 command like:
 
