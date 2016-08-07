@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# DISTRIBUTED BY ANSIBLE
-
-. /usr/local/bin/update_debian_now

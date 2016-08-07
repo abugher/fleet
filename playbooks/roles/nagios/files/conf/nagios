@@ -1,5 +1,0 @@
-server {
-  server_name           nagios nagios.neuronpointer.net;
-  return 301            https://nagios.neuronpointer.net$request_uri;
-}
-

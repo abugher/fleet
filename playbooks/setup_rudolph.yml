@@ -1,9 +1,0 @@
----
-- hosts:                rudolph
-  name:                 'configure rudolph'
-  gather_facts:         False
-  remote_user:          ansible
-  become:               yes
-  become_method:        sudo
-  roles:
-    - 'rudolph'

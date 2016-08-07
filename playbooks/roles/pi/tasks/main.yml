@@ -1,4 +1,0 @@
----
-- include:              'tasks/remove_packages.yml'
-- include:              'tasks/authorized_keys.yml'
-- include:              'tasks/homedirs.yml'

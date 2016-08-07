@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# DISTRIBUTED BY ANSIBLE
-
-target="${1}"
-shift
-ssh "${target}" /etc/init.d/mplayer status

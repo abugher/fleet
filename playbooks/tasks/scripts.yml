@@ -1,5 +1,0 @@
----
-- script:               "{{ item.script }}"
-  args:
-    creates:            "{{ item.creates }}"
-  with_items:           "{{ scripts }}"

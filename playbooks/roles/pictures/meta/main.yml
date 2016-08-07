@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: 'private_web' }

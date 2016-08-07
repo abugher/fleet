@@ -1,4 +1,0 @@
----
-- include:              'tasks/install_packages.yml'
-- include:              'tasks/remove_packages.yml'
-- include:              'tasks/install_files.yml'

@@ -1,8 +1,0 @@
----
-- name:                 'synchronize directories'
-  synchronize:
-    src:                "{{ item.src }}"
-    dest:               "{{ item.dest }}"
-    delete:             "{{ item.delete }}"
-  with_items:           "{{ sync_dirs }}"
-  register:             sync_dirs_result

@@ -1,3 +1,0 @@
-# m     h       dom     mon     dow     user    command
-@reboot                                 root    /usr/local/bin/tend_storage > /var/log/tend_storage.log 2>&1
-00      *       *       *       *       root    /usr/local/bin/tend_storage > /var/log/tend_storage.log 2>&1

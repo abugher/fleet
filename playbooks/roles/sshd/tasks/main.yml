@@ -1,4 +1,0 @@
----
-- include:              'tasks/sshd_config.yml'
-- include:              'tasks/restart_services.yml'
-  when:                 sshd_config_result.changed

@@ -1,3 +1,0 @@
-# m     h       dom     mon     dow     user    command
-30      03      *       *       *       root    /usr/local/bin/update_debian_cronjob
-@reboot                                 root    /usr/local/bin/update_debian_cronjob
