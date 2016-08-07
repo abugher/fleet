@@ -24,7 +24,7 @@ configuration material exists on the new host, so the less configuration that
 can be made host-specific, the better.
 
 Service roles are constructed from tasks, defined in ansible/tasks/, and
-included into the role by *ansible/roles/<rolename>/tasks/main.yml* .  Tasks
+included into the role by *ansible/roles/&lt;rolename&gt;/tasks/main.yml* .  Tasks
 are reused among service roles.
 
 Tasks are controlled by variables, defined in
@@ -36,7 +36,7 @@ this repo to file locations on target hosts, and similar relationships
 timing data for ansible tasks.  It's not my code, and I've included the MIT
 license under which it was released, at *ansible/callback_plugins/LICENSE* .
 
-Each of *ansible/playbooks/setup_\*.yml* is a small playbook which deploys a role to a
+Each of *ansible/playbooks/setup_<nowiki>*</nowiki>.yml* is a small playbook which deploys a role to a
 host of the same name.  Configuration is enacted (typically) by running a
 command like:
 
