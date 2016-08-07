@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# DISTRIBUTED BY ANSIBLE
+
+/usr/local/bin/update_dns > /var/log/update_dns.log 2>&1
+echo $? > /var/log/update_dns.ret

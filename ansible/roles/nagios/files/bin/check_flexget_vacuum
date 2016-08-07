@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# DISTRIBUTED BY ANSIBLE
+
+happy=0
+critical=2
+log_file='/var/log/flexget_vacuum.log'
+ret_file='/var/log/flexget_vacuum.ret'
+
+target="${1}"
+
+max_age_days=14
+max_delta=$(( 60 * 60 * 24 * $max_age_days ))
+
+last_instance_timestamp="$(
+  ssh "${target}" stat -c "%Y" "${ret_file}"
+)"
+now_timestamp="$(
+  ssh "${target}" date "+%s"
+)"
+
+delta=$(( $now_timestamp - $last_instance_timestamp ))
+
+ret="$(
+  ssh "${target}" cat "${ret_file}"
+)"
+
+if test $ret -ne 0; then
+  echo "flexget database vacuum:  Critical!  Return status:  ${ret}"
+  exit $critical
+fi
+
+if
+     test $delta -lt $max_delta \
+  && test $delta -gt 0
+then
+  echo "flexget database vacuum:  OK.  Last instance returned ${ret} at ${delta} seconds ago."
+  exit $happy
+else
+  echo "flexget database vacuum:  Critical!  Last instance returned ${ret} at ${delta} seconds ago."
+  exit $critical
+fi

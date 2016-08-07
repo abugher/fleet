@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# DISTRIBUTED BY ANSIBLE
+
+happy=0
+critical=2
+log_file='/var/log/flexget_execute.log'
+ret_file='/var/log/flexget_execute.ret'
+
+target="${1}"
+
+max_age_hours=8
+max_delta=$(( 60 * 60 * $max_age_hours ))
+
+last_update_timestamp="$(
+  ssh "${target}" stat -c "%Y" "${ret_file}"
+)"
+now_timestamp="$(
+  ssh "${target}" date "+%s"
+)"
+
+ret="$(
+  ssh "${target}" cat "${ret_file}"
+)"
+
+if test $ret -ne 0; then
+  echo "Transmission torrents update Critical!  Return status:  ${ret}"
+  exit $critical
+fi
+
+delta=$(( $now_timestamp - $last_update_timestamp ))
+
+if
+     test $delta -lt $max_delta \
+  && test $delta -gt 0
+then
+  echo "Transmission torrents update OK.  Last update was ${delta} seconds ago."
+  exit $happy
+else
+  echo "Transmission torrents update Critical!  Last update was ${delta} seconds ago."
+  exit $critical
+fi

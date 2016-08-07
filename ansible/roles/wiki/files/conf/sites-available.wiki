@@ -1,0 +1,5 @@
+server {
+        listen          80;
+	server_name     wiki wiki.neuronpointer.net;
+        return 301      https://wiki.neuronpointer.net$request_uri;
+}

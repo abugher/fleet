@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# DISTRIBUTED BY ANSIBLE
+
+# script_name <host> <port> <string>
+#
+# Run an nmap version check (-sV) against host "host" on port "port", and
+# confirm that nmap returns version string "string".
+
+happy=0
+warning=1
+critical=2
+
+
+if test ${#} -ne 3; then
+  echo "Warning:  Usage:  ${0} <host> <port> <string>"
+  exit $warning
+fi
+
+host="${1}"
+port="${2}"
+string="${3}"
+
+got_string="$(
+  nmap -sV -p "${port}" "${host}" \
+    | grep "^${port}" \
+    | sed -E 's/[^ ]+ +[^ ]+ +[^ ]+ +//'
+)"
+
+if test "${string}" == "${got_string}"; then
+  echo "${host}:${port} OK.  '${got_string}'"
+  exit $happy
+else
+  echo "${host}:${port} Critical!  Output:  '${got_string}'  Expected:  '${string}'"
+  exit $critical
+fi

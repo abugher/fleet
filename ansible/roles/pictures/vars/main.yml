@@ -1,0 +1,26 @@
+---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/../{{ inventory_hostname }}/files/cron.d/chown_pictures"
+    dest:               '/etc/cron.d/chown_pictures'
+symlinks:
+  - owner:              'root'
+    group:              'root'
+    src:                '/storage/aaron-phone/live/legacy/DCIM/Camera'
+    dest:               '/usr/share/nginx/www/private/pictures'
+groups:
+  - 'rachel-phone'
+  - 'aaron-phone'
+users:
+  - 'rachel-phone'
+  - 'aaron-phone'
+authorized_keys:
+  - user:               'rachel-phone'
+    keyfile:            "{{ role_path }}/../rachel-phone/files/ssh_keys/rsync_backup.dss_key.pub"
+  - user:               'aaron-phone'
+    keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/aaron-phone.id_rsa.pub"
+  - user:               'aaron-phone'
+    keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/rsync_backup.dss_key.pub"
+

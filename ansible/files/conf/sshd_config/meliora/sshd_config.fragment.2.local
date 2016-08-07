@@ -1,0 +1,2 @@
+ListenAddress 192.168.11.53
+AllowUsers rachel aaron ansible nagios shinken

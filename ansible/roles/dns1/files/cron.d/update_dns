@@ -1,0 +1,2 @@
+# m                     h       dom     mon     dow     user    command
+00,10,20,30,40,50       *       *       *       *       pi      /usr/local/bin/update_dns_cronjob

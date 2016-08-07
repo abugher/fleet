@@ -1,0 +1,50 @@
+# See:  http://johan.cc/2012/02/06/nagios-nginx/
+# "php" and "fastcgi" are defined as upstream thingies in nginx.conf.
+
+server {
+  listen                443 ssl;
+  ssl_certificate       /etc/nginx/synapse.crt;
+  ssl_certificate_key   /etc/nginx/synapse.key;
+  server_name           nagios nagios.neuronpointer.net;
+
+  root                  /usr/share/nagios3/htdocs;       
+  index index.php       index.html;
+
+  auth_basic            "Nagios at synapse";
+  auth_basic_user_file  /etc/nagios3/htpasswd.users;
+
+  # Nagios is pretty sure it lives at $servername/nagios3/.
+  location /nagios3/ {
+    alias               /usr/share/nagios3/htdocs/;
+  }
+
+  location /stylesheets {
+    alias /etc/nagios3/stylesheets;
+  }
+
+  location /nagios3/stylesheets {
+    alias /etc/nagios3/stylesheets;
+  }
+
+  location ~ \.cgi$ {
+    root /usr/lib/cgi-bin/nagios3;
+
+    rewrite ^/cgi-bin/nagios3/(.*)$ /$1;
+
+    include /etc/nginx/fastcgi_params;
+
+    fastcgi_param AUTH_USER $remote_user;
+    fastcgi_param REMOTE_USER $remote_user;
+    fastcgi_param SCRIPT_FILENAME /usr/lib/cgi-bin/nagios3$fastcgi_script_name;     
+
+    fastcgi_pass fcgiwrap;
+  }
+
+  location ~ \.php$ {
+    include /etc/nginx/fastcgi_params;
+    fastcgi_pass php;
+    # See:  http://stackoverflow.com/a/15424808
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+  }
+}

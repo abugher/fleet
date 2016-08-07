@@ -1,0 +1,18 @@
+---
+dependencies:
+  - { role: 'user_friendly' }
+  - { role: 'root_keys' }
+  - { role: 'apt' }
+  - { role: 'sshd' }
+  - { role: 'reboot' }
+  - { role: 'pi' }
+  - { role: 'identity_client' }
+  - { role: 'ansible' }
+  - { role: 'krb5' }
+  - { role: 'nagios' }
+  - { role: 'smokeping' }
+# zabbix isn't ready yet
+#  - { role: 'zabbix' }
+  - { role: 'escrow' }
+  - { role: 'dphys-swapfile' }
+  - { role: 'monitored' }

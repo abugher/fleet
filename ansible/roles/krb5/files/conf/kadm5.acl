@@ -1,0 +1,7 @@
+# This file is the access control list for krb5 administration.  To activate
+# changes to this file:
+#
+#   /etc/init.d/krb5-admin-server restart
+
+# Admin rights for /admin instances:
+*/admin *

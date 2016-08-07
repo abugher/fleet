@@ -1,0 +1,10 @@
+---
+- name:                 'assemble sshd_config'
+  assemble:
+    remote_src:         False
+    src:                "../files/conf/sshd_config/{{ inventory_hostname }}"
+    dest:               '/etc/ssh/sshd_config'
+    owner:              'root'
+    group:              'root'
+    mode:               '0644'
+  register:             sshd_config_result

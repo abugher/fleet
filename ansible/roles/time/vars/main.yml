@@ -1,0 +1,10 @@
+---
+install_packages:
+  - 'cron'
+  - 'ntp'
+enable_services:
+  - 'cron'
+  - 'ntp'
+start_services:
+  - 'cron'
+  - 'ntp'

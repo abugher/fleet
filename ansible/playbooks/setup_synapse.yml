@@ -1,0 +1,11 @@
+---
+- hosts:                synapse
+  name:                 'configure synapse'
+  gather_facts:         False
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  vars_files:
+    - '~/code/sensitive/playbooks/configure_kdc_db_master_key.yml'
+  roles:
+    - 'synapse'

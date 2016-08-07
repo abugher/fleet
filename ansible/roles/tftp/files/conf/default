@@ -1,0 +1,39 @@
+path    debian-installer/i386/boot-screens/
+default debian-installer/i386/boot-screens/vesamenu.c32
+
+menu title Network Boot Menu
+
+label amd64_install
+        menu label Debian 8 Installer Menu - amd64
+        kernel debian-installer/amd64/boot-screens/vesamenu.c32
+        append debian-installer/amd64/pxelinux.cfg/default
+
+label i386_install
+        menu label Debian 8 Installer Menu - i386
+        kernel debian-installer/i386/boot-screens/vesamenu.c32
+        append debian-installer/i386/pxelinux.cfg/default
+
+label amd64_live
+        menu label Debian 8 Live - amd64
+        linux http://meliora/live-build/amd64/vmlinuz boot=live config hooks=filesystem username=live noeject fetch=http://192.168.11.53/live-build/amd64/filesystem.squashfs
+        append initrd=http://meliora/live-build/amd64/initrd.img
+
+label i386_live
+        menu label Debian 8 Live - i386
+        linux http://meliora/live-build/i386/vmlinuz boot=live config hooks=filesystem username=live noeject fetch=http://192.168.11.53/live-build/i386/filesystem.squashfs
+        append initrd=http://meliora/live-build/i386/initrd.img
+
+label i386_install_auto
+        menu label Debian 8 Unattended Install - i386
+        kernel debian-installer/i386/linux
+        append vga=788 initrd=debian-installer/i386/initrd.gz auto=true priority=critical interface=auto url=http://192.168.11.54/preseed.cfg
+
+label amd64_install_auto
+        menu label Debian 8 Unattended Install - amd64
+        kernel debian-installer/amd64/linux
+        append vga=788 initrd=debian-installer/amd64/initrd.gz auto=true priority=critical interface=auto url=http://192.168.11.54/preseed.cfg
+
+label reload
+        menu label Refresh Options
+        kernel debian-installer/i386/boot-screens/vesamenu.c32
+        append pxelinux.cfg/default

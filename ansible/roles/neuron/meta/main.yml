@@ -1,0 +1,26 @@
+---
+dependencies:
+  - { role: 'user_friendly' }
+  - { role: 'root_keys' }
+  - { role: 'apt' }
+  - { role: 'sshd' }
+  - { role: 'reboot' }
+  - { role: 'pi' }
+  - { role: 'identity_client' }
+  - { role: 'storage' }
+  - { role: 'dhcpd' }
+  - { role: 'cryptkeeper' }
+  - { role: 'transmission' }
+  - { role: 'flexget' }
+  - { role: 'static_address' }
+  - { role: 'tftp' }
+  - { role: 'nethack' }
+  - { role: 'temper-python' }
+  - { role: 'debian-netboot' }
+  - { role: 'pictures' }
+  - { role: 'private_web' }
+  - { role: 'front_page' }
+  - { role: 'wiki' }
+  - { role: 'remote_proxy' }
+  - { role: 'monitored' }
+  - { role: 'dns1' }

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+HIGH_CRITICAL_TEMPERATURE=100
+HIGH_WARNING_TEMPERATURE=95
+LOW_WARNING_TEMPERATURE=40
+LOW_CRITICAL_TEMPERATURE=32
+
+# I apologize for these quotation marks.
+raw_temperature=$(ssh $1 "/usr/local/bin/temper-poll -qf")
+temperature=$(echo $raw_temperature | sed 's/\..*//')
+service_ret=$?
+
+if ! test 0 = $service_ret; then
+  echo "Bad exit value:  ${service_ret}."
+  exit 2
+fi
+
+if test $temperature -gt $HIGH_CRITICAL_TEMPERATURE; then
+  echo "CRITICAL:  Ambient temperature in the entertainment center is ${raw_temperature}°F.  (Critical threshold is ${HIGH_CRITICAL_TEMPERATURE}°F.)"
+  exit 2
+elif test $temperature -lt $LOW_CRITICAL_TEMPERATURE; then
+  echo "CRITICAL:  Ambient temperature in the entertainment center is ${raw_temperature}°F.  (Critical threshold is ${LOW_CRITICAL_TEMPERATURE}°F.)"
+  exit 2
+elif test $temperature -gt $HIGH_WARNING_TEMPERATURE; then
+  echo "WARNING:  Ambient temperature in the entertainment center is ${raw_temperature}°F.  (Warning threshold is ${HIGH_WARNING_TEMPERATURE}°F.)"
+  exit 1
+elif test $temperature -lt $LOW_WARNING_TEMPERATURE; then
+  echo "WARNING:  Ambient temperature in the entertainment center is ${raw_temperature}°F.  (Warning threshold is ${LOW_WARNING_TEMPERATURE}°F.)"
+  exit 1
+fi
+
+echo "Ambient temperature in the entertainment center is ${raw_temperature}°F."
+exit 0

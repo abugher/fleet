@@ -1,0 +1,21 @@
+---
+install_packages:
+  - 'libpam-krb5'
+  - 'krb5-user'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/conf/krb5.conf"
+    dest:               '/etc/krb5.conf'
+users:
+  - 'aaron'
+  - 'rachel'
+groups:                 "{{ users }}"
+homedirs:               "{{ users }}"
+system_users:
+  - 'nagios'
+authorized_keys:
+  - user:               'nagios'
+    keyfile:            "{{ role_path }}/../synapse/files/ssh_keys/nagios.id_rsa.pub"
+

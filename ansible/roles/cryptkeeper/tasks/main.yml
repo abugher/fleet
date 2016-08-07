@@ -1,0 +1,5 @@
+---
+- include:              '../tasks/create_files.yml'
+- include:              '../tasks/authorized_keys.yml'
+- include:              '../tasks/system_users.yml'
+- include:              '../tasks/system_groups.yml'

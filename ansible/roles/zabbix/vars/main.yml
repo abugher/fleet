@@ -1,0 +1,10 @@
+---
+# zabbix depends on some apache packages, which conflicts with the current
+# nginx playbook, which explicitly removes apache et al.
+install_packages:
+  - 'zabbix-server-mysql'       # for zabbix
+  - 'zabbix-frontend-php'       # for zabbix
+  - 'mysql-server'              # for zabbix
+  - 'libmysqlclient-dev'        # for zabbix
+install_python_packages:
+  - 'mysql-python'              # for mysql_db ansible module, for zabbix

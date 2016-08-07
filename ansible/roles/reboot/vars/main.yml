@@ -1,0 +1,7 @@
+---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/../{{ inventory_hostname }}/files/cron.d/reboot"
+    dest:               '/etc/cron.d/reboot'

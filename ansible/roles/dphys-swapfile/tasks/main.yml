@@ -1,0 +1,4 @@
+---
+- include:              '../tasks/install_files.yml'
+- include:              '../tasks/restart_services.yml'
+  when:                 install_files_result.changed 

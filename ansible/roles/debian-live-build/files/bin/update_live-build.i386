@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /usr/local/debian-live/i386/debian-live/
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
+export DEBIAN_FRONTEND=noninteractive
+lb clean && lb build
