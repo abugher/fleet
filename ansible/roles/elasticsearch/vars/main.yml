@@ -1,3 +1,8 @@
 ---
 install_packages:
   - 'elasticsearch'
+  - 'openjdk-8-jre-headless'
+enable_services:
+  - 'elasticsearch'
+start_services:
+  - 'elasticsearch'
