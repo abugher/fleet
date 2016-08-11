@@ -1,0 +1,18 @@
+server {
+  listen 443 ssl;
+  ssl_certificate /etc/nginx/neuron.crt;
+  ssl_certificate_key /etc/nginx/neuron.key;
+  server_name nagios nagios.neuronpointer.net;
+
+  access_log /var/log/nginx/nagios.access.log;
+
+  location / {
+    proxy_pass http://nagios.neuronpointer.net/;
+  }
+
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root /var/www/nginx-default;
+  }
+}
