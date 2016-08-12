@@ -21,7 +21,7 @@ install_files:
   - owner:              'pi'
     group:              'pi'
     mode:               '0600'
-    src:                "../../../sensitive/playbooks/roles/{{ inventory_hostname }}/files/ssh_keys/pi.id_rsa"
+    src:                "../../../sensitive/ansible/roles/{{ inventory_hostname }}/files/ssh_keys/pi.id_rsa"
     dest:               '~pi/.ssh/id_rsa'
   - owner:              'pi'
     group:              'pi'

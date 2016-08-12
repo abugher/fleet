@@ -6,6 +6,6 @@
   become:               yes
   become_method:        sudo
   vars_files:
-    - '~/code/sensitive/playbooks/configure_kdc_db_master_key.yml'
+    - '~/code/sensitive/ansible/roles/synapse/vars/kdc_db_master_key.yml'
   roles:
     - 'synapse'

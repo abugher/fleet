@@ -84,7 +84,7 @@ install_files:
   - owner:              'nagios'
     group:              'nagios'
     mode:               '0600'
-    src:                "../../../sensitive/playbooks/roles/{{ inventory_hostname }}/files/ssh_keys/nagios.id_rsa"
+    src:                "../../../sensitive/ansible/roles/{{ inventory_hostname }}/files/ssh_keys/nagios.id_rsa"
     dest:               '~nagios/.ssh/id_rsa'
   - owner:              'nagios'
     group:              'nagios'
@@ -104,7 +104,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "../../../sensitive/playbooks/roles/nagios/files/conf/htpasswd.users"
+    src:                "../../../sensitive/ansible/roles/nagios/files/conf/htpasswd.users"
     dest:               '/etc/nagios3/htpasswd.users'
 symlinks:
   - owner:              'root'

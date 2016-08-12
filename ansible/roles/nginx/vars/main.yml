@@ -28,7 +28,7 @@ install_files:
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                "../../../sensitive/playbooks/roles/{{ inventory_hostname }}/files/ssl/key.pem"
+    src:                "../../../sensitive/ansible/roles/{{ inventory_hostname }}/files/ssl/key.pem"
     dest:               "/etc/nginx/{{ inventory_hostname }}.key"
   - owner:              'root'
     group:              'www-data'

@@ -3,7 +3,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0600'
-    src:                "../../../sensitive/playbooks/roles/{{ inventory_hostname }}/files/ssh_keys/root.id_rsa"
+    src:                "../../../sensitive/ansible/roles/{{ inventory_hostname }}/files/ssh_keys/root.id_rsa"
     dest:               '/root/.ssh/id_rsa'
   - owner:              'root'
     group:              'root'
