@@ -24,4 +24,6 @@ ERR_TRANS=3
 
 /sbin/cryptsetup luksOpen /dev/sda storage || fail $ERR_LUKSOPEN "Failed to luksOpen:  /dev/sda"
 /bin/mount /storage || fail $ERR_MOUNT "Failed to mount:  /storage"
-/usr/sbin/service transmission-daemon start || fail $ERR_TRANS "Failed to start service:  transmission-daemon"
+if test -e /etc/init.d/transmission-daemon; then
+  /usr/sbin/service transmission-daemon start || fail $ERR_TRANS "Failed to start service:  transmission-daemon"
+fi
