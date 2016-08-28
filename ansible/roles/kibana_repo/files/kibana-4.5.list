@@ -1,0 +1,2 @@
+# https://github.com/elastic/elasticsearch/issues/10551#issuecomment-92307813
+deb [arch=amd64] https://packages.elastic.co/kibana/4.5/debian stable main

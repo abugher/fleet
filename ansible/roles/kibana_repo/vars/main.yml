@@ -1,0 +1,17 @@
+---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/kibana.gpg.key"
+    dest:               '/etc/apt/kibana.gpg.key'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/kibana-4.5.list"
+    dest:               '/etc/apt/sources.list.d/kibana-4.5.list'
+apt_key_add:
+  - '/etc/apt/kibana.gpg.key'
+install_packages:
+  # Pre-req, per:  https://www.elastic.co/guide/en/elasticsearch/reference/master/deb.html#deb-repo
+  - 'apt-transport-https'

@@ -1,0 +1,17 @@
+---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/logstash.gpg.key"
+    dest:               '/etc/apt/logstash.gpg.key'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/logstash-2.3.list"
+    dest:               '/etc/apt/sources.list.d/logstash-2.3.list'
+apt_key_add:
+  - '/etc/apt/logstash.gpg.key'
+install_packages:
+  # Pre-req, per:  https://www.elastic.co/guide/en/elasticsearch/reference/master/deb.html#deb-repo
+  - 'apt-transport-https'

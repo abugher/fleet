@@ -1,0 +1,6 @@
+---
+- include:              '../tasks/install_files.yml'
+- include:              '../tasks/apt_key_add.yml'
+- include:              '../tasks/apt_update.yml'
+  when:                 install_files_result.changed
+- include:              '../tasks/install_packages.yml'
