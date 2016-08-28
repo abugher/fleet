@@ -1,6 +1,6 @@
 ---
 - hosts:                
-    - 'synapse'
+    - 'meliora'
   name:                 'hack'
   gather_facts:         False
   remote_user:          ansible
