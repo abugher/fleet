@@ -1,0 +1,4 @@
+# https://github.com/elastic/elasticsearch/issues/10551#issuecomment-92307813
+# This architecture-specific repo contains architecture-independent packages.
+#deb [arch=amd64] https://packages.elastic.co/elasticsearch/5.x/debian stable main
+deb [arch=amd64] https://packages.elastic.co/elasticsearch/2.x/debian stable main

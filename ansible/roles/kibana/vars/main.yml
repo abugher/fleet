@@ -2,7 +2,12 @@
 install_packages:
   - 'kibana'
   - 'openjdk-8-jre-headless'
+#lines_in_files:
+#  - line:       "elasticsearch.url: \"http://{{ elasticsearch_server }}:9200\""
+#    dest:       '/usr/opt/kibana/config/kibana.yml'
 enable_services:
   - 'kibana'
 start_services:
   - 'kibana'
+#restart_services:
+#  - 'kibana'

@@ -2,9 +2,9 @@
 - hosts:                
     - 'meliora'
   name:                 'hack'
-  gather_facts:         False
   remote_user:          ansible
   become:               yes
   become_method:        sudo
+  gather_facts:         True
   roles:
-    - 'kibana'
+    - 'elk'

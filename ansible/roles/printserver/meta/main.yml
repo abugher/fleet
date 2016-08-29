@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: 'identity_client' }
+  - role: 'identity_client'
 

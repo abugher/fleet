@@ -1,5 +1,5 @@
 ---
 dependencies:
-  - { role: 'pi' }
-  - { role: 'transmission' }
-  - { role: 'python' }
+  - role: 'pi'
+  - role: 'transmission'
+  - role: 'python'

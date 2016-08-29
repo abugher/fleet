@@ -8,8 +8,8 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "{{ role_path }}/files/kibana-4.5.list"
-    dest:               '/etc/apt/sources.list.d/kibana-4.5.list'
+    src:                "{{ role_path }}/files/kibana.list"
+    dest:               '/etc/apt/sources.list.d/kibana.list'
 apt_key_add:
   - '/etc/apt/kibana.gpg.key'
 install_packages:

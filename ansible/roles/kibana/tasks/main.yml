@@ -1,6 +1,10 @@
 ---
+- include_vars:         '../vars/roles.yml'
 - include:              '../tasks/install_packages.yml'
+#- include:              '../tasks/lines_in_files.yml'
 - include:              '../tasks/enable_services.yml'
   when:                 install_packages_result.changed
 - include:              '../tasks/start_services.yml'
   when:                 install_packages_result.changed
+#- include:              '../tasks/restart_services.yml'
+#  when:                 lines_in_files_result.changed

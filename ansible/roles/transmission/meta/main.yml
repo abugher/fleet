@@ -1,5 +1,5 @@
 ---
 dependencies:
-  - { role: 'nginx' }
-  - { role: 'python' }
+  - role: 'nginx'
+  - role: 'python'
 

@@ -1,13 +1,16 @@
 ---
 dependencies:
-  - { role: 'user_friendly' }
-  - { role: 'root_keys' }
-  - { role: 'apt' }
-  - { role: 'sshd' }
-  - { role: 'reboot' }
-  - { role: 'identity_client' }
-  - { role: 'monitored' }
-  - { role: 'printserver' }
-  - { role: 'debian-live-build' }
-  - { role: 'x2go' }
-  - { role: 'kanboard' }
+  - role: 'user_friendly'
+  - role: 'root_keys'
+  - role: 'apt'
+  - role: 'sshd'
+  - role: 'reboot'
+  - role: 'identity_client'
+  - role: 'monitored'
+  - role: 'printserver'
+  - role: 'debian-live-build'
+  - role: 'x2go'
+  - role: 'kanboard'
+  - role: 'elasticsearch'
+  - role: 'logstash'
+  - role: 'kibana'

@@ -8,8 +8,8 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "{{ role_path }}/files/elasticsearch-5.x.list"
-    dest:               '/etc/apt/sources.list.d/elasticsearch-5.x.list'
+    src:                "{{ role_path }}/files/elasticsearch.list"
+    dest:               '/etc/apt/sources.list.d/elasticsearch.list'
 apt_key_add:
   - '/etc/apt/elasticsearch.gpg.key'
 install_packages:

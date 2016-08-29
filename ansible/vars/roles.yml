@@ -1,0 +1,3 @@
+# Make sure this agrees with the inventory.
+---
+elasticsearch_server:           'synapse'
