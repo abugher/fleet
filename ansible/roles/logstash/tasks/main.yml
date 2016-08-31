@@ -1,6 +1,11 @@
 ---
 - include:              '../tasks/install_packages.yml'
+- include:              '../tasks/add_users_to_groups.yml'
+- include:              '../tasks/sync_dirs.yml'
 - include:              '../tasks/enable_services.yml'
   when:                 install_packages_result.changed
 - include:              '../tasks/start_services.yml'
   when:                 install_packages_result.changed
+- include:              '../tasks/restart_services.yml'
+  when:                 sync_dirs_result.changed
+                        or add_users_to_groups_result.changed

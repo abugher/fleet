@@ -2,7 +2,16 @@
 install_packages:
   - 'logstash'
   - 'openjdk-8-jre-headless'
+add_users_to_groups:
+  - user:               'logstash'
+    groups:             'adm'
+sync_dirs:
+  - src:                "{{ role_path }}/files/conf.d/"
+    dest:               '/etc/logstash/conf.d/'
+    delete:             'yes'
 enable_services:
   - 'logstash'
 start_services:
+  - 'logstash'
+restart_services:
   - 'logstash'
