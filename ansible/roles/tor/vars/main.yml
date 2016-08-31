@@ -5,7 +5,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "{{ role_path }}/files/conf/torrc"
+    src:                '../../../sensitive/ansible/roles/tor/files/conf/torrc'
     dest:               '/etc/tor/torrc'
   - owner:              'root'
     group:              'root'
