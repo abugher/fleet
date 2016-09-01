@@ -1,5 +1,5 @@
 ---
-- include_vars:         "{{ role_path }}/../{{ inventory_hostname }}/vars/escrow_buddy.yml"
+- include_vars:         '../vars/roles.yml'
 - include:              '../tasks/system_users.yml'
 - include:              '../tasks/system_groups.yml'
 - include:              '../tasks/create_files.yml'

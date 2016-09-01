@@ -35,6 +35,6 @@ symlinks:
     dest:               '/usr/local/bin/s'
 authorized_keys:
   - user:               'escrow'
-    keyfile:            "{{ role_path }}/../{{ buddy }}/files/ssh_keys/root.id_rsa.pub"
+    keyfile:            "{{ role_path }}/../{{ escrow_server }}/files/ssh_keys/root.id_rsa.pub"
 homedirs:
   - 'root'              # .known_hosts

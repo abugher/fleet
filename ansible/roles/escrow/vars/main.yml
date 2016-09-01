@@ -32,4 +32,4 @@ symlinks:
     dest:               '/usr/local/bin/s'
 authorized_keys:
   - user:               'escrow'
-    keyfile:            "{{ role_path }}/../{{ buddy }}/files/ssh_keys/root.id_rsa.pub"
+    keyfile:            "{{ role_path }}/../{{ storage_server }}/files/ssh_keys/root.id_rsa.pub"

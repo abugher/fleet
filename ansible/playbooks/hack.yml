@@ -1,10 +1,20 @@
 ---
 - hosts:                
-    - 'meliora'
+    - 'neuron'
   name:                 'hack'
   remote_user:          ansible
   become:               yes
   become_method:        sudo
   gather_facts:         True
   roles:
-    - 'logstash'
+    - 'storage'
+
+- hosts:                
+    - 'synapse'
+  name:                 'hack'
+  remote_user:          ansible
+  become:               yes
+  become_method:        sudo
+  gather_facts:         True
+  roles:
+    - 'escrow'
