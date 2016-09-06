@@ -1,20 +1,10 @@
 ---
-- hosts:                
-    - 'neuron'
-  name:                 'hack'
-  remote_user:          ansible
-  become:               yes
-  become_method:        sudo
-  gather_facts:         True
+- name:                 'hack'
+  hosts:
+    - 'localhost'
+  remote_user:          'aaron'
+  become:               'yes'
+  become_method:        'sudo'
+  gather_facts:         'no'
   roles:
-    - 'storage'
-
-- hosts:                
-    - 'synapse'
-  name:                 'hack'
-  remote_user:          ansible
-  become:               yes
-  become_method:        sudo
-  gather_facts:         True
-  roles:
-    - 'escrow'
+    - 'no_systemd'

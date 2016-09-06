@@ -1,0 +1,15 @@
+---
+install_packages:
+  - 'sysvinit-core'
+  - 'sysvinit-utils'
+copy_remote_files:
+  - src:                '/usr/share/sysvinit/inittab'
+    dest:               '/etc/inittab'
+purge_packages:
+  - 'systemd'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/apt_preferences_systemd"
+    dest:               '/etc/apt/preferences.d/systemd'
