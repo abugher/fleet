@@ -1,7 +1,7 @@
 #!/bin/bash
 
-                  public=~/code/fleet/conf/ssl
-               sensitive=~/code/sensitive/conf/ssl
+                  public=~/code/fleet/ssl
+               sensitive=~/code/sensitive/ssl
              ca_root_key=${sensitive}/ca/root/key.pem
             ca_root_conf=${public}/ca/root.conf 
             ca_root_cert=${public}/ca/root/cert.pem
