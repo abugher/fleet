@@ -1,10 +1,10 @@
 ---
 - name:                 'hack'
   hosts:
-    - 'synapse'
+    - 'neuron'
   remote_user:          'aaron'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'syslog_server'
+    - 'syslog_client'
