@@ -42,8 +42,8 @@ authorityKeyIdentifier  = keyid:always
 default_ca	        = CA_default
 
 [ CA_default ]
-dir                     = /home/aaron/code/fleet/conf/ssl/ca/intermediate
-sdir                    = /home/aaron/code/sensitive/conf/ssl/ca/intermediate
+dir                     = /home/aaron/code/fleet/ssl/ca/intermediate
+sdir                    = /home/aaron/code/sensitive/ssl/ca/intermediate
 database                = $dir/index.txt
 new_certs_dir           = $dir/newcerts
 certificate             = $dir/cert.pem

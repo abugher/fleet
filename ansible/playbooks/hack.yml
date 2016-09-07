@@ -1,10 +1,10 @@
 ---
 - name:                 'hack'
   hosts:
-    - 'localhost'
+    - 'synapse'
   remote_user:          'aaron'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'no_systemd'
+    - 'syslog_server'

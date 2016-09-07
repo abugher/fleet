@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Don't run this file.  Include it.
+# See neuron/generate.sh for an example.
+
 # generate server key
-#openssl genrsa -out $server_key 4096
+openssl genrsa -out $server_key 4096
 # generate server CSR
 openssl req -config $server_conf -key $server_key -new -sha256 -out $server_csr
 # generate server cert, signed by CA intermediate cert

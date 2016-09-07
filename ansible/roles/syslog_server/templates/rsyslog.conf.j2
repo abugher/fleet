@@ -1,0 +1,54 @@
+$ModLoad imuxsock # local system logging
+$ModLoad imklog   # kernel logging
+$ModLoad imtcp    # TCP
+
+$DefaultNetstreamDriver                         gtls
+$DefaultNetstreamDriverCAFile                   /etc/ssl/certs/Aaron_Intermediate_CA.pem
+$DefaultNetstreamDriverCertFile                 /etc/ssl/certs/{{ inventory_hostname }}.pem
+$DefaultNetstreamDriverKeyFile                  /etc/ssl/private/{{ inventory_hostname }}.pem
+
+$InputTCPServerStreamDriverAuthMode             x509/name
+$InputTCPServerStreamDriverPermittedPeer        *.neuronpointer.net
+$InputTCPServerStreamDriverMode                 1 # TLS-only
+$InputTCPServerRun                              10514 # listener port number
+
+# Use traditional timestamp format.
+# To enable high precision timestamps, comment out the following line.
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+# Set the default permissions for all log files.
+$FileOwner root
+$FileGroup adm
+$FileCreateMode 0640
+$DirCreateMode 0755
+$Umask 0022
+
+$WorkDirectory /var/spool/rsyslog
+
+# Not sure about this.  It's currently empty, so skip it.
+#$IncludeConfig /etc/rsyslog.d/*.conf
+
+# Log by facility.
+auth,authpriv.*			/var/log/auth.log
+*.*;auth,authpriv.none		-/var/log/syslog
+#cron.*				/var/log/cron.log
+daemon.*			-/var/log/daemon.log
+kern.*				-/var/log/kern.log
+lpr.*				-/var/log/lpr.log
+mail.*				-/var/log/mail.log
+mail.info			-/var/log/mail.info
+mail.warn			-/var/log/mail.warn
+mail.err			/var/log/mail.err
+user.*				-/var/log/user.log
+
+# Some "catch-all" log files.
+*.=debug;\
+	auth,authpriv.none;\
+	news.none;mail.none	-/var/log/debug
+*.=info;*.=notice;*.=warn;\
+	auth,authpriv.none;\
+	cron,daemon.none;\
+	mail,news.none		-/var/log/messages
+
+# Emergencies are sent to everybody logged in.
+*.emerg				:omusrmsg:*
