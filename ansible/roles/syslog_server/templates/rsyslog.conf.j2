@@ -10,7 +10,7 @@ $DefaultNetstreamDriverKeyFile                  /etc/ssl/private/{{ inventory_ho
 $InputTCPServerStreamDriverAuthMode             x509/name
 $InputTCPServerStreamDriverPermittedPeer        *.neuronpointer.net
 $InputTCPServerStreamDriverMode                 1 # TLS-only
-$InputTCPServerRun                              10514 # listener port number
+$InputTCPServerRun                              6514 # listener port number
 
 # Use traditional timestamp format.
 # To enable high precision timestamps, comment out the following line.
@@ -25,30 +25,43 @@ $Umask 0022
 
 $WorkDirectory /var/spool/rsyslog
 
-# Not sure about this.  It's currently empty, so skip it.
-#$IncludeConfig /etc/rsyslog.d/*.conf
-
 # Log by facility.
-auth,authpriv.*			/var/log/auth.log
-*.*;auth,authpriv.none		-/var/log/syslog
-#cron.*				/var/log/cron.log
-daemon.*			-/var/log/daemon.log
-kern.*				-/var/log/kern.log
-lpr.*				-/var/log/lpr.log
-mail.*				-/var/log/mail.log
-mail.info			-/var/log/mail.info
-mail.warn			-/var/log/mail.warn
-mail.err			/var/log/mail.err
-user.*				-/var/log/user.log
+$template                       Auth,"/var/log/%HOSTNAME%/auth.log"
+$template                       Syslog,"/var/log/%HOSTNAME%/syslog"
+$template                       Cron,"/var/log/%HOSTNAME%/cron.log"
+$template                       Daemon,"/var/log/%HOSTNAME%/daemon.log"
+$template                       Kern,"/var/log/%HOSTNAME%/kern.log"
+$template                       LPR,"/var/log/%HOSTNAME%/lpr.log"
+$template                       MailLog,"/var/log/%HOSTNAME%/mail.log"
+$template                       MailInfo,"/var/log/%HOSTNAME%/mail.info"
+$template                       MailWarn,"/var/log/%HOSTNAME%/mail.warn"
+$template                       MailErr,"/var/log/%HOSTNAME%/mail.err"
+$template                       User,"/var/log/%HOSTNAME%/user.log"
+$template                       Debug,"/var/log/%HOSTNAME%/debug"
+$template                       Messages,"/var/log/%HOSTNAME%/messages"
+
+auth,authpriv.*			?Auth
+*.*;auth,authpriv.none		-?Syslog
+#cron.*				?Cron
+daemon.*			-?Daemon
+kern.*				-?Kern
+lpr.*				-?LPR
+mail.*				-?MailLog
+mail.info			-?MailInfo
+mail.warn			-?MailWarn
+mail.err			?MailErr
+user.*				-?User
+
+
 
 # Some "catch-all" log files.
 *.=debug;\
 	auth,authpriv.none;\
-	news.none;mail.none	-/var/log/debug
+	news.none;mail.none	?Debug
 *.=info;*.=notice;*.=warn;\
 	auth,authpriv.none;\
 	cron,daemon.none;\
-	mail,news.none		-/var/log/messages
+	mail,news.none		?Messages
 
 # Emergencies are sent to everybody logged in.
 *.emerg				:omusrmsg:*

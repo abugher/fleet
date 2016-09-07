@@ -16,3 +16,4 @@ dependencies:
   - role: 'escrow'
   - role: 'dphys-swapfile'
   - role: 'monitored'
+  - role: 'syslog_server'

@@ -1,0 +1,56 @@
+# http://www.rsyslog.com/doc/master/tutorials/tls_cert_client.html
+$ModLoad imuxsock # provides support for local system logging
+$ModLoad imklog   # provides kernel logging support
+
+# Use traditional timestamp format.
+# To enable high precision timestamps, comment out the following line.
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+# Set the default permissions for all log files.
+$FileOwner root
+$FileGroup adm
+$FileCreateMode 0640
+$DirCreateMode 0755
+$Umask 0022
+
+# Where to place spool and state files
+$WorkDirectory /var/spool/rsyslog
+
+
+$DefaultNetstreamDriver gtls
+
+$DefaultNetstreamDriverCAFile           /etc/ssl/certs/Aaron_Intermediate_CA.pem
+$DefaultNetstreamDriverCertFile         /etc/ssl/certs/{{ inventory_hostname }}.pem
+$DefaultNetstreamDriverKeyFile          /etc/ssl/private/{{ inventory_hostname }}.pem
+
+$ActionSendStreamDriverAuthMode         x509/name
+$ActionSendStreamDriverPermittedPeer    {{ syslog_server }}
+$ActionSendStreamDriverMode             1 # run driver in TLS-only mode
+
+# forward everything
+*.*                                     @@{{ syslog_server }}:6514
+
+#$IncludeConfig /etc/rsyslog.d/*.conf
+
+auth,authpriv.*			/var/log/auth.log
+*.*;auth,authpriv.none		-/var/log/syslog
+#cron.*				/var/log/cron.log
+daemon.*			-/var/log/daemon.log
+kern.*				-/var/log/kern.log
+lpr.*				-/var/log/lpr.log
+mail.*				-/var/log/mail.log
+mail.info			-/var/log/mail.info
+mail.warn			-/var/log/mail.warn
+mail.err			/var/log/mail.err
+user.*				-/var/log/user.log
+
+*.=debug;\
+	auth,authpriv.none;\
+	news.none;mail.none	-/var/log/debug
+*.=info;*.=notice;*.=warn;\
+	auth,authpriv.none;\
+	cron,daemon.none;\
+	mail,news.none		-/var/log/messages
+
+# Emergencies are sent to everybody logged in.
+*.emerg				:omusrmsg:*

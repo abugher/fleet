@@ -24,3 +24,4 @@ dependencies:
   - role: 'remote_proxy'
   - role: 'monitored'
   - role: 'dns1'
+  - role: 'syslog_client'

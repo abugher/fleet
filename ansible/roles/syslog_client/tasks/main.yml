@@ -1,4 +1,6 @@
 ---
+- include_vars:         '../vars/roles.yml'
+
 - include:              '../tasks/install_packages.yml'
 - include:              '../tasks/template_files.yml'
 - include:              '../tasks/enable_services.yml'

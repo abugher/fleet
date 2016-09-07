@@ -1,0 +1,16 @@
+---
+install_packages:
+  - 'rsyslog'
+  - 'rsyslog-gnutls'
+template_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/templates/rsyslog.conf.j2"
+    dest:               '/etc/rsyslog.conf'
+enable_services:
+  - 'rsyslog'
+start_services:
+  - 'rsyslog'
+restart_services:
+  - 'rsyslog'
