@@ -39,7 +39,7 @@ fi
      ca_intermediate_csr=${public}/ca/intermediate/csr.pem
     ca_intermediate_cert=${public}/ca/intermediate/cert.pem
 
-              server_dir=${public}/${host}
+              server_dir=${public}hosts/${host}
     server_conf_template=${public}/conf_template
              server_conf=${server_dir}/conf
               server_key=${server_dir}/key.pem

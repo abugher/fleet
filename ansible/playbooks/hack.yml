@@ -1,7 +1,7 @@
 ---
 - name:                 'hack'
   hosts:
-    - 'meliora'
+    - 'neuron'
   remote_user:          'aaron'
   become:               'yes'
   become_method:        'sudo'
