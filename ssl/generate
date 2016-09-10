@@ -1,0 +1,155 @@
+#!/bin/bash
+# generate - Generate SSL key and certificate material for one host, signed by my CA.
+
+# Before this script is run, these files must exist:
+#   intermediate CA key
+#   intermediate CA cert
+
+
+if test $# -le 1; then
+  fail $ERR_USAGE "Specify any positive number of short hostnames, starting with the most canonical."
+fi
+
+              ERR_PREREQ=1
+               ERR_USAGE=2
+               ERR_MKDIR=3
+              ERR_GENRSA=4
+                 ERR_CSR=5
+                ERR_CONF=6
+                 ERR_ERR=99
+
+                    host=$1
+                  domain='neuronpointer.net'
+
+        csr_cannot_exist='no'
+       cert_cannot_exist='no'
+ cert_chain_cannot_exist='no'
+                
+                  prefix="${0}:  "
+
+                  public=~/code/fleet/ssl
+               sensitive=~/code/sensitive/ssl
+
+            ca_root_conf=${public}/ca/root.conf 
+             ca_root_key=${sensitive}/ca/root/key.pem
+            ca_root_cert=${public}/ca/root/cert.pem
+
+    ca_intermediate_conf=${public}/ca/intermediate.conf
+     ca_intermediate_key=${sensitive}/ca/intermediate/key.pem
+     ca_intermediate_csr=${public}/ca/intermediate/csr.pem
+    ca_intermediate_cert=${public}/ca/intermediate/cert.pem
+
+              server_dir=${public}/${host}
+    server_conf_template=${public}/conf_template
+             server_conf=${server_dir}/conf
+              server_key=${server_dir}/key.pem
+              server_csr=${server_dir}/csr.pem
+             server_cert=${server_dir}/cert.pem
+              cert_chain=${server_dir}/chain.pem
+
+
+fail() {
+  echo -e "${prefix}Error:  ${2}"
+  exit $1
+}
+
+
+inform() {
+  echo -e "${prefix}${1}"
+}
+
+
+for prereq in ca_intermediate_key ca_intermediate_cert; do
+  if ! test -e "${!prereq}"; then
+    fail $ERR_PREREQ "Required file does not exist:  ${!prereq}"
+  fi
+done
+
+if ! test -e $server_dir; then
+  mkdir $server_dir \
+  || fail $ERR_MKDIR "Failed to create directory:  ${server_dir}"
+  inform "Created directory:  ${server_dir}"
+else
+  inform "Directory already exists:  ${server_dir}"
+fi
+
+if ! test -e "${server_conf}"; then
+  cp $server_conf_template $server_conf \
+  || fail $ERR_CONF "Failed to create conf:  ${server_conf}"
+
+  sed -i 's/COMMONNAME/'${1}'/' $server_conf \
+  || fail $ERR_CONF "Failed to inject common name:  ${1}"
+  inform "Injected common name:  ${1}"
+  n=1
+  for shortname in "${@}"; do
+    if echo $shortname | grep -q '\.'; then
+      fail $ERR_CONF "No dots in short names."
+    fi
+    echo -e "DNS.${n}                   = ${shortname}.${domain}" \
+            "\nDNS.$(( n + 1 ))                   = ${shortname}" \
+    >> $server_conf \
+    || fail $ERR_CONF "Failed to append configuration for short name:  ${shortname}"
+    let n+=2
+  done
+  inform "Created conf:  ${server_conf}"
+  for file in $server_key $server_csr $server_cert $cert_chain; do
+    if test -e $file; then
+      rm $file \
+      || fail $ERR_KEY "Failed to remove stale file:  ${file}"
+      inform "Removed stale file:  ${file}"
+    fi
+  done
+else
+  inform "Conf already exists:  ${server_conf}"
+fi
+
+if ! test -e $server_key; then
+  openssl genrsa -out $server_key 4096 \
+  || fail $ERR_GENRSA "Failed to generate server key:  ${server_key}"
+  inform "Generated server key:  ${server_key}"
+  for file in $server_csr $server_cert $cert_chain; do
+    if test -e $file; then
+      rm $file \
+      || fail $ERR_KEY "Failed to remove stale file:  ${file}"
+      inform "Removed stale file:  ${file}"
+    fi
+  done
+else
+  inform "Key already exists:  ${server_key}"
+fi
+
+if ! test -e $server_csr; then
+  openssl req -config $server_conf -key $server_key -new -sha256 -out $server_csr \
+  || fail $ERR_CSR "Failed to generate CSR:  ${server_csr}"
+  inform "Generated CSR:  ${server_csr}"
+  for file in $server_cert $cert_chain; do
+    if test -e $file; then
+      rm $file \
+      || fail $ERR_KEY "Failed to remove stale file:  ${file}"
+      inform "Removed stale file:  ${file}"
+    fi
+  done
+else
+  inform "CSR already exists:  ${server_csr}"
+fi
+
+if ! test -e $server_cert; then
+  openssl ca -config $server_conf -extensions server_cert -days $(( 365 * 10 )) -notext -md sha256 -in $server_csr -out $server_cert \
+  || fail $ERR_CERT "Failed to generate certificate:  ${server_cert}"
+  inform "Generated certificate:  ${server_cert}"
+  for file in $cert_chain; do
+    if test -e $file; then
+      rm $file \
+      || fail $ERR_KEY "Failed to remove stale file:  ${file}"
+      inform "Removed stale file:  ${file}"
+    fi
+  done
+fi
+
+if ! test -e $cert_chain; then
+  cat $server_cert $ca_intermediate_cert $ca_root_cert > $cert_chain \
+  || fail $ERR_CHAIN "Failed to create certificate chain:  ${cert_chain}"
+  inform "Created certificate chain:  ${cert_chain}"
+else
+  inform "Certificate chain already exists:  ${cert_chain}"
+fi
