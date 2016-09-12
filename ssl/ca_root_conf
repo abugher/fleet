@@ -43,6 +43,7 @@ extendedKeyUsage        = serverAuth
 [ v3_req ]
 basicConstraints        = CA:FALSE
 keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
+crlDistributionPoints   = URI:http://neuronpointer.net/root.crl.pem
 
 [ v3_ca ]
 subjectKeyIdentifier    = hash
@@ -82,11 +83,7 @@ crl_extensions          = crl_ext
 unique_subject          = no
 
 [ name_constraints ]
-permitted;DNS.1         = neuron
-permitted;DNS.2         = synapse
-permitted;DNS.3         = nagios
-permitted;DNS.4         = smokeping
-permitted;DNS.5         = neuronpointer.net
+permitted;DNS.1         = neuronpointer.net
 
 [ usr_cert ]
 basicConstraints        = CA:FALSE

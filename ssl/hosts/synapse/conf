@@ -11,7 +11,7 @@ string_mask             = utf8only
 default_md              = sha256
 
 [ req_distinguished_name ]
-commonName              = 192.168.11.55
+commonName              = synapse.neuronpointer.net
 
 [ server_cert ]
 basicConstraints        = CA:FALSE
@@ -26,14 +26,7 @@ extendedKeyUsage        = serverAuth
 basicConstraints        = CA:FALSE
 keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName          = @alt_names
-
-[ alt_names ]
-DNS.1                   = synapse.neuronpointer.net
-DNS.2                   = nagios.neuronpointer.net
-DNS.3                   = smokeping.neuronpointer.net
-DNS.4                   = synapse
-DNS.5                   = nagios
-DNS.6                   = smokeping
+crlDistributionPoints   = URI:http://neuronpointer.net/intermediate.crl.pem
 
 [ crl_ext ]
 authorityKeyIdentifier  = keyid:always
@@ -72,3 +65,8 @@ organizationName        = optional
 organizationalUnitName  = optional
 commonName              = supplied
 emailAddress            = optional
+
+[ alt_names ]
+DNS.1                   = synapse.neuronpointer.net
+DNS.2                   = nagios.neuronpointer.net
+DNS.3                   = smokeping.neuronpointer.net

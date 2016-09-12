@@ -11,7 +11,7 @@ string_mask             = utf8only
 default_md              = sha256
 
 [ req_distinguished_name ]
-commonName              = COMMONNAME
+commonName              = 192.168.11.54
 
 [ server_cert ]
 basicConstraints        = CA:FALSE
@@ -26,6 +26,11 @@ extendedKeyUsage        = serverAuth
 basicConstraints        = CA:FALSE
 keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName          = @alt_names
+
+[ alt_names ]
+DNS.1                   = *.neuronpointer.net
+DNS.2                   = neuronpointer.net
+DNS.3                   = neuron
 
 [ crl_ext ]
 authorityKeyIdentifier  = keyid:always
@@ -64,5 +69,3 @@ organizationName        = optional
 organizationalUnitName  = optional
 commonName              = supplied
 emailAddress            = optional
-
-[ alt_names ]

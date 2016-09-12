@@ -28,12 +28,12 @@ install_files:
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                "../../../sensitive/ansible/roles/{{ inventory_hostname }}/files/ssl/key.pem"
+    src:                "../../../sensitive/ssl/hosts/{{ inventory_hostname }}/key.pem"
     dest:               "/etc/nginx/{{ inventory_hostname }}.key"
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                "{{ role_path }}/../{{ inventory_hostname }}/conf/ssl/chain.pem"
+    src:                "{{ role_path }}/../../ssl/hosts/{{ inventory_hostname }}/chain.pem"
     dest:               "/etc/nginx/{{ inventory_hostname }}.crt"
 symlinks:
   - owner:              'root'

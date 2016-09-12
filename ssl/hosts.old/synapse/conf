@@ -11,7 +11,7 @@ string_mask             = utf8only
 default_md              = sha256
 
 [ req_distinguished_name ]
-commonName              = meliora.neuronpointer.net
+commonName              = 192.168.11.55
 
 [ server_cert ]
 basicConstraints        = CA:FALSE
@@ -26,7 +26,14 @@ extendedKeyUsage        = serverAuth
 basicConstraints        = CA:FALSE
 keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName          = @alt_names
-crlDistributionPoints   = URI:http://neuronpointer.net/intermediate.crl.pem
+
+[ alt_names ]
+DNS.1                   = synapse.neuronpointer.net
+DNS.2                   = nagios.neuronpointer.net
+DNS.3                   = smokeping.neuronpointer.net
+DNS.4                   = synapse
+DNS.5                   = nagios
+DNS.6                   = smokeping
 
 [ crl_ext ]
 authorityKeyIdentifier  = keyid:always
@@ -65,8 +72,3 @@ organizationName        = optional
 organizationalUnitName  = optional
 commonName              = supplied
 emailAddress            = optional
-
-[ alt_names ]
-DNS.1                   = meliora.neuronpointer.net
-DNS.2                   = remote.neuronpointer.net
-DNS.3                   = printer.neuronpointer.net

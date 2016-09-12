@@ -11,7 +11,7 @@ string_mask             = utf8only
 default_md              = sha256
 
 [ req_distinguished_name ]
-commonName              = 192.168.11.54
+commonName              = neuron.neuronpointer.net
 
 [ server_cert ]
 basicConstraints        = CA:FALSE
@@ -26,11 +26,7 @@ extendedKeyUsage        = serverAuth
 basicConstraints        = CA:FALSE
 keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName          = @alt_names
-
-[ alt_names ]
-DNS.1                   = *.neuronpointer.net
-DNS.2                   = neuronpointer.net
-DNS.3                   = neuron
+crlDistributionPoints   = URI:http://neuronpointer.net/intermediate.crl.pem
 
 [ crl_ext ]
 authorityKeyIdentifier  = keyid:always
@@ -69,3 +65,7 @@ organizationName        = optional
 organizationalUnitName  = optional
 commonName              = supplied
 emailAddress            = optional
+
+[ alt_names ]
+DNS.1                   = neuron.neuronpointer.net
+DNS.2                   = *.neuronpointer.net

@@ -8,11 +8,11 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "{{ role_path }}/../../../ssl/{{ inventory_hostname }}/cert.pem"
+    src:                "{{ role_path }}/../../../ssl/hosts/{{ inventory_hostname }}/cert.pem"
     dest:               "/etc/ssl/certs/{{ inventory_hostname }}.pem"
   - owner:              'root'
     group:              'root'
     mode:               '0640'
-    src:                "{{ role_path }}/../../../../sensitive/ssl/{{ inventory_hostname }}/key.pem"
+    src:                "{{ role_path }}/../../../../sensitive/ssl/hosts/{{ inventory_hostname }}/key.pem"
     dest:               "/etc/ssl/private/{{ inventory_hostname }}.pem"
 
