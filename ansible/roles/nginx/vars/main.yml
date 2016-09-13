@@ -33,7 +33,7 @@ install_files:
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                "{{ role_path }}/../../ssl/hosts/{{ inventory_hostname }}/chain.pem"
+    src:                "../../ssl/hosts/{{ inventory_hostname }}/chain.pem"
     dest:               "/etc/nginx/{{ inventory_hostname }}.crt"
 symlinks:
   - owner:              'root'

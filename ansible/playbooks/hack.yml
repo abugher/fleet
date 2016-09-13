@@ -7,4 +7,4 @@
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'syslog_client'
+    - 'crl_server'

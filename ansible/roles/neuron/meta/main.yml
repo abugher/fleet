@@ -25,3 +25,4 @@ dependencies:
   - role: 'monitored'
   - role: 'dns1'
   - role: 'syslog_client'
+  - role: 'crl_server'
