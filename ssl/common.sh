@@ -47,7 +47,47 @@
                      host_cert=${host_dir}/cert.pem
                     cert_chain=${host_dir}/chain.pem
                       host_crl=${host_dir}/crl.pem
-                   stale_files=( $ca_root_key $ca_root_cert $ca_root_crl $ca_intermediate_key $ca_intermediate_csr $ca_intermediate_cert $ca_intermediate_crl $host_conf $host_key $host_csr $host_cert $cert_chain $host_crl )
+
+         depend_on_ca_root_key=(
+                                $ca_root_cert
+                                $ca_root_crl
+                                $ca_intermediate_csr
+                              )
+        depend_on_ca_root_cert=(
+                                $cert_chain
+                              )
+         depend_on_ca_root_crl=(
+                              )
+ depend_on_ca_intermediate_key=(
+                                $ca_intermediate_csr
+                                $ca_intermediate_crl
+                                $host_cert
+                              )
+ depend_on_ca_intermediate_csr=(
+                                $ca_intermediate_cert
+                              )
+depend_on_ca_intermediate_cert=(
+                                $cert_chain
+                              )
+ depend_on_ca_intermediate_crl=(
+                              )
+           depend_on_host_conf=(
+                                $host_csr
+                              )
+            depend_on_host_key=(
+                                $host_csr
+                                $host_crl
+                              )
+            depend_on_host_csr=(
+                                $host_cert
+                              )
+           depend_on_host_cert=(
+                                $cert_chain
+                              )
+          depend_on_cert_chain=(
+                              )
+            depend_on_host_crl=(
+                              )
 
 
 fail() {

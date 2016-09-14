@@ -1,20 +1,28 @@
 #!/bin/bash
 # generate - Generate SSL key and certificate material for one host, signed by my CA.
 # generate <shorthostname> [shorthostname ...]
+#
+# Much of this logic could be a make file.  Maybe it should be.
 
 # Before this script is run, these files must exist:
 #   ca_root_conf
 #   ca_intermediate_conf
 #   host_conf_template
 
-. common.sh || {
+source common.sh || {
   echo 'Error:  Current directory looks wrong.  Exiting.' >&2
   exit 1
 }
 
 
+ca_only='no'
 if test $# -lt 1; then
-  fail $ERR_USAGE "Specify any positive number of short hostnames, starting with the most canonical."
+  #fail $ERR_USAGE "Specify any positive number of short hostnames, starting with the most canonical."
+  ca_only='yes'
+fi
+
+if test 'ca' = "${host}"; then
+  fail $ERR_USAGE "'ca' may not be a primary hostname."
 fi
 
 
@@ -69,7 +77,7 @@ if ! test -e "${ca_root_key}"; then
   || fail $ERR_GENRSA "Failed to generate CA root key:  ${ca_root_key}"
 
   inform "Generated CA root key:  ${ca_root_key}"
-  remove_stale "${stale_files[@]:1}"
+  remove_stale "${depend_on_ca_root_key[@]}"
 else
   inform "Key already exists:  ${ca_root_key}"
 fi
@@ -78,14 +86,14 @@ if ! test -e "${ca_root_cert}"; then
   openssl req -config "${ca_root_conf}" -key "${ca_root_key}" -new -x509 -days $(( 365 * 10 )) -sha256 -extensions v3_ca -out "${ca_root_cert}" \
   || fail $ERR_CERT "Failed to generate certificate:  ${ca_root_cert}"
   inform "Generated certificate:  ${ca_root_cert}"
-  remove_stale "${stale_files[@]:2}"
+  remove_stale "${depend_on_ca_root_cert[@]}"
 fi
 
 if ! test -e "${ca_root_crl}"; then
   openssl ca -config "${ca_root_conf}" -gencrl -out "${ca_root_crl}" \
   || fail $ERR_CERT "Failed to generate revocation list:  ${ca_root_crl}"
   inform "Generated revocation list:  ${ca_root_crl}"
-  remove_stale "${stale_files[@]:3}"
+  remove_stale "${depend_on_ca_root_crl[@]}"
 fi
 
 
@@ -129,7 +137,7 @@ if ! test -e "${ca_intermediate_key}"; then
   openssl genrsa -aes256 -out "${ca_intermediate_key}" 4096 \
   || fail $ERR_GENRSA "Failed to generate CA intermediate key:  ${ca_intermediate_key}"
   inform "Generated CA intermediate key:  ${ca_intermediate_key}"
-  remove_stale "${stale_files[@]:4}"
+  remove_stale "${depend_on_ca_intermediate_key[@]}"
 else
   inform "Key already exists:  ${ca_intermediate_key}"
 fi
@@ -138,7 +146,7 @@ if ! test -e "${ca_intermediate_csr}"; then
   openssl req -config "${ca_intermediate_conf}" -new -sha256 -key "${ca_intermediate_key}" -out "${ca_intermediate_csr}" \
   || fail $ERR_CSR "Failed to generate CSR:  ${ca_intermediate_csr}"
   inform "Generated CSR:  ${ca_intermediate_csr}"
-  remove_stale "${stale_files[@]:5}"
+  remove_stale "${depend_on_ca_intermediate_csr[@]}"
 else
   inform "CSR already exists:  ${ca_intermediate_csr}"
 fi
@@ -147,94 +155,107 @@ if ! test -e "${ca_intermediate_cert}"; then
   openssl ca -config "${ca_root_conf}" -extensions v3_intermediate_ca -days $(( 365 * 10 )) -notext -md sha256 -in "${ca_intermediate_csr}" -out "${ca_intermediate_cert}" \
   || fail $ERR_CERT "Failed to generate certificate:  ${ca_intermediate_cert}"
   inform "Generated certificate:  ${ca_intermediate_cert}"
-  remove_stale "${stale_files[@]:6}"
+  remove_stale "${depend_on_ca_intermediate_cert[@]}"
 fi
 
 if ! test -e "${ca_intermediate_crl}"; then
   openssl ca -config "${ca_intermediate_conf}" -gencrl -out "${ca_intermediate_crl}" \
   || fail $ERR_CERT "Failed to generate revocation list:  ${ca_intermediate_crl}"
   inform "Generated revocation list:  ${ca_intermediate_crl}"
-  remove_stale "${stale_files[@]:7}"
+  remove_stale "${depend_on_ca_intermediate_crl[@]}"
 fi
 
 
 # host material
 
-if ! test -e "${host_dir}"; then
-  mkdir -p "${host_dir}" \
-  || fail $ERR_MKDIR "Failed to create directory:  ${host_dir}"
-  inform "Created directory:  ${host_dir}"
-else
-  inform "Directory already exists:  ${host_dir}"
-fi
+if ! test 'yes' = "${ca_only}"; then
+  if ! test -e "${host_dir}"; then
+    mkdir -p "${host_dir}" \
+    || fail $ERR_MKDIR "Failed to create directory:  ${host_dir}"
+    inform "Created directory:  ${host_dir}"
+  else
+    inform "Directory already exists:  ${host_dir}"
+  fi
 
-if ! test -e "${sensitive_host_dir}"; then
-  mkdir -p "${sensitive_host_dir}" \
-  || fail $ERR_MKDIR "Failed to create directory:  ${sensitive_host_dir}"
-  inform "Created directory:  ${sensitive_host_dir}"
-else
-  inform "Directory already exists:  ${sensitive_host_dir}"
-fi
+  if ! test -e "${sensitive_host_dir}"; then
+    mkdir -p "${sensitive_host_dir}" \
+    || fail $ERR_MKDIR "Failed to create directory:  ${sensitive_host_dir}"
+    inform "Created directory:  ${sensitive_host_dir}"
+  else
+    inform "Directory already exists:  ${sensitive_host_dir}"
+  fi
 
-if ! test -e "${host_conf}"; then
-  cp "${host_conf_template}" "${host_conf}" \
-  || fail $ERR_CONF "Failed to create conf:  ${host_conf}"
+  if ! test -e "${host_conf}"; then
+    cp "${host_conf_template}" "${host_conf}" \
+    || fail $ERR_CONF "Failed to create conf:  ${host_conf}"
 
-  sed -i 's/COMMONNAME/'${1}'/' "${host_conf}" \
-  || fail $ERR_CONF "Failed to inject common name:  ${1}"
-  inform "Injected common name:  ${1}"
-  n=1
-  for shortname in "${@}"; do
-    if echo "${shortname}" | grep -q '\.'; then
-      fail $ERR_CONF "No dots in short names."
-    fi
-    echo -e "DNS.${n}                   = ${shortname}.${domain}" \
-    >> "${host_conf}" \
-    || fail $ERR_CONF "Failed to append configuration for short name:  ${shortname}"
-    let n++
-  done
-  inform "Created conf:  ${host_conf}"
-  remove_stale "${stale_files[@]:8}"
-else
-  inform "Conf already exists:  ${host_conf}"
-fi
+    sed -i 's/COMMONNAME/'${1}'/' "${host_conf}" \
+    || fail $ERR_CONF "Failed to inject common name:  ${1}"
+    inform "Injected common name:  ${1}"
+    n=1
+    for shortname in "${@}"; do
+      if echo "${shortname}" | grep -q '\.'; then
+        fail $ERR_CONF "No dots in short names."
+      fi
+      echo -e "DNS.${n}                   = ${shortname}.${domain}" \
+      >> "${host_conf}" \
+      || fail $ERR_CONF "Failed to append configuration for short name:  ${shortname}"
+      inform "Appended short name:  ${shortname}"
+      let n++
+      if echo "${shortname}" | grep -q '^dmz$'; then
+        echo -e "DNS.${n}                   = ${domain}" \
+        >> "${host_conf}" \
+        || fail $ERR_CONF "Failed to append configuration for root domain name:  ${domain}"
+        inform "Appended root domain name:  ${domain}"
+        let n++
+      fi
+    done
+    inform "Created conf:  ${host_conf}"
+    remove_stale "${depend_on_host_conf[@]}"
+  else
+    inform "Conf already exists:  ${host_conf}"
+  fi
 
-if ! test -e "${host_key}"; then
-  openssl genrsa -out "${host_key}" 4096 \
-  || fail $ERR_GENRSA "Failed to generate host key:  ${host_key}"
-  inform "Generated host key:  ${host_key}"
-  remove_stale "${stale_files[@]:9}"
-else
-  inform "Key already exists:  ${host_key}"
-fi
+  if ! test -e "${host_key}"; then
+    openssl genrsa -out "${host_key}" 4096 \
+    || fail $ERR_GENRSA "Failed to generate host key:  ${host_key}"
+    inform "Generated host key:  ${host_key}"
+    remove_stale "${depend_on_host_key[@]}"
+  else
+    inform "Key already exists:  ${host_key}"
+  fi
 
-if ! test -e "${host_csr}"; then
-  openssl req -config "${host_conf}" -key "${host_key}" -new -sha256 -out "${host_csr}" \
-  || fail $ERR_CSR "Failed to generate CSR:  ${host_csr}"
-  inform "Generated CSR:  ${host_csr}"
-  remove_stale "${stale_files[@]:10}"
-else
-  inform "CSR already exists:  ${host_csr}"
-fi
+  if ! test -e "${host_csr}"; then
+    openssl req -config "${host_conf}" -key "${host_key}" -new -sha256 -out "${host_csr}" \
+    || fail $ERR_CSR "Failed to generate CSR:  ${host_csr}"
+    inform "Generated CSR:  ${host_csr}"
+    remove_stale "${depend_on_host_csr[@]}"
+  else
+    inform "CSR already exists:  ${host_csr}"
+  fi
 
-if ! test -e "${host_cert}"; then
-  openssl ca -config "${host_conf}" -extensions v3_req -days $(( 365 * 10 )) -notext -md sha256 -in "${host_csr}" -out "${host_cert}" \
-  || fail $ERR_CERT "Failed to generate certificate:  ${host_cert}"
-  inform "Generated certificate:  ${host_cert}"
-  remove_stale "${stale_files[@]:11}"
-fi
+  if ! test -e "${host_cert}"; then
+    openssl ca -config "${host_conf}" -extensions v3_req -days $(( 365 * 10 )) -notext -md sha256 -in "${host_csr}" -out "${host_cert}" \
+    || fail $ERR_CERT "Failed to generate certificate:  ${host_cert}"
+    inform "Generated certificate:  ${host_cert}"
+    remove_stale "${depend_on_host_cert[@]}"
+  fi
 
-if ! test -e "${cert_chain}"; then
-  cat "${host_cert}" "${ca_intermediate_cert}" "${ca_root_cert}" > "${cert_chain}" \
-  || fail $ERR_CHAIN "Failed to create certificate chain:  ${cert_chain}"
-  inform "Created certificate chain:  ${cert_chain}"
-  remove_stale "${stale_files[@]:12}"
-else
-  inform "Certificate chain already exists:  ${cert_chain}"
-fi
+  if ! test -e "${cert_chain}"; then
+    cat "${host_cert}" "${ca_intermediate_cert}" "${ca_root_cert}" > "${cert_chain}" \
+    || fail $ERR_CHAIN "Failed to create certificate chain:  ${cert_chain}"
+    inform "Created certificate chain:  ${cert_chain}"
+    remove_stale "${depend_on_cert_chain[@]}"
+  else
+    inform "Certificate chain already exists:  ${cert_chain}"
+  fi
 
-if ! test -e "${host_crl}"; then
-  openssl ca -config "${host_conf}" -gencrl -out "${host_crl}" \
-  || fail $ERR_CERT "Failed to generate revocation list:  ${host_crl}"
-  inform "Generated revocation list:  ${host_crl}"
+  if ! test -e "${host_crl}"; then
+    openssl ca -config "${host_conf}" -gencrl -out "${host_crl}" \
+    || fail $ERR_CERT "Failed to generate revocation list:  ${host_crl}"
+    inform "Generated revocation list:  ${host_crl}"
+    remove_stale "${depend_on_host_crl[@]}"
+  else
+    inform "Revocation list already exists:  ${host_crl}"
+  fi
 fi

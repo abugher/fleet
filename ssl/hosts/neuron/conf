@@ -69,3 +69,5 @@ emailAddress            = optional
 [ alt_names ]
 DNS.1                   = neuron.neuronpointer.net
 DNS.2                   = *.neuronpointer.net
+DNS.3                   = dmz.neuronpointer.net
+DNS.4                   = neuronpointer.net
