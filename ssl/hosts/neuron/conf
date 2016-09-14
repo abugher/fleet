@@ -26,7 +26,7 @@ extendedKeyUsage        = serverAuth
 basicConstraints        = CA:FALSE
 keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName          = @alt_names
-crlDistributionPoints   = URI:http://neuronpointer.net/intermediate.crl.pem
+crlDistributionPoints   = URI:http://ca.neuronpointer.net/intermediate.crl.pem
 
 [ crl_ext ]
 authorityKeyIdentifier  = keyid:always
@@ -71,3 +71,4 @@ DNS.1                   = neuron.neuronpointer.net
 DNS.2                   = *.neuronpointer.net
 DNS.3                   = dmz.neuronpointer.net
 DNS.4                   = neuronpointer.net
+DNS.5                   = ca.neuronpointer.net

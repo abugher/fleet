@@ -43,7 +43,7 @@ extendedKeyUsage        = serverAuth
 [ v3_req ]
 basicConstraints        = CA:FALSE
 keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
-crlDistributionPoints   = URI:http://neuronpointer.net/root.crl.pem
+crlDistributionPoints   = URI:http://ca.neuronpointer.net/root.crl.pem
 
 [ v3_ca ]
 subjectKeyIdentifier    = hash
