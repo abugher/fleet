@@ -54,7 +54,7 @@
              depend_on_ca_root_key=(
                                     $ca_root_cert
                                     $ca_root_crl
-                                    $ca_intermediate_csr
+                                    $ca_intermediate_cert
                                   )
             depend_on_ca_root_cert=(
                                     $cert_chain
@@ -96,7 +96,7 @@
               depend_on_cert_chain=(
                                   )
                 depend_on_host_crl=(
-                                    $host_crl
+                                    $host_crl_der
                                   )
             depend_on_host_crl_der=(
                                   )
@@ -127,4 +127,3 @@ remove_stale() {
     fi
   done
 }
-
