@@ -26,7 +26,7 @@ extendedKeyUsage        = serverAuth
 basicConstraints        = CA:FALSE
 keyUsage                = nonRepudiation, digitalSignature, keyEncipherment
 subjectAltName          = @alt_names
-crlDistributionPoints   = URI:http://ca.neuronpointer.net/intermediate.crl.pem
+crlDistributionPoints   = URI:http://ca.neuronpointer.net/intermediate.crl.der
 
 [ crl_ext ]
 authorityKeyIdentifier  = keyid:always

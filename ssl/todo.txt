@@ -1,0 +1,3 @@
+Fix dependency handling in generate.  Needs to compare date stamps.
+
+Remove hard coded domain name from files.  Template it.
