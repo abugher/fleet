@@ -3,6 +3,16 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
+    src:                "{{ role_path }}/../../../ssl/ca/intermediate/crl.der"
+    dest:               '/usr/share/nginx/www/intermediate.crl.der'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/../../../ssl/ca/root/crl.der"
+    dest:               '/usr/share/nginx/www/root.crl.der'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
     src:                "{{ role_path }}/../../../ssl/ca/intermediate/crl.pem"
     dest:               '/usr/share/nginx/www/intermediate.crl.pem'
   - owner:              'root'
