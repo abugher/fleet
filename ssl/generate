@@ -109,6 +109,10 @@ else
   inform "DER encoded revocation list already exists:  ${ca_root_crl_der}"
 fi
 
+c_rehash "${ca_root_dir}" \
+|| fail $ERR_REHASH "Failed to rehash CA root directory."
+inform "Rehashed CA root directory."
+
 
 # CA intermediate material
 
@@ -190,6 +194,10 @@ if ! test -e "${ca_intermediate_crl_der}"; then
 else
   inform "DER encoded revocation list already exists:  ${ca_intermediate_crl}"
 fi
+
+c_rehash "${ca_intermediate_dir}" \
+|| fail $ERR_REHASH "Failed to rehash CA intermediate directory."
+inform "Rehashed CA intermediate directory."
 
 
 # host material
