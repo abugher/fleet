@@ -42,7 +42,7 @@ if ! test -e "${ca_root_dir}"; then
   || fail $ERR_MKDIR "Failed to create directory:  ${ca_root_dir}"
   inform "Created directory:  ${ca_root_dir}"
 else
-  inform "Directory already exists:  ${ca_root_dir}"
+  inform "Directory exists:  ${ca_root_dir}"
 fi
 
 if ! test -e "${ca_root_newcerts}"; then
@@ -50,7 +50,7 @@ if ! test -e "${ca_root_newcerts}"; then
   || fail $ERR_MKDIR "Failed to create directory:  ${ca_root_newcerts}"
   inform "Created directory:  ${ca_root_newcerts}"
 else
-  inform "Directory already exists:  ${ca_root_newcerts}"
+  inform "Directory exists:  ${ca_root_newcerts}"
 fi
 
 if ! test -e "${ca_root_sensitive_dir}"; then
@@ -58,7 +58,7 @@ if ! test -e "${ca_root_sensitive_dir}"; then
   || fail $ERR_MKDIR "Failed to create directory:  ${ca_root_sensitive_dir}"
   inform "Created directory:  ${ca_root_sensitive_dir}"
 else
-  inform "Directory already exists:  ${ca_root_sensitive_dir}"
+  inform "Directory exists:  ${ca_root_sensitive_dir}"
 fi
 
 if ! test -e "${ca_root_key}"; then
@@ -75,38 +75,49 @@ if ! test -e "${ca_root_key}"; then
 
   openssl genrsa -aes256 -out "${ca_root_key}" 4096 \
   || fail $ERR_GENRSA "Failed to generate CA root key:  ${ca_root_key}"
-
   inform "Generated key:  ${ca_root_key}"
-  remove_stale "${depend_on_ca_root_key[@]}"
 else
-  inform "Key already exists:  ${ca_root_key}"
+  inform "Key exists:  ${ca_root_key}"
+fi
+
+if newer_than_deps "${ca_root_key}" "${depend_on_ca_root_key[@]}"; then
+  remove_stale "${depend_on_ca_root_key[@]}"
 fi
 
 if ! test -e "${ca_root_cert}"; then
   openssl req -config "${ca_root_conf}" -key "${ca_root_key}" -new -x509 -days $(( 365 * 10 )) -sha256 -extensions v3_ca -out "${ca_root_cert}" \
   || fail $ERR_CERT "Failed to generate certificate:  ${ca_root_cert}"
   inform "Generated certificate:  ${ca_root_cert}"
-  remove_stale "${depend_on_ca_root_cert[@]}"
 else
-  inform "Certificate already exists:  ${ca_root_cert}"
+  inform "Certificate exists:  ${ca_root_cert}"
+fi
+
+if newer_than_deps "${ca_root_cert}" "${depend_on_ca_root_cert[@]}"; then
+  remove_stale "${depend_on_ca_root_cert[@]}"
 fi
 
 if ! test -e "${ca_root_crl}"; then
   openssl ca -config "${ca_root_conf}" -gencrl -out "${ca_root_crl}" \
   || fail $ERR_CERT "Failed to generate revocation list:  ${ca_root_crl}"
   inform "Generated revocation list:  ${ca_root_crl}"
-  remove_stale "${depend_on_ca_root_crl[@]}"
 else
-  inform "Revocation list already exists:  ${ca_root_crl}"
+  inform "Revocation list exists:  ${ca_root_crl}"
+fi
+
+if newer_than_deps "${ca_root_crl}" "${depend_on_ca_root_crl[@]}"; then
+  remove_stale "${depend_on_ca_root_crl[@]}"
 fi
 
 if ! test -e "${ca_root_crl_der}"; then
   openssl crl -in  "${ca_root_crl}" -outform der -out "${ca_root_crl_der}" \
   || fail $ERR_CERT "Failed to generate DER encoded revocation list:  ${ca_root_crl_der}"
   inform "Generated DER encoded revocation list:  ${ca_root_crl_der}"
-  remove_stale "${depend_on_ca_root_crl_der[@]}"
 else
-  inform "DER encoded revocation list already exists:  ${ca_root_crl_der}"
+  inform "DER encoded revocation list exists:  ${ca_root_crl_der}"
+fi
+
+if newer_than_deps "${ca_root_crl_der}" "${depend_on_ca_root_crl_der[@]}"; then
+  remove_stale "${depend_on_ca_root_crl_der[@]}"
 fi
 
 
@@ -117,7 +128,7 @@ if ! test -e "${ca_intermediate_dir}"; then
   || fail $ERR_MKDIR "Failed to create directory:  ${ca_intermediate_dir}"
   inform "Created directory:  ${ca_intermediate_dir}"
 else
-  inform "Directory already exists:  ${ca_intermediate_dir}"
+  inform "Directory exists:  ${ca_intermediate_dir}"
 fi
 
 if ! test -e "${ca_intermediate_newcerts}"; then
@@ -125,7 +136,7 @@ if ! test -e "${ca_intermediate_newcerts}"; then
   || fail $ERR_MKDIR "Failed to create directory:  ${ca_intermediate_newcerts}"
   inform "Created directory:  ${ca_intermediate_newcerts}"
 else
-  inform "Directory already exists:  ${ca_intermediate_newcerts}"
+  inform "Directory exists:  ${ca_intermediate_newcerts}"
 fi
 
 if ! test -e "${ca_intermediate_sensitive_dir}"; then
@@ -133,7 +144,7 @@ if ! test -e "${ca_intermediate_sensitive_dir}"; then
   || fail $ERR_MKDIR "Failed to create directory:  ${ca_intermediate_sensitive_dir}"
   inform "Created directory:  ${ca_intermediate_sensitive_dir}"
 else
-  inform "Directory already exists:  ${ca_intermediate_sensitive_dir}"
+  inform "Directory exists:  ${ca_intermediate_sensitive_dir}"
 fi
 
 if ! test -e "${ca_intermediate_key}"; then
@@ -152,7 +163,7 @@ if ! test -e "${ca_intermediate_key}"; then
   inform "Generated key:  ${ca_intermediate_key}"
   remove_stale "${depend_on_ca_intermediate_key[@]}"
 else
-  inform "Key already exists:  ${ca_intermediate_key}"
+  inform "Key exists:  ${ca_intermediate_key}"
 fi
 
 if ! test -e "${ca_intermediate_csr}"; then
@@ -161,7 +172,7 @@ if ! test -e "${ca_intermediate_csr}"; then
   inform "Generated CSR:  ${ca_intermediate_csr}"
   remove_stale "${depend_on_ca_intermediate_csr[@]}"
 else
-  inform "CSR already exists:  ${ca_intermediate_csr}"
+  inform "CSR exists:  ${ca_intermediate_csr}"
 fi
 
 if ! test -e "${ca_intermediate_cert}"; then
@@ -170,7 +181,7 @@ if ! test -e "${ca_intermediate_cert}"; then
   inform "Generated certificate:  ${ca_intermediate_cert}"
   remove_stale "${depend_on_ca_intermediate_cert[@]}"
 else
-  inform "Certificate already exists:  ${ca_intermediate_cert}"
+  inform "Certificate exists:  ${ca_intermediate_cert}"
 fi
 
 if ! test -e "${ca_intermediate_crl}"; then
@@ -179,7 +190,7 @@ if ! test -e "${ca_intermediate_crl}"; then
   inform "Generated revocation list:  ${ca_intermediate_crl}"
   remove_stale "${depend_on_ca_intermediate_crl[@]}"
 else
-  inform "Revocation list already exists:  ${ca_intermediate_crl}"
+  inform "Revocation list exists:  ${ca_intermediate_crl}"
 fi
 
 if ! test -e "${ca_intermediate_crl_der}"; then
@@ -188,7 +199,7 @@ if ! test -e "${ca_intermediate_crl_der}"; then
   inform "Generated DER encoded revocation list:  ${ca_intermediate_crl_der}"
   remove_stale "${depend_on_ca_intermediate_crl_der[@]}"
 else
-  inform "DER encoded revocation list already exists:  ${ca_intermediate_crl}"
+  inform "DER encoded revocation list exists:  ${ca_intermediate_crl}"
 fi
 
 
@@ -200,7 +211,7 @@ if ! test 'yes' = "${ca_only}"; then
     || fail $ERR_MKDIR "Failed to create directory:  ${host_dir}"
     inform "Created directory:  ${host_dir}"
   else
-    inform "Directory already exists:  ${host_dir}"
+    inform "Directory exists:  ${host_dir}"
   fi
 
   if ! test -e "${sensitive_host_dir}"; then
@@ -208,7 +219,7 @@ if ! test 'yes' = "${ca_only}"; then
     || fail $ERR_MKDIR "Failed to create directory:  ${sensitive_host_dir}"
     inform "Created directory:  ${sensitive_host_dir}"
   else
-    inform "Directory already exists:  ${sensitive_host_dir}"
+    inform "Directory exists:  ${sensitive_host_dir}"
   fi
 
   if ! test -e "${host_conf}"; then
@@ -239,7 +250,7 @@ if ! test 'yes' = "${ca_only}"; then
     inform "Created conf:  ${host_conf}"
     remove_stale "${depend_on_host_conf[@]}"
   else
-    inform "Conf already exists:  ${host_conf}"
+    inform "Conf exists:  ${host_conf}"
   fi
 
   if ! test -e "${host_key}"; then
@@ -248,7 +259,7 @@ if ! test 'yes' = "${ca_only}"; then
     inform "Generated host key:  ${host_key}"
     remove_stale "${depend_on_host_key[@]}"
   else
-    inform "Key already exists:  ${host_key}"
+    inform "Key exists:  ${host_key}"
   fi
 
   if ! test -e "${host_csr}"; then
@@ -257,7 +268,7 @@ if ! test 'yes' = "${ca_only}"; then
     inform "Generated CSR:  ${host_csr}"
     remove_stale "${depend_on_host_csr[@]}"
   else
-    inform "CSR already exists:  ${host_csr}"
+    inform "CSR exists:  ${host_csr}"
   fi
 
   if ! test -e "${host_cert}"; then
@@ -266,7 +277,7 @@ if ! test 'yes' = "${ca_only}"; then
     inform "Generated certificate:  ${host_cert}"
     remove_stale "${depend_on_host_cert[@]}"
   else
-    inform "Cerrificate already exists:  ${host_cert}"
+    inform "Certificate exists:  ${host_cert}"
   fi
 
   if ! test -e "${cert_chain}"; then
@@ -275,7 +286,7 @@ if ! test 'yes' = "${ca_only}"; then
     inform "Created certificate chain:  ${cert_chain}"
     remove_stale "${depend_on_cert_chain[@]}"
   else
-    inform "Certificate chain already exists:  ${cert_chain}"
+    inform "Certificate chain exists:  ${cert_chain}"
   fi
 
   if ! test -e "${host_crl}"; then
@@ -284,7 +295,7 @@ if ! test 'yes' = "${ca_only}"; then
     inform "Generated revocation list:  ${host_crl}"
     remove_stale "${depend_on_host_crl[@]}"
   else
-    inform "Revocation list already exists:  ${host_crl}"
+    inform "Revocation list exists:  ${host_crl}"
   fi
 
   if ! test -e "${host_crl_der}"; then
@@ -293,6 +304,6 @@ if ! test 'yes' = "${ca_only}"; then
     inform "Generated DER encoded revocation list:  ${host_crl_der}"
     remove_stale "${depend_on_host_crl_der[@]}"
   else
-    inform "DER encoded revocation list already exists:  ${host_crl}"
+    inform "DER encoded revocation list exists:  ${host_crl}"
   fi
 fi

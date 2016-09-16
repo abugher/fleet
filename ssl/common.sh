@@ -127,3 +127,21 @@ remove_stale() {
     fi
   done
 }
+
+
+newer_than_deps() {
+  true=0
+  false=1
+  args=(${@})
+  deps="${args[@]:1}"
+  if test "" = "${deps[@]}"; then
+    return $false
+  fi
+  is_new=$false
+  for d in "${deps[@]}"; do
+    if test "${1}" -nt "${d}"; then
+      is_new=$true
+    fi
+  done
+  return $is_new
+}
