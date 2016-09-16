@@ -76,7 +76,7 @@ if ! test -e "${ca_root_key}"; then
   openssl genrsa -aes256 -out "${ca_root_key}" 4096 \
   || fail $ERR_GENRSA "Failed to generate CA root key:  ${ca_root_key}"
 
-  inform "Generated CA root key:  ${ca_root_key}"
+  inform "Generated key:  ${ca_root_key}"
   remove_stale "${depend_on_ca_root_key[@]}"
 else
   inform "Key already exists:  ${ca_root_key}"
@@ -87,6 +87,8 @@ if ! test -e "${ca_root_cert}"; then
   || fail $ERR_CERT "Failed to generate certificate:  ${ca_root_cert}"
   inform "Generated certificate:  ${ca_root_cert}"
   remove_stale "${depend_on_ca_root_cert[@]}"
+else
+  inform "Certificate already exists:  ${ca_root_cert}"
 fi
 
 if ! test -e "${ca_root_crl}"; then
@@ -94,6 +96,17 @@ if ! test -e "${ca_root_crl}"; then
   || fail $ERR_CERT "Failed to generate revocation list:  ${ca_root_crl}"
   inform "Generated revocation list:  ${ca_root_crl}"
   remove_stale "${depend_on_ca_root_crl[@]}"
+else
+  inform "Revocation list already exists:  ${ca_root_crl}"
+fi
+
+if ! test -e "${ca_root_crl_der}"; then
+  openssl crl -in  "${ca_root_crl}" -outform der -out "${ca_root_crl_der}" \
+  || fail $ERR_CERT "Failed to generate DER encoded revocation list:  ${ca_root_crl_der}"
+  inform "Generated DER encoded revocation list:  ${ca_root_crl_der}"
+  remove_stale "${depend_on_ca_root_crl_der[@]}"
+else
+  inform "DER encoded revocation list already exists:  ${ca_root_crl_der}"
 fi
 
 
@@ -136,7 +149,7 @@ if ! test -e "${ca_intermediate_key}"; then
   || fail $ERR_GENRSA "Failed to create 'crlnumber'."
   openssl genrsa -aes256 -out "${ca_intermediate_key}" 4096 \
   || fail $ERR_GENRSA "Failed to generate CA intermediate key:  ${ca_intermediate_key}"
-  inform "Generated CA intermediate key:  ${ca_intermediate_key}"
+  inform "Generated key:  ${ca_intermediate_key}"
   remove_stale "${depend_on_ca_intermediate_key[@]}"
 else
   inform "Key already exists:  ${ca_intermediate_key}"
@@ -156,6 +169,8 @@ if ! test -e "${ca_intermediate_cert}"; then
   || fail $ERR_CERT "Failed to generate certificate:  ${ca_intermediate_cert}"
   inform "Generated certificate:  ${ca_intermediate_cert}"
   remove_stale "${depend_on_ca_intermediate_cert[@]}"
+else
+  inform "Certificate already exists:  ${ca_intermediate_cert}"
 fi
 
 if ! test -e "${ca_intermediate_crl}"; then
@@ -163,6 +178,17 @@ if ! test -e "${ca_intermediate_crl}"; then
   || fail $ERR_CERT "Failed to generate revocation list:  ${ca_intermediate_crl}"
   inform "Generated revocation list:  ${ca_intermediate_crl}"
   remove_stale "${depend_on_ca_intermediate_crl[@]}"
+else
+  inform "Revocation list already exists:  ${ca_intermediate_crl}"
+fi
+
+if ! test -e "${ca_intermediate_crl_der}"; then
+  openssl crl -in  "${ca_intermediate_crl}" -outform der -out "${ca_intermediate_crl_der}" \
+  || fail $ERR_CERT "Failed to generate DER encoded revocation list:  ${ca_intermediate_crl_der}"
+  inform "Generated DER encoded revocation list:  ${ca_intermediate_crl_der}"
+  remove_stale "${depend_on_ca_intermediate_crl_der[@]}"
+else
+  inform "DER encoded revocation list already exists:  ${ca_intermediate_crl}"
 fi
 
 
@@ -239,6 +265,8 @@ if ! test 'yes' = "${ca_only}"; then
     || fail $ERR_CERT "Failed to generate certificate:  ${host_cert}"
     inform "Generated certificate:  ${host_cert}"
     remove_stale "${depend_on_host_cert[@]}"
+  else
+    inform "Cerrificate already exists:  ${host_cert}"
   fi
 
   if ! test -e "${cert_chain}"; then
@@ -257,5 +285,14 @@ if ! test 'yes' = "${ca_only}"; then
     remove_stale "${depend_on_host_crl[@]}"
   else
     inform "Revocation list already exists:  ${host_crl}"
+  fi
+
+  if ! test -e "${host_crl_der}"; then
+    openssl crl -in  "${host_crl}" -outform der -out "${host_crl_der}" \
+    || fail $ERR_CERT "Failed to generate DER encoded revocation list:  ${ca_host_crl_der}"
+    inform "Generated DER encoded revocation list:  ${host_crl_der}"
+    remove_stale "${depend_on_host_crl_der[@]}"
+  else
+    inform "DER encoded revocation list already exists:  ${host_crl}"
   fi
 fi
