@@ -3,6 +3,7 @@
 # generate <shorthostname> [shorthostname ...]
 #
 # Much of this logic could be a make file.  Maybe it should be.
+# Password handling would be a really nice addition.
 
 
 source common.sh || {
