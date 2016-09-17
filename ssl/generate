@@ -4,10 +4,6 @@
 #
 # Much of this logic could be a make file.  Maybe it should be.
 
-# Before this script is run, these files must exist:
-#   ca_root_conf
-#   ca_intermediate_conf
-#   host_conf_template
 
 source common.sh || {
   echo 'Error:  Current directory looks wrong.  Exiting.' >&2
@@ -28,7 +24,7 @@ fi
 
 # sanity check
 
-for prereq in ca_intermediate_conf ca_root_conf host_conf_template; do
+for prereq in ca_root_conf_template ca_intermediate_conf_template host_conf_template; do
   if ! test -e "${!prereq}"; then
     fail $ERR_PREREQ "Required file does not exist:  ${!prereq}"
   fi
