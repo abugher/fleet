@@ -12,10 +12,6 @@
                                     host=$1
                                   domain='neuronpointer.net'
 
-                        csr_cannot_exist='no'
-                       cert_cannot_exist='no'
-                 cert_chain_cannot_exist='no'
-                                
                                   prefix="${0}:  "
 
                                   public=~/code/fleet/ssl
@@ -58,6 +54,7 @@
                                         )
                   depend_on_ca_root_conf=(
                                           $ca_root_cert
+                                          $ca_root_crl
                                         )
                    depend_on_ca_root_key=(
                                           $ca_root_cert
