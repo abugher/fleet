@@ -1,4 +1,9 @@
 ---
+install_packages:
+  - 'sudo'
+lines_in_files:
+  - line:               '%ansible ALL=(ALL) NOPASSWD:ALL'
+    dest:               '/etc/sudoers'
 system_groups:
   - 'ansible'
 system_users:

@@ -2,9 +2,9 @@
 - name:                 'hack'
   hosts:
     - 'files'
-  remote_user:          'root'
-  become:               'no'
-  #become_method:        'su'
+  remote_user:          'ansible'
+  become:               'yes'
+  become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'ansible_target'
+    - 'bananian'
