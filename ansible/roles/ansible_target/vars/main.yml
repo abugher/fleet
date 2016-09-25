@@ -1,0 +1,11 @@
+---
+system_groups:
+  - 'ansible'
+system_users:
+  - 'ansible'
+authorized_keys:
+  - user:               'ansible'
+    keyfile:            "{{ role_path }}/../synapse/files/ssh_keys/pi.id_rsa.pub"
+  - user:               'ansible'
+    keyfile:            "{{ role_path }}/../mawg/files/ssh_keys/aaron.id_rsa.pub"
+

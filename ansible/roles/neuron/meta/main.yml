@@ -23,6 +23,7 @@ dependencies:
   - role: 'wiki'
   - role: 'remote_proxy'
   - role: 'monitored'
+  - role: 'ansible_target'
   - role: 'dns1'
   - role: 'syslog_client'
   - role: 'crl_server'

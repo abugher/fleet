@@ -1,3 +1,2 @@
 ---
 - include:              '../tasks/groups.yml'
-- include:              '../tasks/authorized_keys.yml'

@@ -16,4 +16,5 @@ dependencies:
   - role: 'escrow'
   - role: 'dphys-swapfile'
   - role: 'monitored'
+  - role: 'ansible_target'
   - role: 'syslog_server'

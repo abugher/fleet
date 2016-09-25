@@ -1,7 +1,4 @@
 ---
 groups:
   - 'nagios'
-authorized_keys:
-  - user:               'ansible'
-    keyfile:            "{{ role_path }}/../synapse/files/ssh_keys/pi.id_rsa.pub"
 

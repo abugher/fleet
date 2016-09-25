@@ -4,4 +4,5 @@ dependencies:
   - role: 'apt'
   - role: 'sshd'
   - role: 'monitored'
+  - role: 'ansible_target'
   - role: 'nethack'

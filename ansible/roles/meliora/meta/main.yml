@@ -7,6 +7,7 @@ dependencies:
   - role: 'reboot'
   - role: 'identity_client'
   - role: 'monitored'
+  - role: 'ansible_target'
   - role: 'printserver'
   - role: 'debian-live-build'
   - role: 'x2go'
