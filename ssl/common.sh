@@ -156,6 +156,7 @@ newer_than_deps() {
   is_new=$false
   for d in "${deps[@]}"; do
     if test "${1}" -nt "${d}"; then
+      inform "'${1}' is newer than: '${d}'"
       is_new=$true
     fi
   done
