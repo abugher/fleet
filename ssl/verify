@@ -1,6 +1,6 @@
 #!/bin/bash
-# revoke - Revoke an SSL certificate, specified by a short hostname.
-# revoke <shorthostname>
+# verify - Verify an SSL certificate, specified by a short hostname.
+# verify <shorthostname>
 
 . common.sh || {
   echo 'Error:  Current directory looks wrong.  Exiting.' >&2
