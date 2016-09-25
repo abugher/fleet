@@ -2,7 +2,7 @@ ddns-update-style       none;
 option                  domain-search           "neuronpointer.net";
 option                  domain-name             "neuronpointer.net";
 # No quotes on the values for domain-name-servers.
-option                  domain-name-servers     neuron.neuronpointer.net, google-public-dns-a.google.com;
+option                  domain-name-servers     {{ dns_server }}.neuronpointer.net, google-public-dns-a.google.com;
 default-lease-time      3600;
 max-lease-time          200;
 authoritative;
@@ -61,5 +61,10 @@ group {
   host no {
     hardware ethernet   94:94:26:01:38:76;
     fixed-address       192.168.11.61;
+  }
+
+  host bananapi {
+    hardware ethernet   02:55:08:42:95:49;
+    fixed-address       192.168.11.62;
   }
 }
