@@ -149,8 +149,8 @@ newer_than_deps() {
   true=0
   false=1
   args=(${@})
-  deps="${args[@]:1}"
-  if test "" = "${deps[@]}"; then
+  deps=("${args[@]:1}")
+  if test "" = "${deps[*]}"; then
     return $false
   fi
   is_new=$false
