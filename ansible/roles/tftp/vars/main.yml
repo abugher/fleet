@@ -45,6 +45,11 @@ create_files:
     mode:               '0755'
     state:              'directory'
     path:               '/srv/tftp/pxelinux'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    state:              'directory'
+    path:               '/srv/tftp/syslinux_efi'
 install_files:
   - owner:              'root'
     group:              'root'
@@ -65,6 +70,10 @@ symlinks:
     group:              'root'
     src:                'pxelinux/lpxelinux.0'
     dest:               '/srv/tftp/lpxelinux.0'
+  - owner:              'root'
+    group:              'root'
+    src:                'syslinux_efi/efi64/syslinux.efi'
+    dest:               '/srv/tftp/syslinux.efi'
 enable_services:
   - 'tftpd-hpa'
 start_services:
