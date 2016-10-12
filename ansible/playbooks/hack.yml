@@ -7,5 +7,4 @@
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'debian-netboot'
-    - 'tftp'
+    - 'dhcpd'
