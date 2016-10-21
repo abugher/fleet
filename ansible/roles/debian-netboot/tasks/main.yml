@@ -3,6 +3,7 @@
 - include:              '../tasks/enable_services.yml'
 - include:              '../tasks/create_files.yml'
 - include:              '../tasks/install_files.yml'
+- include:              '../tasks/symlinks.yml'
 - include:              '../tasks/start_services.yml'
 - include:              '../tasks/lines_in_files.yml'
 - include:              '../tasks/mount_all.yml'

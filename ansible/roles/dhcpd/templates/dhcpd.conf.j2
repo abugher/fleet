@@ -11,31 +11,54 @@ log-facility            local7;
 # http://www.syslinux.org/wiki/index.php?title=PXELINUX#UEFI
 option                  architecture-type       code 93 = unsigned integer 16;
 
-class "pxeclients" {
-  match if substring (option vendor-class-identifier, 0, 9) = "PXEClient";
-
-  if option architecture-type = 0 {
-   filename             "lpxelinux.0";
-  } elsif option architecture-type = 9 {
-   filename             "syslinux.efi";
-  } elsif option architecture-type = 7 {
-   filename             "syslinux.efi";
-  } elsif option architecture-type = 6 {
-   filename             "lpxelinux.0";
-  }
-}
-
 subnet 192.168.11.0 netmask 255.255.255.0 {
   option                broadcast-address       192.168.11.255;
   option                routers                 gateway.neuronpointer.net;
   option                domain-name-servers     192.168.11.54;
   range                 192.168.11.2            192.168.11.50;
+#
+#  if option architecture-type = 0 {
+#   filename             "lpxelinux.0";
+#  } elsif option architecture-type = 9 {
+#   filename             "syslinux.efi";
+#  } elsif option architecture-type = 7 {
+#   filename             "syslinux.efi";
+#  } elsif option architecture-type = 6 {
+#   filename             "lpxelinux.0";
+#  }
 }
 
 group {
   option                broadcast-address       192.168.11.255;
   option                routers                 gateway.neuronpointer.net;
   option                domain-name-servers     192.168.11.54;
+
+  if exists user-class and option user-class = "iPXE" {
+    filename            "syslinux.efi";
+  } else {
+    filename            "ipxe.efi";
+  }
+
+  host abugher-lt-uefi {
+    # Legacy BIOS mode and UEFI mode show different MAC addresses for the same NIC.
+    #hardware ethernet   9c:eb:e8:40:80:dd;     # BIOS
+    hardware ethernet   28:f1:0e:4d:19:0a;      # UEFI
+    fixed-address       abugher-lt.neuronpointer.net;
+  }
+}
+
+group {
+  option                broadcast-address       192.168.11.255;
+  option                routers                 gateway.neuronpointer.net;
+  option                domain-name-servers     192.168.11.54;
+  filename              "lpxelinux.0";
+
+  host abugher-lt-bios {
+    # Legacy BIOS mode and EUFI mode show different MAC addresses for the same NIC.
+    hardware ethernet   9c:eb:e8:40:80:dd;      # BIOS
+    #hardware ethernet   28:f1:0e:4d:19:0a;     # UEFI
+    fixed-address       abugher-lt.neuronpointer.net;
+  }
 
   host rudolph {
     hardware ethernet   5C:C5:D4:64:E6:19;
