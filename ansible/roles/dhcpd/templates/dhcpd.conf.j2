@@ -16,16 +16,6 @@ subnet 192.168.11.0 netmask 255.255.255.0 {
   option                routers                 gateway.neuronpointer.net;
   option                domain-name-servers     192.168.11.54;
   range                 192.168.11.2            192.168.11.50;
-#
-#  if option architecture-type = 0 {
-#   filename             "lpxelinux.0";
-#  } elsif option architecture-type = 9 {
-#   filename             "syslinux.efi";
-#  } elsif option architecture-type = 7 {
-#   filename             "syslinux.efi";
-#  } elsif option architecture-type = 6 {
-#   filename             "lpxelinux.0";
-#  }
 }
 
 group {
@@ -33,11 +23,14 @@ group {
   option                routers                 gateway.neuronpointer.net;
   option                domain-name-servers     192.168.11.54;
 
+#  filename              "ipxe.efi";
+
   if exists user-class and option user-class = "iPXE" {
     filename            "syslinux.efi";
   } else {
     filename            "ipxe.efi";
   }
+  
 
   host abugher-lt-uefi {
     # Legacy BIOS mode and UEFI mode show different MAC addresses for the same NIC.
