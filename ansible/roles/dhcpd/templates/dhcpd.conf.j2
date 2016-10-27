@@ -23,19 +23,23 @@ group {
   option                routers                 gateway.neuronpointer.net;
   option                domain-name-servers     192.168.11.54;
 
-#  filename              "ipxe.efi";
+  filename              "syslinux.efi";
 
-  if exists user-class and option user-class = "iPXE" {
-    filename            "syslinux.efi";
-  } else {
-    filename            "ipxe.efi";
-  }
+  # First instruct PXE firmware to download ipxe, then instruct ipxe to download syslinux.
+  #if exists user-class and option user-class = "iPXE" {
+  #  filename            "tftp://{{ inventory_hostname }}/syslinux.efi";
+  #} else {
+  #  filename            "ipxe.efi";
+  #}
   
 
+  host mawg {
+    hardware ethernet   9C:4E:36:C0:D6:00;
+    fixed-address       mawg.neuronpointer.net;
+  }
+
   host abugher-lt-uefi {
-    # Legacy BIOS mode and UEFI mode show different MAC addresses for the same NIC.
-    #hardware ethernet   9c:eb:e8:40:80:dd;     # BIOS
-    hardware ethernet   28:f1:0e:4d:19:0a;      # UEFI
+    hardware ethernet   28:f1:0e:4d:19:0a;
     fixed-address       abugher-lt.neuronpointer.net;
   }
 }
@@ -47,20 +51,13 @@ group {
   filename              "lpxelinux.0";
 
   host abugher-lt-bios {
-    # Legacy BIOS mode and EUFI mode show different MAC addresses for the same NIC.
-    hardware ethernet   9c:eb:e8:40:80:dd;      # BIOS
-    #hardware ethernet   28:f1:0e:4d:19:0a;     # UEFI
+    hardware ethernet   9c:eb:e8:40:80:dd;
     fixed-address       abugher-lt.neuronpointer.net;
   }
 
   host rudolph {
     hardware ethernet   5C:C5:D4:64:E6:19;
     fixed-address       rudolph.neuronpointer.net;
-  }
-
-  host mawg {
-    hardware ethernet   9C:4E:36:C0:D6:00;
-    fixed-address       mawg.neuronpointer.net;
   }
 
   host meliora {
