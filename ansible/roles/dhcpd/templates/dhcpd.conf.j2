@@ -19,6 +19,8 @@ subnet 192.168.11.0 netmask 255.255.255.0 {
 }
 
 group {
+  # EFI netboot
+  # This doesn't work yet.
   option                broadcast-address       192.168.11.255;
   option                routers                 gateway.neuronpointer.net;
   option                domain-name-servers     192.168.11.54;
@@ -31,13 +33,7 @@ group {
   #} else {
   #  filename            "ipxe.efi";
   #}
-  
-
-  host mawg {
-    hardware ethernet   9C:4E:36:C0:D6:00;
-    fixed-address       mawg.neuronpointer.net;
-  }
-
+ 
   host abugher-lt-uefi {
     hardware ethernet   28:f1:0e:4d:19:0a;
     fixed-address       abugher-lt.neuronpointer.net;
@@ -45,15 +41,28 @@ group {
 }
 
 group {
+  # legacy netboot
   option                broadcast-address       192.168.11.255;
   option                routers                 gateway.neuronpointer.net;
   option                domain-name-servers     192.168.11.54;
   filename              "lpxelinux.0";
 
+  host mawg {
+    hardware ethernet   9C:4E:36:C0:D6:00;
+    fixed-address       mawg.neuronpointer.net;
+  }
+
   host abugher-lt-bios {
     hardware ethernet   9c:eb:e8:40:80:dd;
     fixed-address       abugher-lt.neuronpointer.net;
   }
+}
+
+group {
+  # no netboot
+  option                broadcast-address       192.168.11.255;
+  option                routers                 gateway.neuronpointer.net;
+  option                domain-name-servers     192.168.11.54;
 
   host rudolph {
     hardware ethernet   5C:C5:D4:64:E6:19;
