@@ -1,0 +1,6 @@
+---
+- include_vars:         "{{ role_path }}/../{{ inventory_hostname }}/vars/backing_device.yml"
+- name:                 'lvcreate'
+  crypttab:
+    backing_device:     "{{ backing_device }}"
+    name:               'storage'
