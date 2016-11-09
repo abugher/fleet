@@ -14,7 +14,7 @@ option                  architecture-type       code 93 = unsigned integer 16;
 subnet 192.168.11.0 netmask 255.255.255.0 {
   option                broadcast-address       192.168.11.255;
   option                routers                 gateway.neuronpointer.net;
-  option                domain-name-servers     192.168.11.54;
+  #option                domain-name-servers     192.168.11.54;
   range                 192.168.11.2            192.168.11.50;
 }
 
@@ -23,7 +23,7 @@ group {
   # This doesn't work yet.
   option                broadcast-address       192.168.11.255;
   option                routers                 gateway.neuronpointer.net;
-  option                domain-name-servers     192.168.11.54;
+  #option                domain-name-servers     192.168.11.54;
 
   filename              "syslinux.efi";
 
@@ -44,7 +44,7 @@ group {
   # legacy netboot
   option                broadcast-address       192.168.11.255;
   option                routers                 gateway.neuronpointer.net;
-  option                domain-name-servers     192.168.11.54;
+  #option                domain-name-servers     192.168.11.54;
   filename              "lpxelinux.0";
 
   host mawg {
@@ -62,7 +62,7 @@ group {
   # no netboot
   option                broadcast-address       192.168.11.255;
   option                routers                 gateway.neuronpointer.net;
-  option                domain-name-servers     192.168.11.54;
+  #option                domain-name-servers     192.168.11.54;
 
   host rudolph {
     hardware ethernet   5C:C5:D4:64:E6:19;
