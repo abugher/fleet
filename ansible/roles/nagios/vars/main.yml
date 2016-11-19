@@ -2,20 +2,15 @@
 install_packages:
   - 'nagios3'
 sync_dirs:
-  - src:                "{{ role_path }}/../nagios/files/conf/nagios3/"
+  - src:                "{{ role_path }}/files/conf/nagios3/"
     dest:               '/etc/nagios3/'
     delete:             'yes'
 install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "{{ role_path }}/../nagios/files/conf/nagios"
+    src:                "{{ role_path }}/files/conf/nagios"
     dest:               '/etc/nginx/sites-available/nagios'
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "{{ role_path }}/../nagios/files/conf/nagios.ssl"
-    dest:               '/etc/nginx/sites-available/nagios.ssl'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
@@ -99,7 +94,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "{{ role_path }}/../nagios/files/conf/logos/"
+    src:                "{{ role_path }}/files/conf/logos/"
     dest:               '/usr/share/nagios3/htdocs/images/logos/custom/'
   - owner:              'root'
     group:              'root'
@@ -115,9 +110,16 @@ symlinks:
     group:              'root'
     src:                '/etc/nginx/sites-available/nagios.ssl'
     dest:               '/etc/nginx/sites-enabled/nagios.ssl'
+template_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/templates/nagios.ssl.j2"
+    dest:               '/etc/nginx/sites-available/nagios.ssl'
 enable_services:
   - 'nagios3'
 start_services:
   - 'nagios3'
 restart_services:
   - 'nagios3'
+  - 'nginx'

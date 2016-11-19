@@ -1,10 +1,10 @@
 ---
 - name:                 'hack'
   hosts:
-    - 'neuron'
+    - 'synapse'
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'dhcpd'
+    - 'ssl_identity'

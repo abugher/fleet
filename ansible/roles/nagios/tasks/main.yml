@@ -2,6 +2,7 @@
 - include:              '../tasks/install_packages.yml'
 - include:              '../tasks/sync_dirs.yml'
 - include:              '../tasks/install_files.yml'
+- include:              '../tasks/template_files.yml'
 - include:              '../tasks/enable_services.yml'
 - include:              '../tasks/start_services.yml'
 - include:              '../tasks/restart_services.yml'

@@ -1,7 +1,7 @@
 server {
   listen                443 ssl;
-  ssl_certificate       /etc/nginx/synapse.crt;
-  ssl_certificate_key   /etc/nginx/synapse.key;
+  ssl_certificate       /etc/ssl/certs/{{ inventory_hostname }}.pem;
+  ssl_certificate_key   /etc/ssl/private/{{ inventory_hostname }}.pem;
   server_name           smokeping.neuronpointer.net;
 
   # Serve smokeping's HTML content.
