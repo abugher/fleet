@@ -1,7 +1,8 @@
 ---
 - name:                 'hack'
   hosts:
-    - 'synapse'
+    - 'neuron'
+    - 'meliora'
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'

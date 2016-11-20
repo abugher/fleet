@@ -9,4 +9,4 @@ if echo $neuronpointer_ip | grep -qE '[^0-9.]|.{16}'; then
   exit 1
 fi
 
-ssh neuronpointer@173.230.128.73 'echo '$neuronpointer_ip' > /etc/neuronpointer.net'
+ssh neuronpointer@neuron-mail.neuronpointer.net 'echo '$neuronpointer_ip' > /etc/neuronpointer.net'
