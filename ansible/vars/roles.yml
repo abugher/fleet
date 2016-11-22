@@ -1,5 +1,6 @@
 # Make sure this agrees with the inventory.
 ---
+domain:                         'neuronpointer.net'
 elasticsearch_server:           'synapse'
 escrow_server:                  'synapse'
 storage_server:                 'neuron'

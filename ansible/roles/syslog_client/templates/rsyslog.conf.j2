@@ -24,7 +24,7 @@ $DefaultNetstreamDriverCertFile         /etc/ssl/certs/{{ inventory_hostname }}.
 $DefaultNetstreamDriverKeyFile          /etc/ssl/private/{{ inventory_hostname }}.pem
 
 $ActionSendStreamDriverAuthMode         x509/name
-$ActionSendStreamDriverPermittedPeer    {{ syslog_server }}
+$ActionSendStreamDriverPermittedPeer    {{ syslog_server }}.{{ domain }}
 $ActionSendStreamDriverMode             1 # run driver in TLS-only mode
 
 # forward everything
