@@ -2,10 +2,9 @@
 - name:                 'hack'
   hosts:
     - 'neuron'
-    - 'meliora'
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'syslog_client'
+    - 'storage'

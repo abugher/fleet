@@ -1,0 +1,8 @@
+---
+- name:                 'known hosts'
+  known_hosts:
+    path:               "~{{ item.user }}/.ssh/known_hosts"
+    name:               "{{ item.name }}"
+    key:                "{{ lookup('file', item.keyfile) }}"
+  with_items:           "{{ known_hosts }}"
+  register:             known_hosts_result

@@ -1,14 +1,8 @@
 ---
-system_users:
-  - 'escrow'
 system_groups:
   - 'escrow'
-create_files:
-  - owner:              'root'
-    group:              'root'
-    mode:               '0755'
-    state:              'directory'
-    path:               '/storage'
+system_users:
+  - 'escrow'
 install_files:
   - owner:              'root'
     group:              'root'
@@ -31,5 +25,24 @@ symlinks:
     src:                '/usr/local/bin/tend_storage'
     dest:               '/usr/local/bin/s'
 authorized_keys:
+  # These bare hostnames should be removed, and placed in an array in global
+  # configuration.  If global variables can be made to agree with host-role
+  # meta files, that would be great, too.  And I'll need to figure out how to
+  # reference that array here.  So I'm just going to skip that for now and try
+  # to get this role working, first.
   - user:               'escrow'
-    keyfile:            "{{ role_path }}/../{{ storage_server }}/files/ssh_keys/root.id_rsa.pub"
+    keyfile:            "{{ role_path }}/../neuron/files/ssh_keys/root.id_rsa.pub"
+  - user:               'escrow'
+    keyfile:            "{{ role_path }}/../synapse/files/ssh_keys/root.id_rsa.pub"
+  - user:               'escrow'
+    keyfile:            "{{ role_path }}/../files/files/ssh_keys/root.id_rsa.pub"
+known_hosts:
+  - user:               'root'
+    name:               'neuron'
+    keyfile:            "{{ role_path }}/../neuron/files/ssh_keys/known_host"
+  - user:               'root'
+    name:               'synapse'
+    keyfile:            "{{ role_path }}/../synapse/files/ssh_keys/known_host"
+  - user:               'root'
+    name:               'files'
+    keyfile:            "{{ role_path }}/../files/files/ssh_keys/known_host"

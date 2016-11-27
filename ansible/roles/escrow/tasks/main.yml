@@ -1,8 +1,8 @@
 ---
 - include_vars:         '../vars/roles.yml'
-- include:              '../tasks/system_users.yml'
 - include:              '../tasks/system_groups.yml'
-- include:              '../tasks/create_files.yml'
+- include:              '../tasks/system_users.yml'
 - include:              '../tasks/install_files.yml'
 - include:              '../tasks/symlinks.yml'
 - include:              '../tasks/authorized_keys.yml'
+- include:              '../tasks/known_hosts.yml'

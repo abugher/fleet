@@ -1,0 +1,32 @@
+---
+install_packages:
+  - 'apache2'
+#  - 'apache2-bin'      # It's installed on meliora, but I don't know whether we need this.
+  - 'libapache2-mod-perl2'
+install_files:
+  - owner:              'rachel'
+    group:              'rachel'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/cgi-bin/list.pl"
+    dest:               '/usr/lib/cgi-bin/list.pl'
+  - owner:              'rachel'
+    group:              'rachel'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/cgi-bin/listing.pl"
+    dest:               '/usr/lib/cgi-bin/listing.pl'
+  - owner:              'rachel'
+    group:              'rachel'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/cgi-bin/remote.pl"
+    dest:               '/usr/lib/cgi-bin/remote.pl'
+sync_dirs:
+  - src:                "{{ role_path }}/files/parts/"
+    dest:               '/var/www/parts/'
+    delete:             'yes'
+  - src:                "{{ role_path }}/files/cgi-bin/mplayer/"
+    dest:               '/usr/lib/cgi-bin/mplayer/'
+    delete:             'no'
+  - src:                "{{ role_path }}/files/cgi-bin/pianobar/"
+    dest:               '/usr/lib/cgi-bin/pianobar/'
+    delete:             'no'
+# Restart some services, probably.

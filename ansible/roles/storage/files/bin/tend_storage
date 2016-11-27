@@ -49,10 +49,13 @@ fail() {
 
 
 # buddy up
-case $(hostname) in
-  neuron)       buddy=synapse ;;
-  *)            buddy=neuron ;;
-esac
+buddies=()
+for buddy in neuron synapse files; do
+  if test $buddy = $(hostname); then
+    continue
+  fi
+  buddies+=($buddy)
+done
 
 # mount ramdisk
 if ! mount | grep -q " $RAMFS_MOUNT_POINT "; then
@@ -67,16 +70,20 @@ if ! mount | grep -q " $RAMFS_MOUNT_POINT "; then
 fi
 
 # copy passphrase
-if 
-  test ! -e "${PASS_PHRASE_FILE_PATH}" \
-  && ssh $E_USER@$buddy test -e "'${PASS_PHRASE_FILE_PATH}'"
-then
-  scp $E_USER@$buddy:"'${PASS_PHRASE_FILE_PATH}'" $PASS_PHRASE_FILE_PATH \
-    || fail $ERR_SCP "Failed to scp ${PASS_PHRASE_FILE_PATH}."
-  chown $E_USER $PASS_PHRASE_FILE_PATH \
-    || fail $ERR_CHOWN_FILE "Failed to chown ${PASS_PHRASE_FILE_PATH}."
-  chmod 0400 $PASS_PHRASE_FILE_PATH \
-    || fail $ERR_CHMOD_FILE "Failed to chmod ${PASS_PHRASE_FILE_PATH}."
+if test ! -e "${PASS_PHRASE_FILE_PATH}"; then
+  for buddy in ${buddies[@]}; do
+    if 
+      ssh $E_USER@$buddy test -e "'${PASS_PHRASE_FILE_PATH}'"
+    then
+      scp $E_USER@$buddy:"'${PASS_PHRASE_FILE_PATH}'" $PASS_PHRASE_FILE_PATH \
+        || fail $ERR_SCP "Failed to scp ${PASS_PHRASE_FILE_PATH}."
+      chown $E_USER $PASS_PHRASE_FILE_PATH \
+        || fail $ERR_CHOWN_FILE "Failed to chown ${PASS_PHRASE_FILE_PATH}."
+      chmod 0400 $PASS_PHRASE_FILE_PATH \
+        || fail $ERR_CHMOD_FILE "Failed to chmod ${PASS_PHRASE_FILE_PATH}."
+      break
+    fi
+  done
 fi
 
 # get passphrase from user
