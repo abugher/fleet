@@ -4,3 +4,4 @@ dependencies:
   - role: 'sshd'
   - role: 'root_keys'
   - role: 'escrow'
+  - role: 'new_storage'
