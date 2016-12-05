@@ -93,7 +93,7 @@ if
 then
   read -s -p 'Enter pass phrase:  ' pass_phrase
   echo
-  echo $pass_phrase > $PASS_PHRASE_FILE_PATH
+  echo -n $pass_phrase > $PASS_PHRASE_FILE_PATH
   unset pass_phrase
 fi
   
