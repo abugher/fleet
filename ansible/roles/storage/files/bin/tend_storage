@@ -25,7 +25,7 @@
 
 
                 E_USER='escrow'
-          STORAGE_HOST='neuron'
+     STORAGE_HOST_LIST='neuron files'
    STORAGE_MOUNT_POINT='/storage'
      RAMFS_MOUNT_POINT="/home/${E_USER}/storage_pass_phrase"
  PASS_PHRASE_FILE_NAME='pass_phrase.txt'
@@ -101,10 +101,12 @@ if ! test -e "${PASS_PHRASE_FILE_PATH}"; then
   fail $ERR_PASS_PHRASE "Failed to obtain pass phrase."
 fi
 
-if
-  test $STORAGE_HOST = $(hostname) \
-  && ! mount | grep -q " $STORAGE_MOUNT_POINT "
-then
-  $STORAGE_COMMAND < "${PASS_PHRASE_FILE_PATH}" \
-    || fail $ERR_MOUNT_STORAGE "Failed to mount storage."
-fi
+for STORAGE_HOST in $STORAGE_HOST_LIST; do
+  if
+    test $STORAGE_HOST = $(hostname) \
+    && ! mount | grep -q " $STORAGE_MOUNT_POINT "
+  then
+    $STORAGE_COMMAND < "${PASS_PHRASE_FILE_PATH}" \
+      || fail $ERR_MOUNT_STORAGE "Failed to mount storage."
+  fi
+done
