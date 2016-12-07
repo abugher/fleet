@@ -1,21 +1,23 @@
 ---
 install_packages:
   - 'transmission-daemon'
+  - 'transmission-cli'
 install_python_packages:
   - 'transmissionrpc'
 disable_services:        
   - 'transmission-daemon'
+template_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/templates/sites-available.transmission.ssl.j2"
+    dest:               '/etc/nginx/sites-available/transmission.ssl'
 install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
     src:                "{{ role_path }}/files/conf/sites-available.transmission"
     dest:               "/etc/nginx/sites-available/transmission"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "{{ role_path }}/files/conf/sites-available.transmission.ssl"
-    dest:               '/etc/nginx/sites-available/transmission.ssl'
   - mode:               '0644'
     owner:              'root'
     group:              'root'

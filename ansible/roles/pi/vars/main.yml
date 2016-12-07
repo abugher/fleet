@@ -15,6 +15,8 @@ users:
 authorized_keys:
   - user:               'pi'
     keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/aaron-phone.id_rsa.pub"
-homedirs:
-  - 'pi'
+# Commenting this out will probably break several roles.  Leaving it for myself
+# to find when I stumble across the breakage.
+#homedirs:
+#  - 'pi'
 

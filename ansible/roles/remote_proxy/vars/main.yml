@@ -1,15 +1,16 @@
 ---
+template_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/templates/remote.ssl.j2"
+    dest:               "/etc/nginx/sites-available/remote.ssl"
 install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
     src:                "{{ role_path }}/files/conf/remote"
     dest:               "/etc/nginx/sites-available/remote"
-  - owner:              'root'
-    group:              'root'
-    mode:               '0644'
-    src:                "{{ role_path }}/files/conf/remote.ssl"
-    dest:               "/etc/nginx/sites-available/remote.ssl"
 symlinks:
   - owner:              'root'
     group:              'root'

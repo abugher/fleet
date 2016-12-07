@@ -3,7 +3,10 @@
   user:
     name:               "{{ item }}"
     group:              "{{ item }}"
-    groups:             'cdrom,floppy,audio,dip,video,plugdev,scanner,netdev,lpadmin'
+    # I'm leaving this line commented, to find later when I realize
+    # something is broken.  Create and assign these groups as needed,
+    # instead of assuming they all exist and shotgunning them.
+    #groups:             'cdrom,floppy,audio,dip,video,plugdev,scanner,netdev,lpadmin'
     comment:            ""
     state:              "present"
     shell:              "/bin/bash"

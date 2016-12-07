@@ -1,7 +1,7 @@
 server {
   listen 443 ssl;
-  ssl_certificate /etc/nginx/neuron.crt;
-  ssl_certificate_key /etc/nginx/neuron.key;
+  ssl_certificate /etc/nginx/{{ inventory_hostname }}.crt;
+  ssl_certificate_key /etc/nginx/{{ inventory_hostname }}.key;
   server_name   wiki wiki.neuronpointer.net;
 
   # You can make / show the front page, but, all the links point to
