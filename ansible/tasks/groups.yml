@@ -1,7 +1,0 @@
----
-- name:                 'configure groups'
-  group:
-    name:               "{{ item }}"
-    state:              'present'
-  with_items:           "{{ groups }}"
-  register:             groups_result

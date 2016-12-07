@@ -7,7 +7,11 @@ remove_packages:
   - 'rfkill'
   - 'avahi-daemon'
   - 'snmpd'
-# pi user doesn't need to be created; it comes with Raspbian.
+# user 'pi' comes with Raspbian, but not Bananian.
+user_groups:
+  - 'pi'
+users:
+  - 'pi'
 authorized_keys:
   - user:               'pi'
     keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/aaron-phone.id_rsa.pub"

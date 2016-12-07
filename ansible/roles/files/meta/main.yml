@@ -4,4 +4,6 @@ dependencies:
   - role: 'sshd'
   - role: 'root_keys'
   - role: 'escrow'
-  - role: 'new_storage'
+  - role: 'encrypted_storage'
+  - role: 'monitored'
+  - role: 'pi'

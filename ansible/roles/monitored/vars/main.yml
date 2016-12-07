@@ -1,4 +1,5 @@
 ---
-groups:
+user_groups:
   - 'nagios'
-
+install_packages:
+  - 'nagios-plugins-basic'

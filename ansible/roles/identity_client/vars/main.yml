@@ -11,7 +11,7 @@ install_files:
 users:
   - 'aaron'
   - 'rachel'
-groups:                 "{{ users }}"
+user_groups:            "{{ users }}"
 homedirs:               "{{ users }}"
 system_users:
   - 'nagios'
