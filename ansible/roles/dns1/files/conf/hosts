@@ -5,13 +5,13 @@
 192.168.11.1    gateway ap gateway.neuronpointer.net ap.neuronpointer.net
 192.168.11.52   mawg mawg.neuronpointer.net
 192.168.11.53   meliora remote printer meliora.neuronpointer.net remote.neuronpointer.net printer.neuronpointer.net
-192.168.11.54   neuron ntp wiki transmission neuronpointer.net neuron.neuronpointer.net ntp.neuronpointer.net wiki.neuronpointer.net transmission.neuronpointer.net
+192.168.11.54   neuron ntp wiki neuronpointer.net neuron.neuronpointer.net ntp.neuronpointer.net wiki.neuronpointer.net
 192.168.11.55   synapse kerberos smokeping nagios synapse.neuronpointer.net kerberos.neuronpointer.net smokeping.neuronpointer.net nagios.neuronpointer.net
 192.168.11.58   rudolph rudolph.neuronpointer.net
 192.168.11.59   wii wii.neuronpointer.net
 192.168.11.60   peekaboo peekaboo.neuronpointer.net     # Dalton
 192.168.11.61   no no.neuronpointer.net                 # Tomas
-192.168.11.62   files files.neuronpointer.net
+192.168.11.62   files transmission files.neuronpointer.net transmission.neuronpointer.net
 192.168.11.63   abugher-lt abugher-lt.neuronpointer.net
 
 ::1		localhost ip6-localhost ip6-loopback
