@@ -3,4 +3,4 @@ install_packages:
   - 'nagios-plugins-basic'      # monitor /storage
 authorized_keys:
   - user:                       'pi'
-    keyfile:                    "{{ role_path }}/../meliora/files/ssh_keys/rachel.id_rsa.pub"
+    keyfile:                    "{{ role_path }}/../meliora/files/ssh_keys/root.id_rsa.pub"
