@@ -5,6 +5,7 @@ dependencies:
   - role: 'root_keys'
   - role: 'escrow'
   - role: 'encrypted_storage'
+  - role: 'file_server'
   - role: 'monitored'
   - role: 'pi'
   - role: 'transmission'
