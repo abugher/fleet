@@ -4,3 +4,5 @@ install_packages:
 authorized_keys:
   - user:                       'pi'
     keyfile:                    "{{ role_path }}/../meliora/files/ssh_keys/root.id_rsa.pub"
+  - user:                       'pi'
+    keyfile:                    "{{ role_path }}/../mawg/files/ssh_keys/root.id_rsa.pub"
