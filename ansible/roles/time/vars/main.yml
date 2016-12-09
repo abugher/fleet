@@ -1,10 +1,13 @@
 ---
+#timezone:               'America/Los_Angeles'
+symlinks:
+  - owner:              'root'
+    group:              'root'
+    src:                '/usr/share/zoneinfo/America/Los_Angeles'
+    dest:               '/etc/localtime'
 install_packages:
   - 'cron'
   - 'ntp'
-enable_services:
-  - 'cron'
-  - 'ntp'
-start_services:
-  - 'cron'
-  - 'ntp'
+enable_services:        "{{ install_packages }}"
+start_services:         "{{ install_packages }}"
+restart_services:       "{{ install_packages }}"

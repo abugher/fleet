@@ -10,3 +10,4 @@ dependencies:
   - role: 'pi'
   - role: 'transmission'
   - role: 'flexget'
+  - role: 'time'
