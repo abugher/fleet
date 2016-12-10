@@ -37,12 +37,6 @@ authorized_keys:
   - user:               'escrow'
     keyfile:            "{{ role_path }}/../files/files/ssh_keys/root.id_rsa.pub"
 known_hosts:
-  - user:               'root'
-    name:               'neuron'
-    keyfile:            "{{ role_path }}/../neuron/files/ssh_keys/known_host"
-  - user:               'root'
-    name:               'synapse'
-    keyfile:            "{{ role_path }}/../synapse/files/ssh_keys/known_host"
-  - user:               'root'
-    name:               'files'
-    keyfile:            "{{ role_path }}/../files/files/ssh_keys/known_host"
+  - 'neuron'
+  - 'synapse'
+  - 'files'

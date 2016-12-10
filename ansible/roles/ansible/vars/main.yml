@@ -1,6 +1,7 @@
 ---
 install_python_packages:
   - 'ansible'
+  - 'dnspython'         # {{ lookup('dig', <hostname>) }}
 create_files:
   - path:               '/etc/ansible'
     state:              'directory'
