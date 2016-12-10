@@ -1,0 +1,2 @@
+# m     h       dom     mon     dow     user    command
+59      02      *       *       *       root    /usr/sbin/shutdown -r +1 "scheduled reboot"
