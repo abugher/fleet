@@ -1,5 +1,10 @@
 ---
 user_groups:
   - 'nagios'
+system_users:
+  - 'nagios'
 install_packages:
   - 'nagios-plugins-basic'
+authorized_keys:
+  - user:               'nagios'
+    keyfile:            "{{ role_path }}/../synapse/files/ssh_keys/nagios.id_rsa.pub"

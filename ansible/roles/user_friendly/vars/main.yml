@@ -8,6 +8,7 @@ install_packages:
   - 'mlocate'
   - 'bc'
   - 'htop'
+  - 'bash-completion'
 remove_packages:
   - 'nano'
 install_files:

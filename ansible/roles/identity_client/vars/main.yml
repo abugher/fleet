@@ -13,9 +13,4 @@ users:
   - 'rachel'
 user_groups:            "{{ users }}"
 homedirs:               "{{ users }}"
-system_users:
-  - 'nagios'
-authorized_keys:
-  - user:               'nagios'
-    keyfile:            "{{ role_path }}/../synapse/files/ssh_keys/nagios.id_rsa.pub"
 
