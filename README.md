@@ -3,9 +3,14 @@
 This directory, *fleet*, contains ansible playbooks and configuration material
 for my fleet of computer hosts.
 
+# ansible
 
-The ansible directory is important.  See ansible/README.md.
+The *ansible* directory contains playbooks, configuration files, and
+templates.  See *ansible/README.md*.
 
+# ssl
+
+The *ssl* directory contains keys, certificates, revocation lists, and a script to generate and regenerate that material.  See *ssl/README.md*.
 
 # License:
 
