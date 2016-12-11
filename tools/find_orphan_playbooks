@@ -1,7 +1,0 @@
-#!/bin/bash
-
-ls -1 *.yml | while read f; do
-  if ! grep -q "'${f}'" *.yml; then
-    echo "orphan:  ${f}"
-  fi
-done
