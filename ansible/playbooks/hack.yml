@@ -1,10 +1,10 @@
 ---
 - name:                 'hack'
   hosts:
-    - 'files'
+    - 'neuron'
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'transmission'
+    - 'nginx'

@@ -1,0 +1,13 @@
+---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/init.d/pianobar"
+    dest:               '/etc/init.d/pianobar'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/bin/pianobard"
+    dest:               '/usr/local/pianobard'
+enable_services:

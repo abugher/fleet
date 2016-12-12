@@ -30,7 +30,9 @@ server {
   }
 
   location /transmission/ {
-    proxy_pass https://localhost:9092;
+    proxy_pass https://transmission:9092;
+# nginx < 1.7 chokes on this.
+#    proxy_ssl_trusted_certificate /etc/ssl/certs/Aaron_Intermediate_CA.pem;
   }
 
   error_page 500 502 503 504 /50x.html;
