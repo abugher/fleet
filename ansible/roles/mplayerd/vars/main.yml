@@ -1,0 +1,20 @@
+---
+install_packages:
+  - 'mplayer2'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/init.d/mplayer"
+    dest:               '/etc/init.d/mplayer'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/bin/mplayerd"
+    dest:               '/usr/local/mplayerd'
+enable_services:
+  - 'mplayer'
+start_services:
+  - 'mplayer'
+restart_services:
+  - 'mplayer'

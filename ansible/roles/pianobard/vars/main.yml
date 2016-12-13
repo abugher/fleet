@@ -11,3 +11,8 @@ install_files:
     src:                "{{ role_path }}/files/bin/pianobard"
     dest:               '/usr/local/pianobard'
 enable_services:
+  - 'pianobar'
+start_services:
+  - 'pianobar'
+restart_services:
+  - 'pianobar'
