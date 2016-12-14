@@ -29,6 +29,11 @@ if( 'config_aaron' eq $config_link ) {
     'Classical'                 => '1015334752798128631',
     'Baby Einstein'             => '2501570041974372855',
     'Disney'                    => '2520776027620522487',
+    'Easy'                      => '3344906897976474103',
+    'Jazz'                      => '3344909930223385079',
+    'Acoustic'                  => '3344908925201037815',
+    'Family Xmas'               => '3408887174654081527',
+    'Kids Xmas'                 => '3408887913388456439',
   );
 } else {
   die( "Whose config file is this?  $config_link" );
