@@ -35,6 +35,6 @@ done
 #if test 'neuron' = $HOSTNAME; then
 # Less crude.  --Aaron 2016-12-15 (should be timestamped in git, now, but
 # I'm feeling nostalgic)
-if type pip > /dev/null 2>&1 && pip search FlexGet | grep -q INSTALLED; then
+if type pip > /dev/null 2>&1 && pip search FlexGet 2>&1 | grep -q INSTALLED; then
   pip install -U FlexGet
 fi
