@@ -1,5 +1,8 @@
 ---
 dependencies:
-  - role: 'pi'
-  - role: 'transmission'
-  - role: 'python'
+  - role:       'pi'
+    when:       skipdeps is not defined
+  - role:       'transmission'
+    when:       skipdeps is not defined
+  - role:       'python'
+    when:       skipdeps is not defined
