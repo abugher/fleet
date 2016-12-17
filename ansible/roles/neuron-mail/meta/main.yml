@@ -1,7 +1,12 @@
 ---
 dependencies:
-  - role: 'user_friendly'
-  - role: 'apt'
-  - role: 'sshd'
-  - role: 'tor'
-  - role: 'dns2'
+  - role:       'user_friendly'
+    when:       skipdeps is not defined
+  - role:       'apt'
+    when:       skipdeps is not defined
+  - role:       'sshd'
+    when:       skipdeps is not defined
+  - role:       'tor'
+    when:       skipdeps is not defined
+  - role:       'dns2'
+    when:       skipdeps is not defined

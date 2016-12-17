@@ -1,16 +1,30 @@
 ---
 dependencies:
-  - role: 'ansible_target'
-  - role: 'reboot'
-  - role: 'no_systemd'
-  - role: 'user_friendly'
-  - role: 'time'
-  - role: 'sshd'
-  - role: 'root_keys'
-  - role: 'monitored'
-  - role: 'pi'
-  - role: 'escrow'
-  - role: 'encrypted_storage'
-  - role: 'file_server'
-  - role: 'transmission'
-  - role: 'flexget'
+  - role:       'ansible_target'
+    when:       skipdeps is not defined
+  - role:       'reboot'
+    when:       skipdeps is not defined
+  - role:       'no_systemd'
+    when:       skipdeps is not defined
+  - role:       'user_friendly'
+    when:       skipdeps is not defined
+  - role:       'time'
+    when:       skipdeps is not defined
+  - role:       'sshd'
+    when:       skipdeps is not defined
+  - role:       'root_keys'
+    when:       skipdeps is not defined
+  - role:       'monitored'
+    when:       skipdeps is not defined
+  - role:       'pi'
+    when:       skipdeps is not defined
+  - role:       'escrow'
+    when:       skipdeps is not defined
+  - role:       'encrypted_storage'
+    when:       skipdeps is not defined
+  - role:       'file_server'
+    when:       skipdeps is not defined
+  - role:       'transmission'
+    when:       skipdeps is not defined
+  - role:       'flexget'
+    when:       skipdeps is not defined

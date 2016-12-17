@@ -1,3 +1,4 @@
 ---
 dependencies:
-  - role: 'hostname'
+  - role:       'hostname'
+    when:       skipdeps is not defined

@@ -1,18 +1,34 @@
 ---
 dependencies:
-  - role: 'user_friendly'
-  - role: 'root_keys'
-  - role: 'apt'
-  - role: 'sshd'
-  - role: 'reboot'
-  - role: 'identity_client'
-  - role: 'monitored'
-  - role: 'ansible_target'
-  - role: 'printserver'
-  - role: 'debian-live-build'
-  - role: 'x2go'
-  - role: 'kanboard'
-  - role: 'elasticsearch'
-  - role: 'logstash'
-  - role: 'kibana'
-  - role: 'syslog_client'
+  - role:       'user_friendly'
+    when:       skipdeps is not defined
+  - role:       'root_keys'
+    when:       skipdeps is not defined
+  - role:       'apt'
+    when:       skipdeps is not defined
+  - role:       'sshd'
+    when:       skipdeps is not defined
+  - role:       'reboot'
+    when:       skipdeps is not defined
+  - role:       'identity_client'
+    when:       skipdeps is not defined
+  - role:       'monitored'
+    when:       skipdeps is not defined
+  - role:       'ansible_target'
+    when:       skipdeps is not defined
+  - role:       'printserver'
+    when:       skipdeps is not defined
+  - role:       'debian-live-build'
+    when:       skipdeps is not defined
+  - role:       'x2go'
+    when:       skipdeps is not defined
+  - role:       'kanboard'
+    when:       skipdeps is not defined
+  - role:       'elasticsearch'
+    when:       skipdeps is not defined
+  - role:       'logstash'
+    when:       skipdeps is not defined
+  - role:       'kibana'
+    when:       skipdeps is not defined
+  - role:       'syslog_client'
+    when:       skipdeps is not defined

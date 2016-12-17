@@ -1,3 +1,4 @@
 ---
 dependencies:
-  - role: 'kibana_repo'
+  - role:       'kibana_repo'
+    when:       skipdeps is not defined

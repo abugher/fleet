@@ -1,3 +1,4 @@
 ---
 dependencies:
-  - role: 'time'
+  - role:       'time'
+    when:       skipdeps is not defined

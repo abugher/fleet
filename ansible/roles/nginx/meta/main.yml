@@ -1,3 +1,4 @@
 ---
 dependencies:
-  - role: 'ssl_identity'
+  - role:       'ssl_identity'
+    when:       skipdeps is not defined

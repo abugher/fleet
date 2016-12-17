@@ -1,3 +1,4 @@
 ---
 dependencies:
-  - role: 'private_web'
+  - role:       'private_web'
+    when:       skipdeps is not defined

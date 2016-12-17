@@ -1,4 +1,5 @@
 ---
 dependencies:
-  - role: 'nginx'
+  - role:       'nginx'
+    when:       skipdeps is not defined
 

@@ -2,5 +2,7 @@
 dependencies:
 # I should write a role and name it apache.
 #  - role: 'apache'
-  - role: 'pianobard'
-  - role: 'mplayerd'
+  - role:       'pianobard'
+    when:       skipdeps is not defined
+  - role:       'mplayerd'
+    when:       skipdeps is not defined

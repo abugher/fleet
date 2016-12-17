@@ -1,4 +1,5 @@
 ---
 dependencies:
-  - role: 'python'
+  - role:       'python'
+    when:       skipdeps is not defined
 
