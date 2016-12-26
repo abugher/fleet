@@ -1,12 +1,12 @@
 ---
 - name:                 'hack'
   hosts:
-    - 'synapse'
+    - 'files'
   vars:
-    skipdeps:           'true'
+#    skipdeps:           'anyvalue'
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'nagios'
+    - 'syslog_client'

@@ -28,3 +28,5 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'flexget'
     when:       skipdeps is not defined
+  - role:       'syslog_client'
+    when:       skipdeps is not defined
