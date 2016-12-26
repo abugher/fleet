@@ -1,7 +1,7 @@
 ---
 - name:                 'hack'
   hosts:
-    - 'files'
+    - 'synapse'
   vars:
 #    skipdeps:           'anyvalue'
   remote_user:          'ansible'
@@ -9,4 +9,4 @@
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'syslog_client'
+    - 'syslog_server'
