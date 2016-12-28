@@ -1,8 +1,9 @@
 # Make sure this agrees with the inventory.
+# ... Really, there should just be the inventory.  Gotta figure out how to transition, some time.
 ---
 domain:                         'neuronpointer.net'
 elasticsearch_server:           'synapse'
 escrow_server:                  'synapse'
 storage_server:                 'neuron'
-syslog_server:                  'synapse'
+syslog_server:                  'meliora'
 dns_server:                     'neuron'
