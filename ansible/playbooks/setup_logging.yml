@@ -1,12 +1,12 @@
 ---
-- name:                 'hack'
+- name:                 'logging'
   hosts:
-    - 'meliora'
+    - "{{ syslog_server }}"
   vars:
-#    skipdeps:           'anyvalue'
+#    skipdeps:           'any_value_means_true'
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
   roles:
-    - 'logstash'
+    - 'syslog_server'
