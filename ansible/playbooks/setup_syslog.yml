@@ -1,0 +1,22 @@
+---
+- name:                 'set up syslog servers'
+  hosts:                syslog_servers
+  vars:
+#    skipdeps:           'any_value_means_true'
+  remote_user:          'ansible'
+  become:               'yes'
+  become_method:        'sudo'
+  gather_facts:         'no'
+  roles:
+    - 'syslog_server'
+
+- name:                 'set up syslog clients'
+  hosts:                syslog_clients
+  vars:
+#    skipdeps:           'any_value_means_true'
+  remote_user:          'ansible'
+  become:               'yes'
+  become_method:        'sudo'
+  gather_facts:         'no'
+  roles:
+    - 'syslog_client'
