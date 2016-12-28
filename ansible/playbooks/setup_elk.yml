@@ -1,0 +1,11 @@
+---
+- name:                 'hack'
+  hosts:                elk_servers
+  vars:
+#    skipdeps:           'anyvalue'
+  remote_user:          'ansible'
+  become:               'yes'
+  become_method:        'sudo'
+  gather_facts:         'no'
+  roles:
+    - 'elk'
