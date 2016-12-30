@@ -1,7 +1,7 @@
 # structure
 
-This should be the current working directory of the process invoking
-ansible.
+The directory containing this document should be the current working directory
+of the process invoking ansible.
 
 Each directory under *roles/* defines a role.  Each role defines either a
 service or a host.  
