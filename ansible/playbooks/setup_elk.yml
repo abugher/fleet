@@ -1,11 +1,12 @@
 ---
-- name:                 'hack'
-  hosts:                elk_servers
+- name:                 'setup ELK'
   vars:
 #    skipdeps:           'anyvalue'
+    role_name:          'elk'
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
+  hosts:                "{{ role_name }}"
   roles:
-    - 'elk'
+    - "{{ role_name }}"
