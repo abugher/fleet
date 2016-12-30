@@ -1,12 +1,10 @@
 ---
-- name:                 'hack'
-  hosts:
-    - 'meliora'
-  vars:
-#    skipdeps:           'anyvalue'
+- name:                 'apply roles'
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
-  roles:
-    - 'logstash'
+  hosts:                
+    - 'elk'
+  roles:                
+    - 'elk'
