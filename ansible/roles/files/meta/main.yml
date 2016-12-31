@@ -1,7 +1,5 @@
 ---
 dependencies:
-  - role:       'ansible_target'
-    when:       skipdeps is not defined
   - role:       'reboot'
     when:       skipdeps is not defined
   - role:       'no_systemd'

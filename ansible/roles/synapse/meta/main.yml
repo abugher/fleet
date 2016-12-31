@@ -26,5 +26,3 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'monitored'
     when:       skipdeps is not defined
-  - role:       'ansible_target'
-    when:       skipdeps is not defined

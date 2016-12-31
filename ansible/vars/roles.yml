@@ -1,5 +1,5 @@
 # Make sure this agrees with the inventory.
-# ... Really, there should just be the inventory.  Gotta figure out how to transition, some time.
+# I think we can just set these variables in the inventory.
 ---
 domain:                         'neuronpointer.net'
 elasticsearch_server:           'synapse'
