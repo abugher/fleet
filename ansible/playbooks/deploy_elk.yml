@@ -1,8 +1,7 @@
 ---
-- name:                 'deploy ELK'
-  vars:
-#    skipdeps:           'anyvalue'
+- vars:
     role_name:          'elk'
+  name:                 "deploy {{ role_name }}"
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'

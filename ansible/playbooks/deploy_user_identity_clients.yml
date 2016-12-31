@@ -1,7 +1,7 @@
 ---
-- name:                 'deploy user identity client'
-  vars:
+- vars:
     role_name:          'user_identity_client'
+  name:                 "deploy {{ role_name }}"
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'

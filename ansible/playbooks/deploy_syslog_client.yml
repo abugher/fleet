@@ -1,9 +1,11 @@
 ---
-- name:                 'deploy syslog client'
-  hosts:                syslog_client
+- vars:
+    role_name:          'syslog_client'
+  name:                 "deploy {{ role_name }}"
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'
+  hosts:                "{{ role_name }}"
   roles:
-    - 'syslog_client'
+    - "{{ role_name }}"
