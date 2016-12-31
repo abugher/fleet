@@ -12,8 +12,6 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'pi'
     when:       skipdeps is not defined
-  - role:       'ansible'
-    when:       skipdeps is not defined
   - role:       'krb5'
     when:       skipdeps is not defined
   - role:       'nagios'
