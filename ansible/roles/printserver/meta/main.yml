@@ -1,5 +1,5 @@
 ---
 dependencies:
-  - role:       'identity_client'
+  - role:       'user_identity_client'
     when:       skipdeps is not defined
 

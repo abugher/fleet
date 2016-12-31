@@ -10,8 +10,6 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'reboot'
     when:       skipdeps is not defined
-  - role:       'identity_client'
-    when:       skipdeps is not defined
   - role:       'monitored'
     when:       skipdeps is not defined
   - role:       'ansible_target'
@@ -29,6 +27,4 @@ dependencies:
   - role:       'logstash'
     when:       skipdeps is not defined
   - role:       'kibana'
-    when:       skipdeps is not defined
-  - role:       'syslog_client'
     when:       skipdeps is not defined

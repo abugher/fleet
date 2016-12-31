@@ -1,5 +1,5 @@
 ---
-- name:                 'setup ELK'
+- name:                 'deploy ELK'
   vars:
 #    skipdeps:           'anyvalue'
     role_name:          'elk'

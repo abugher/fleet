@@ -12,8 +12,6 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'pi'
     when:       skipdeps is not defined
-  - role:       'identity_client'
-    when:       skipdeps is not defined
   - role:       'ansible'
     when:       skipdeps is not defined
   - role:       'krb5'
@@ -31,6 +29,4 @@ dependencies:
   - role:       'monitored'
     when:       skipdeps is not defined
   - role:       'ansible_target'
-    when:       skipdeps is not defined
-  - role:       'syslog_server'
     when:       skipdeps is not defined

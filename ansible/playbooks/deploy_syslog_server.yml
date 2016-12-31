@@ -1,0 +1,10 @@
+---
+- name:                 'deploy syslog server'
+  hosts:                syslog_server
+  remote_user:          'ansible'
+  become:               'yes'
+  become_method:        'sudo'
+  gather_facts:         'no'
+  roles:
+    - 'syslog_server'
+

@@ -1,0 +1,9 @@
+---
+- name:                 'deploy syslog client'
+  hosts:                syslog_client
+  remote_user:          'ansible'
+  become:               'yes'
+  become_method:        'sudo'
+  gather_facts:         'no'
+  roles:
+    - 'syslog_client'
