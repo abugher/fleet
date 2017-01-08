@@ -34,6 +34,7 @@ if( 'config_aaron' eq $config_link ) {
     'Acoustic'                  => '3344908925201037815',
     'Family Xmas'               => '3408887174654081527',
     'Kids Xmas'                 => '3408887913388456439',
+    'Club Dance'                => '3130991408939547127',
   );
 } else {
   die( "Whose config file is this?  $config_link" );
