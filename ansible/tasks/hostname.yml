@@ -9,5 +9,6 @@
   register:             hostname_file_result
 
 - name:                 'set hostname'
-  command:              hostname {{ inventory_hostname }}
+  hostname:
+    name:               "{{ inventory_hostname }}"
   register:             hostname_command_result
