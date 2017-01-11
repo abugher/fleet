@@ -1,4 +1,5 @@
 ---
+# ansible-playbook -e role=foo deploy_role.yml
 - name:                 "deploy role:  {{ role }}"
   remote_user:          'ansible'
   become:               'yes'
