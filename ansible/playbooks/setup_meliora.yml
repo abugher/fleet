@@ -1,8 +1,0 @@
----
-- hosts:                meliora
-  name:                 'configure meliora'
-  remote_user:          ansible
-  become:               yes
-  become_method:        sudo
-  roles:
-    - 'meliora'

@@ -1,8 +1,8 @@
 ---
 - vars:
-    #skipdeps:           'any_value_means_skip'
-    host_name:          'rudolph'
-    role_name:          'ansible_target'
+    skipdeps:           'any_value_means_skip'
+    host_name:          'meliora'
+    role_name:          'remote'
   name:                 "hack:  deploy {{ role_name }} to {{ host_name }}"
   remote_user:          'ansible'
   become:               'yes'
