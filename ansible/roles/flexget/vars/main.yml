@@ -8,6 +8,11 @@ create_files:
     owner:              'debian-transmission'
     group:              'debian-transmission'
     mode:               '0755'
+  - path:               '/storage/bittorrent/content/nightvale'
+    state:              'directory'
+    owner:              'debian-transmission'
+    group:              'debian-transmission'
+    mode:               '0755'
 initialize_files:
   - owner:              'debian-transmission'
     group:              'debian-transmission'

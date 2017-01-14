@@ -1,0 +1,3 @@
+---
+encrypted_storage_backing_devices:
+  - '/dev/sda'

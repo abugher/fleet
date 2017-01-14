@@ -2,7 +2,7 @@
 install_packages:
   - 'cryptsetup'
 encrypted_storage:
-  - backing_device:             '/dev/sda'
+  - backing_device:             "{{ encrypted_storage_backing_device }}"
     name:                       'storage'
     password_path:              '/home/escrow/storage_pass_phrase/pass_phrase.txt'
     state:                      'present'
