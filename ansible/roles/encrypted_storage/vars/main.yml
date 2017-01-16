@@ -1,13 +1,10 @@
 ---
+# Make this handle multiple devices, multiple mount points, etc.
 install_packages:
   - 'cryptsetup'
-encrypted_storage:
-  - backing_device:             "{{ encrypted_storage_backing_device }}"
-    name:                       'storage'
-    password_path:              '/home/escrow/storage_pass_phrase/pass_phrase.txt'
-    state:                      'present'
 restart_services:
   - 'cryptdisks'
+# encrypted_storage is defined per host
 filesystems:
   - dev:                        '/dev/mapper/storage'
     fstype:                     'ext4'
