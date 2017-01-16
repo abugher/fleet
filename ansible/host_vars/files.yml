@@ -2,5 +2,3 @@
 encrypted_storage:
   - backing_device:             '/dev/sda'
     name:                       'storage'
-    password_path:              '/home/escrow/storage_pass_phrase/pass_phrase.txt'
-    state:                      'present'

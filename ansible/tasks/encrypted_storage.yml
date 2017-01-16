@@ -3,7 +3,7 @@
 # be the place to do that, if desired.
 
 - name:                         'format volume for LUKS'
-  shell:                        cryptsetup luksFormat --key-file {{ item.password_path }} {{ item.backing_device }} && echo success > /var/log/cryptsetup_luksFormat_{{ item.backing_device | replace('/', '_') }}.log
+  shell:                        cryptsetup luksFormat --key-file {{ password_path }} {{ item.backing_device }} && echo success > /var/log/cryptsetup_luksFormat_{{ item.backing_device | replace('/', '_') }}.log
   args:
     creates:                      "/var/log/cryptsetup_luksFormat_{{ item.backing_device | replace('/', '_') }}.log"
   with_items:                   "{{ encrypted_storage }}"
@@ -13,8 +13,8 @@
   crypttab:
     backing_device:             "{{ item.backing_device }}"
     name:                       "{{ item.name }}"
-    password:                   "{{ item.password_path }}"
-    state:                      "{{ item.state }}"
+    password:                   "{{ password_path }}"
+    state:                      'present'
     opts:                       'luks'
   with_items:                   "{{ encrypted_storage }}"
   register:                     encrypted_storage_configuration_result
