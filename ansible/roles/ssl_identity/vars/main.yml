@@ -12,6 +12,11 @@ install_files:
     dest:               "/etc/ssl/certs/{{ inventory_hostname }}.pem"
   - owner:              'root'
     group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/../../../ssl/hosts/{{ inventory_hostname }}/chain.pem"
+    dest:               "/etc/ssl/certs/chain.pem"
+  - owner:              'root'
+    group:              'root'
     mode:               '0640'
     src:                "{{ role_path }}/../../../../sensitive/ssl/hosts/{{ inventory_hostname }}/key.pem"
     dest:               "/etc/ssl/private/{{ inventory_hostname }}.pem"
