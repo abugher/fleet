@@ -1,0 +1,4 @@
+---
+- include:              '../tasks/user_groups.yml'
+- include:              '../tasks/users.yml'
+- include:              '../tasks/create_files.yml'

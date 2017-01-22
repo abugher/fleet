@@ -1,0 +1,4 @@
+---
+dependencies:
+  - role:       'storage'
+    when:       skipdeps is not defined

@@ -1,0 +1,11 @@
+---
+user_groups:
+  - 'sensitive'
+users:
+  - 'sensitive'
+create_files:
+  - owner:              'sensitive'
+    group:              'sensitive'
+    mode:               '0750'
+    state:              'directory'
+    path:               '/storage/sensitive'
