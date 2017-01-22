@@ -1,0 +1,4 @@
+---
+- include:              '../tasks/filesystems.yml'
+- include:              '../tasks/mount.yml'
+

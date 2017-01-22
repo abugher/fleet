@@ -3,5 +3,3 @@
 - include:              '../tasks/encrypted_storage.yml'
 - include:              '../tasks/restart_services.yml'
   when:                 encrypted_storage_configuration_result.changed
-- include:              '../tasks/filesystems.yml'
-- include:              '../tasks/mount.yml'

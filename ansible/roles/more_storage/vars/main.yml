@@ -1,0 +1,11 @@
+---
+filesystems:
+  - dev:                        '/dev/mapper/more_storage'
+    fstype:                     'ext4'
+mount:
+  - name:                       '/more_storage'
+    fstype:                     'ext4'
+    opts:                       'noatime,noauto,nodev,nosuid,noexec'
+    src:                        '/dev/mapper/more_storage'
+    state:                      'mounted'
+
