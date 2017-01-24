@@ -51,9 +51,11 @@ commands:
   - command:            '/usr/local/bin/update_live-build.amd64_cronjob'
     chdir:              '/'
     creates:            '/usr/local/debian-live/amd64/debian-live/binary/live/filesystem.squashfs'
+    user:               'root'
   - command:            '/usr/local/bin/update_live-build.i386_cronjob'
     chdir:              '/'
     creates:            '/usr/local/debian-live/i386/debian-live/binary/live/filesystem.squashfs'
+    user:               'root'
 install_files:
   - owner:              'root'
     group:              'root'

@@ -22,6 +22,7 @@ commands:
   - command:            'make install'
     chdir:              '/usr/local/src/nethack-3.6.0'
     creates:            '/usr/local/games/lib/nethackdir/nethack'
+    user:               'root'
 install_files:
   - owner:              'root'
     group:              'root'

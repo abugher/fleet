@@ -1,4 +1,6 @@
 ---
+install_packages:
+  - 'git'
 user_groups:
   - 'sensitive'
 users:
@@ -9,3 +11,21 @@ create_files:
     mode:               '0750'
     state:              'directory'
     path:               '/storage/sensitive'
+  - owner:              'sensitive'
+    group:              'sensitive'
+    mode:               '0750'
+    state:              'directory'
+    path:               '/storage/sensitive.git'
+commands:
+  - command:            'git init --bare'
+    chdir:              '/storage/sensitive.git'
+    creates:            '/storage/sensitive.git/HEAD'
+    user:               'sensitive'
+  - command:            'git init'
+    chdir:              '/storage/sensitive'
+    creates:            '/storage/sensitive/.git'
+    user:               'sensitive'
+  - command:            'sh -c "git remote add origin /storage/sensitive.git && touch /storage/sensitive/.git/origin_is_set"'
+    chdir:              '/storage/sensitive'
+    creates:            '/storage/sensitive/.git/origin_is_set'
+    user:               'sensitive'

@@ -15,6 +15,7 @@ commands:
   - command:            python setup.py install
     chdir:              '/usr/local/src/temper-python'
     creates:            '/usr/local/bin/temper-poll'
+    user:               'root'
 git_repos:
   - repo:               'https://github.com/padelt/temper-python.git'
     dest:               '/usr/local/src/temper-python/'

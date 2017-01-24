@@ -46,3 +46,4 @@ commands:
   - command:            'apt-key update'
     chdir:              '/'
     creates:            '/NEVER_GETS_CREATED'
+    user:               'root'
