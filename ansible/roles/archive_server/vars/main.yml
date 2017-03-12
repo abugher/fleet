@@ -1,11 +1,10 @@
 ---
 filesystems:
-  - dev:                        '/dev/mapper/more_storage'
+  - dev:                        '/dev/mapper/archive'
     fstype:                     'ext4'
 mount:
-  - name:                       '/more_storage'
+  - name:                       '/archive'
     fstype:                     'ext4'
     opts:                       'noatime,noauto,nodev,nosuid,noexec'
-    src:                        '/dev/mapper/more_storage'
+    src:                        '/dev/mapper/archive'
     state:                      'mounted'
-
