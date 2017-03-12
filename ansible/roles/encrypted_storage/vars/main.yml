@@ -1,8 +1,6 @@
 ---
-# Make this handle multiple devices, multiple mount points, etc.
 install_packages:
   - 'cryptsetup'
+  - 'nagios-plugins-basic'      # monitor storage
 restart_services:
   - 'cryptdisks'
-# encrypted_storage is defined per host
-password_path:                  '/home/escrow/storage_pass_phrase/pass_phrase.txt'
