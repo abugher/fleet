@@ -21,9 +21,10 @@ ERR_LUKSOPEN=1
 ERR_MOUNT=2
 ERR_TRANS=3
 
-
-/sbin/cryptsetup luksOpen /dev/sda storage || fail $ERR_LUKSOPEN "Failed to luksOpen:  /dev/sda"
-/bin/mount /storage || fail $ERR_MOUNT "Failed to mount:  /storage"
+{% for thing in encrypted_storage %}
+/sbin/cryptsetup luksOpen "{{ thing.backing_device }}" "{{ thing.name }}" || fail $ERR_LUKSOPEN "Failed to luksOpen:  {{ thing.backing_device }} as {{ thing.name }}"
+/bin/mount "/{{ thing.name }}" || fail $ERR_MOUNT "Failed to mount:  /{{ thing.name }}"
+{% endfor %}
 if test -e /etc/init.d/transmission-daemon; then
   /usr/sbin/service transmission-daemon start || fail $ERR_TRANS "Failed to start service:  transmission-daemon"
 fi

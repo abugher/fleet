@@ -3,6 +3,7 @@
 - include:              '../tasks/system_groups.yml'
 - include:              '../tasks/system_users.yml'
 - include:              '../tasks/install_files.yml'
+- include:              '../tasks/template_files.yml'
 - include:              '../tasks/symlinks.yml'
 - include:              '../tasks/authorized_keys.yml'
 - include:              '../tasks/known_hosts.yml'

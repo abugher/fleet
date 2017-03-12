@@ -16,9 +16,7 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'pi'
     when:       skipdeps is not defined
-  - role:       'escrow'
-    when:       skipdeps is not defined
-  - role:       'encrypted_storage'
+  - role:       'storage'
     when:       skipdeps is not defined
   - role:       'file_server'
     when:       skipdeps is not defined

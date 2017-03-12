@@ -2,3 +2,5 @@
 dependencies:
   - role:       'hostname'
     when:       skipdeps is not defined
+  - role:       'escrow'
+    when:       skipdeps is not defined
