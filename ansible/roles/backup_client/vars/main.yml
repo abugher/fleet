@@ -1,0 +1,19 @@
+---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/bin/backup_cronjob"
+    dest:               '/usr/local/bin/backup_cronjob'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/cron.d/backup"
+    dest:               '/etc/cron.d/backup'
+template_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/templates/bin/backup.j2"
+    dest:               '/usr/local/bin/backup'
+
