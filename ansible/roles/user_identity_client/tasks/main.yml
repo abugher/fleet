@@ -2,5 +2,5 @@
 - include:              '../tasks/install_packages.yml'
 - include:              '../tasks/install_files.yml'
 - include:              '../tasks/user_groups.yml'
-- include:              '../tasks/homedirs.yml'
 - include:              '../tasks/users.yml'
+- include:              '../tasks/homedirs.yml'

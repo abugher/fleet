@@ -1,0 +1,5 @@
+---
+authorized_keys:
+  - user:                       'rachel'
+    keyfile:                    "{{ role_path }}/../rudolph/files/ssh_keys/rachel.id_rsa.pub"
+
