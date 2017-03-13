@@ -7,14 +7,9 @@ template_files:
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                "{{ role_path }}/templates/bin/storage.j2"
-    dest:               '/usr/local/bin/storage'
-install_files:
-  - owner:              'root'
-    group:              'root'
-    mode:               '0755'
-    src:                "{{ role_path }}/files/bin/tend_storage"
+    src:                "{{ role_path }}/templates/bin/tend_storage.j2"
     dest:               '/usr/local/bin/tend_storage'
+install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'

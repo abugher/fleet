@@ -17,20 +17,16 @@
 # This script will create a ramdisk if necessary, attempt to populate it with
 # the storage pass phrase, and mount storage if possible.
 #
-# If not running on $STORAGE_HOST, it will not mount storage.
-#
 # This is probably a bad idea.  Rolling your own crypto solutions is pretty
 # much always a bad idea.  This was written by one guy late at night.  It's
 # for entertainment purposes only, like a psychic.
 
 
                 E_USER='escrow'
-     STORAGE_HOST_LIST='neuron files'
-   STORAGE_MOUNT_POINT='/storage'
      RAMFS_MOUNT_POINT="/home/${E_USER}/storage_pass_phrase"
+  TRANSMISSION_STORAGE='/storage'
  PASS_PHRASE_FILE_NAME='pass_phrase.txt'
  PASS_PHRASE_FILE_PATH="${RAMFS_MOUNT_POINT}/${PASS_PHRASE_FILE_NAME}"
-       STORAGE_COMMAND='/usr/local/bin/storage'
   INIT_STORAGE_COMMAND='s'
        ERR_MKDIR_RAMFS=1
        ERR_MOUNT_RAMFS=2
@@ -40,6 +36,9 @@
         ERR_CHMOD_FILE=6
      ERR_MOUNT_STORAGE=7
        ERR_PASS_PHRASE=8
+          ERR_LUKSOPEN=9
+             ERR_MOUNT=10
+             ERR_TRANS=11
 
 
 fail() {
@@ -101,12 +100,24 @@ if ! test -e "${PASS_PHRASE_FILE_PATH}"; then
   fail $ERR_PASS_PHRASE "Failed to obtain pass phrase."
 fi
 
-for STORAGE_HOST in $STORAGE_HOST_LIST; do
-  if
-    test $STORAGE_HOST = $(hostname) \
-    && ! mount | grep -q " $STORAGE_MOUNT_POINT "
-  then
-    $STORAGE_COMMAND < "${PASS_PHRASE_FILE_PATH}" \
-      || fail $ERR_MOUNT_STORAGE "Failed to mount storage."
+
+{% if encrypted_storage is defined %}
+{% for item in encrypted_storage %}
+  if ! test -e "/dev/mapper/{{ item.name }}"; then
+    /sbin/cryptsetup luksOpen "{{ item.backing_device }}" "{{ item.name }}" < "${PASS_PHRASE_FILE_PATH}" \
+      || fail $ERR_LUKSOPEN "Failed to luksOpen:  {{ item.backing_device }} as {{ item.name }}"
   fi
-done
+  if ! mount | grep -q " /{{ item.name }} "; then
+    /bin/mount "/dev/mapper/{{ item.name }}" "/{{ item.name }}" \
+      || fail $ERR_MOUNT "Failed to mount:  /{{ item.name }}"
+  fi
+{% endfor %}
+{% endif %}
+
+
+if 
+  test -e /etc/init.d/transmission-daemon \
+  && mount | grep -q " $TRANSMISSION_STORAGE "
+then
+  /usr/sbin/service transmission-daemon start || fail $ERR_TRANS "Failed to start service:  transmission-daemon"
+fi

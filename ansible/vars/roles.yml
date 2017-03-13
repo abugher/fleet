@@ -3,7 +3,6 @@
 ---
 domain:                         'neuronpointer.net'
 elasticsearch_server:           'synapse'
-storage_server:                 'neuron'
 syslog_server:                  'meliora'
 dns_server:                     'neuron'
 backup_server:                  'files'
