@@ -2,3 +2,4 @@
 - include_vars:                 '../vars/roles.yml'
 - include:                      '../tasks/install_files.yml'
 - include:                      '../tasks/template_files.yml'
+- include:                      '../tasks/initialize_files.yml'
