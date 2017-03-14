@@ -2,7 +2,8 @@ ddns-update-style       none;
 option                  domain-search           "neuronpointer.net";
 option                  domain-name             "neuronpointer.net";
 # No quotes on the values for domain-name-servers.
-option                  domain-name-servers     {{ dns_server }}.neuronpointer.net, google-public-dns-a.google.com;
+#option                  domain-name-servers     {{ dns_server }}.neuronpointer.net, google-public-dns-a.google.com;
+option                  domain-name-servers     {{ dns_server }}.neuronpointer.net;
 default-lease-time      3600;
 max-lease-time          200;
 authoritative;
