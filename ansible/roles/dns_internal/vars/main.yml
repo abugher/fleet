@@ -36,7 +36,7 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "{{ role_path }}/../dns1/files/conf/default.dnsmasq"
+    src:                "{{ role_path }}/files/conf/default.dnsmasq"
     dest:               '/etc/default/dnsmasq'
   - owner:              'pi'
     group:              'pi'

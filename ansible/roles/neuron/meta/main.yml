@@ -40,7 +40,7 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'monitored'
     when:       skipdeps is not defined
-  - role:       'dns1'
+  - role:       'dns_internal'
     when:       skipdeps is not defined
   - role:       'crl_server'
     when:       skipdeps is not defined

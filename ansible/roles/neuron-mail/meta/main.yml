@@ -8,5 +8,5 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'tor'
     when:       skipdeps is not defined
-  - role:       'dns2'
+  - role:       'dns_external'
     when:       skipdeps is not defined
