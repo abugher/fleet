@@ -7,7 +7,7 @@ create_files:
     group:              "{{ backup_user }}"
     mode:               '0750'
     state:              'directory'
-    dest:               "~{{ backup_user }}/backup"
+    path:               "~{{ backup_user }}/backup"
 install_files:
   - owner:              'root'
     group:              'root'
