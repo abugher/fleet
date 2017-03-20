@@ -2,6 +2,8 @@
 # Ideally we could support a number of users per host.  The first problem is
 # that loops aren't supported in the contxt of vars files like this one.  Hence
 # a single backup_user.
+known_hosts:
+  - "{{ backup_server }}"
 create_files:
   - owner:              "{{ backup_user }}"
     group:              "{{ backup_user }}"
