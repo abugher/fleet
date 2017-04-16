@@ -3,7 +3,7 @@ install_python_packages:
   - 'FlexGet'
   - 'functools32'       # for flexget
 create_files:
-  - path:               '/home/debian-transmission/.flexget'
+  - path:               '/var/lib/transmission-daemon/.flexget'
     state:              'directory'
     owner:              'debian-transmission'
     group:              'debian-transmission'
@@ -43,7 +43,7 @@ install_files:
     group:              'debian-transmission'
     mode:               '0644'
     src:                '../../../sensitive/ansible/roles/flexget/files/conf/flexget/config.yml'
-    dest:               '/home/debian-transmission/.flexget/config.yml'
+    dest:               '/var/lib/transmission-daemon/.flexget/config.yml'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
