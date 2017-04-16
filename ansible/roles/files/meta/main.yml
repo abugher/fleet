@@ -16,7 +16,7 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'pi'
     when:       skipdeps is not defined
-  - role:       'storage'
+  - role:       'storage_server'
     when:       skipdeps is not defined
   - role:       'file_server'
     when:       skipdeps is not defined

@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - role:       'storage'
+  - role:       'storage_server'
     when:       skipdeps is not defined

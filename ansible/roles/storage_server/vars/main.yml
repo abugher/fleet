@@ -1,0 +1,36 @@
+---
+filesystems:
+  - dev:                '/dev/mapper/storage'
+    fstype:             'ext4'
+mount:
+  - name:               '/storage'
+    fstype:             'ext4'
+    opts:               'noatime,noauto,nodev,nosuid,noexec'
+    src:                '/dev/mapper/storage'
+    state:              'mounted'
+user_groups:
+  - 'rachel-phone'
+  - 'aaron-phone'
+users:
+  - 'rachel-phone'
+  - 'aaron-phone'
+create_files:
+  - owner:              'aaron-phone'
+    group:              'aaron-phone'
+    mode:               '0750'
+    state:              'directory'
+    path:               '/storage/aaron-phone/live/legacy/DCIM/Camera'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/cron.d/chown_pictures"
+    dest:               '/etc/cron.d/chown_pictures'
+authorized_keys:
+  - user:               'rachel-phone'
+    keyfile:            "{{ role_path }}/../rachel-phone/files/ssh_keys/rsync_backup.dss_key.pub"
+  - user:               'aaron-phone'
+    keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/aaron-phone.id_rsa.pub"
+  - user:               'aaron-phone'
+    keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/rsync_backup.dss_key.pub"
+
