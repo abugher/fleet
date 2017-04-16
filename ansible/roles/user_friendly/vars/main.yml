@@ -1,5 +1,6 @@
 ---
 install_packages:
+  - 'file'
   - 'vim'
   - 'less'
   - 'molly-guard'
