@@ -10,7 +10,8 @@ templates.  See *ansible/README.md*.
 
 # ssl
 
-The *ssl* directory contains keys, certificates, revocation lists, and a script to generate and regenerate that material.  See *ssl/README.md*.
+The *ssl* directory contains keys, certificates, revocation lists, and a script
+to generate and regenerate that material.  See *ssl/README.md*.
 
 # License:
 
