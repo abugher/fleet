@@ -1,12 +1,13 @@
 ---
 remove_packages:
+  - 'avahi-daemon'
+  - 'python-gobject'
+  - 'python-wicd'
+  - 'rfkill'
+  - 'snmpd'
   - 'wicd-daemon'
   - 'wicd-gtk'
-  - 'python-wicd'
-  - 'python-gobject'
-  - 'rfkill'
-  - 'avahi-daemon'
-  - 'snmpd'
+  - 'wolfram-engine'
 # user 'pi' comes with Raspbian, but not Bananian.
 user_groups:
   - 'pi'
