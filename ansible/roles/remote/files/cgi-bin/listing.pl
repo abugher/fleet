@@ -12,18 +12,19 @@ use MelioraRemote::IncludeHTML;
 
 my $uri     = URI::Encode->new( { encode_reserved => 1 } );
 
-# Operate on a specified directory, or a default.
+# Sort by name, since filenames often start with indices.
 my $sortBy = 'name';
 my $q = CGI->new();
 my $content_dir = $q->param('dir');
+# Provide listing for any subdirectory of the root, but not other locations.
 if( defined($content_dir) and $content_dir =~ /^\/storage\/bittorrent\/content\// ) {
   $content_dir = "$content_dir";
 } else {
+  # Sort the main listing by date.
   $sortBy = 'date';
   $content_dir = '/storage/bittorrent/content';
 }
 
-# Get a listing in @content.
 opendir (my($content_handle), $content_dir) or die "$! -- '$content_dir'";
 my @content = grep { !/^\./ } readdir $content_handle;
 closedir( $content_handle );
