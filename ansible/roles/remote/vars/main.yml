@@ -18,6 +18,16 @@ install_files:
     mode:               '0755'
     src:                "{{ role_path }}/files/cgi-bin/remote.pl"
     dest:               '/usr/lib/cgi-bin/remote.pl'
+  - owner:              'rachel'
+    group:              'rachel'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/www/style.css"
+    dest:               '/var/www/style.css'
+  - owner:              'rachel'
+    group:              'rachel'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/www/index.html"
+    dest:               '/var/www/index.html'
 sync_dirs:
   - src:                "{{ role_path }}/files/parts/"
     dest:               '/var/www/parts/'
