@@ -20,14 +20,19 @@ install_files:
     dest:               '/usr/lib/cgi-bin/remote.pl'
   - owner:              'rachel'
     group:              'rachel'
-    mode:               '0755'
+    mode:               '0744'
     src:                "{{ role_path }}/files/www/style.css"
     dest:               '/var/www/style.css'
   - owner:              'rachel'
     group:              'rachel'
-    mode:               '0755'
+    mode:               '0744'
     src:                "{{ role_path }}/files/www/index.html"
     dest:               '/var/www/index.html'
+  - owner:              'rachel'
+    group:              'rachel'
+    mode:               '0744'
+    src:                "{{ role_path }}/files/www/select-user.html"
+    dest:               '/var/www/select-user.html'
 sync_dirs:
   - src:                "{{ role_path }}/files/parts/"
     dest:               '/var/www/parts/'
