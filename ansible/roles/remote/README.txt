@@ -1,6 +1,6 @@
-I don't know if this will be a complete playbook any time soon, but I
-want to gather the files involved here for posterity.  I'll try not to
-miss any.
+This role may be incomplete.  The code was written and deployed, then
+later incorporated into a playbook.  When the playbook has been used to
+redeploy, this warning should be removed.
 
 remote is currently resident on meliora, hosted by apache2.
 
