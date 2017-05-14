@@ -1,6 +1,7 @@
 ---
 - lineinfile:
     line:               "{{ item.line }}"
+    regexp:             "{{ item.regexp }}"
     dest:               "{{ item.dest }}"
     state:              'present'
   with_items:           "{{ lines_in_files }}"
