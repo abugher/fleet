@@ -1,0 +1,9 @@
+---
+allow_users:
+  - 'pi'
+  - 'nagios'
+  - 'shinken'
+  - 'ansible'
+  - 'cryptkeeper'
+  - 'escrow'
+  - 'aaron'

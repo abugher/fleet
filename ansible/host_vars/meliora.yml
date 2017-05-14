@@ -1,0 +1,7 @@
+---
+allow_users:
+  - 'rachel'
+  - 'aaron'
+  - 'ansible'
+  - 'nagios'
+  - 'shinken'

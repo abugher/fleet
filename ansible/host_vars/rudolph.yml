@@ -4,3 +4,6 @@ backup_users:
 # The vars file in backup_client role can't loop over backup_users.  So there's
 # this, which clearly only works as long as we're only doing one user.
 backup_user:                    'rachel'
+allow_users:
+  - 'aaron'
+  - 'rachel'

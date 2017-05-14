@@ -1,0 +1,9 @@
+---
+allow_users:
+  - 'abugher'
+  - 'aaron'
+  - 'tunneler'
+  - 'nagios'
+  - 'shinken'
+  - 'ansible'
+  - 'neuronpointer'

@@ -1,0 +1,7 @@
+---
+allow_users:
+  - 'pi'
+  - 'nagios'
+  - 'ansible'
+  - 'escrow'
+  - 'aaron'
