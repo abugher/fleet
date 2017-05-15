@@ -1,5 +1,6 @@
 ---
 # Use allow_users as defined in host_vars.
+allow_users:            "{{ hostvars[inventory_hostname]['allow_users'] }}"
 restart_services:
   - 'ssh'
 install_files:

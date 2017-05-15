@@ -1,7 +1,7 @@
 ---
 - vars:
     skipdeps:           'any_value_means_skip'
-    host_name:          'rudolph'
+    host_name:          'synapse'
     role_name:          'sshd'
   name:                 "hack:  deploy {{ role_name }} to {{ host_name }}"
   remote_user:          'ansible'
