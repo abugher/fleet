@@ -1,10 +1,10 @@
 ---
 - vars:
-    skipdeps:           'any_value_means_skip'
-    host_name:          'synapse'
-    role_name:          'sshd'
+    #skipdeps:           'any_value_means_skip'
+    host_name:          'meliora'
+    role_name:          'ansible_target'
   name:                 "hack:  deploy {{ role_name }} to {{ host_name }}"
-  remote_user:          'ansible'
+  remote_user:          'administrator'
   become:               'yes'
   become_method:        'sudo'
   gather_facts:         'no'

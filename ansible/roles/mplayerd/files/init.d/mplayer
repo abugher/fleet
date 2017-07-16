@@ -1,5 +1,14 @@
 #!/bin/bash
 
+### BEGIN INIT INFO
+# Provides:          mplayer
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start mplayerd at boot time
+# Description:       Enable mplayer provided by mplayerd.
+### END INIT INFO
+
+
 action="${1}"
 user=rachel
 pid_file=/var/run/mplayerd.pid
