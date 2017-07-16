@@ -10,7 +10,7 @@
 
 
 action="${1}"
-user=rachel
+user=display
 pid_file=/var/run/mplayerd.pid
 
 function start {

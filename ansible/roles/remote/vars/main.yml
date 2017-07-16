@@ -2,6 +2,7 @@
 install_packages:
   - 'apache2'
   - 'libapache2-mod-perl2'
+  - 'rsync'             # Needed for synchronize module.
 install_files:
   - owner:              'root'
     group:              'root'
