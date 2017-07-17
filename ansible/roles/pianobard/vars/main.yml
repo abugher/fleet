@@ -1,4 +1,8 @@
 ---
+user_groups:
+  - 'display'
+users:
+  - 'display'
 install_files:
   - owner:              'root'
     group:              'root'

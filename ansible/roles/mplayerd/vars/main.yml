@@ -1,4 +1,8 @@
 ---
+user_groups:
+  - 'display'
+users:
+  - 'display'
 install_packages:
   - 'mplayer2'
 install_files:
@@ -11,7 +15,7 @@ install_files:
     group:              'root'
     mode:               '0755'
     src:                "{{ role_path }}/files/bin/mplayerd"
-    dest:               '/usr/local/mplayerd'
+    dest:               '/usr/local/bin/mplayerd'
 enable_services:
   - 'mplayer'
 start_services:
