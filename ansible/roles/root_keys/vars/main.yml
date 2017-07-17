@@ -1,4 +1,10 @@
 ---
+create_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0700'
+    state:              'directory'
+    path:               '/root/.ssh'
 install_files:
   - owner:              'root'
     group:              'root'

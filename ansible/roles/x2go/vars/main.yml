@@ -1,4 +1,10 @@
 ---
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/conf/x2go.list"
+    dest:               '/etc/sources.list.d/x2go.list'
 install_packages:
   - 'x2goserver'
   - 'x2goserver-xsession'

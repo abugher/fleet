@@ -10,6 +10,7 @@ install_packages:
   - 'bc'
   - 'htop'
   - 'bash-completion'
+  - 'net-tools'
 remove_packages:
   - 'nano'
 install_files:
