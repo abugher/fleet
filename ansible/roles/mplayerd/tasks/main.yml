@@ -3,6 +3,8 @@
 - include:                      '../tasks/users.yml'
 - include:                      '../tasks/install_packages.yml'
 - include:                      '../tasks/install_files.yml'
+- include:                      '../tasks/commands.yml'
+- include:                      '../tasks/adjust_files.yml'
 - include:                      '../tasks/enable_services.yml'
 - include:                      '../tasks/start_services.yml'
 - include:                      '../tasks/restart_services.yml'

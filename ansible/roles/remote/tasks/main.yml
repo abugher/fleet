@@ -13,3 +13,5 @@
 - include:              '../tasks/create_files.yml'
 - shell:                mount -a
   changed_when:         False
+  args:
+    warn:               no

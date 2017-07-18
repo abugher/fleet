@@ -4,7 +4,7 @@ user_groups:
 users:
   - 'display'
 install_packages:
-  - 'mplayer2'
+  - 'mplayer'
 install_files:
   - owner:              'root'
     group:              'root'
@@ -16,6 +16,16 @@ install_files:
     mode:               '0755'
     src:                "{{ role_path }}/files/bin/mplayerd"
     dest:               '/usr/local/bin/mplayerd'
+commands:
+  - command:            mkfifo '/mplayer.control'
+    user:               'root'
+    chdir:              '/'
+    creates:            '/mplayer.control'
+adjust_files:
+  - owner:                        'www-data'
+    group:                        'display'
+    mode:                         '0664'
+    path:                         '/mplayer.control'
 enable_services:
   - 'mplayer'
 start_services:

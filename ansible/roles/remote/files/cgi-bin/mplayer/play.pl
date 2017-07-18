@@ -13,7 +13,7 @@ my $uri         = URI::Encode->new( { encode_reserved => 1 } );
 my $q           = CGI->new();
 
 my $file        = $q->param('file');
-my @fileset     = $q->param('fileset');
+my @fileset     = $q->multi_param('fileset');
 
 # .1 seconds seems to work, so let's do .15 for wiggle room.
 # microseconds
