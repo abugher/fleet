@@ -2,7 +2,9 @@
 install_packages:
   - 'apache2'
   - 'libapache2-mod-perl2'
-  - 'rsync'             # Needed for synchronize module.
+  - 'liburi-encode-perl'
+enable_apache_modules:
+  - 'cgid'
 install_files:
   - owner:              'root'
     group:              'root'
@@ -23,20 +25,20 @@ install_files:
     group:              'root'
     mode:               '0744'
     src:                "{{ role_path }}/files/www/style.css"
-    dest:               '/var/www/style.css'
+    dest:               '/var/www/html/style.css'
   - owner:              'root'
     group:              'root'
     mode:               '0744'
     src:                "{{ role_path }}/files/www/index.html"
-    dest:               '/var/www/index.html'
+    dest:               '/var/www/html/index.html'
   - owner:              'root'
     group:              'root'
     mode:               '0744'
     src:                "{{ role_path }}/files/www/select-user.html"
-    dest:               '/var/www/select-user.html'
+    dest:               '/var/www/html/select-user.html'
 sync_dirs:
   - src:                "{{ role_path }}/files/parts/"
-    dest:               '/var/www/parts/'
+    dest:               '/var/www/html/parts/'
     delete:             'yes'
   - src:                "{{ role_path }}/files/cgi-bin/mplayer/"
     dest:               '/usr/lib/cgi-bin/mplayer/'
@@ -44,4 +46,5 @@ sync_dirs:
   - src:                "{{ role_path }}/files/cgi-bin/pianobar/"
     dest:               '/usr/lib/cgi-bin/pianobar/'
     delete:             'no'
-# Restart some services, probably.
+restart_services:
+  - 'apache2'

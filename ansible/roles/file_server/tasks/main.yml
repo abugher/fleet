@@ -1,3 +1,5 @@
 ---
+- include:              '../tasks/user_groups.yml'
+- include:              '../tasks/users.yml'
 - include_vars:         '../vars/roles.yml'
 - include:              '../tasks/authorized_keys.yml'
