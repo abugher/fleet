@@ -65,7 +65,7 @@ lines_in_files:
     regexp:             '^StrictModes '
   - dest:               '/etc/ssh/sshd_config'
     line:               'Subsystem sftp                  internal-sftp'
-    regexp:             '^Subsystem\s*sftp '
+    regexp:             '^Subsystem\s*sftp\s'
   - dest:               '/etc/ssh/sshd_config'
     line:               'SyslogFacility                  AUTH'
     regexp:             '^SyslogFacility '

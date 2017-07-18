@@ -13,3 +13,4 @@ allow_users:
   - 'rachel'
   - 'escrow '
   - 'nagios'
+  - 'readonly'

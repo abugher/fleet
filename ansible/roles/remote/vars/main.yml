@@ -48,3 +48,5 @@ sync_dirs:
     delete:             'no'
 restart_services:
   - 'apache2'
+known_hosts:
+  - 'files'
