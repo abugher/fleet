@@ -1,4 +1,11 @@
 ---
+- include_vars:         '../vars/roles.yml'
+- file:
+    owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    state:              'file'
+    path:               '/etc/ssh/ssh_known_hosts'
 - name:                 'known hosts - short hostname'
   known_hosts:
     path:               "/etc/ssh/ssh_known_hosts"
