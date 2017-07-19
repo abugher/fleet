@@ -1,0 +1,4 @@
+---
+install_packages:
+  - 'pulseaudio'
+  - 'xserver-xorg'
