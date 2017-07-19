@@ -16,6 +16,11 @@ install_files:
     mode:               '0755'
     src:                "{{ role_path }}/files/bin/mplayerd"
     dest:               '/usr/local/bin/mplayerd'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/conf/Xwrapper.config"
+    dest:               '/etc/X11/Xwrapper.config'
 commands:
   - command:            mkfifo '/mplayer.control'
     user:               'root'
