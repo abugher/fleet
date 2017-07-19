@@ -1,6 +1,9 @@
 It's a web based remote control.  mplayerd and pianobard should be
-running on the same host to receive commands from these scripts.
+running on the same host as the web server.
 
-Ideally, this can be split up into separate remote and display roles, so
-that the remote can run on some web server, and the display server can
-... not have to be a web server.
+It might be neat to decouple the remote role from the display role, so
+they can be on different hosts, but right now they must be in the same
+place.
+
+There should really also be a "storage_client" role, or similar.  Some
+of that functionality is in the remote role right now.

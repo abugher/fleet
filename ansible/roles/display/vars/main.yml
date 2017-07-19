@@ -1,4 +1,14 @@
 ---
+user_groups:
+  - 'display'
+users:
+  - 'display'
 install_packages:
   - 'pulseaudio'
   - 'xserver-xorg'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/conf/Xwrapper.config"
+    dest:               '/etc/X11/Xwrapper.config'
