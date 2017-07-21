@@ -22,6 +22,15 @@ adjust_files:
     group:                        'display'
     mode:                         '0664'
     path:                         '/mplayer.control'
+initialize_files:
+  - owner:              'display'
+    group:              'display'
+    mode:               '0644'
+    dest:               '/var/log/mplayerd.log'
+  - owner:              'display'
+    group:              'display'
+    mode:               '0644'
+    dest:               '/var/log/mplayerd.ret'
 enable_services:
   - 'mplayer'
 start_services:

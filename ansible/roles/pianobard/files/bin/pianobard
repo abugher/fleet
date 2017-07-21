@@ -3,7 +3,8 @@
 #pianobar='/home/rachel/programs/bin/pianobar'
 #pianobar='/usr/bin/pianobar'
 #pianobar='/usr/local/bin/pianobar'
-pianobar='/usr/local/programs/pianobar/bin/pianobar'
+#pianobar='/usr/local/programs/pianobar/bin/pianobar'
+pianobar=pianobar
 
 $pianobar > /var/log/pianobard.log 2>&1 &
 pid="${!}"
