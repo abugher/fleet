@@ -18,10 +18,10 @@ commands:
     chdir:              '/'
     creates:            '/mplayer.control'
 adjust_files:
-  - owner:                        'www-data'
-    group:                        'display'
-    mode:                         '0664'
-    path:                         '/mplayer.control'
+  - owner:              'www-data'
+    group:              'display'
+    mode:               '0664'
+    path:               '/mplayer.control'
 initialize_files:
   - owner:              'display'
     group:              'display'

@@ -1,6 +1,6 @@
 ---
 - vars:
-    #skipdeps:           'any_value_means_skip'
+    skipdeps:           'any_value_means_skip'
     host_name:          'meliora'
     role_name:          'display'
   name:                 "hack:  deploy {{ role_name }} to {{ host_name }}"

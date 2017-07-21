@@ -15,6 +15,11 @@ install_files:
     dest:               '/home/display/.config/pianobar/config'
   - owner:              'root'
     group:              'root'
+    mode:               '0640'
+    src:                "{{ role_path }}/files/libao.conf"
+    dest:               '/etc/libao.conf'
+  - owner:              'root'
+    group:              'root'
     mode:               '0755'
     src:                "{{ role_path }}/files/init.d/pianobar"
     dest:               '/etc/init.d/pianobar'
@@ -23,6 +28,16 @@ install_files:
     mode:               '0755'
     src:                "{{ role_path }}/files/bin/pianobard"
     dest:               '/usr/local/bin/pianobard'
+commands:
+  - command:            mkfifo '/pianobar.control'
+    user:               'root'
+    chdir:              '/'
+    creates:            '/pianobar.control'
+adjust_files:
+  - owner:              'www-data'
+    group:              'display'
+    mode:               '0664'
+    path:               '/pianobar.control'
 initialize_files:
   - owner:              'display'
     group:              'display'
