@@ -1,6 +1,4 @@
 ---
-- include:                      '../tasks/user_groups.yml'
-- include:                      '../tasks/users.yml'
 - include:                      '../tasks/install_packages.yml'
 - include:                      '../tasks/install_files.yml'
 - include:                      '../tasks/enable_services.yml'
