@@ -9,7 +9,7 @@ install_files:
     group:              'root'
     mode:               '0755'
     src:                "{{ role_path }}/files/bin/pianobard"
-    dest:               '/usr/local/pianobard'
+    dest:               '/usr/local/bin/pianobard'
 enable_services:
   - 'pianobar'
 start_services:
