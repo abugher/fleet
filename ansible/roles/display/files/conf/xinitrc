@@ -1,1 +1,2 @@
+xscreensaver -nosplash &
 exec i3
