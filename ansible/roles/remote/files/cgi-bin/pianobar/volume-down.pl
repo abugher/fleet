@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-system( 'echo "(" > /etc/pianobard/ctl' );
+system( 'echo "(" > /pianobar.control' );
 
 print( "Content-type:text/html\n\n" );
 print << 'EOF';

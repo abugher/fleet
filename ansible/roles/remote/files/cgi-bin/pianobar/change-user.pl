@@ -37,7 +37,7 @@ if( 0 != $ret ) {
 }
 
 # It starts paused.  User is interacting.  Make sound.
-system( 'echo " " > /etc/pianobard/ctl' );
+system( 'echo " " > /pianobar.control' );
 
 print( "Content-type:text/html\n\n" );
 print( "<meta http-equiv=refresh content='.1;/cgi-bin/remote.pl'>\n" );
