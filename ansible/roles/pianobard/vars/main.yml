@@ -8,11 +8,6 @@ create_files:
     state:              'directory'
     path:               '/home/display/.config/pianobar'
 install_files:
-  - owner:              'display'
-    group:              'display'
-    mode:               '0640'
-    src:                "{{ role_path }}/files/config"
-    dest:               '/home/display/.config/pianobar/config'
   - owner:              'root'
     group:              'root'
     mode:               '0640'
@@ -28,6 +23,11 @@ install_files:
     mode:               '0755'
     src:                "{{ role_path }}/files/bin/pianobard"
     dest:               '/usr/local/bin/pianobard'
+symlinks:
+  - owner:              'display'
+    group:              'display'
+    src:                '/etc/pianobard/config'
+    dest:               '/home/display/.config/pianobar/config'
 commands:
   - command:            mkfifo '/pianobar.control'
     user:               'root'
