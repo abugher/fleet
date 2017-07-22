@@ -2,6 +2,8 @@
 
 ### BEGIN INIT INFO
 # Provides:          pianobar
+# Required-Start:
+# Required-Stop:
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Start pianobard at boot time
