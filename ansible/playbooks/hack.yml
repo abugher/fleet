@@ -2,7 +2,7 @@
 - vars:
     skipdeps:           'any_value_means_skip'
     host_name:          'meliora'
-    role_name:          'pianobard'
+    role_name:          'remote'
   name:                 "hack:  deploy {{ role_name }} to {{ host_name }}"
   remote_user:          'ansible'
   become:               'yes'

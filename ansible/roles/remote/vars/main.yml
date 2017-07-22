@@ -25,7 +25,7 @@ install_files:
 #    dest:               '/etc/pianobard/config_rachel'
   - owner:              'root'
     group:              'root'
-    mode:               '0640'
+    mode:               '0644'
     src:                '../../../sensitive/ansible/roles/remote/files/conf/config_aaron'
     dest:               '/etc/pianobard/config_aaron'
   - owner:              'root'
