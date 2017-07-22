@@ -3,6 +3,9 @@ user_groups:
   - 'display'
 users:
   - 'display'
+add_user_to_groups:
+  - user:               'display'
+    groups:             'pulse-access'
 install_packages:
   - 'pulseaudio'
   - 'xserver-xorg'
@@ -30,3 +33,19 @@ install_files:
     mode:               '0644'
     src:                "{{ role_path }}/files/conf/i3_config"
     dest:               '/home/display/.i3/config'
+  - owner:              'display'
+    group:              'display'
+    mode:               '0644'
+    src:                "{{ role_path }}/files/conf/xinitrc"
+    dest:               '/home/display/.xinitrc'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/conf/init.d/pulseaudio-system-mode"
+    dest:               '/etc/init.d/pulseaudio-system-mode'
+enable_services:
+  - 'pulseaudio-system-mode'
+start_services:
+  - 'pulseaudio-system-mode'
+restart_services:
+  - 'pulseaudio-system-mode'
