@@ -12,7 +12,7 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'monitored'
     when:       skipdeps is not defined
-  - role:       'printserver'
+  - role:       'print_server'
     when:       skipdeps is not defined
   - role:       'debian-live-build'
     when:       skipdeps is not defined

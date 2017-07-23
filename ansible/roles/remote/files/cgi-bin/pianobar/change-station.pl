@@ -15,14 +15,14 @@ if(  $station !~ /^[0-9]{1,100}$/ ) {
 
 my $ret = 0;
 system( 'sudo /etc/init.d/pianobar stop >/dev/null 2>&1' );
-$ret = $? >> 8;
+$ret = ( $? >> 8 );
 if( 0 != $ret ) {
   die "Error:  Failed to stop pianobar: ${ret}";
 }
 my $real_config = readlink( '/etc/pianobard/config' );
 system( "sed -Ei 's/autostart_station = [0-9]+/autostart_station = ${station}/' '/etc/pianobard/${real_config}'" );
 system( 'sudo /etc/init.d/pianobar start >/dev/null 2>&1' );
-$ret = $? >> 8;
+$ret = ( $? >> 8 );
 if( 0 != $ret ) {
   die "Error:  Failed to start pianobar: ${ret}";
 }

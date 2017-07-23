@@ -5,8 +5,8 @@ install_packages:
   - 'liburi-encode-perl'
   - 'sshfs'
 create_files:
-  - owner:              'root'
-    group:              'root'
+  - owner:              'www-data'
+    group:              'www-data'
     mode:               '0755'
     state:              'directory'
     path:               '/etc/pianobard'
@@ -18,13 +18,13 @@ create_files:
 enable_apache_modules:
   - 'cgid'
 install_files:
-#  - owner:              'root'
-#    group:              'root'
+#  - owner:              'www-data'
+#    group:              'www-data'
 #    mode:               '0640'
-#    src:                "{{ role_path }}/files/conf/config_rachel"
+#    src:                '../../../sensitive/ansible/roles/remote/files/conf/config_rachel'
 #    dest:               '/etc/pianobard/config_rachel'
-  - owner:              'root'
-    group:              'root'
+  - owner:              'www-data'
+    group:              'www-data'
     mode:               '0644'
     src:                '../../../sensitive/ansible/roles/remote/files/conf/config_aaron'
     dest:               '/etc/pianobard/config_aaron'
@@ -69,8 +69,8 @@ sync_dirs:
     dest:               '/usr/lib/cgi-bin/pianobar/'
     delete:             'no'
 symlinks:
-  - owner:              'root'
-    group:              'root'
+  - owner:              'www-data'
+    group:              'www-data'
     src:                'config_aaron'
     dest:               '/etc/pianobard/config'
 restart_services:
