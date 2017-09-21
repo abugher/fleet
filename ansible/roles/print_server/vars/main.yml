@@ -12,17 +12,17 @@ install_files:
   - owner:              'root'
     group:              'root'
     mode:               '0644'
-    src:                "{{ role_path }}/../cups/files/conf/cups-pdf.conf"
+    src:                "{{ role_path }}/files/conf/cups-pdf.conf"
     dest:               '/etc/cups/cups-pdf.conf'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                "{{ role_path }}/../cups/files/bin/pdfprint"
+    src:                "{{ role_path }}/files/bin/pdfprint"
     dest:               '/etc/init.d/pdfprint'
   - owner:              'root'
     group:              'root'
     mode:               '0755'
-    src:                "{{ role_path }}/../cups/files/bin/pdfprintd"
+    src:                "{{ role_path }}/files/bin/pdfprintd"
     dest:               '/usr/local/bin/pdfprintd'
 enable_services:
   - 'pdfprint'
