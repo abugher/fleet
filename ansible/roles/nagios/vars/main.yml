@@ -76,6 +76,11 @@ install_files:
     mode:               '0755'
     src:                "{{ role_path }}/files/bin/check_temper"
     dest:               '/usr/local/bin/check_temper'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/bin/check_version_string"
+    dest:               '/usr/local/bin/check_version_string'
   - owner:              'nagios'
     group:              'nagios'
     mode:               '0600'
