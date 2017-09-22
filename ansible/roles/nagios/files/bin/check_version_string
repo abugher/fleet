@@ -27,7 +27,9 @@ got_string="$(
     | sed -E 's/[^ ]+ +[^ ]+ +[^ ]+ +//'
 )"
 
-if test "${string}" == "${got_string}"; then
+# Specifying "CUPS " should match "CUPS 2.2".
+# http://www.tldp.org/LDP/abs/html/parameter-substitution.html
+if test "${string}" == "${got_string:0:${#string}}"; then
   echo "${host}:${port} OK.  '${got_string}'"
   exit $happy
 else
