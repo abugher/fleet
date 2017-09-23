@@ -32,7 +32,7 @@ mount_tmp_dir() {
   mkdir -p $tmp_dir || puke $? "failed to mkdir ${tmp_dir}"
   sshfs \
     -o idmap=file,uidfile=$uidfile,gidfile=$gidfile,reconnect \
-    cryptkeeper@neuron:bones $tmp_dir || puke $? "failed to mount ${tmp_dir}"
+    cryptkeeper@neuronpointer.net:bones $tmp_dir || puke $? "failed to mount ${tmp_dir}"
 }
 
 
