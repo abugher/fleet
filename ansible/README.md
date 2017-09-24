@@ -30,8 +30,11 @@ might not be feasible.
 A counter-example is the system-wide *known_hosts* file.  The file is easy to
 capture from an already deployed host, and tempting to use as a
 "system-specific" file, but new entries must be managed in parallel with
-changes to service roles.  Instead, *known_hosts* should be managed in service
-roles by individual *known_host* entries.
+changes to service roles.
+
+Instead, each host role includes a *known_host* (singular) file.  Individual
+*known_host* entries are defined in service roles, and refer to *known_host*
+file of the host to be known.
 
 ## service roles
 
