@@ -30,7 +30,8 @@ authorized_keys:
   - user:               'rachel-phone'
     keyfile:            "{{ role_path }}/../rachel-phone/files/ssh_keys/rsync_backup.dss_key.pub"
   - user:               'aaron-phone'
-    keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/aaron-phone.id_rsa.pub"
+    keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/id_rsa.pub"
   - user:               'aaron-phone'
     keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/rsync_backup.dss_key.pub"
-
+  - user:               'aaron-phone'
+    keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/id_rsa.pub"

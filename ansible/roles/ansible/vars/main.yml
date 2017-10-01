@@ -23,7 +23,7 @@ install_files:
     dest:               '~pi/.ssh/id_rsa.pub'
 authorized_keys:
   - user:               'pi'
-    keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/aaron-phone.id_rsa.pub"
+    keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/id_rsa.pub"
 allow_users:
   - 'ansible'
 known_hosts:

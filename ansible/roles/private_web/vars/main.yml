@@ -5,9 +5,17 @@ create_files:
     group:              'www-data'
     mode:               '0750'
     state:              'directory'
-install_files:
   - owner:              'root'
     group:              'www-data'
     mode:               '0640'
-    src:                "../../../sensitive/ansible/roles/{{ inventory_hostname}}/files/conf/htpasswd"
+    path:               '/etc/nginx/htpasswd'
+    state:              'file'
+lines_in_files:
+  - line:               'private:$apr1$xrYa9wVy$kmyJo3zP7FwgOTkbY2yE4.'
+    regexp:             '^private:'
     dest:               '/etc/nginx/htpasswd'
+symlinks:
+  - owner:              'root'
+    group:              'root'
+    src:                '/storage/aaron-phone/live/legacy/DCIM/Camera'
+    dest:               '/usr/share/nginx/www/private/pictures'
