@@ -14,8 +14,7 @@ lines_in_files:
   - line:               'private:$apr1$xrYa9wVy$kmyJo3zP7FwgOTkbY2yE4.'
     regexp:             '^private:'
     dest:               '/etc/nginx/htpasswd'
-symlinks:
-  - owner:              'root'
-    group:              'root'
-    src:                '/storage/aaron-phone/live/legacy/DCIM/Camera'
-    dest:               '/usr/share/nginx/www/private/pictures'
+lines_in_files:
+  - line:               'aaron-phone@files:/storage/aaron-phone/sdcard/DCIM/Camera/     /usr/share/nginx/www/private           fuse.sshfs      auto,_netdev,reconnect,delay_connect,defaults,noatime,nodev,nosuid,noexec,user,idmap=user,allow_other,uid=0,gid=33       0 2'
+    regexp:             ''
+    dest:               '/etc/fstab'

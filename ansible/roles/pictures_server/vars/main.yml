@@ -1,7 +1,0 @@
----
-symlinks:
-  - owner:              'root'
-    group:              'root'
-    src:                '/storage/aaron-phone/live/legacy/DCIM/Camera'
-    dest:               '/usr/share/nginx/www/private/pictures'
-
