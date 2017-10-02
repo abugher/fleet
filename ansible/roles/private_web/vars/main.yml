@@ -10,11 +10,15 @@ create_files:
     mode:               '0640'
     path:               '/etc/nginx/htpasswd'
     state:              'file'
+  - owner:              'root'
+    group:              'www-data'
+    mode:               '0750'
+    path:               '/usr/share/nginx/www/private/pictures'
+    state:              'directory'
 lines_in_files:
   - line:               'private:$apr1$xrYa9wVy$kmyJo3zP7FwgOTkbY2yE4.'
     regexp:             '^private:'
     dest:               '/etc/nginx/htpasswd'
-lines_in_files:
-  - line:               'aaron-phone@files:/storage/aaron-phone/sdcard/DCIM/Camera/     /usr/share/nginx/www/private           fuse.sshfs      auto,_netdev,reconnect,delay_connect,defaults,noatime,nodev,nosuid,noexec,user,idmap=user,allow_other,uid=0,gid=33       0 2'
-    regexp:             ''
+  - line:               'aaron-phone@files:/storage/aaron-phone/sdcard/DCIM/Camera/     /usr/share/nginx/www/private/pictures   fuse.sshfs      auto,_netdev,reconnect,delay_connect,defaults,noatime,nodev,nosuid,noexec,user,idmap=user,allow_other,uid=1003,gid=33       0 2'
+    regexp:             'aaron-phone@files:/storage/aaron-phone/'
     dest:               '/etc/fstab'

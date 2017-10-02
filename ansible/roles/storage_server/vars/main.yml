@@ -35,3 +35,5 @@ authorized_keys:
     keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/rsync_backup.dss_key.pub"
   - user:               'aaron-phone'
     keyfile:            "{{ role_path }}/../aaron-phone/files/ssh_keys/id_rsa.pub"
+  - user:               'aaron-phone'
+    keyfile:            "{{ role_path }}/../neuron/files/ssh_keys/root.id_rsa.pub"
