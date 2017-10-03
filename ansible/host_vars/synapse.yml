@@ -1,4 +1,5 @@
 ---
+e_user:                 'escrow'
 allow_users:
   - 'pi'
   - 'nagios'
