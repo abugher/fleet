@@ -6,6 +6,7 @@ encrypted_storage:
   - name:                       'archive'
     backing_device:             '/dev/sdb'
     password_path:              '/home/escrow/storage_pass_phrase/pass_phrase.txt'
+e_user:                         'escrow'
 allow_users:
   - 'pi'
   - 'aaron-phone'

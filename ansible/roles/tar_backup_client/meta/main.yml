@@ -1,0 +1,3 @@
+---
+- role:         'escrow'
+  when:         skipdeps is not defined
