@@ -9,3 +9,6 @@ root@${private_web_server}" instead of "authorize root@neuron".)
 Thumbnails for the images might be nice.  More ambitiously, the display
 of thumbnails could be limited to a range, based on either time or
 number of pictures, toggleable and adjustable.
+
+Videos might require some html5 for in-browser playing, and/or some HTTP
+magic to make them download instead of trying to display in the browser.
