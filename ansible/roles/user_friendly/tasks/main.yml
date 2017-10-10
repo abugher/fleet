@@ -2,3 +2,4 @@
 - include:              '../tasks/install_packages.yml'
 - include:              '../tasks/remove_packages.yml'
 - include:              '../tasks/install_files.yml'
+- include:              '../tasks/lines_in_files.yml'

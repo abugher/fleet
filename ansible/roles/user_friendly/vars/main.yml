@@ -19,3 +19,7 @@ install_files:
     mode:               '0644'
     src:                "{{ role_path }}/files/conf/vimrc"
     dest:               '/etc/vim/vimrc'
+lines_in_files:
+  - line:               'let g:skip_defaults_vim = 1'
+    regexp:             'skip_defaults_vim'
+    dest:               '/etc/vim/vimrc'
