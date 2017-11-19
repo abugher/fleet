@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# gpgtar <input_directory>
+#
+# Creates input_directory.tar.xz.gpg, encrypted by pass phrase.
+
+pass_phrase_file=/
+

@@ -4,7 +4,14 @@ install_files:
     group:              'root'
     mode:               '0644'
     src:                "{{ role_path }}/files/conf/x2go.list"
-    dest:               '/etc/sources.list.d/x2go.list'
+    dest:               '/etc/apt/sources.list.d/x2go.list'
+# Key fingerprint from:
+# https://wiki.x2go.org/doku.php/wiki:repositories:debian
+shell_commands:
+  - command:            'apt-key adv --recv-keys --keyserver keys.gnupg.net E1F958385BFE2B6E && touch /etc/apt/x2go_key_is_added.txt'
+    user:               'root'
+    chdir:              '/'
+    creates:            '/etc/apt/x2go_key_is_added.txt'
 install_packages:
   - 'x2goserver'
   - 'x2goserver-xsession'
