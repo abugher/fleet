@@ -13,6 +13,7 @@
 192.168.11.61   no no.neuronpointer.net                 # Tomas
 192.168.11.62   files transmission files.neuronpointer.net transmission.neuronpointer.net
 192.168.11.63   abugher-lt abugher-lt.neuronpointer.net
+192.168.11.64   spy spy.neuronpointer.net
 
 ::1		localhost ip6-localhost ip6-loopback
 
