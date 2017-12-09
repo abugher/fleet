@@ -1,8 +1,0 @@
-# Make sure this agrees with the inventory.
-# I think we can just set these variables in the inventory.
----
-domain:                         'neuronpointer.net'
-elasticsearch_server:           'synapse'
-syslog_server:                  'meliora'
-dns_server:                     'neuron'
-backup_server:                  'files'

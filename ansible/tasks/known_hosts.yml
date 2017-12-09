@@ -1,5 +1,4 @@
 ---
-- include_vars:         '../vars/roles.yml'
 - file:
     owner:              'root'
     group:              'root'
