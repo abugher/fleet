@@ -1,4 +1,5 @@
 ---
+ip_address:                     '192.168.11.62'
 encrypted_storage:
   - name:                       'storage'
     backing_device:             '/dev/sda'

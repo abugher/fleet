@@ -1,0 +1,4 @@
+---
+dependencies:
+when:           skipdeps is not defined
+  - role:       'camera'

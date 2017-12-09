@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function fail {
+  echo "ERROR:  ${1}" >&2
+  exit 1
+}
+
+cd || fail "You can't go home."
+
+# ffmpeg thinks a colon means a protocol specification is coming.
+time="$(
+  date --iso-8601=min \
+  | sed 's/:/./'
+)"
+
+ffmpeg -i /dev/video0 -c:v libx264 -preset veryslow -crf 22 "${time}.mkv"

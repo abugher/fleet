@@ -1,4 +1,6 @@
 ---
+ip_address:             '192.168.11.54'
+
 e_user:                 'escrow'
 allow_users:
   - 'pi'
