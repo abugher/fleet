@@ -66,12 +66,16 @@ group {
   #option                domain-name-servers     192.168.11.54;
 
 {% for h in groups['dhcp'] %}
-{% if hostvars[h].mac_address is defined %}
+{% if hostvars[h].mac_address is defined and hostvars[h].ip_address %}
 
   host {{ h }} {
     hardware ethernet   {{ hostvars[h].mac_address }};
     fixed-address       {{ h }}.{{ domain }};
   }
+
+{% else %}
+
+  # {{ h }} is not fully configured.  ip_address and mac_address are required.  See ansible inventory and host_vars.
 
 {% endif %}
 {% endfor %}
