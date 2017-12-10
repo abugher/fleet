@@ -66,48 +66,52 @@ group {
   #option                domain-name-servers     192.168.11.54;
 
   host rudolph {
-    hardware ethernet   5C:C5:D4:64:E6:19;
-    fixed-address       rudolph.neuronpointer.net;
+    hardware ethernet   {{ hostvars['rudolph'].mac_address }};
+    fixed-address       rudolph.{{ domain }};
   }
 
   host meliora {
-    hardware ethernet   F0:DE:F1:90:77:CB;
-    fixed-address       meliora.neuronpointer.net;
+    hardware ethernet   {{ hostvars['meliora'].mac_address }};
+    fixed-address       meliora.{{ domain }};
   }
 
   host neuron {
-    hardware ethernet   B8:27:EB:47:A1:FB;
-    fixed-address       neuron.neuronpointer.net;
+    hardware ethernet   {{ hostvars['neuron'].mac_address }};
+    fixed-address       neuron.{{ domain }};
   }
 
   host synapse {
-    hardware ethernet   B8:27:EB:D1:2D:A2;
-    fixed-address       synapse.neuronpointer.net;
+    hardware ethernet   {{ hostvars['synapse'].mac_address }};
+    fixed-address       synapse.{{ domain }};
   }
 
   host wii {
-    hardware ethernet   9C:E6:35:83:64:4E;
-    fixed-address       wii.neuronpointer.net;
+    hardware ethernet   {{ hostvars['wii'].mac_address }};
+    fixed-address       wii.{{ domain }};
   }
 
   host peekaboo {
-    hardware ethernet   A0:99:9B:0A:02:F3;
-    fixed-address       peekaboo.neuronpointer.net;
+    hardware ethernet   {{ hostvars['peekaboo'].mac_address }};
+    fixed-address       peekaboo.{{ domain }};
   }
 
   host no {
-    hardware ethernet   94:94:26:01:38:76;
-    fixed-address       no.neuronpointer.net;
+    hardware ethernet   {{ hostvars['no'].mac_address }};
+    fixed-address       no.{{ domain }};
   }
 
   host files {
-    hardware ethernet   02:55:08:42:95:49;
-    fixed-address       files.neuronpointer.net;
+    hardware ethernet   {{ hostvars['files'].mac_address }};
+    fixed-address       files.{{ domain }};
   }
 
   host xbox {
-    hardware ethernet   50:1A:C5:5B:B7:AA;
-    fixed-address       xbox.neuronpointer.net;
+    hardware ethernet   {{ hostvars['xbox'].mac_address }};
+    fixed-address       xbox.{{ domain }};
   }
 
+  host spy {
+    hardware ethernet   {{ hostvars['spy'].mac_address }};
+    fixed-address       spy.{{ domain }};
+  }
 }
