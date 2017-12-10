@@ -65,53 +65,15 @@ group {
   option                routers                 gateway.neuronpointer.net;
   #option                domain-name-servers     192.168.11.54;
 
-  host rudolph {
-    hardware ethernet   {{ hostvars['rudolph'].mac_address }};
-    fixed-address       rudolph.{{ domain }};
+{% for h in groups['dhcp'] %}
+{% if hostvars[h].mac_address is defined %}
+
+  host {{ h }} {
+    hardware ethernet   {{ hostvars[h].mac_address }};
+    fixed-address       {{ h }}.{{ domain }};
   }
 
-  host meliora {
-    hardware ethernet   {{ hostvars['meliora'].mac_address }};
-    fixed-address       meliora.{{ domain }};
-  }
+{% endif %}
+{% endfor %}
 
-  host neuron {
-    hardware ethernet   {{ hostvars['neuron'].mac_address }};
-    fixed-address       neuron.{{ domain }};
-  }
-
-  host synapse {
-    hardware ethernet   {{ hostvars['synapse'].mac_address }};
-    fixed-address       synapse.{{ domain }};
-  }
-
-  host wii {
-    hardware ethernet   {{ hostvars['wii'].mac_address }};
-    fixed-address       wii.{{ domain }};
-  }
-
-  host peekaboo {
-    hardware ethernet   {{ hostvars['peekaboo'].mac_address }};
-    fixed-address       peekaboo.{{ domain }};
-  }
-
-  host no {
-    hardware ethernet   {{ hostvars['no'].mac_address }};
-    fixed-address       no.{{ domain }};
-  }
-
-  host files {
-    hardware ethernet   {{ hostvars['files'].mac_address }};
-    fixed-address       files.{{ domain }};
-  }
-
-  host xbox {
-    hardware ethernet   {{ hostvars['xbox'].mac_address }};
-    fixed-address       xbox.{{ domain }};
-  }
-
-  host spy {
-    hardware ethernet   {{ hostvars['spy'].mac_address }};
-    fixed-address       spy.{{ domain }};
-  }
 }
