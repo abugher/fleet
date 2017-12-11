@@ -5,9 +5,6 @@ encrypted_storage:
   - name:                       'storage'
     backing_device:             '/dev/sda'
     password_path:              '/home/escrow/storage_pass_phrase/pass_phrase.txt'
-  - name:                       'archive'
-    backing_device:             '/dev/sdb'
-    password_path:              '/home/escrow/storage_pass_phrase/pass_phrase.txt'
 e_user:                         'escrow'
 allow_users:
   - 'pi'
