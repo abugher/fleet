@@ -76,6 +76,12 @@ lines_in_files:
   - line:               '; flat-volumes = no'
     regexp:             'flat-volumes'
     dest:               '/etc/pulse/daemon.conf'
+  - line:               '; autospawn = no'
+    regexp:             '^; autospawn = '
+    dest:               '/etc/pulse/client.conf'
+  - line:               '#load-module module-console-kit'
+    regexp:             '^load-module module-console-kit'
+    dest:               '/etc/pulse/default.pa'
 enable_services:
   - 'pulseaudio-system-mode'
 start_services:

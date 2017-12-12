@@ -1,3 +1,4 @@
+pulseaudio --start
 xrandr --output LVDS-1 --off
 xscreensaver -nosplash &
 exec i3
