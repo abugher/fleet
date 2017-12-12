@@ -64,11 +64,6 @@ install_files:
     dest:               '/etc/mplayer/mplayer.conf'
   - owner:              'root'
     group:              'root'
-    mode:               '0755'
-    src:                "{{ role_path }}/files/conf/init.d/pulseaudio-system-mode"
-    dest:               '/etc/init.d/pulseaudio-system-mode'
-  - owner:              'root'
-    group:              'root'
     mode:               '0644'
     src:                "{{ role_path }}/files/conf/sudoers.pianobar_restart"
     dest:               '/etc/sudoers.d/pianobar_restart'
@@ -82,9 +77,3 @@ lines_in_files:
   - line:               '#load-module module-console-kit'
     regexp:             '^load-module module-console-kit'
     dest:               '/etc/pulse/default.pa'
-enable_services:
-  - 'pulseaudio-system-mode'
-start_services:
-  - 'pulseaudio-system-mode'
-restart_services:
-  - 'pulseaudio-system-mode'
