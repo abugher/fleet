@@ -89,7 +89,7 @@ case "${action}" in
     exit $?
     ;;
   'restart')
-    stop && start
+    stop && sleep 1 && start
     exit $?
     ;;
   'status')
