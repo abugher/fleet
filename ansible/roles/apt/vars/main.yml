@@ -42,6 +42,7 @@ install_files:
 remove_files:
   - '/etc/apt/sources.list.d/collabora.list'
   - '/etc/apt/sources.list.d/raspi.list'
+  - '/etc/apt/sources.list.d/wolfram.list'
 commands:
   - command:            'apt-key update'
     chdir:              '/'
