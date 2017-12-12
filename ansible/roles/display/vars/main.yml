@@ -5,7 +5,7 @@ users:
   - 'display'
 add_user_to_groups:
   - user:               'display'
-    groups:             'pulse-access'
+    groups:             'audio'
 install_packages:
   - 'pulseaudio'
   - 'pavucontrol'
