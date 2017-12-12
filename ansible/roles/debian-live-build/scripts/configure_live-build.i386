@@ -1,5 +1,27 @@
 #!/bin/bash
 cd '/usr/local/debian-live/i386/debian-live'
 
-lb config --distribution jessie --architectures i386 --binary-images netboot --debconf-frontend dialog --chroot-filesystem squashfs --parent-mirror-bootstrap http://mirrors.kernel.org/debian/ --parent-mirror-chroot-security http://mirrors.kernel.org/debian-security/ --parent-mirror-binary http://mirrors.kernel.org/debian/ --parent-mirror-binary-security http://mirrors.kernel.org/debian-security/ --mirror-bootstrap http://mirrors.kernel.org/debian/ --mirror-chroot-security http://mirrors.kernel.org/debian-security/ --mirror-binary http://mirrors.kernel.org/debian/ --mirror-binary-security http://mirrors.kernel.org/debian-security/ --archive-areas "main non-free contrib" --apt-options "--force-yes --yes" --bootappend-live "keyboard-layouts=en" \
-  && sed -i 's/LB_DEBCONF_FRONTEND="dialog"/LB_DEBCONF_FRONTEND="noninteractive"/' config/common
+lb config \
+  --architectures i386 \
+  --archive-areas "main non-free contrib" \
+  --binary-images netboot \
+  --chroot-filesystem squashfs \
+  --debconf-frontend dialog \
+  --distribution jessie \
+  --mirror-binary http://mirrors.kernel.org/debian/ \
+  --mirror-binary-security http://security.debian.org \
+  --mirror-bootstrap http://mirrors.kernel.org/debian/ \
+  --mirror-chroot-security http://security.debian.org/debian/ \
+  --parent-mirror-binary http://mirrors.kernel.org/debian/ \
+  --parent-mirror-binary-security http://security.debian.org \
+  --parent-mirror-bootstrap http://mirrors.kernel.org/debian/ \
+  --parent-mirror-chroot-security http://security.debian.org/debian/ \
+  --apt-options "\
+    --force-yes \
+    --yes \
+  " \
+  --bootappend-live "keyboard-layouts=en" \
+  && sed \
+    -i \
+    's/LB_DEBCONF_FRONTEND="dialog"/LB_DEBCONF_FRONTEND="noninteractive"/' \
+    config/common

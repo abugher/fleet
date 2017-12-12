@@ -20,8 +20,9 @@ lb config \
   --parent-mirror-bootstrap http://mirrors.kernel.org/debian/ \
   --parent-mirror-chroot-security http://security.debian.org/debian/ \
   --apt-options "\
-  --force-yes \
-  --yes" \
+    --force-yes \
+    --yes \
+  " \
   --bootappend-live "keyboard-layouts=en" \
   && sed \
   -i \
