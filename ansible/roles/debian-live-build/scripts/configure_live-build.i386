@@ -11,11 +11,11 @@ lb config \
   --mirror-binary http://mirrors.kernel.org/debian/ \
   --mirror-binary-security http://security.debian.org \
   --mirror-bootstrap http://mirrors.kernel.org/debian/ \
-  --mirror-chroot-security http://security.debian.org/debian/ \
+  --mirror-chroot-security http://security.debian.org/ \
   --parent-mirror-binary http://mirrors.kernel.org/debian/ \
   --parent-mirror-binary-security http://security.debian.org \
   --parent-mirror-bootstrap http://mirrors.kernel.org/debian/ \
-  --parent-mirror-chroot-security http://security.debian.org/debian/ \
+  --parent-mirror-chroot-security http://security.debian.org/ \
   --apt-options "\
     --force-yes \
     --yes \
