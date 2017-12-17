@@ -11,6 +11,23 @@ The role named *role_name* will be applied to the host group named *role_name*.
 Each directory under *roles/* defines a role.  Each role defines either a
 service or a host.  
 
+hosts.ini holds the inventory, and host\_vars/ holds host-specific and
+host-defining information such as IP address, MAC address, platform, etc.
+
+I want to factor out any explicit references to hostnames, in favor of
+templating.  dhcpd, dns\_internal, and nagios already get hosts and groups from
+inventory, and contain no redundant inventory information.  If you define a
+host in the inventory, and set *mac\_address*, *ip\_address*, *monitor*, and
+*notify* in the host variables, and deploy the dhcpd, dns\_internal, and nagios
+roles, the new host will receive a fixed address by DHCP, a DNS hostname, and
+basic monitoring.  
+
+Extended monitoring is driven by group membership.  I am in the process of
+reconciling the groups controlling deployment with the groups controlling
+monitoring, so that, for example, a raspberry pi will get configuration updates
+when I deploy the raspberry-pi role, and nagios will check on its pi-specific
+updates, just because it is a member of group raspberry-pi.
+
 ## host roles
 
 The host role should ideally not contain *tasks/main.yml*.  Everything
@@ -19,36 +36,24 @@ In concept, this means that a host can be redeployed to a system with a stock
 OS in one shot.  In practice, full redeployment doesn't get tested very often,
 and is likely to require some tweaking to work.
 
-The host role directory may also include host-specific material, which can be
-referenced by service roles using the *inventory_hostname* variable.
-
-Public (not private) keys are a good candidate.  This assumes you want keys
-to be associated with users and hosts, not with services.  Given that
-multiple services may make use of the same key, tracking keys with services
-might not be feasible.
-
-A counter-example is the system-wide *known_hosts* file.  The file is easy to
-capture from an already deployed host, and tempting to use as a
-"system-specific" file, but new entries must be managed in parallel with
-changes to service roles.
-
-Instead, each host role includes a *known_host* (singular) file, indicating how
-that host is known.  Individual *known_host* entries are defined in service
-roles, and refer to *known_host* file of the host to be known.
+The host role directory may also include host-specific information, which can
+be referenced by service roles.  This is a last resort, if the information
+cannot be conveyed by host variables or inventory group membership.  Ideally
+there should be little or no material, here.
 
 ## service roles
 
-Service roles mostly consist of tasks included into the role by
-*roles/&lt;role_name&gt;/tasks/main.yml*, and service-specific files, such as
-configuration files.
+Service role task lists mostly consist of include lines.  The variables file
+defines the parameters of those tasks.  The role may also include some service
+specific files, such as configuration or scripts.
 
 ## tasks
 
-Tasks are defined in *tasks/&lt;task_name&gt;.yml*.
+Task lists are defined in *tasks/&lt;task_name&gt;.yml*.
 
-Task parameters are controlled by variables, defined in
-*roles/&lt;role_name&gt;/vars/main.yml*.  Variables map relationships, such as
-files in this repo to file locations on target hosts.
+Role variables are used as task parameters.  To use a task list defined here,
+include it in the main task list of a role, and also set the required
+variables.
 
 ## metrics
 
