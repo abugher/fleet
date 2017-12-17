@@ -1,0 +1,8 @@
+{% for g in groups %}
+define hostgroup {
+  hostgroup_name        {{ g }}
+  alias                 {{ g }}
+  members               {% for h in groups[g] %}{{ h }},{% endfor %}
+
+}
+{% endfor %}

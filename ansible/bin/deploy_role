@@ -1,2 +1,6 @@
 #!/bin/bash
-time ansible-playbook ./playbooks/deploy_role.yml -e role="${1}"
+
+role="${1}"
+shift 1
+
+time ansible-playbook ./playbooks/deploy_role.yml -e role="${role}" "${@}"

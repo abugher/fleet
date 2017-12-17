@@ -2,9 +2,11 @@
 install_packages:
   - 'nagios3'
 sync_dirs:
-  - src:                "{{ role_path }}/files/conf/nagios3/"
+  - src:                "files/conf/nagios3/"
     dest:               '/etc/nagios3/'
     delete:             'yes'
+    #rsync_opts:         '--exclude="/conf.d/host_groups.cfg" --exclude="/conf.d/hosts.cfg"'
+    #rsync_opts:         '--exclude="/conf.d/hosts.cfg"'
 install_files:
   - owner:              'root'
     group:              'root'
@@ -106,6 +108,11 @@ install_files:
     mode:               '0644'
     src:                "../../../sensitive/ansible/roles/nagios/files/conf/htpasswd.users"
     dest:               '/etc/nagios3/htpasswd.users'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                'files/conf/nagios3/nagios.cfg'
+    dest:               '/etc/nagios3/nagios.cfg'
 symlinks:
   - owner:              'root'
     group:              'root'
@@ -121,6 +128,16 @@ template_files:
     mode:               '0644'
     src:                "{{ role_path }}/templates/nagios.ssl.j2"
     dest:               '/etc/nginx/sites-available/nagios.ssl'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "templates/hosts.cfg.j2"
+    dest:               "/etc/nagios3/conf.d/hosts.cfg"
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                "templates/host_groups.cfg.j2"
+    dest:               "/etc/nagios3/conf.d/host_groups.cfg"
 known_hosts:
 #  - 'neuron-mail'
   - 'neuron'

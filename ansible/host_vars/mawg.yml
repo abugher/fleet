@@ -1,3 +1,5 @@
 ---
 #mac_address:            ''
 ip_address:             '192.168.11.52'
+monitor:                'no'
+notify:                 'no'

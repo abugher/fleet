@@ -65,7 +65,7 @@ group {
   option                routers                 gateway.neuronpointer.net;
   #option                domain-name-servers     192.168.11.54;
 
-{% for h in groups['dhcp'] %}
+{% for h in groups['dhcp-clients'] %}
 {% if hostvars[h].mac_address is defined and hostvars[h].ip_address %}
 
   host {{ h }} {
