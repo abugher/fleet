@@ -35,10 +35,10 @@ group {
   #  filename            "ipxe.efi";
   #}
  
-  host abugher-lt-uefi {
-    hardware ethernet   28:f1:0e:4d:19:0a;
-    fixed-address       abugher-lt.neuronpointer.net;
-  }
+#  host abugher-lt-uefi {
+#    hardware ethernet   28:f1:0e:4d:19:0a;
+#    fixed-address       abugher-lt.neuronpointer.net;
+#  }
 }
 
 group {
@@ -48,15 +48,15 @@ group {
   #option                domain-name-servers     192.168.11.54;
   filename              "lpxelinux.0";
 
-  host mawg {
-    hardware ethernet   9C:4E:36:C0:D6:00;
-    fixed-address       mawg.neuronpointer.net;
-  }
-
-  host abugher-lt-bios {
-    hardware ethernet   9c:eb:e8:40:80:dd;
-    fixed-address       abugher-lt.neuronpointer.net;
-  }
+#  host mawg {
+#    hardware ethernet   9C:4E:36:C0:D6:00;
+#    fixed-address       mawg.neuronpointer.net;
+#  }
+#
+#  host abugher-lt-bios {
+#    hardware ethernet   9c:eb:e8:40:80:dd;
+#    fixed-address       abugher-lt.neuronpointer.net;
+#  }
 }
 
 group {
