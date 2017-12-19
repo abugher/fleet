@@ -28,7 +28,7 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'pictures'
     when:       skipdeps is not defined
-  - role:       'private_web'
+  - role:       'https-private'
     when:       skipdeps is not defined
   - role:       'front_page'
     when:       skipdeps is not defined
