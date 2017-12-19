@@ -9,3 +9,4 @@
 - include:              '../tasks/restart_services.yml'
   when:                 install_files_result.changed
                         or sync_dirs_result.changed
+                        or template_files_result.changed
