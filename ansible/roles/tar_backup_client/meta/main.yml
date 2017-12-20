@@ -1,3 +1,4 @@
 ---
-- role:         'escrow'
-  when:         skipdeps is not defined
+dependencies:
+  - role:       'escrow'
+    when:       skipdeps is not defined

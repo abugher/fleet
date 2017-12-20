@@ -1,3 +1,14 @@
 ---
 install_packages:
   - 'pxz'
+template_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0644'
+    src:                'templates/gpg.escrow.conf.j2'
+    dest:               '/etc/gpg.escrow.conf'
+shell_commands:
+  - command:             su escrow -c 'gpg --gen-key --no-tty --batch /etc/gpg.escrow.conf' && touch /etc/escrow_gpg_key_generated.txt
+    user:               'root'
+    chdir:              ''
+    creates:            '/etc/escrow_gpg_key_generated.txt'
