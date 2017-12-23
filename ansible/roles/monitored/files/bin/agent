@@ -35,7 +35,7 @@ rm -f "${socket}" \
 
 while sleep 1; do
   echo "Launching socat and agent_shell."
-  socat UNIX-LISTEN:"${socket}",user="${user}",group="${group}",mode="${socket_mode}", EXEC:"${agent_shell}" \
+  socat UNIX-LISTEN:"${socket}",fork,user="${user}",group="${group}",mode="${socket_mode}", EXEC:"${agent_shell}" \
     || warn "Failed to launch socat."
   echo "socat returned success."
 done

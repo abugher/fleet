@@ -6,13 +6,22 @@ function fail {
 }
 
 
+function warn {
+  echo -e "Warning:  ${1}" >&2
+}
+
+
 while sleep 1; do
   read module
+  echo "Module requested:  ${module}" >&2
   if 
     test -f "${module_dir}/${module}" \
     && test -x "${module_dir}/${module}"
   then
+    echo "Found ${module}.  Executing." >&2
     "${module_dir}/${module}" < /dev/null \
       || fail "Module failed:  ${module}"
+  else
+    warn "No such module:  ${module}"
   fi
 done
