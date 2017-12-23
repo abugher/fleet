@@ -82,6 +82,21 @@ install_files:
     mode:               '0755'
     src:                "{{ role_path }}/files/bin/check_version_string"
     dest:               '/usr/local/bin/check_version_string'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/bin/agent_command"
+    dest:               '/usr/local/bin/agent_command'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/bin/check_agent"
+    dest:               '/usr/local/bin/check_agent'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/bin/check_rsync_timestamp"
+    dest:               '/usr/local/bin/check_rsync_timestamp'
   - owner:              'nagios'
     group:              'nagios'
     mode:               '0600'

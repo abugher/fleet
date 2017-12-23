@@ -1,0 +1,7 @@
+#!/bin/bash
+
+output=="$(/usr/local/bin/agent_command "${1}" ping)"
+if ! test "pong" = "${output}"; then
+  echo "${output}"
+  exit 2
+fi
