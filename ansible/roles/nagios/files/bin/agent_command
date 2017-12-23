@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if ! test 2 == "${#}"; then
+  echo 'Wrong number of arguments.  Specify host and agent command.' >&2
+  exit 1
+fi
+
+agent_in="${HOME}/agent_in"
+agent_out="${HOME}/agent_out"
+
+rm -f "${agent_in}"
+mkfifo "${agent_in}"
+rm -f "${agent_out}"
+mkfifo "${agent_out}"
+
+ssh \
+  "${1}" \
+  socat UNIX-CONNECT:/tmp/agent_socket/socket - \
+  < "${agent_in}" \
+  > "${agent_out}" \
+  &
+
+# Hold agent_in open until the output is read.  Otherwise socat shuts down
+# before the output can be retrieved.
+{ 
+  echo "${2}"
+  read output
+} \
+  > "${agent_in}" \
+  < "${agent_out}"
+
+echo "${output}"
+
+rm "${agent_in}"
+rm "${agent_out}"
