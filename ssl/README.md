@@ -6,7 +6,7 @@ Run generate to generate SSL material.  Specify all short names for a host, star
 
 If 'dmz' is specified as a short name, the root domain name will be added as a valid name for the host, in addition to the subdomain 'dmz'.
 
-If no host key is present, one will be generated, and all dependent files will be regenereated.  (The script may have a somewhat overzealous notion of "dependent" at the moment.)  If CA material is missing, or there is no CA material, the CA material will be regenerated, and all dependent material will be regenerated, but other hosts will not be automatically regenerated.
+If no host key is present, one will be generated, and all dependent files will be regenerated.  (The script may have a somewhat overzealous notion of "dependent" at the moment.)  If CA material is missing, or there is no CA material, the CA material will be regenerated, and all dependent material will be regenerated, but other hosts will not be automatically regenerated.
 
 Run generate with no arguments to only generate CA material.  (It may be desirable to also regenerate host signing requests and certificates...)
 
