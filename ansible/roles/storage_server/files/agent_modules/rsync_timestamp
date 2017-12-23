@@ -3,13 +3,13 @@
 # Naughty.  This should be templated and fed from inventory.
 fingerprint='07:7d:59:5e:cd:73:e6:66:f7:a5:d8:0a:a6:a3:0b:c4'
 search_string="ssh2: RSA ${fingerprint}"
-log_file=/var/log/auth.log
+ssh_log_file=/var/log/auth.log
 
-grep -q "${search_string}" "${log_file}" \
+grep -q "${search_string}" "${ssh_log_file}" \
   || exit 1
 
 line="$(
-  grep "${search_string}" "${log_file}" \
+  grep "${search_string}" "${ssh_log_file}" \
     | tail -n 1
 )" \
   || exit 1

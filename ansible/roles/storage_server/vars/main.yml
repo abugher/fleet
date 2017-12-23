@@ -26,6 +26,11 @@ install_files:
     mode:               '0644'
     src:                "{{ role_path }}/files/cron.d/chown_pictures"
     dest:               '/etc/cron.d/chown_pictures'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                'files/agent_modules/rsync_timestamp'
+    dest:               '/usr/local/lib/agent_modules/rsync_timestamp'
 authorized_keys:
   - user:               'rachel-phone'
     keyfile:            "{{ role_path }}/../rachel-phone/files/ssh_keys/rsync_backup.dss_key.pub"
