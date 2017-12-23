@@ -5,6 +5,43 @@ system_users:
   - 'nagios'
 install_packages:
   - 'nagios-plugins-basic'
+  - 'socat'
 authorized_keys:
   - user:               'nagios'
     keyfile:            "{{ role_path }}/../synapse/files/ssh_keys/nagios.id_rsa.pub"
+create_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    state:              'directory'
+    path:               '/usr/local/lib'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    state:              'directory'
+    path:               '/usr/local/lib/agent_modules'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                'files/bin/agent'
+    dest:               '/usr/local/bin/agent'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                'files/init.d/agent'
+    dest:               '/etc/init.d/agent'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                'files/lib/agent_shell'
+    dest:               '/usr/local/lib/agent_shell'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                'files/agent_modules/ping'
+    dest:               '/usr/local/lib/agent_modules/ping'
+enable_services:
+  - 'agent'
+restart_services:
+  - 'agent'

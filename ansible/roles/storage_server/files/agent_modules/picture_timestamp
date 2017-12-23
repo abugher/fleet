@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Naughty.  This should be templated and fed from inventory.
+fingerprint='07:7d:59:5e:cd:73:e6:66:f7:a5:d8:0a:a6:a3:0b:c4'
+search_string="ssh2: RSA ${fingerprint}"
+log_file=/var/log/auth.log
+
+grep -q "${search_string}" "${log_file}" \
+  || exit 1
+
+line="$(
+  grep "${search_string}" "${log_file}" \
+    | tail -n 1
+)" \
+  || exit 1
+
+date_string="$(
+  echo "${line}" \
+  | awk '{print $3" "$2" "$1}'
+)" \
+  || exit 1
+
+date +%s -d "${date_string}"

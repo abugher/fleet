@@ -1,0 +1,37 @@
+#!/bin/bash
+
+socket_dir='/tmp/agent_socket'
+socket="${socket_dir}/socket"
+socket_mode='0660'
+export module_dir='/usr/local/lib/agent_modules'
+dir_mode='0750'
+agent_shell='/usr/local/lib/agent_shell'
+user='root'
+group='nagios'
+
+
+function fail {
+  echo -e "Error:  ${1}" >&2
+  exit 1
+}
+
+
+mkdir -p "${socket_dir}" \
+  || fail "Failed to create socket directory:  ${socket_dir}"
+
+chown "${user}":"${group}" "${socket_dir}" \
+  || fail "Failed to set ownership for socket directory:  ${socket_dir}"
+
+chmod "${dir_mode}" "${socket_dir}" \
+  || fail "Failed to set permissions for socket directory:  ${socket_dir}"
+
+rm -f "${socket}" \
+  || fail "Failed to remove old socket."
+
+while sleep 1; do
+  echo "Launching socat and agent_shell."
+  socat UNIX-LISTEN:"${socket}",user="${user}",group="${group}",mode="${socket_mode}", EXEC:"${agent_shell}" \
+    || fail "Failed to launch socat."
+  echo "socat returned success."
+done
+

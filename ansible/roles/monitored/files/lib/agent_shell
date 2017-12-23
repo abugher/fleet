@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function fail {
+  echo -e "Error:  ${1}" >&2
+  exit 1
+}
+
+
+while sleep 1; do
+  read module
+  if test -x "${module_dir}/${module}"; then
+    "${module_dir}/${module}" < /dev/null \
+      || fail "Module failed:  ${module}"
+  fi
+done
