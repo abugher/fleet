@@ -1,7 +1,9 @@
 #!/bin/bash
 
-output=="$(/usr/local/bin/agent_command "${1}" ping)"
+output="$(/usr/local/bin/agent_command "${1}" ping)"
 if ! test "pong" = "${output}"; then
-  echo "${output}"
+  echo "Agent is responsive."
   exit 2
 fi
+
+exit 0

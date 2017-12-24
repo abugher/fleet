@@ -1,17 +1,24 @@
 #!/bin/bash
 
-if ! test 2 == "${#}"; then
-  echo 'Wrong number of arguments.  Specify host and agent command.' >&2
+
+function fail {
+  echo -e "Error:  ${1}" >&2
   exit 1
+}
+
+if ! test 2 == "${#}"; then
+  fail 'Wrong number of arguments.  Specify host and agent command.'
 fi
 
-agent_in="${HOME}/agent_in"
-agent_out="${HOME}/agent_out"
+agent_in="/tmp/agent_in"
+agent_out="/tmp/agent_out"
 
 rm -f "${agent_in}"
 mkfifo "${agent_in}"
+chmod 0600 "${agent_in}"
 rm -f "${agent_out}"
 mkfifo "${agent_out}"
+chmod 0600 "${agent_out}"
 
 ssh \
   "${1}" \

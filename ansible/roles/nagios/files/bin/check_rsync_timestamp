@@ -1,6 +1,22 @@
 #!/bin/bash
 
-timestamp="$(/usr/local/bin/agent_command "${1}" rsync_timestamp)"
+timestamp="$(
+  /usr/local/bin/agent_command "${1}" rsync_timestamp 2>&1
+)" 
+agent_command_ret="${?}"
+
+if test '' == "${timestamp}"; then
+  echo "No recent log entries."
+  exit 2
+fi
+
+if ! test 0 == "${agent_command_ret}"; then 
+  echo "Error:  agent_command returned:  ${agent_command_ret}"
+  echo "Host address:  ${1}"
+  echo "Output:  ${timestamp}"
+  exit 2
+fi
+
 timestamp_hr="$(date -d "@${timestamp}")"
 now="$(date +%s)"
 delta="$(( ${now} - ${timestamp} ))"
