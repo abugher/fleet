@@ -7,8 +7,12 @@ define host {
   address               {{ hostname }}
 {% endif %}
   alias                 {{ hostname }}.{{ domain }}
+{% if hostvars[hostname].ip_address is defined and '127.0.0.1' == hostvars[hostname].ip_address %}
+  parents               {{ inventory_hostname }}
+{% else %}
 {% if hostvars[hostname].parent is defined %}
   parents               {{ hostvars[hostname].parent }}
+{% endif %}
 {% endif %}
 {% if hostvars[hostname].monitor is defined and hostvars[hostname].monitor == 'yes'%}
 {% if hostvars[hostname].platform is defined %}

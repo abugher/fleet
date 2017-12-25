@@ -2,8 +2,9 @@
 
 output="$(/usr/local/bin/agent_command "${1}" ping)"
 if ! test "pong" = "${output}"; then
-  echo "Agent is responsive."
+  echo "Error:  Agent is unresponsive."
   exit 2
 fi
 
+echo "Agent is responsive."
 exit 0
