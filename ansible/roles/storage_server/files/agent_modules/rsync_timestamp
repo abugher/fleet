@@ -3,12 +3,21 @@
 # Naughty.  This should be templated and fed from inventory.
 fingerprint='07:7d:59:5e:cd:73:e6:66:f7:a5:d8:0a:a6:a3:0b:c4'
 search_string="ssh2: RSA ${fingerprint}"
-ssh_log_files='/var/log/auth.log.1 /var/log/auth.log'
+ssh_log_files=( 
+  '/var/log/auth.log.5' 
+  '/var/log/auth.log.3' 
+  '/var/log/auth.log.2' 
+  '/var/log/auth.log.1' 
+  '/var/log/auth.log'
+)
 
 line="$(
-   cat ${ssh_log_files} \
-   | grep "${search_string}" \
-   | tail -n 1
+  for f in "${ssh_log_files[@]}"; do
+    zcat "${f}.gz" \
+    || cat "${f}"
+  done \
+    | grep "${search_string}" \
+    | tail -n 1
 )"
 
 if test '' == $(echo ${line}); then
