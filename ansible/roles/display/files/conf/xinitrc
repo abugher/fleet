@@ -1,4 +1,6 @@
 pulseaudio --start
 xrandr --output LVDS-1 --off
-xscreensaver -nosplash &
+#xscreensaver -nosplash &
+# Merry Christmas.
+mplayer -loop 0 -rootwin -volume 0 .christmas_video.mp4 &
 exec i3
