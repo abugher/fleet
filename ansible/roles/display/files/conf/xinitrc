@@ -1,6 +1,9 @@
 pulseaudio --start
 xrandr --output LVDS-1 --off
-#xscreensaver -nosplash &
-# Merry Christmas.
-mplayer -loop 0 -rootwin -volume 0 .christmas_video.mp4 &
+if test 12 -eq $(date +%m); then
+  # Merry Christmas.
+  mplayer -loop 0 -rootwin -volume 0 .christmas_video.mp4
+else
+  xscreensaver -nosplash
+fi &
 exec i3
