@@ -31,12 +31,12 @@ dst_world_preset: SURVIVAL_TOGETHER
 
 # network
 dst_server_as_a_service: true
-dst_server_name: "meliora"
+dst_server_name: "{{ dontstarvetogether_server }}"
 dst_server_description: Entertainment Center
 dst_server_port: 10999
 dst_server_save_slot: ~  # which save slot should the dedicated server load
 dst_server_intention: social
-dst_max_players: 64 # 1..64
+dst_max_players: 6 # 1..64
 dst_pvp: false # true | false
 dst_game_mode: survival # endless | survival | wilderness
 dst_enable_autosaver: true # creates a save at the start of each day, which will be resumed from when the server restarts
@@ -56,9 +56,9 @@ dst_autocompiler_enabled: true
 
 # shard
 dst_shard_enable: false # enable different server to work together
-dst_shard_is_master: false # define the master server
-dst_shard_name: overworld # define the shard name
-dst_shard_cluster_key: change_this_if_you_set_bind_ip
-dst_shard_master_ip: ~ # set the master server IP
+dst_shard_is_master: true # define the master server
+dst_shard_name: "{{ inventory_hostname }}" # define the shard name
+dst_shard_cluster_key: welcometoneuronpointerdotnet
+dst_shard_master_ip: "{{ inventory_hostname }}.{{ domain }}" # set the master server IP
 dst_shard_id: "{{ dst_shard_name | to_uuid }}"
 ## END Don't Starve Together dedicated server
