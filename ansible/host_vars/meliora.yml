@@ -25,6 +25,7 @@ steamcmd_login_timeout: 120
 # app wide configuration
 dst_app_id: 343050
 dst_install_dir: '{{ steamcmd_user_home }}apps/dontstarvetogether/'
+dst_server_token: 'pds-g^KU_U8IrMGWF^5ejq35my1yKxhNyjjRt3e3Nf8cJ1tnuAvVM6NZ1RGBU='
 
 # world
 dst_world_preset: SURVIVAL_TOGETHER
@@ -34,31 +35,26 @@ dst_server_as_a_service: true
 dst_server_name: "{{ dontstarvetogether_server }}"
 dst_server_description: Entertainment Center
 dst_server_port: 10999
-dst_server_save_slot: ~  # which save slot should the dedicated server load
 dst_server_intention: social
 dst_max_players: 6 # 1..64
 dst_pvp: false # true | false
 dst_game_mode: survival # endless | survival | wilderness
 dst_enable_autosaver: true # creates a save at the start of each day, which will be resumed from when the server restarts
-dst_enable_snapshots: false # allow GSAs the ability to fully roll back a server to an older state
 dst_tick_rate: 30 # quality of the server, higher tick rate consumes more bandwidth and CPU
-dst_connection_timeout: 8000 # time in milliseconds that the server should wait before dropping a non responsive client
 dst_enable_vote_kick: false # vote kick allows users to vote to kick players that are disrupting the game
 dst_pause_when_empty: true # pause the simulation when the dedicated server is empty
 dst_offline_server: false
 
 # steam
-dst_disable_cloud: true
 
 # misc
 dst_console_enabled: true
-dst_autocompiler_enabled: true
 
 # shard
+dst_shard_is_master: true
+dst_shard_id: "{{ dst_shard_name | to_uuid }}"
 dst_shard_enable: false # enable different server to work together
-dst_shard_is_master: true # define the master server
 dst_shard_name: "{{ inventory_hostname }}" # define the shard name
 dst_shard_cluster_key: welcometoneuronpointerdotnet
 dst_shard_master_ip: "{{ inventory_hostname }}.{{ domain }}" # set the master server IP
-dst_shard_id: "{{ dst_shard_name | to_uuid }}"
 ## END Don't Starve Together dedicated server
