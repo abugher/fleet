@@ -20,9 +20,10 @@ fi
 timestamp_hr="$(date -d "@${timestamp}")"
 now="$(date +%s)"
 delta="$(( ${now} - ${timestamp} ))"
+now_hr="$(date -d "@${now}")"
 
 if test ${timestamp} -gt ${now}; then
-  echo "Timestamp is in the future:  ${timestamp_hr}"
+  echo "Timestamp is in the future:  ${timestamp_hr}  (Current time:  ${now_hr})"
   exit 2
 elif test ${delta} -gt $(( 60 * 60 * 24 * 2 )); then
   echo "Timestamp is more than two days old:  ${timestamp_hr}"
