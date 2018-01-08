@@ -15,6 +15,8 @@ allow_users:
 ansible_pkg_mgr:        'apt'
 ansible_os_family:	'Debian'
 
+# Maybe all this Steam and Don't Starve stuff should be in inventory,
+# associated with the role, rather than this host.
 steamcmd_create_user:   true # create a dedicated user for the steam cmd
 steamcmd_user:          steam # owner of the steam cmd
 steamcmd_user_home:     /home/{{ steamcmd_user }}/ # home directory of the owner

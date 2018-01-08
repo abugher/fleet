@@ -8,7 +8,12 @@ template_files:
     src:                'templates/gpg.escrow.conf.j2'
     dest:               '/etc/gpg.escrow.conf'
 shell_commands:
-  - command:             su escrow -c 'gpg --gen-key --no-tty --batch /etc/gpg.escrow.conf' && touch /etc/escrow_gpg_key_generated.txt
+  - command:            '/usr/local/bin/s'
+    user:               'root'
+    chdir:              '/'
+    creates:            '/home/escrow/storage_pass_phrase/pass_phrase.txt'
+  - command:             su escrow -c 'gpg --no-tty --batch --passphrase-file /home/escrow/storage_pass_phrase/pass_phrase.txt --gen-key /etc/gpg.escrow.conf' && touch /etc/escrow_gpg_key_generated.txt
     user:               'root'
     chdir:              ''
     creates:            '/etc/escrow_gpg_key_generated.txt'
+
