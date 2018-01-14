@@ -1,0 +1,2 @@
+# m     h       dom     mon     dow     user    command
+32      02      *       *       *       root    /usr/local/bin/update_debian_cronjob
