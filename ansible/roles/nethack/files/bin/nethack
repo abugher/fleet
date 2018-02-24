@@ -62,6 +62,7 @@ download_bones_files() {
     if test $download_count -ge $download_quota; then break; fi
     bones_file=$(echo $bones_file | sed 's/.*\///g')
     mv $tmp_dir/$bones_file $bones_dir/$bones_file || puke $? "failed to move ${bones_file}"
+    echo "Downloaded: ${bones_file}"
     let download_count++
   done
   echo "Downloaded ${download_count} random bones files."
