@@ -3,6 +3,7 @@ install_packages:
   - 'debian-goodies'
   - 'debian-keyring'
   - 'debian-archive-keyring'
+  - 'aptitude'
 install_files:
   - owner:              'root'
     group:              'root'
