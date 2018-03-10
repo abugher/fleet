@@ -2,7 +2,7 @@
 dependencies:
   - role:       'user_friendly'
     when:       skipdeps is not defined
-  - role:       'apt'
+  - role:       'automatic_updates'
     when:       skipdeps is not defined
   - role:       'sshd'
     when:       skipdeps is not defined
