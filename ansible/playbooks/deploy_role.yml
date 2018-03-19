@@ -4,7 +4,7 @@
   remote_user:          'ansible'
   become:               'yes'
   become_method:        'sudo'
-  gather_facts:         'no'
+  gather_facts:         "{{ gather_facts | default('no') }}"
   hosts:                "{{ role }}"
   roles:
     - "{{ role }}"
