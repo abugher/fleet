@@ -1,0 +1,16 @@
+---
+dependencies:
+  - role:       'ansible_target'
+    when:       skipdeps is not defined
+  - role:       'automatic_updates'
+    when:       skipdeps is not defined
+  - role:       'user_friendly'
+    when:       skipdeps is not defined
+  - role:       'sshd'
+    when:       skipdeps is not defined
+  - role:       'reboot'
+    when:       skipdeps is not defined
+#  - role:       'monitored'
+#    when:       skipdeps is not defined
+  - role:       'dontstarvetogether'
+    when:       skipdeps is not defined
