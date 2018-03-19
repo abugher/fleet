@@ -1,6 +1,6 @@
 ---
 - include:              '../tasks/install_packages.yml'
 - include:              '../tasks/copy_remote_files.yml'
-# reboot here
+- include:              '../tasks/reboot.yml'
 - include:              '../tasks/purge_packages.yml'
 - include:              '../tasks/install_files.yml'
