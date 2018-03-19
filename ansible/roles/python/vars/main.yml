@@ -8,6 +8,8 @@ install_packages:
   - 'python-dev'
   - 'libssl-dev'
   - 'python-setuptools'
+install_python_packages:
+  - 'pip'
 install_files:
   - owner:              'root'
     group:              'root'
