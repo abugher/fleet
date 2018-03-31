@@ -60,6 +60,8 @@ dst_shard_name: "{{ game_name }}" # define the shard name
 dst_shard_id: "{{ dst_shard_name | to_uuid }}"
 dst_shard_master_ip: "{{ ip_address }}" # set the master server IP
 
+update_steam_hour: '08'
+update_steam_minute: '10'
 update_dontstarvetogether_hour: '09'
 update_dontstarvetogether_minute: '20'
 ## END Don't Starve Together dedicated server
