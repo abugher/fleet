@@ -4,6 +4,7 @@
   script:               ../files/scripts/initialize_file "{{ item.dest }}" "{{ item.owner }}" "{{ item.group }}" "{{ item.mode }}"
   with_items:           "{{ initialize_files }}"
   register:             initialize_file_script_result
+  changed_when:         false
 
 - meta:                 'noop'
   when:                 "'changed' in initialize_file_script_result.stdout"
