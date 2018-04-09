@@ -12,11 +12,17 @@ PageLogFormat
 # LogLevel debug2 gets usable now
 MaxLogSize 0
 
+ServerName printer
+ServerAlias printer
+
 Listen 0.0.0.0:631
+# Port 631
 Listen /var/run/cups/cups.sock
+ServerKey /etc/ssl/private/{{ inventory_hostname }}.pem
+ServerCertificate /etc/ssl/certs/{{ inventory_hostname }}.pem
 
 # Show shared printers on the local network.
-Browsing On
+Browsing Yes
 BrowseLocalProtocols dnssd
 
 # Default authentication type, when authentication is required...
@@ -28,6 +34,7 @@ WebInterface Yes
 # Restrict access to the server...
 <Location />
   Order allow,deny
+  Allow all
 </Location>
 
 # Restrict access to the admin pages...
