@@ -3,6 +3,7 @@
 - include:              '../tasks/create_files.yml'
 - include:              '../tasks/template_files.yml'
 - include:              '../tasks/install_files.yml'
+- include:              '../tasks/symlinks.yml'
 - include:              '../tasks/restart_services.yml'
   when:                 install_files_result.changed or template_files_result.changed
 - include:              '../tasks/enable_services.yml'

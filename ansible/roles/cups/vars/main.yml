@@ -32,6 +32,15 @@ install_files:
     mode:               '0755'
     src:                "{{ role_path }}/files/bin/pdfprintd"
     dest:               '/usr/local/bin/pdfprintd'
+symlinks:
+  - owner:              'root'
+    group:              'root'
+    src:                '/etc/ssl/private/meliora.pem'
+    dest:               '/etc/cups/ssl/meliora.key'
+  - owner:              'root'
+    group:              'root'
+    src:                '/etc/ssl/certs/meliora.pem'
+    dest:               '/etc/cups/ssl/meliora.crt'
 enable_services:
   - 'pdfprint'
 start_services:
