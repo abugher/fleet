@@ -2,6 +2,8 @@
 install_packages:
   - 'inotify-tools'
   - 'printer-driver-cups-pdf'
+  # for automatic discovery, aka browsing
+  - 'avahi-daemon'
 create_files:
   - owner:              'rachel'
     group:              'root'
