@@ -12,10 +12,6 @@ allow_users:
   - 'ansible'
 
 
-# These are needed by steamcmd, but they should be set by fact gathering.
-#ansible_pkg_mgr:        'apt'
-#ansible_os_family:      'Debian'
-
 # Maybe all this Steam and Don't Starve stuff should be in inventory,
 # associated with the role, rather than this host.
 steamcmd_create_user:   true # create a dedicated user for the steam cmd
