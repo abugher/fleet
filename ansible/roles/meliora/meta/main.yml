@@ -12,7 +12,7 @@ dependencies:
     when:       skipdeps is not defined
   - role:       'monitored'
     when:       skipdeps is not defined
-  - role:       'cups'
+  - role:       'printer_postscript_proxy'
     when:       skipdeps is not defined
   - role:       'live-build'
     when:       skipdeps is not defined
