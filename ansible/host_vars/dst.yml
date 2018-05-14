@@ -4,12 +4,6 @@ ip_address:             '192.168.1.145'
 #parent:                 'indra'
 monitor:                'no'
 notify:                 'no'
-# No spaces.  This gets used as part of a service name.
-game_name:              'Fruitopia-Seven'
-game_description:       'Farm hands wanted.  Inquire within.'
-allow_users:
-  - 'aaron'
-  - 'ansible'
 
 
 # Maybe all this Steam and Don't Starve stuff should be in inventory,
@@ -22,6 +16,12 @@ steamcmd_login_timeout: 120
 
 ## BEGIN Don't Starve Together dedicated server
 # app wide configuration
+# No spaces.  This gets used as part of a service name.
+game_name:              'Fruitopia-Seven'
+game_description:       'Farm hands wanted.  Inquire within.'
+allow_users:
+  - 'aaron'
+  - 'ansible'
 dst_app_id: 343050
 dst_install_dir: '{{ steamcmd_user_home }}apps/dontstarvetogether/'
 dst_server_token: 'pds-g^KU_U8IrMGWF^5ejq35my1yKxhNyjjRt3e3Nf8cJ1tnuAvVM6NZ1RGBU='
