@@ -30,16 +30,14 @@ updates, just because it is a member of group raspberry-pi.
 
 ## host roles
 
-The host role should ideally not contain *tasks/main.yml*.  Everything
-distinguishing about the host should be defined by dependency on service roles.
-In concept, this means that a host can be redeployed to a system with a stock
-OS in one shot.  In practice, full redeployment doesn't get tested very often,
-and is likely to require some tweaking to work.
+This was a mistake.  Some roles attempt to define a host by depending on its roles.
 
-The host role directory may also include host-specific information, which can
-be referenced by service roles.  This is a last resort, if the information
-cannot be conveyed by host variables or inventory group membership.  Ideally
-there should be little or no material, here.
+The set of roles assigned to a host should be recorded in the inventory.  If it
+is desirable to be able to conveniently deploy a full set of configuration to a
+single host, work out a playbook or script which will read a list of
+roles-per-host from the inventory and iterate over that.
+
+Host roles are to be eliminated in favor of keeping inventory in the inventory file.
 
 ## service roles
 
