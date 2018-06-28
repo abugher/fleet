@@ -1,6 +1,13 @@
 ---
 install_packages:
   - 'dnsmasq'
+# dns-root-data provides /usr/share/dns/root.ds which, if present, is badly
+# mis-parsed by /etc/init.d/dnsmasq, as of an update to the init script on
+# 2018-06-26, from Debian.  It looks like there's a history of this bad
+# interaction, and the solution in the past, for some, has been to just remove
+# dns-root-data.
+remove_packages:
+  - 'dns-root-data'
 create_files:
   - owner:              'pi'
     group:              'pi'
