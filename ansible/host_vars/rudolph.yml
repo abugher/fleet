@@ -1,5 +1,5 @@
 ---
-mac_address:            '5C:C5:D4:64:E6:19'
+mac_address:            '62:77:D3:55:8A:71'
 ip_address:             '192.168.11.58'
 parent:                 "{{ gateway }}"
 platform:               'laptop'
