@@ -1,7 +1,9 @@
 ---
 - name:                 "reboot host"
-  command:              shutdown -r now 'Reboot triggered by ansible.'
-  failed_when:          false
+  command:              shutdown -r +1 'Reboot triggered by ansible.'
+  async:                0
+  poll:                 0
+  ignore_errors:        True
 
 - name:                 "wait for host to come back from reboot"
   local_action:         wait_for host="{{ inventory_hostname }}"
