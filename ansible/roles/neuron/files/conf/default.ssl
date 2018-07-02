@@ -25,6 +25,10 @@ server {
     autoindex on;
   }
 
+  location /public/ {
+    autoindex on;
+  }
+
   location /kanboard/ {
     proxy_pass http://meliora/kanboard/;
   }
