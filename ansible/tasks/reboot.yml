@@ -4,6 +4,7 @@
   async:                0
   poll:                 0
   ignore_errors:        True
+  changed_when:         false
 
 - name:                 "wait for host to come back from reboot"
   local_action:         wait_for host="{{ inventory_hostname }}"
